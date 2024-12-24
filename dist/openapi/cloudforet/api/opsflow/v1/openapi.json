@@ -270,11 +270,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n |source||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" }                 }
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"source" : {"type": "object","title": "SOURCE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -496,11 +496,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_options||StatusOptions|True|\n |package_id||string|True|\n |description||string||\n |fields||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_options||StatusOptions|True|\n |package_id||string|True|\n |description||string||\n |fields||array||\n |vars||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -525,11 +525,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |force||boolean||\n |tags||Struct||\n |package_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |force||boolean||\n |vars||Struct||\n |tags||Struct||\n |package_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"force" : {"type": "boolean","title": "FORCE" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
+                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"force" : {"type": "boolean","title": "FORCE" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -699,11 +699,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |vars||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -728,11 +728,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |assignee_pool||array||\n |tags||Struct||\n |category_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |assignee_pool||array||\n |vars||Struct||\n |tags||Struct||\n |category_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1165,15 +1165,15 @@
                 "title": "Unwind"
            }
            ,        "CommentCreateRequest": {
-         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"}},
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"}},
          "type": "object",
          "required": ["task_id","comment"],
                 "title": "CommentCreateRequest"
            }
            ,        "CommentInfo": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
-         "required": ["comment_id","comment","comment_type","is_edited","mentions","created_by","domain_id","workspace_id","project_id","task_id","created_at","updated_at"],
+         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
                 "title": "CommentInfo"
            }
            ,        "CommentRequest": {
@@ -1216,9 +1216,9 @@
                 "title": "Mentions"
            }
            ,        "EventInfo": {
-         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"user_type" : {"type": "string","title": "USER_TYPE"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"user_type" : {"type": "string","title": "USER_TYPE"},"user_id" : {"type": "string","title": "USER_ID"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["event_id","event_type","name","description","user_type","user_id","domain_id","workspace_id","project_id","task_id","created_at","updated_at"],
+         "required": ["event_id","event_type","name","description","user_type","user_id","additional_info","domain_id","workspace_id","project_id","task_id","created_at","updated_at"],
                 "title": "EventInfo"
            }
            ,        "EventSearchQuery": {
@@ -1264,16 +1264,16 @@
            }
            ,        "TaskCategoryCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
          "type": "object",
          "required": ["name","status_options","package_id"],
                 "title": "TaskCategoryCreateRequest"
            }
            ,        "TaskCategoryInfo": {
          "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"package_id" : {"type": "string","title": "PACKAGE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"state" : {"type": "string","title": "STATE"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"package_id" : {"type": "string","title": "PACKAGE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"}},
          "type": "object",
-         "required": ["category_id","name","description","status_options","fields","state","tags","domain_id","package_id","created_at","updated_at","deleted_at"],
+         "required": ["category_id","name","description","status_options","fields","state","vars","tags","domain_id","package_id","created_at","updated_at","deleted_at"],
                 "title": "TaskCategoryInfo"
            }
            ,        "TaskCategoryRequest": {
@@ -1302,7 +1302,7 @@
                 "title": "TaskCategoryUpdateFieldsRequest"
            }
            ,        "TaskCategoryUpdateRequest": {
-         "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"force" : {"type": "boolean","title": "FORCE"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
+         "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"force" : {"type": "boolean","title": "FORCE"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
          "type": "object",
          "required": ["category_id"],
                 "title": "TaskCategoryUpdateRequest"
@@ -1316,7 +1316,7 @@
            ,        "TaskTypeCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
                "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["name","category_id"],
                 "title": "TaskTypeCreateRequest"
@@ -1324,9 +1324,9 @@
            ,        "TaskTypeInfo": {
          "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
                "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["task_type_id","name","description","fields","assignee_pool","tags","domain_id","category_id","created_at","updated_at"],
+         "required": ["task_type_id","name","description","fields","assignee_pool","vars","tags","domain_id","category_id","created_at","updated_at"],
                 "title": "TaskTypeInfo"
            }
            ,        "TaskTypeRequest": {
@@ -1356,7 +1356,7 @@
            }
            ,        "TaskTypeUpdateRequest": {
          "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["task_type_id"],
                 "title": "TaskTypeUpdateRequest"
