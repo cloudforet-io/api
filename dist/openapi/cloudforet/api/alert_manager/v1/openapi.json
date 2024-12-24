@@ -2626,6 +2626,12 @@
          "required": ["name","service_key"],
                 "title": "ServiceCreateRequest"
            }
+           ,        "ServiceDeleteRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"force" : {"type": "boolean","title": "FORCE"}},
+         "type": "object",
+         "required": ["service_id"],
+                "title": "ServiceDeleteRequest"
+           }
            ,        "ServiceInfo": {
          "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS"},"channels" : {"items": {"type": "string"},
                "type": "array","title": "CHANNELS"},"webhooks" : {"items": {"type": "string"},
