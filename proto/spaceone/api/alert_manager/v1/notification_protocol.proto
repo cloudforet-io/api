@@ -29,9 +29,9 @@ service NotificationProtocol {
             body: "*"
         };
     }
-    rpc verify_plugin (NotificationProtocolRequest) returns (google.protobuf.Empty) {
+    rpc update_secret_data (NotificationProtocolUpdateSecretDataRequest) returns (NotificationProtocolInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/notification-protocol/verify-plugin"
+            post: "/alert-manager/v1/notification-protocol/update-secret-data"
             body: "*"
         };
     }
@@ -108,6 +108,11 @@ message NotificationProtocolUpdatePluginRequest {
 
 message NotificationProtocolRequest {
     string protocol_id = 1;
+}
+
+message NotificationProtocolUpdateSecretDataRequest {
+    string protocol_id = 1;
+    google.protobuf.Struct secret_data = 2;
 }
 
 message NotificationProtocolSearchQuery {
