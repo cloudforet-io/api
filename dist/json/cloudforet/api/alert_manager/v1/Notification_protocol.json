@@ -442,6 +442,42 @@
           ]
         },
         {
+          "name": "NotificationProtocolUpdateSecretDataRequest",
+          "longName": "NotificationProtocolUpdateSecretDataRequest",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolUpdateSecretDataRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "NotificationProtocolsInfo",
           "longName": "NotificationProtocolsInfo",
           "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolsInfo",
@@ -555,22 +591,22 @@
               }
             },
             {
-              "name": "verify_plugin",
+              "name": "update_secret_data",
               "description": "",
-              "requestType": "NotificationProtocolRequest",
-              "requestLongType": "NotificationProtocolRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.NotificationProtocolRequest",
+              "requestType": "NotificationProtocolUpdateSecretDataRequest",
+              "requestLongType": "NotificationProtocolUpdateSecretDataRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.NotificationProtocolUpdateSecretDataRequest",
               "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
+              "responseType": "NotificationProtocolInfo",
+              "responseLongType": "NotificationProtocolInfo",
+              "responseFullType": "spaceone.api.alert_manager.v1.NotificationProtocolInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/notification-protocol/verify-plugin",
+                      "pattern": "/alert-manager/v1/notification-protocol/update-secret-data",
                       "body": "*"
                     }
                   ]

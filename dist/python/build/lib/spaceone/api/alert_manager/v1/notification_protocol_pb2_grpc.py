@@ -56,10 +56,10 @@ class NotificationProtocolStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdatePluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.FromString,
                 _registered_method=True)
-        self.verify_plugin = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.NotificationProtocol/verify_plugin',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        self.update_secret_data = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.NotificationProtocol/update_secret_data',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdateSecretDataRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.FromString,
                 _registered_method=True)
         self.enable = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.NotificationProtocol/enable',
@@ -114,7 +114,7 @@ class NotificationProtocolServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def verify_plugin(self, request, context):
+    def update_secret_data(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -174,10 +174,10 @@ def add_NotificationProtocolServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdatePluginRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.SerializeToString,
             ),
-            'verify_plugin': grpc.unary_unary_rpc_method_handler(
-                    servicer.verify_plugin,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            'update_secret_data': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_secret_data,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdateSecretDataRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
                     servicer.enable,
@@ -302,7 +302,7 @@ class NotificationProtocol(object):
             _registered_method=True)
 
     @staticmethod
-    def verify_plugin(request,
+    def update_secret_data(request,
             target,
             options=(),
             channel_credentials=None,
@@ -315,9 +315,9 @@ class NotificationProtocol(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.alert_manager.v1.NotificationProtocol/verify_plugin',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            '/spaceone.api.alert_manager.v1.NotificationProtocol/update_secret_data',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdateSecretDataRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.FromString,
             options,
             channel_credentials,
             insecure,

@@ -263,18 +263,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/notification-protocol/verify-plugin": {
+     },"/alert-manager/notification-protocol/update-secret-data": {
        "post": {
          "tags": ["alert-manager > notification-protocol"],
-         "summary": "Verify Plugin",
+         "summary": "Update Secret Data",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |secret_data||Struct|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -283,7 +283,13 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/alert-manager/notification-protocol/enable": {
@@ -2539,6 +2545,12 @@
          "type": "object",
          "required": ["protocol_id"],
                 "title": "NotificationProtocolUpdateRequest"
+           }
+           ,        "NotificationProtocolUpdateSecretDataRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"}},
+         "type": "object",
+         "required": ["protocol_id","secret_data"],
+                "title": "NotificationProtocolUpdateSecretDataRequest"
            }
            ,        "NotificationProtocolsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
