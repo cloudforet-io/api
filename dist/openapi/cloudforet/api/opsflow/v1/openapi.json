@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_id||string|True|\n |project_id||string|True|\n |task_type_id||string|True|\n |priority|HIGH, MEDIUM, LOW |string||\n |description||string||\n |files||array||\n |mentions||Mentions||\n |assignee||string||\n |data||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_id||string|True|\n |project_id||string|True|\n |task_type_id||string|True|\n |priority|HIGH, MEDIUM, LOW |string||\n |description||string||\n |files||array||\n |mentions||Mentions||\n |assignee||string||\n |data||Struct||\n |reference_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"status_id" : {"type": "string","title": "STATUS_ID" },"priority" : {"type": "string","title": "PRIORITY" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"assignee" : {"type": "string","title": "ASSIGNEE" },"data" : {"type": "object","title": "DATA" },"project_id" : {"type": "string","title": "PROJECT_ID" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"status_id" : {"type": "string","title": "STATUS_ID" },"priority" : {"type": "string","title": "PRIORITY" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"assignee" : {"type": "string","title": "ASSIGNEE" },"data" : {"type": "object","title": "DATA" },"reference_id" : {"type": "string","title": "REFERENCE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -270,11 +270,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n |source||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n |source||Struct||\n |reference_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"source" : {"type": "object","title": "SOURCE" }                 }
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"source" : {"type": "object","title": "SOURCE" },"reference_id" : {"type": "string","title": "REFERENCE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1075,16 +1075,16 @@
            }
            ,        "TaskCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"status_id" : {"type": "string","title": "STATUS_ID"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"assignee" : {"type": "string","title": "ASSIGNEE"},"data" : {"type": "object","title": "DATA"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"}},
+               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"assignee" : {"type": "string","title": "ASSIGNEE"},"data" : {"type": "object","title": "DATA"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"}},
          "type": "object",
          "required": ["name","status_id","project_id","task_type_id"],
                 "title": "TaskCreateRequest"
            }
            ,        "TaskInfo": {
          "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"status_id" : {"type": "string","title": "STATUS_ID"},"status_type" : {"type": "string","title": "STATUS_TYPE"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"data" : {"type": "object","title": "DATA"},"files" : {"items": {"type": "FileInfo"},
-               "type": "array","title": "FILES"},"assignee" : {"type": "string","title": "ASSIGNEE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"completed_at" : {"type": "string","title": "COMPLETED_AT"}},
+               "type": "array","title": "FILES"},"assignee" : {"type": "string","title": "ASSIGNEE"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"completed_at" : {"type": "string","title": "COMPLETED_AT"}},
          "type": "object",
-         "required": ["task_id","name","status_id","status_type","priority","description","data","files","assignee","created_by","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
+         "required": ["task_id","name","status_id","status_type","priority","description","data","files","assignee","created_by","reference_id","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
                 "title": "TaskInfo"
            }
            ,        "TaskRequest": {
@@ -1333,15 +1333,15 @@
                 "title": "Unwind"
            }
            ,        "CommentCreateRequest": {
-         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"}},
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"}},
          "type": "object",
          "required": ["task_id","comment"],
                 "title": "CommentCreateRequest"
            }
            ,        "CommentInfo": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
-         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
+         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","reference_id","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
                 "title": "CommentInfo"
            }
            ,        "CommentRequest": {

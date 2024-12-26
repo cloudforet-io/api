@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%spaceone/api/opsflow/v1/comment.proto\x12\x17spaceone.api.opsflow.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\",\n\x08Mentions\x12\x0c\n\x04USER\x18\x01 \x03(\t\x12\x12\n\nUSER_GROUP\x18\x02 \x03(\t\"\x96\x01\n\x14\x43ommentCreateRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x33\n\x08mentions\x18\x03 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\x12\'\n\x06source\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\"p\n\x14\x43ommentUpdateRequest\x12\x12\n\ncomment_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x33\n\x08mentions\x18\x03 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\"$\n\x0e\x43ommentRequest\x12\x12\n\ncomment_id\x18\x01 \x01(\t\"\xff\x01\n\x12\x43ommentSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12\x12\n\ncomment_id\x18\x03 \x01(\t\x12\x46\n\x0c\x63omment_type\x18\x04 \x01(\x0e\x32\x30.spaceone.api.opsflow.v1.CommentInfo.CommentType\x12\x0f\n\x07user_id\x18\x05 \x01(\t\x12\x15\n\ruser_group_id\x18\x06 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x12\n\nproject_id\x18\x0c \x01(\t\"\xbe\x03\n\x0b\x43ommentInfo\x12\x12\n\ncomment_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x46\n\x0c\x63omment_type\x18\x03 \x01(\x0e\x32\x30.spaceone.api.opsflow.v1.CommentInfo.CommentType\x12\x11\n\tis_edited\x18\x04 \x01(\x08\x12\x33\n\x08mentions\x18\x05 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\x12\'\n\x06source\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\nproject_id\x18\x17 \x01(\t\x12\x0f\n\x07task_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\x12\x12\n\ncreated_by\x18! \x01(\t\"G\n\x0b\x43ommentType\x12\x15\n\x11\x43OMMENT_TYPE_NONE\x10\x00\x12\x14\n\x10TASK_DESCRIPTION\x10\x01\x12\x0b\n\x07\x43OMMENT\x10\x02\"Z\n\x0c\x43ommentsInfo\x12\x35\n\x07results\x18\x01 \x03(\x0b\x32$.spaceone.api.opsflow.v1.CommentInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"H\n\x10\x43ommentStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xf5\x05\n\x07\x43omment\x12\x84\x01\n\x06\x63reate\x12-.spaceone.api.opsflow.v1.CommentCreateRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/create:\x01*\x12\x84\x01\n\x06update\x12-.spaceone.api.opsflow.v1.CommentUpdateRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/update:\x01*\x12p\n\x06\x64\x65lete\x12\'.spaceone.api.opsflow.v1.CommentRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/delete:\x01*\x12x\n\x03get\x12\'.spaceone.api.opsflow.v1.CommentRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/opsflow/v1/comment/get:\x01*\x12\x7f\n\x04list\x12+.spaceone.api.opsflow.v1.CommentSearchQuery\x1a%.spaceone.api.opsflow.v1.CommentsInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/opsflow/v1/comment/list:\x01*\x12o\n\x04stat\x12).spaceone.api.opsflow.v1.CommentStatQuery\x1a\x17.google.protobuf.Struct\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/opsflow/v1/comment/stat:\x01*B>Z<github.com/cloudforet-io/api/dist/go/spaceone/api/opsflow/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%spaceone/api/opsflow/v1/comment.proto\x12\x17spaceone.api.opsflow.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\",\n\x08Mentions\x12\x0c\n\x04USER\x18\x01 \x03(\t\x12\x12\n\nUSER_GROUP\x18\x02 \x03(\t\"\xac\x01\n\x14\x43ommentCreateRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x33\n\x08mentions\x18\x03 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\x12\'\n\x06source\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x14\n\x0creference_id\x18\x05 \x01(\t\"p\n\x14\x43ommentUpdateRequest\x12\x12\n\ncomment_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x33\n\x08mentions\x18\x03 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\"$\n\x0e\x43ommentRequest\x12\x12\n\ncomment_id\x18\x01 \x01(\t\"\xff\x01\n\x12\x43ommentSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12\x12\n\ncomment_id\x18\x03 \x01(\t\x12\x46\n\x0c\x63omment_type\x18\x04 \x01(\x0e\x32\x30.spaceone.api.opsflow.v1.CommentInfo.CommentType\x12\x0f\n\x07user_id\x18\x05 \x01(\t\x12\x15\n\ruser_group_id\x18\x06 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x12\n\nproject_id\x18\x0c \x01(\t\"\xd4\x03\n\x0b\x43ommentInfo\x12\x12\n\ncomment_id\x18\x01 \x01(\t\x12\x0f\n\x07\x63omment\x18\x02 \x01(\t\x12\x46\n\x0c\x63omment_type\x18\x03 \x01(\x0e\x32\x30.spaceone.api.opsflow.v1.CommentInfo.CommentType\x12\x11\n\tis_edited\x18\x04 \x01(\x08\x12\x33\n\x08mentions\x18\x05 \x01(\x0b\x32!.spaceone.api.opsflow.v1.Mentions\x12\'\n\x06source\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x14\n\x0creference_id\x18\x08 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\nproject_id\x18\x17 \x01(\t\x12\x0f\n\x07task_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\x12\x12\n\ncreated_by\x18! \x01(\t\"G\n\x0b\x43ommentType\x12\x15\n\x11\x43OMMENT_TYPE_NONE\x10\x00\x12\x14\n\x10TASK_DESCRIPTION\x10\x01\x12\x0b\n\x07\x43OMMENT\x10\x02\"Z\n\x0c\x43ommentsInfo\x12\x35\n\x07results\x18\x01 \x03(\x0b\x32$.spaceone.api.opsflow.v1.CommentInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"H\n\x10\x43ommentStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xf5\x05\n\x07\x43omment\x12\x84\x01\n\x06\x63reate\x12-.spaceone.api.opsflow.v1.CommentCreateRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/create:\x01*\x12\x84\x01\n\x06update\x12-.spaceone.api.opsflow.v1.CommentUpdateRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/update:\x01*\x12p\n\x06\x64\x65lete\x12\'.spaceone.api.opsflow.v1.CommentRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/comment/delete:\x01*\x12x\n\x03get\x12\'.spaceone.api.opsflow.v1.CommentRequest\x1a$.spaceone.api.opsflow.v1.CommentInfo\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/opsflow/v1/comment/get:\x01*\x12\x7f\n\x04list\x12+.spaceone.api.opsflow.v1.CommentSearchQuery\x1a%.spaceone.api.opsflow.v1.CommentsInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/opsflow/v1/comment/list:\x01*\x12o\n\x04stat\x12).spaceone.api.opsflow.v1.CommentStatQuery\x1a\x17.google.protobuf.Struct\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/opsflow/v1/comment/stat:\x01*B>Z<github.com/cloudforet-io/api/dist/go/spaceone/api/opsflow/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,21 +41,21 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_MENTIONS']._serialized_start=189
   _globals['_MENTIONS']._serialized_end=233
   _globals['_COMMENTCREATEREQUEST']._serialized_start=236
-  _globals['_COMMENTCREATEREQUEST']._serialized_end=386
-  _globals['_COMMENTUPDATEREQUEST']._serialized_start=388
-  _globals['_COMMENTUPDATEREQUEST']._serialized_end=500
-  _globals['_COMMENTREQUEST']._serialized_start=502
-  _globals['_COMMENTREQUEST']._serialized_end=538
-  _globals['_COMMENTSEARCHQUERY']._serialized_start=541
-  _globals['_COMMENTSEARCHQUERY']._serialized_end=796
-  _globals['_COMMENTINFO']._serialized_start=799
-  _globals['_COMMENTINFO']._serialized_end=1245
-  _globals['_COMMENTINFO_COMMENTTYPE']._serialized_start=1174
-  _globals['_COMMENTINFO_COMMENTTYPE']._serialized_end=1245
-  _globals['_COMMENTSINFO']._serialized_start=1247
-  _globals['_COMMENTSINFO']._serialized_end=1337
-  _globals['_COMMENTSTATQUERY']._serialized_start=1339
-  _globals['_COMMENTSTATQUERY']._serialized_end=1411
-  _globals['_COMMENT']._serialized_start=1414
-  _globals['_COMMENT']._serialized_end=2171
+  _globals['_COMMENTCREATEREQUEST']._serialized_end=408
+  _globals['_COMMENTUPDATEREQUEST']._serialized_start=410
+  _globals['_COMMENTUPDATEREQUEST']._serialized_end=522
+  _globals['_COMMENTREQUEST']._serialized_start=524
+  _globals['_COMMENTREQUEST']._serialized_end=560
+  _globals['_COMMENTSEARCHQUERY']._serialized_start=563
+  _globals['_COMMENTSEARCHQUERY']._serialized_end=818
+  _globals['_COMMENTINFO']._serialized_start=821
+  _globals['_COMMENTINFO']._serialized_end=1289
+  _globals['_COMMENTINFO_COMMENTTYPE']._serialized_start=1218
+  _globals['_COMMENTINFO_COMMENTTYPE']._serialized_end=1289
+  _globals['_COMMENTSINFO']._serialized_start=1291
+  _globals['_COMMENTSINFO']._serialized_end=1381
+  _globals['_COMMENTSTATQUERY']._serialized_start=1383
+  _globals['_COMMENTSTATQUERY']._serialized_end=1455
+  _globals['_COMMENT']._serialized_start=1458
+  _globals['_COMMENT']._serialized_end=2215
 # @@protoc_insertion_point(module_scope)
