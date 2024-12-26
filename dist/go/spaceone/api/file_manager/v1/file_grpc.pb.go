@@ -21,23 +21,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	File_Add_FullMethodName            = "/spaceone.api.file_manager.v1.File/add"
-	File_Update_FullMethodName         = "/spaceone.api.file_manager.v1.File/update"
-	File_Delete_FullMethodName         = "/spaceone.api.file_manager.v1.File/delete"
-	File_GetDownloadUrl_FullMethodName = "/spaceone.api.file_manager.v1.File/get_download_url"
-	File_Get_FullMethodName            = "/spaceone.api.file_manager.v1.File/get"
-	File_List_FullMethodName           = "/spaceone.api.file_manager.v1.File/list"
-	File_Stat_FullMethodName           = "/spaceone.api.file_manager.v1.File/stat"
+	File_Update_FullMethodName = "/spaceone.api.file_manager.v1.File/update"
+	File_Delete_FullMethodName = "/spaceone.api.file_manager.v1.File/delete"
+	File_Get_FullMethodName    = "/spaceone.api.file_manager.v1.File/get"
+	File_List_FullMethodName   = "/spaceone.api.file_manager.v1.File/list"
+	File_Stat_FullMethodName   = "/spaceone.api.file_manager.v1.File/stat"
 )
 
 // FileClient is the client API for File service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileClient interface {
-	Add(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	Update(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	Delete(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	GetDownloadUrl(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	Get(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	List(ctx context.Context, in *FileSearchQuery, opts ...grpc.CallOption) (*FilesInfo, error)
 	Stat(ctx context.Context, in *FileStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -49,16 +45,6 @@ type fileClient struct {
 
 func NewFileClient(cc grpc.ClientConnInterface) FileClient {
 	return &fileClient{cc}
-}
-
-func (c *fileClient) Add(ctx context.Context, in *CreateFileRequest, opts ...grpc.CallOption) (*FileInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FileInfo)
-	err := c.cc.Invoke(ctx, File_Add_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *fileClient) Update(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*FileInfo, error) {
@@ -75,16 +61,6 @@ func (c *fileClient) Delete(ctx context.Context, in *FileRequest, opts ...grpc.C
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, File_Delete_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fileClient) GetDownloadUrl(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FileInfo)
-	err := c.cc.Invoke(ctx, File_GetDownloadUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,10 +101,8 @@ func (c *fileClient) Stat(ctx context.Context, in *FileStatQuery, opts ...grpc.C
 // All implementations must embed UnimplementedFileServer
 // for forward compatibility.
 type FileServer interface {
-	Add(context.Context, *CreateFileRequest) (*FileInfo, error)
 	Update(context.Context, *UpdateFileRequest) (*FileInfo, error)
 	Delete(context.Context, *FileRequest) (*empty.Empty, error)
-	GetDownloadUrl(context.Context, *FileRequest) (*FileInfo, error)
 	Get(context.Context, *FileRequest) (*FileInfo, error)
 	List(context.Context, *FileSearchQuery) (*FilesInfo, error)
 	Stat(context.Context, *FileStatQuery) (*_struct.Struct, error)
@@ -142,17 +116,11 @@ type FileServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFileServer struct{}
 
-func (UnimplementedFileServer) Add(context.Context, *CreateFileRequest) (*FileInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
-}
 func (UnimplementedFileServer) Update(context.Context, *UpdateFileRequest) (*FileInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedFileServer) Delete(context.Context, *FileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedFileServer) GetDownloadUrl(context.Context, *FileRequest) (*FileInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDownloadUrl not implemented")
 }
 func (UnimplementedFileServer) Get(context.Context, *FileRequest) (*FileInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -182,24 +150,6 @@ func RegisterFileServer(s grpc.ServiceRegistrar, srv FileServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&File_ServiceDesc, srv)
-}
-
-func _File_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateFileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FileServer).Add(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: File_Add_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServer).Add(ctx, req.(*CreateFileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _File_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -234,24 +184,6 @@ func _File_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FileServer).Delete(ctx, req.(*FileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _File_GetDownloadUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FileServer).GetDownloadUrl(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: File_GetDownloadUrl_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServer).GetDownloadUrl(ctx, req.(*FileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -318,20 +250,12 @@ var File_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*FileServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "add",
-			Handler:    _File_Add_Handler,
-		},
-		{
 			MethodName: "update",
 			Handler:    _File_Update_Handler,
 		},
 		{
 			MethodName: "delete",
 			Handler:    _File_Delete_Handler,
-		},
-		{
-			MethodName: "get_download_url",
-			Handler:    _File_GetDownloadUrl_Handler,
 		},
 		{
 			MethodName: "get",

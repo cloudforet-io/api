@@ -41,11 +41,6 @@ class FileStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.add = channel.unary_unary(
-                '/spaceone.api.file_manager.v1.File/add',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.CreateFileRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
-                _registered_method=True)
         self.update = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.File/update',
                 request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.UpdateFileRequest.SerializeToString,
@@ -55,11 +50,6 @@ class FileStub(object):
                 '/spaceone.api.file_manager.v1.File/delete',
                 request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.get_download_url = channel.unary_unary(
-                '/spaceone.api.file_manager.v1.File/get_download_url',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.File/get',
@@ -81,12 +71,6 @@ class FileStub(object):
 class FileServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def add(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def update(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -94,12 +78,6 @@ class FileServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def get_download_url(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -126,11 +104,6 @@ class FileServicer(object):
 
 def add_FileServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'add': grpc.unary_unary_rpc_method_handler(
-                    servicer.add,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.CreateFileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.SerializeToString,
-            ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.UpdateFileRequest.FromString,
@@ -140,11 +113,6 @@ def add_FileServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'get_download_url': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_download_url,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -171,33 +139,6 @@ def add_FileServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class File(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def add(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.file_manager.v1.File/add',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.CreateFileRequest.SerializeToString,
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
 
     @staticmethod
     def update(request,
@@ -243,33 +184,6 @@ class File(object):
             '/spaceone.api.file_manager.v1.File/delete',
             spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def get_download_url(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.file_manager.v1.File/get_download_url',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
             options,
             channel_credentials,
             insecure,
