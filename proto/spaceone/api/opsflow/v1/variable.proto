@@ -49,19 +49,11 @@ service Variable {
     }
 }
 
-enum ResourceGroup {
-    RESOURCE_GROUP_NONE = 0;
-    DOMAIN = 1;
-    WORKSPACE = 2;
-}
-
 message VariableCreateRequest {
     string name = 1;
     string value = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    // +optional
-    ResourceGroup resource_group = 4;
     // +optional
     string workspace_id = 21;
 }
@@ -91,7 +83,6 @@ message VariableInfo {
     string name = 1;
     string value = 2;
     google.protobuf.Struct tags = 3;
-    ResourceGroup resource_group = 4;
 
     string domain_id = 21;
     string workspace_id = 22;
