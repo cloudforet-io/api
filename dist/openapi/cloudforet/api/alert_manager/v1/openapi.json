@@ -919,11 +919,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |description||string||\n |urgency|HIGH, LOW |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |status|TRIGGERED, ACKNOWLEDGED, RESOLVED, IGNORED |string||\n |description||string||\n |urgency|HIGH, LOW |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"status" : {"type": "string","title": "STATUS" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1000,11 +1000,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_id||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |resource||string||\n |provider||string||\n |account||string||\n |triggered_type||string||\n |triggered_by||string||\n |workspace_id||string||\n |service_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_id||string||\n |status|TRIGGERED, ACKNOWLEDGED, RESOLVED, IGNORED |string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |resource||string||\n |provider||string||\n |account||string||\n |triggered_type||string||\n |triggered_by||string||\n |workspace_id||string||\n |service_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_id" : {"type": "string","title": "ALERT_ID" },"state" : {"type": "string","title": "STATE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"resource" : {"type": "string","title": "RESOURCE" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_id" : {"type": "string","title": "ALERT_ID" },"status" : {"type": "string","title": "STATUS" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"resource" : {"type": "string","title": "RESOURCE" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2695,11 +2695,11 @@
                 "title": "AlertHistoryInfo"
            }
            ,        "AlertInfo": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"status" : {"type": "string","title": "STATUS"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
                "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"labels" : {"items": {"type": "string"},
                "type": "array","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"}},
          "type": "object",
-         "required": ["alert_id","title","state","description","urgency","severity","rule","image_url","resources","provider","account","triggered_type","triggered_by","additional_info","labels","domain_id","workspace_id","service_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at"],
+         "required": ["alert_id","title","status","description","urgency","severity","rule","image_url","resources","provider","account","triggered_type","triggered_by","additional_info","labels","domain_id","workspace_id","service_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at"],
                 "title": "AlertInfo"
            }
            ,        "AlertRequest": {
@@ -2715,7 +2715,7 @@
                 "title": "AlertResource"
            }
            ,        "AlertSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_id" : {"type": "string","title": "ALERT_ID"},"state" : {"type": "string","title": "STATE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_id" : {"type": "string","title": "ALERT_ID"},"status" : {"type": "string","title": "STATUS"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "AlertSearchQuery"
@@ -2727,7 +2727,7 @@
                 "title": "AlertStatQuery"
            }
            ,        "AlertUpdateRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"}},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"status" : {"type": "string","title": "STATUS"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"}},
          "type": "object",
          "required": ["alert_id"],
                 "title": "AlertUpdateRequest"
