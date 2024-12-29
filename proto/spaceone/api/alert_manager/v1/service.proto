@@ -34,7 +34,7 @@ service Service {
             body: "*"
         };
     }
-    rpc get (ServiceRequest) returns (ServiceInfo) {
+    rpc get (ServiceGetRequest) returns (ServiceInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/service/get"
             body: "*"
@@ -129,8 +129,10 @@ message ServiceDeleteRequest {
     bool force = 2;
 }
 
-message ServiceRequest {
+message ServiceGetRequest {
     string service_id = 1;
+    // +optional
+    bool details = 2;
 }
 
 message ServiceSearchQuery {
@@ -140,6 +142,8 @@ message ServiceSearchQuery {
     string service_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    bool details = 4;
 
     // +optional
     string escalation_policy_id = 21;
