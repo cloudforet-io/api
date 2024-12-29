@@ -1116,11 +1116,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |conditions||array||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|GLOBAL, WEBHOOK |string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |conditions||array||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1255,11 +1255,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |workspace_id||string||\n |service_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |scope|GLOBAL, WEBHOOK |string||\n |workspace_id||string||\n |service_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2752,17 +2752,17 @@
                 "title": "EventRuleChangeOrderRequest"
            }
            ,        "EventRuleCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
                "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
-         "required": ["conditions_policy","actions","service_id"],
+         "required": ["scope","conditions_policy","actions","service_id"],
                 "title": "EventRuleCreateRequest"
            }
            ,        "EventRuleInfo": {
-         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
                "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","tags","domain_id","workspace_id","service_id","created_at","updated_at"],
+         "required": ["event_rule_id","name","scope","order","conditions","conditions_policy","actions","options","tags","domain_id","workspace_id","service_id","created_at","updated_at"],
                 "title": "EventRuleInfo"
            }
            ,        "EventRuleOptions": {
@@ -2778,7 +2778,7 @@
                 "title": "EventRuleRequest"
            }
            ,        "EventRuleSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
          "required": [],
                 "title": "EventRuleSearchQuery"
