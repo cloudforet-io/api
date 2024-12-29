@@ -101,19 +101,19 @@ message AlertCreateRequest {
 }
 
 message AlertUpdateRequest {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
     }
 
     string alert_id = 1;
     // +optional
     string title = 2;
     // +optional
-    AlertState state = 3;
+    AlertStatus status = 3;
     // +optional
     string description = 4;
     // +optional
@@ -125,12 +125,13 @@ message AlertRequest {
 }
 
 message AlertSearchQuery {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
+        ERROR = 5;
     }
 
     // +optional
@@ -138,7 +139,7 @@ message AlertSearchQuery {
     // +optional
     string alert_id = 2;
     // +optional
-    AlertState state = 3;
+    AlertStatus status = 3;
     // +optional
     AlertUrgency urgency = 4;
     // +optional
@@ -173,7 +174,7 @@ message AlertStatQuery {
 }
 
 message AlertInfo {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
@@ -190,7 +191,7 @@ message AlertInfo {
 
     string alert_id = 1;
     string title = 2;
-    AlertState state = 3;
+    AlertStatus status = 3;
     string description = 4;
     AlertUrgency urgency = 5;
     spaceone.api.alert_manager.v1.EventSeverity severity = 6;
