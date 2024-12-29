@@ -29,12 +29,6 @@ service Webhook {
             body: "*"
         };
     }
-    rpc verify_plugin (WebhookRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/webhook/verify-plugin"
-            body: "*"
-        };
-    }
     rpc enable (WebhookRequest) returns (WebhookInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/webhook/enable"
