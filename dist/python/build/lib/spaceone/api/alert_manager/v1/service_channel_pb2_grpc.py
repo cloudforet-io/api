@@ -49,7 +49,7 @@ class ServiceChannelStub(object):
         self.create_forward_channel = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.ServiceChannel/create_forward_channel',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelCreateForwardChannelRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.ServiceChannel/update',
@@ -156,7 +156,7 @@ def add_ServiceChannelServicer_to_server(servicer, server):
             'create_forward_channel': grpc.unary_unary_rpc_method_handler(
                     servicer.create_forward_channel,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelCreateForwardChannelRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
@@ -247,7 +247,7 @@ class ServiceChannel(object):
             target,
             '/spaceone.api.alert_manager.v1.ServiceChannel/create_forward_channel',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelCreateForwardChannelRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2.ServiceChannelInfo.FromString,
             options,
             channel_credentials,
             insecure,

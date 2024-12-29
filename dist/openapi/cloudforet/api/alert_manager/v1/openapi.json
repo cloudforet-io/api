@@ -2050,7 +2050,13 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/alert-manager/service-channel/update": {

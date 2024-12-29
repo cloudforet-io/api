@@ -37,7 +37,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceChannelClient interface {
 	Create(ctx context.Context, in *ServiceChannelCreateRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error)
-	CreateForwardChannel(ctx context.Context, in *ServiceChannelCreateForwardChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	CreateForwardChannel(ctx context.Context, in *ServiceChannelCreateForwardChannelRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error)
 	Update(ctx context.Context, in *ServiceChannelUpdateRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error)
 	Enable(ctx context.Context, in *ServiceChannelRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error)
 	Disable(ctx context.Context, in *ServiceChannelRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error)
@@ -65,9 +65,9 @@ func (c *serviceChannelClient) Create(ctx context.Context, in *ServiceChannelCre
 	return out, nil
 }
 
-func (c *serviceChannelClient) CreateForwardChannel(ctx context.Context, in *ServiceChannelCreateForwardChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *serviceChannelClient) CreateForwardChannel(ctx context.Context, in *ServiceChannelCreateForwardChannelRequest, opts ...grpc.CallOption) (*ServiceChannelInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(empty.Empty)
+	out := new(ServiceChannelInfo)
 	err := c.cc.Invoke(ctx, ServiceChannel_CreateForwardChannel_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -150,7 +150,7 @@ func (c *serviceChannelClient) Stat(ctx context.Context, in *ServiceChannelStatQ
 // for forward compatibility.
 type ServiceChannelServer interface {
 	Create(context.Context, *ServiceChannelCreateRequest) (*ServiceChannelInfo, error)
-	CreateForwardChannel(context.Context, *ServiceChannelCreateForwardChannelRequest) (*empty.Empty, error)
+	CreateForwardChannel(context.Context, *ServiceChannelCreateForwardChannelRequest) (*ServiceChannelInfo, error)
 	Update(context.Context, *ServiceChannelUpdateRequest) (*ServiceChannelInfo, error)
 	Enable(context.Context, *ServiceChannelRequest) (*ServiceChannelInfo, error)
 	Disable(context.Context, *ServiceChannelRequest) (*ServiceChannelInfo, error)
@@ -171,7 +171,7 @@ type UnimplementedServiceChannelServer struct{}
 func (UnimplementedServiceChannelServer) Create(context.Context, *ServiceChannelCreateRequest) (*ServiceChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceChannelServer) CreateForwardChannel(context.Context, *ServiceChannelCreateForwardChannelRequest) (*empty.Empty, error) {
+func (UnimplementedServiceChannelServer) CreateForwardChannel(context.Context, *ServiceChannelCreateForwardChannelRequest) (*ServiceChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateForwardChannel not implemented")
 }
 func (UnimplementedServiceChannelServer) Update(context.Context, *ServiceChannelUpdateRequest) (*ServiceChannelInfo, error) {
