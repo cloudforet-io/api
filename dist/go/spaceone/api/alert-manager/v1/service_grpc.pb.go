@@ -38,7 +38,7 @@ type ServiceClient interface {
 	Update(ctx context.Context, in *ServiceUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	ChangeMembers(ctx context.Context, in *ServiceChangeMembersRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	Delete(ctx context.Context, in *ServiceDeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
+	Get(ctx context.Context, in *ServiceGetRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	List(ctx context.Context, in *ServiceSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
 	Stat(ctx context.Context, in *ServiceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -91,7 +91,7 @@ func (c *serviceClient) Delete(ctx context.Context, in *ServiceDeleteRequest, op
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *serviceClient) Get(ctx context.Context, in *ServiceGetRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ServiceInfo)
 	err := c.cc.Invoke(ctx, Service_Get_FullMethodName, in, out, cOpts...)
@@ -129,7 +129,7 @@ type ServiceServer interface {
 	Update(context.Context, *ServiceUpdateRequest) (*ServiceInfo, error)
 	ChangeMembers(context.Context, *ServiceChangeMembersRequest) (*ServiceInfo, error)
 	Delete(context.Context, *ServiceDeleteRequest) (*empty.Empty, error)
-	Get(context.Context, *ServiceRequest) (*ServiceInfo, error)
+	Get(context.Context, *ServiceGetRequest) (*ServiceInfo, error)
 	List(context.Context, *ServiceSearchQuery) (*ServicesInfo, error)
 	Stat(context.Context, *ServiceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedServiceServer()
@@ -154,7 +154,7 @@ func (UnimplementedServiceServer) ChangeMembers(context.Context, *ServiceChangeM
 func (UnimplementedServiceServer) Delete(context.Context, *ServiceDeleteRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *ServiceRequest) (*ServiceInfo, error) {
+func (UnimplementedServiceServer) Get(context.Context, *ServiceGetRequest) (*ServiceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedServiceServer) List(context.Context, *ServiceSearchQuery) (*ServicesInfo, error) {
@@ -257,7 +257,7 @@ func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceRequest)
+	in := new(ServiceGetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -269,7 +269,7 @@ func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Service_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*ServiceRequest))
+		return srv.(ServiceServer).Get(ctx, req.(*ServiceGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

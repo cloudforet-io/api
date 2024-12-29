@@ -803,11 +803,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |details||boolean||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"details" : {"type": "boolean","title": "DETAILS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -832,11 +832,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |name||string||\n |escalation_policy_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |name||string||\n |details||boolean||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"details" : {"type": "boolean","title": "DETAILS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2638,6 +2638,12 @@
          "required": ["service_id"],
                 "title": "ServiceDeleteRequest"
            }
+           ,        "ServiceGetRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"details" : {"type": "boolean","title": "DETAILS"}},
+         "type": "object",
+         "required": ["service_id"],
+                "title": "ServiceGetRequest"
+           }
            ,        "ServiceInfo": {
          "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS"},"channels" : {"items": {"type": "string"},
                "type": "array","title": "CHANNELS"},"webhooks" : {"items": {"type": "string"},
@@ -2660,14 +2666,8 @@
          "required": ["notification_urgency","recovery_mode"],
                 "title": "ServiceOptions"
            }
-           ,        "ServiceRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
-         "type": "object",
-         "required": ["service_id"],
-                "title": "ServiceRequest"
-           }
            ,        "ServiceSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"details" : {"type": "boolean","title": "DETAILS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "ServiceSearchQuery"
