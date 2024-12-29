@@ -144,7 +144,7 @@ message AlertSearchQuery {
     // +optional
     spaceone.api.alert_manager.v1.EventSeverity severity = 5;
     // +optional
-    repeated AlertResource resources = 6;
+    string resource = 6;
     // +optional
     string provider = 7;
     // +optional
@@ -178,12 +178,14 @@ message AlertInfo {
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
+        ERROR = 5;
     }
     enum TriggeredType {
         TRIGGERD_BY_NONE = 0;
         USER = 1;
-        WEBHOOK = 2;
+        APP = 2;
+        WEBHOOK = 3;
     }
 
     string alert_id = 1;
@@ -201,6 +203,7 @@ message AlertInfo {
     string triggered_by = 13;
 
     google.protobuf.Struct additional_info = 15;
+    repeated string labels = 16;
 
     string domain_id = 21;
     string workspace_id = 22;
