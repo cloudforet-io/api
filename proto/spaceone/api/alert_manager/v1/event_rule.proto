@@ -80,15 +80,22 @@ message Condition {
 //    bool no_notification = 6;
 //}
 
+enum EventRuleScope {
+    EVENT_RULE_SCOPE_NONE = 0;
+    GLOBAL = 1;
+    WEBHOOK = 2;
+}
+
 message EventRuleCreateRequest {
     // +optional
     string name = 1;
+    EventRuleScope scope = 2;
     // +optional
-    repeated Condition conditions = 2;
-    ConditionsPolicy conditions_policy = 3;
-    google.protobuf.Struct actions = 4;
+    repeated Condition conditions = 3;
+    ConditionsPolicy conditions_policy = 4;
+    google.protobuf.Struct actions = 5;
     // +optional
-    EventRuleOptions options = 5;
+    EventRuleOptions options = 6;
 
     // +optional
     google.protobuf.Struct tags = 11;
@@ -129,6 +136,8 @@ message EventRuleSearchQuery {
     string event_rule_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    EventRuleScope scope = 4;
 
     // +optional
     string workspace_id = 21;
@@ -143,11 +152,12 @@ message EventRuleStatQuery {
 message EventRuleInfo {
     string event_rule_id = 1;
     string name = 2;
-    int32 order = 3;
-    repeated Condition conditions = 4;
-    ConditionsPolicy conditions_policy = 5;
-    google.protobuf.Struct actions = 6;
-    EventRuleOptions options = 7;
+    EventRuleScope scope = 3;
+    int32 order = 4;
+    repeated Condition conditions = 5;
+    ConditionsPolicy conditions_policy = 6;
+    google.protobuf.Struct actions = 7;
+    EventRuleOptions options = 8;
 
     google.protobuf.Struct tags = 11;
 
