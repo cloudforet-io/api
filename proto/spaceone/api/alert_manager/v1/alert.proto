@@ -89,10 +89,6 @@ message AlertCreateRequest {
     string image_url = 6;
     // +optional
     repeated AlertResource resources = 7;
-    // +optional
-    string provider = 8;
-    // +optional
-    string account = 9;
 
     // +optional
     google.protobuf.Struct additional_info = 11;
@@ -147,13 +143,9 @@ message AlertSearchQuery {
     // +optional
     string resource = 6;
     // +optional
-    string provider = 7;
+    string triggered_type = 7;
     // +optional
-    string account = 8;
-    // +optional
-    string triggered_type = 9;
-    // +optional
-    string triggered_by = 10;
+    string triggered_by = 8;
 
     // +optional
     string workspace_id = 21;
@@ -198,10 +190,8 @@ message AlertInfo {
     string rule = 7;
     string image_url = 8;
     repeated AlertResource resources = 9;
-    string provider = 10;
-    string account = 11;
-    TriggeredType triggered_type = 12;
-    string triggered_by = 13;
+    TriggeredType triggered_type = 10;
+    string triggered_by = 11;
 
     google.protobuf.Struct additional_info = 15;
     repeated string labels = 16;
