@@ -41,7 +41,7 @@ service Alert {
             body: "*"
         };
     }
-    rpc history (AlertRequest) returns (AlertHistoryInfo) {
+    rpc history (AlertHistoryRequest) returns (AlertHistoryInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/alert/history"
             body: "*"
@@ -118,6 +118,25 @@ message AlertUpdateRequest {
 
 message AlertRequest {
     string alert_id = 1;
+}
+
+message AlertHistoryRequest {
+    enum AlertAction {
+        NONE = 0;
+        TRIGGERED = 1;
+        ACKNOWLEDGED = 2;
+        RESOLVED = 3;
+        NOTIFIED = 4;
+        EVENT_PUSHED = 5;
+    }
+
+    string alert_id = 1;
+    // +optional
+    AlertAction action = 2;
+    // +optional
+    bool include_event_info = 3;
+    // +optional
+    repeated spaceone.api.core.v2.Sort sort = 4;
 }
 
 message AlertSearchQuery {
@@ -234,4 +253,5 @@ message AlertEventInfo {
 
 message AlertHistoryInfo {
     repeated AlertEventInfo results = 1;
+    int32 total_count = 2;
 }
