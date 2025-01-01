@@ -1029,11 +1029,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |action|TRIGGERED, ACKNOWLEDGED, RESOLVED, NOTIFIED, EVENT_PUSHED |string||\n |include_event_info||boolean||\n |sort||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"action" : {"type": "string","title": "ACTION" },"include_event_info" : {"type": "boolean","title": "INCLUDE_EVENT_INFO" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2689,10 +2689,17 @@
            }
            ,        "AlertHistoryInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertEventInfo"},
-               "type": "array","$ref": "#/components/schemas/AlertEventInfo","title": "RESULTS"}},
+               "type": "array","$ref": "#/components/schemas/AlertEventInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["results"],
+         "required": ["results","total_count"],
                 "title": "AlertHistoryInfo"
+           }
+           ,        "AlertHistoryRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"include_event_info" : {"type": "boolean","title": "INCLUDE_EVENT_INFO"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+               "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"}},
+         "type": "object",
+         "required": ["alert_id"],
+                "title": "AlertHistoryRequest"
            }
            ,        "AlertInfo": {
          "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"status" : {"type": "string","title": "STATUS"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},

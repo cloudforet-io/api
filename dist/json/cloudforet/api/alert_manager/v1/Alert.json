@@ -48,6 +48,44 @@
           ]
         },
         {
+          "name": "AlertAction",
+          "longName": "AlertHistoryRequest.AlertAction",
+          "fullName": "spaceone.api.alert_manager.v1.AlertHistoryRequest.AlertAction",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "TRIGGERED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ACKNOWLEDGED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "RESOLVED",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "NOTIFIED",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "EVENT_PUSHED",
+              "number": "5",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "AlertStatus",
           "longName": "AlertInfo.AlertStatus",
           "fullName": "spaceone.api.alert_manager.v1.AlertInfo.AlertStatus",
@@ -455,6 +493,78 @@
               "type": "AlertEventInfo",
               "longType": "AlertEventInfo",
               "fullType": "spaceone.api.alert_manager.v1.AlertEventInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "AlertHistoryRequest",
+          "longName": "AlertHistoryRequest",
+          "fullName": "spaceone.api.alert_manager.v1.AlertHistoryRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "alert_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "action",
+              "description": "+optional",
+              "label": "",
+              "type": "AlertAction",
+              "longType": "AlertHistoryRequest.AlertAction",
+              "fullType": "spaceone.api.alert_manager.v1.AlertHistoryRequest.AlertAction",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "include_event_info",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "Sort",
+              "longType": "spaceone.api.core.v2.Sort",
+              "fullType": "spaceone.api.core.v2.Sort",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1224,9 +1334,9 @@
             {
               "name": "history",
               "description": "",
-              "requestType": "AlertRequest",
-              "requestLongType": "AlertRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.AlertRequest",
+              "requestType": "AlertHistoryRequest",
+              "requestLongType": "AlertHistoryRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.AlertHistoryRequest",
               "requestStreaming": false,
               "responseType": "AlertHistoryInfo",
               "responseLongType": "AlertHistoryInfo",
