@@ -10,6 +10,8 @@ import "spaceone/api/core/v2/query.proto";
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
 
 service Namespace {
+
+    // Create a new namespace.
     rpc create (CreateNamespaceRequest) returns (NamespaceInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/create"
@@ -17,6 +19,7 @@ service Namespace {
         };
     }
 
+    // Update a specific namespace.
     rpc update (UpdateNamespaceRequest) returns (NamespaceInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/update"
@@ -24,6 +27,7 @@ service Namespace {
         };
     }
 
+    // Delete a specific namespace.
     rpc delete (NamespaceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/delete"
@@ -31,6 +35,7 @@ service Namespace {
         };
     }
 
+    // Get a specific namespace.
     rpc get (NamespaceRequest) returns (NamespaceInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/get"
@@ -38,6 +43,7 @@ service Namespace {
         };
     }
 
+    // List namespaces.
     rpc list (NamespaceQuery) returns (NamespacesInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/list"
@@ -45,6 +51,7 @@ service Namespace {
         };
     }
 
+    // Get statistics of namespaces.
     rpc stat (NamespaceStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/inventory/v1/namespace/stat"
@@ -53,9 +60,21 @@ service Namespace {
     }
 }
 
-//{
-//
-//}
+// {
+//     "namespace_id": "ns-azure-aks-cluster",
+//     "name": "AKS/Cluster",
+//     "category": "ASSET",
+//     "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//     "group": "azure",
+//     "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//     "tags": {},
+//     "is_managed": true,
+//     "resource_group": "DOMAIN",
+//     "domain_id": "domain-286776a1516a",
+//     "workspace_id": "*",
+//     "created_at": "2024-09-27T14:40:58.290Z",
+//     "updated_at": "2024-09-27T14:40:58.290Z"
+// }
 message CreateNamespaceRequest {
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
@@ -79,9 +98,15 @@ message CreateNamespaceRequest {
     string workspace_id = 21;
 }
 
-//{
-//
-//}
+
+
+
+// {
+//     "namespace_id": "ns-azure-aks-cluster",
+//     "name": "AKS/Cluster_v2",
+//     "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+// }
+
 message UpdateNamespaceRequest {
     string namespace_id = 1;
     // +optional
@@ -92,15 +117,23 @@ message UpdateNamespaceRequest {
     google.protobuf.Struct tags = 4;
 }
 
-//{
-//
-//}
+// {
+//     "namespace_id": "ns-azure-aks-cluster",
+// }
 message NamespaceRequest {
     string namespace_id = 1;
 }
 
 //{
-//
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "namespace_id",
+//                "value": "Key",
+//                "operator": "eq"
+//            }
+//        ]
+//    }
 //}
 message NamespaceQuery {
     // +optional
@@ -119,9 +152,21 @@ message NamespaceQuery {
     string workspace_id = 21;
 }
 
-//{
-//
-//}
+// {
+//     "namespace_id": "ns-azure-aks-cluster",
+//     "name": "AKS/Cluster",
+//     "category": "ASSET",
+//     "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//     "group": "azure",
+//     "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//     "tags": {},
+//     "is_managed": true,
+//     "resource_group": "DOMAIN",
+//     "domain_id": "domain-286776a1516a",
+//     "workspace_id": "*",
+//     "created_at": "2024-09-27T14:40:58.290Z",
+//     "updated_at": "2024-09-27T14:40:58.290Z"
+// }
 message NamespaceInfo {
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
@@ -146,6 +191,27 @@ message NamespaceInfo {
     string updated_at = 32;
 }
 
+
+// {
+//     "results": [
+//       {
+//         "namespace_id": "ns-azure-aks-cluster",
+//         "name": "AKS/Cluster",
+//         "category": "ASSET",
+//         "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//         "group": "azure",
+//         "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//         "tags": {},
+//         "is_managed": true,
+//         "resource_group": "DOMAIN",
+//         "domain_id": "domain-286776a1516a",
+//         "workspace_id": "*",
+//         "created_at": "2024-09-27T14:40:58.290Z",
+//         "updated_at": "2024-09-27T14:40:58.290Z"
+//       }
+//     ],
+//     "total_count": 89
+//}
 message NamespacesInfo {
     repeated NamespaceInfo results = 1;
     int32 total_count = 2;

@@ -5,7 +5,7 @@ import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.inventory.v1 import namespace_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2
+from spaceone.api.file_manager.v1 import userfile_pb2 as spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -22,7 +22,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in spaceone/api/inventory/v1/namespace_pb2_grpc.py depends on'
+        + f' but the generated code in spaceone/api/file_manager/v1/userfile_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -32,7 +32,7 @@ if _version_not_supported:
     )
 
 
-class NamespaceStub(object):
+class UserFileStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -41,153 +41,104 @@ class NamespaceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.create = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/create',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.CreateNamespaceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
-                _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/update',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.UpdateNamespaceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
+                '/spaceone.api.file_manager.v1.UserFile/update',
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/delete',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.SerializeToString,
+                '/spaceone.api.file_manager.v1.UserFile/delete',
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
+                '/spaceone.api.file_manager.v1.UserFile/get',
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/list',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespacesInfo.FromString,
+                '/spaceone.api.file_manager.v1.UserFile/list',
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Namespace/stat',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceStatQuery.SerializeToString,
+                '/spaceone.api.file_manager.v1.UserFile/stat',
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
 
 
-class NamespaceServicer(object):
+class UserFileServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def create(self, request, context):
-        """Create a new namespace.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def update(self, request, context):
-        """Update a specific namespace.
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Delete a specific namespace.
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Get a specific namespace.
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """List namespaces.
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def stat(self, request, context):
-        """Get statistics of namespaces.
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_NamespaceServicer_to_server(servicer, server):
+def add_UserFileServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'create': grpc.unary_unary_rpc_method_handler(
-                    servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.CreateNamespaceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.SerializeToString,
-            ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.UpdateNamespaceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespacesInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.inventory.v1.Namespace', rpc_method_handlers)
+            'spaceone.api.file_manager.v1.UserFile', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.inventory.v1.Namespace', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.file_manager.v1.UserFile', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Namespace(object):
+class UserFile(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def create(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.inventory.v1.Namespace/create',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.CreateNamespaceRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
 
     @staticmethod
     def update(request,
@@ -203,9 +154,9 @@ class Namespace(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.inventory.v1.Namespace/update',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.UpdateNamespaceRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
+            '/spaceone.api.file_manager.v1.UserFile/update',
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -230,8 +181,8 @@ class Namespace(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.inventory.v1.Namespace/delete',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.SerializeToString,
+            '/spaceone.api.file_manager.v1.UserFile/delete',
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -257,9 +208,9 @@ class Namespace(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.inventory.v1.Namespace/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceInfo.FromString,
+            '/spaceone.api.file_manager.v1.UserFile/get',
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -284,9 +235,9 @@ class Namespace(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.inventory.v1.Namespace/list',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceQuery.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespacesInfo.FromString,
+            '/spaceone.api.file_manager.v1.UserFile/list',
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -311,8 +262,8 @@ class Namespace(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.inventory.v1.Namespace/stat',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_namespace__pb2.NamespaceStatQuery.SerializeToString,
+            '/spaceone.api.file_manager.v1.UserFile/stat',
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
