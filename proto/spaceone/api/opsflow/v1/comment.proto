@@ -102,6 +102,11 @@ message CommentInfo {
         TASK_DESCRIPTION = 1;
         COMMENT = 2;
     }
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
 
     string comment_id = 1;
     string comment = 2;
@@ -110,6 +115,7 @@ message CommentInfo {
     Mentions mentions = 5;
     google.protobuf.Struct source = 7;
     string reference_id = 8;
+    ResourceGroup resource_group = 9;
 
     string domain_id = 21;
     string workspace_id = 22;
