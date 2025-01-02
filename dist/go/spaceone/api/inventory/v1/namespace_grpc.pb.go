@@ -33,11 +33,17 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NamespaceClient interface {
+	// Create a new namespace.
 	Create(ctx context.Context, in *CreateNamespaceRequest, opts ...grpc.CallOption) (*NamespaceInfo, error)
+	// Update a specific namespace.
 	Update(ctx context.Context, in *UpdateNamespaceRequest, opts ...grpc.CallOption) (*NamespaceInfo, error)
+	// Delete a specific namespace.
 	Delete(ctx context.Context, in *NamespaceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Get a specific namespace.
 	Get(ctx context.Context, in *NamespaceRequest, opts ...grpc.CallOption) (*NamespaceInfo, error)
+	// List namespaces.
 	List(ctx context.Context, in *NamespaceQuery, opts ...grpc.CallOption) (*NamespacesInfo, error)
+	// Get statistics of namespaces.
 	Stat(ctx context.Context, in *NamespaceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -113,11 +119,17 @@ func (c *namespaceClient) Stat(ctx context.Context, in *NamespaceStatQuery, opts
 // All implementations must embed UnimplementedNamespaceServer
 // for forward compatibility.
 type NamespaceServer interface {
+	// Create a new namespace.
 	Create(context.Context, *CreateNamespaceRequest) (*NamespaceInfo, error)
+	// Update a specific namespace.
 	Update(context.Context, *UpdateNamespaceRequest) (*NamespaceInfo, error)
+	// Delete a specific namespace.
 	Delete(context.Context, *NamespaceRequest) (*empty.Empty, error)
+	// Get a specific namespace.
 	Get(context.Context, *NamespaceRequest) (*NamespaceInfo, error)
+	// List namespaces.
 	List(context.Context, *NamespaceQuery) (*NamespacesInfo, error)
+	// Get statistics of namespaces.
 	Stat(context.Context, *NamespaceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedNamespaceServer()
 }

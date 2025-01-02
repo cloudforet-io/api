@@ -77,37 +77,43 @@ class NamespaceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Create a new namespace.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Update a specific namespace.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Delete a specific namespace.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Get a specific namespace.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """List namespaces.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def stat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Get statistics of namespaces.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

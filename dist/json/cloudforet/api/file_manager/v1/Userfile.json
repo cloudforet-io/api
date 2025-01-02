@@ -1,67 +1,20 @@
 {
   "files": [
     {
-      "name": "spaceone/api/opsflow/v1/task_type.proto",
+      "name": "spaceone/api/file_manager/v1/userfile.proto",
       "description": "",
-      "package": "spaceone.api.opsflow.v1",
+      "package": "spaceone.api.file_manager.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [
-        {
-          "name": "Scope",
-          "longName": "TaskTypeCreateRequest.Scope",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeCreateRequest.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "SCOPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PROJECT",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "TaskTypeInfo.Scope",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeInfo.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "SCOPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PROJECT",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        }
-      ],
+      "enums": [],
       "extensions": [],
       "messages": [
         {
-          "name": "TaskTypeCreateRequest",
-          "longName": "TaskTypeCreateRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeCreateRequest",
+          "name": "CreateUserFileRequest",
+          "longName": "CreateUserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.CreateUserFileRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -81,60 +34,72 @@
               "defaultValue": ""
             },
             {
-              "name": "description",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "fields",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "TaskField",
-              "longType": "TaskField",
-              "fullType": "spaceone.api.opsflow.v1.TaskField",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope",
-              "description": "+optional",
-              "label": "",
-              "type": "Scope",
-              "longType": "TaskTypeCreateRequest.Scope",
-              "fullType": "spaceone.api.opsflow.v1.TaskTypeCreateRequest.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee_pool",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "vars",
+              "name": "tags",
               "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "+optional",
+              "label": "",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateUserFileRequest",
+          "longName": "UpdateUserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.UpdateUserFileRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "file_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -153,48 +118,12 @@
               "defaultValue": ""
             },
             {
-              "name": "category_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "TaskTypeDeleteRequest",
-          "longName": "TaskTypeDeleteRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeDeleteRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "task_type_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "new_task_type_id",
+              "name": "reference",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -203,9 +132,9 @@
           ]
         },
         {
-          "name": "TaskTypeInfo",
-          "longName": "TaskTypeInfo",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeInfo",
+          "name": "UserFileInfo",
+          "longName": "UserFileInfo",
+          "fullName": "spaceone.api.file_manager.v1.UserFileInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -213,7 +142,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "task_type_id",
+              "name": "file_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -237,60 +166,12 @@
               "defaultValue": ""
             },
             {
-              "name": "description",
+              "name": "download_url",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "fields",
-              "description": "",
-              "label": "repeated",
-              "type": "TaskField",
-              "longType": "TaskField",
-              "fullType": "spaceone.api.opsflow.v1.TaskField",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "Scope",
-              "longType": "TaskTypeInfo.Scope",
-              "fullType": "spaceone.api.opsflow.v1.TaskTypeInfo.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee_pool",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "vars",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -303,6 +184,18 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "",
+              "label": "",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -321,7 +214,7 @@
               "defaultValue": ""
             },
             {
-              "name": "category_id",
+              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -343,25 +236,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "updated_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "TaskTypeRequest",
-          "longName": "TaskTypeRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeRequest",
+          "name": "UserFileReference",
+          "longName": "UserFileReference",
+          "fullName": "spaceone.api.file_manager.v1.UserFileReference",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -369,7 +250,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "task_type_id",
+              "name": "resource_type",
               "description": "",
               "label": "",
               "type": "string",
@@ -381,12 +262,12 @@
               "defaultValue": ""
             },
             {
-              "name": "include_category_fields",
-              "description": "+optional",
+              "name": "resource_id",
+              "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -395,9 +276,33 @@
           ]
         },
         {
-          "name": "TaskTypeSearchQuery",
-          "longName": "TaskTypeSearchQuery",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeSearchQuery",
+          "name": "UserFileRequest",
+          "longName": "UserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.UserFileRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "file_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserFileSearchQuery",
+          "longName": "UserFileSearchQuery",
+          "fullName": "spaceone.api.file_manager.v1.UserFileSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -417,7 +322,7 @@
               "defaultValue": ""
             },
             {
-              "name": "task_type_id",
+              "name": "file_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -439,13 +344,61 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "resource_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "TaskTypeStatQuery",
-          "longName": "TaskTypeStatQuery",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeStatQuery",
+          "name": "UserFileStatQuery",
+          "longName": "UserFileStatQuery",
+          "fullName": "spaceone.api.file_manager.v1.UserFileStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -467,153 +420,9 @@
           ]
         },
         {
-          "name": "TaskTypeUpdateFieldsRequest",
-          "longName": "TaskTypeUpdateFieldsRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeUpdateFieldsRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "task_type_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "fields",
-              "description": "",
-              "label": "repeated",
-              "type": "TaskField",
-              "longType": "TaskField",
-              "fullType": "spaceone.api.opsflow.v1.TaskField",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "force",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "TaskTypeUpdateRequest",
-          "longName": "TaskTypeUpdateRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypeUpdateRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "task_type_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee_pool",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "vars",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "TaskTypesInfo",
-          "longName": "TaskTypesInfo",
-          "fullName": "spaceone.api.opsflow.v1.TaskTypesInfo",
+          "name": "UserFilesInfo",
+          "longName": "UserFilesInfo",
+          "fullName": "spaceone.api.file_manager.v1.UserFilesInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -624,9 +433,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "TaskTypeInfo",
-              "longType": "TaskTypeInfo",
-              "fullType": "spaceone.api.opsflow.v1.TaskTypeInfo",
+              "type": "UserFileInfo",
+              "longType": "UserFileInfo",
+              "fullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -649,74 +458,28 @@
       ],
       "services": [
         {
-          "name": "TaskType",
-          "longName": "TaskType",
-          "fullName": "spaceone.api.opsflow.v1.TaskType",
+          "name": "UserFile",
+          "longName": "UserFile",
+          "fullName": "spaceone.api.file_manager.v1.UserFile",
           "description": "",
           "methods": [
             {
-              "name": "create",
-              "description": "",
-              "requestType": "TaskTypeCreateRequest",
-              "requestLongType": "TaskTypeCreateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeCreateRequest",
-              "requestStreaming": false,
-              "responseType": "TaskTypeInfo",
-              "responseLongType": "TaskTypeInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskTypeInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/create",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "update",
               "description": "",
-              "requestType": "TaskTypeUpdateRequest",
-              "requestLongType": "TaskTypeUpdateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeUpdateRequest",
+              "requestType": "UpdateUserFileRequest",
+              "requestLongType": "UpdateUserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UpdateUserFileRequest",
               "requestStreaming": false,
-              "responseType": "TaskTypeInfo",
-              "responseLongType": "TaskTypeInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskTypeInfo",
+              "responseType": "UserFileInfo",
+              "responseLongType": "UserFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/update",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "update_fields",
-              "description": "",
-              "requestType": "TaskTypeUpdateFieldsRequest",
-              "requestLongType": "TaskTypeUpdateFieldsRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeUpdateFieldsRequest",
-              "requestStreaming": false,
-              "responseType": "TaskTypeInfo",
-              "responseLongType": "TaskTypeInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskTypeInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/update_fields",
+                      "pattern": "/file-manager/v1/userfile/update",
                       "body": "*"
                     }
                   ]
@@ -726,9 +489,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "TaskTypeDeleteRequest",
-              "requestLongType": "TaskTypeDeleteRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeDeleteRequest",
+              "requestType": "UserFileRequest",
+              "requestLongType": "UserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -739,7 +502,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/delete",
+                      "pattern": "/file-manager/v1/userfile/delete",
                       "body": "*"
                     }
                   ]
@@ -749,20 +512,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "TaskTypeRequest",
-              "requestLongType": "TaskTypeRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeRequest",
+              "requestType": "UserFileRequest",
+              "requestLongType": "UserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileRequest",
               "requestStreaming": false,
-              "responseType": "TaskTypeInfo",
-              "responseLongType": "TaskTypeInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskTypeInfo",
+              "responseType": "UserFileInfo",
+              "responseLongType": "UserFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/get",
+                      "pattern": "/file-manager/v1/userfile/get",
                       "body": "*"
                     }
                   ]
@@ -772,20 +535,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "TaskTypeSearchQuery",
-              "requestLongType": "TaskTypeSearchQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeSearchQuery",
+              "requestType": "UserFileSearchQuery",
+              "requestLongType": "UserFileSearchQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileSearchQuery",
               "requestStreaming": false,
-              "responseType": "TaskTypesInfo",
-              "responseLongType": "TaskTypesInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskTypesInfo",
+              "responseType": "UserFilesInfo",
+              "responseLongType": "UserFilesInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFilesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/list",
+                      "pattern": "/file-manager/v1/userfile/list",
                       "body": "*"
                     }
                   ]
@@ -795,9 +558,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "TaskTypeStatQuery",
-              "requestLongType": "TaskTypeStatQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeStatQuery",
+              "requestType": "UserFileStatQuery",
+              "requestLongType": "UserFileStatQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -808,7 +571,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task-type/stat",
+                      "pattern": "/file-manager/v1/userfile/stat",
                       "body": "*"
                     }
                   ]

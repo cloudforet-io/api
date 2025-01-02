@@ -122,9 +122,21 @@ func (NamespaceInfo_ResourceGroup) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_inventory_v1_namespace_proto_rawDescGZIP(), []int{4, 0}
 }
 
-// {
-//
-// }
+//	{
+//	    "namespace_id": "ns-azure-aks-cluster",
+//	    "name": "AKS/Cluster",
+//	    "category": "ASSET",
+//	    "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//	    "group": "azure",
+//	    "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//	    "tags": {},
+//	    "is_managed": true,
+//	    "resource_group": "DOMAIN",
+//	    "domain_id": "domain-286776a1516a",
+//	    "workspace_id": "*",
+//	    "created_at": "2024-09-27T14:40:58.290Z",
+//	    "updated_at": "2024-09-27T14:40:58.290Z"
+//	}
 type CreateNamespaceRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// +optional
@@ -238,9 +250,6 @@ func (x *CreateNamespaceRequest) GetWorkspaceId() string {
 	return ""
 }
 
-// {
-//
-// }
 type UpdateNamespaceRequest struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	NamespaceId string                 `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
@@ -312,9 +321,9 @@ func (x *UpdateNamespaceRequest) GetTags() *_struct.Struct {
 	return nil
 }
 
-// {
-//
-// }
+//	{
+//	    "namespace_id": "ns-azure-aks-cluster",
+//	}
 type NamespaceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NamespaceId   string                 `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
@@ -359,9 +368,17 @@ func (x *NamespaceRequest) GetNamespaceId() string {
 	return ""
 }
 
-// {
-//
-// }
+//	{
+//	   "query": {
+//	       "filter": [
+//	           {
+//	               "key": "namespace_id",
+//	               "value": "Key",
+//	               "operator": "eq"
+//	           }
+//	       ]
+//	   }
+//	}
 type NamespaceQuery struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// +optional
@@ -461,9 +478,21 @@ func (x *NamespaceQuery) GetWorkspaceId() string {
 	return ""
 }
 
-// {
-//
-// }
+//	{
+//	    "namespace_id": "ns-azure-aks-cluster",
+//	    "name": "AKS/Cluster",
+//	    "category": "ASSET",
+//	    "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//	    "group": "azure",
+//	    "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//	    "tags": {},
+//	    "is_managed": true,
+//	    "resource_group": "DOMAIN",
+//	    "domain_id": "domain-286776a1516a",
+//	    "workspace_id": "*",
+//	    "created_at": "2024-09-27T14:40:58.290Z",
+//	    "updated_at": "2024-09-27T14:40:58.290Z"
+//	}
 type NamespaceInfo struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
 	NamespaceId   string                      `protobuf:"bytes,1,opt,name=namespace_id,json=namespaceId,proto3" json:"namespace_id,omitempty"`
@@ -604,6 +633,26 @@ func (x *NamespaceInfo) GetUpdatedAt() string {
 	return ""
 }
 
+//	{
+//	    "results": [
+//	      {
+//	        "namespace_id": "ns-azure-aks-cluster",
+//	        "name": "AKS/Cluster",
+//	        "category": "ASSET",
+//	        "resource_type": "inventory.CloudService:azure.AKS.Cluster",
+//	        "group": "azure",
+//	        "icon": "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg",
+//	        "tags": {},
+//	        "is_managed": true,
+//	        "resource_group": "DOMAIN",
+//	        "domain_id": "domain-286776a1516a",
+//	        "workspace_id": "*",
+//	        "created_at": "2024-09-27T14:40:58.290Z",
+//	        "updated_at": "2024-09-27T14:40:58.290Z"
+//	      }
+//	    ],
+//	    "total_count": 89
+//	}
 type NamespacesInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Results       []*NamespaceInfo       `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
