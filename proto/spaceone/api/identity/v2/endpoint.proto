@@ -36,14 +36,21 @@ message EndpointInfo {
 
 //{
 //  "service": "inventory",
+//  "endpoint_type": "PUBLIC",
 //  "query": {}
 //}
 message EndpointSearchQuery {
+  enum EndpointType {
+    NONE = 0;
+    PUBLIC = 1;
+    INTERNAL = 2;
+  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
   string service = 2;
-  string endpoint_type = 3;
+  // +optional
+  EndpointType endpoint_type = 3;
 }
 
 //{
