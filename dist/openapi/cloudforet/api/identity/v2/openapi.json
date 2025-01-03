@@ -496,13 +496,13 @@
          "operationId" : "",
          "description": "### Description \nGet gRPC endpoint list.\n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service||string||\n |endpoint_type|PUBLIC, INTERNAL |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service" : {"type": "string","title": "SERVICE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service" : {"type": "string","title": "SERVICE" },"endpoint_type" : {"type": "string","title": "ENDPOINT_TYPE" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n \"service\": \"inventory\",\n \"query\": {}\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service\": \"inventory\",\n \"endpoint_type\": \"PUBLIC\",\n \"query\": {}\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -5305,13 +5305,13 @@
                 "title": "WorkspaceGroupsInfo"
            }
            ,        "EndpointInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service" : {"type": "string","title": "SERVICE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"state" : {"type": "string","title": "STATE"},"version" : {"type": "string","title": "VERSION"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service" : {"type": "string","title": "SERVICE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"internal_endpoint" : {"type": "string","title": "INTERNAL_ENDPOINT"},"state" : {"type": "string","title": "STATE"},"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["name","service","endpoint","state","version"],
+         "required": ["name","service","endpoint","internal_endpoint","state","version"],
                 "title": "EndpointInfo"
            }
            ,        "EndpointSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service" : {"type": "string","title": "SERVICE"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service" : {"type": "string","title": "SERVICE"},"endpoint_type" : {"type": "string","title": "ENDPOINT_TYPE"}},
          "type": "object",
          "required": [],
                 "title": "EndpointSearchQuery"

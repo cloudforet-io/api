@@ -31,6 +31,29 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "EndpointType",
+          "longName": "EndpointSearchQuery.EndpointType",
+          "fullName": "spaceone.api.identity.v2.EndpointSearchQuery.EndpointType",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PUBLIC",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "INTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -82,6 +105,18 @@
               "defaultValue": ""
             },
             {
+              "name": "internal_endpoint",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "state",
               "description": "",
               "label": "",
@@ -111,7 +146,7 @@
           "name": "EndpointSearchQuery",
           "longName": "EndpointSearchQuery",
           "fullName": "spaceone.api.identity.v2.EndpointSearchQuery",
-          "description": "{\n \"service\": \"inventory\",\n \"query\": {}\n}",
+          "description": "{\n \"service\": \"inventory\",\n \"endpoint_type\": \"PUBLIC\",\n \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -136,6 +171,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "endpoint_type",
+              "description": "+optional",
+              "label": "",
+              "type": "EndpointType",
+              "longType": "EndpointSearchQuery.EndpointType",
+              "fullType": "spaceone.api.identity.v2.EndpointSearchQuery.EndpointType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
