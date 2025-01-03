@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_id||string|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |task_type_id||string|True|\n |priority|HIGH, MEDIUM, LOW |string||\n |description||string||\n |files||array||\n |mentions||Mentions||\n |assignee||string||\n |data||Struct||\n |reference_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |status_id||string|True|\n |project_id||string|True|\n |task_type_id||string|True|\n |priority|HIGH, MEDIUM, LOW |string||\n |description||string||\n |files||array||\n |mentions||Mentions||\n |assignee||string||\n |data||Struct||\n |reference_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"status_id" : {"type": "string","title": "STATUS_ID" },"priority" : {"type": "string","title": "PRIORITY" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"assignee" : {"type": "string","title": "ASSIGNEE" },"data" : {"type": "object","title": "DATA" },"reference_id" : {"type": "string","title": "REFERENCE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"status_id" : {"type": "string","title": "STATUS_ID" },"priority" : {"type": "string","title": "PRIORITY" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"assignee" : {"type": "string","title": "ASSIGNEE" },"data" : {"type": "object","title": "DATA" },"reference_id" : {"type": "string","title": "REFERENCE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -699,11 +699,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |scope|WORKSPACE, PROJECT |string||\n |assignee_pool||array||\n |vars||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |vars||Struct||\n |require_project||boolean||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"scope" : {"type": "string","title": "SCOPE" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1075,17 +1075,17 @@
            }
            ,        "TaskCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"status_id" : {"type": "string","title": "STATUS_ID"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"assignee" : {"type": "string","title": "ASSIGNEE"},"data" : {"type": "object","title": "DATA"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"}},
+               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"assignee" : {"type": "string","title": "ASSIGNEE"},"data" : {"type": "object","title": "DATA"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"}},
          "type": "object",
-         "required": ["name","status_id","resource_group","task_type_id"],
+         "required": ["name","status_id","project_id","task_type_id"],
                 "title": "TaskCreateRequest"
            }
            ,        "TaskInfo": {
          "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"status_id" : {"type": "string","title": "STATUS_ID"},"status_type" : {"type": "string","title": "STATUS_TYPE"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"data" : {"type": "object","title": "DATA"},"files" : {"items": {"type": "FileInfo"},
-               "type": "array","title": "FILES"},"assignee" : {"type": "string","title": "ASSIGNEE"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"related_assets" : {"items": {"type": "string"},
+               "type": "array","title": "FILES"},"assignee" : {"type": "string","title": "ASSIGNEE"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"related_assets" : {"items": {"type": "string"},
                "type": "array","title": "RELATED_ASSETS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"completed_at" : {"type": "string","title": "COMPLETED_AT"}},
          "type": "object",
-         "required": ["task_id","name","status_id","status_type","priority","description","data","files","assignee","created_by","reference_id","resource_group","related_assets","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
+         "required": ["task_id","name","status_id","status_type","priority","description","data","files","assignee","created_by","reference_id","related_assets","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
                 "title": "TaskInfo"
            }
            ,        "TaskRequest": {
@@ -1139,7 +1139,7 @@
                 "title": "AuthenticationResponse"
            }
            ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
          "type": "object",
          "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
                 "title": "AuthorizationRequest"
@@ -1340,9 +1340,9 @@
                 "title": "CommentCreateRequest"
            }
            ,        "CommentInfo": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
-         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","reference_id","resource_group","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
+         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","reference_id","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
                 "title": "CommentInfo"
            }
            ,        "CommentRequest": {
@@ -1484,8 +1484,8 @@
            }
            ,        "TaskTypeCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"scope" : {"type": "string","title": "SCOPE"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["name","category_id"],
                 "title": "TaskTypeCreateRequest"
@@ -1498,10 +1498,10 @@
            }
            ,        "TaskTypeInfo": {
          "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"scope" : {"type": "string","title": "SCOPE"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["task_type_id","name","description","fields","scope","assignee_pool","vars","tags","domain_id","category_id","created_at","updated_at"],
+         "required": ["task_type_id","name","description","fields","assignee_pool","vars","require_project","tags","domain_id","category_id","created_at","updated_at"],
                 "title": "TaskTypeInfo"
            }
            ,        "TaskTypeRequest": {

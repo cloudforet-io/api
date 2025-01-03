@@ -2227,16 +2227,16 @@
                 "title": "UpdatePublicDataTableRequest"
            }
            ,        "ValueMappingCases": {
-         "properties" : {"key" : {"type": "string","title": "KEY"},"operator" : {"type": "string","title": "OPERATOR"},"match" : {"type": "string","title": "MATCH"},"value" : {"type": "string","title": "VALUE"}},
+         "properties" : {"operator" : {"type": "string","title": "OPERATOR"},"match" : {"type": "string","title": "MATCH"},"value" : {"type": "string","title": "VALUE"}},
          "type": "object",
-         "required": ["key","operator","match","value"],
+         "required": ["operator","match","value"],
                 "title": "ValueMappingCases"
            }
            ,        "ValueMappingOperator": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"field_type" : {"type": "string","title": "FIELD_TYPE"},"cases" : {"items": {"$ref": "#/components/schemas/ValueMappingCases"},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"key" : {"type": "string","title": "KEY"},"field_type" : {"type": "string","title": "FIELD_TYPE"},"cases" : {"items": {"$ref": "#/components/schemas/ValueMappingCases"},
                "type": "array","$ref": "#/components/schemas/ValueMappingCases","title": "CASES"},"else" : {"type": "string","title": "ELSE"},"condition" : {"type": "string","title": "CONDITION"}},
          "type": "object",
-         "required": ["data_table_id","name","field_type","cases","else","condition"],
+         "required": ["data_table_id","name","key","field_type","cases","else","condition"],
                 "title": "ValueMappingOperator"
            }
            ,        "CreatePublicFolderRequest": {
