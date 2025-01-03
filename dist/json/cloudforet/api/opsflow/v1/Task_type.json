@@ -8,7 +8,54 @@
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "Scope",
+          "longName": "TaskTypeCreateRequest.Scope",
+          "fullName": "spaceone.api.opsflow.v1.TaskTypeCreateRequest.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Scope",
+          "longName": "TaskTypeInfo.Scope",
+          "fullName": "spaceone.api.opsflow.v1.TaskTypeInfo.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
@@ -58,12 +105,36 @@
               "defaultValue": ""
             },
             {
+              "name": "scope",
+              "description": "+optional",
+              "label": "",
+              "type": "Scope",
+              "longType": "TaskTypeCreateRequest.Scope",
+              "fullType": "spaceone.api.opsflow.v1.TaskTypeCreateRequest.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "assignee_pool",
               "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "vars",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -84,6 +155,42 @@
             {
               "name": "category_id",
               "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "TaskTypeDeleteRequest",
+          "longName": "TaskTypeDeleteRequest",
+          "fullName": "spaceone.api.opsflow.v1.TaskTypeDeleteRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "task_type_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "new_task_type_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -154,12 +261,36 @@
               "defaultValue": ""
             },
             {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "Scope",
+              "longType": "TaskTypeInfo.Scope",
+              "fullType": "spaceone.api.opsflow.v1.TaskTypeInfo.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "assignee_pool",
               "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "vars",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -442,6 +573,18 @@
               "defaultValue": ""
             },
             {
+              "name": "vars",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "+optional",
               "label": "",
@@ -583,9 +726,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "TaskTypeRequest",
-              "requestLongType": "TaskTypeRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeRequest",
+              "requestType": "TaskTypeDeleteRequest",
+              "requestLongType": "TaskTypeDeleteRequest",
+              "requestFullType": "spaceone.api.opsflow.v1.TaskTypeDeleteRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",

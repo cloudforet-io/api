@@ -59,6 +59,10 @@ message CommentCreateRequest {
     string comment = 2;
     // +optional
     Mentions mentions = 3;
+    // +optional
+    google.protobuf.Struct source = 4;
+    // +optional
+    string reference_id = 5;
 }
 
 message CommentUpdateRequest {
@@ -98,13 +102,20 @@ message CommentInfo {
         TASK_DESCRIPTION = 1;
         COMMENT = 2;
     }
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
 
     string comment_id = 1;
     string comment = 2;
     CommentType comment_type = 3;
     bool is_edited = 4;
     Mentions mentions = 5;
-    string created_by = 6;
+    google.protobuf.Struct source = 7;
+    string reference_id = 8;
+    ResourceGroup resource_group = 9;
 
     string domain_id = 21;
     string workspace_id = 22;
@@ -113,6 +124,7 @@ message CommentInfo {
 
     string created_at = 31;
     string updated_at = 32;
+    string created_by = 33;
 }
 
 message CommentsInfo {

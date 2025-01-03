@@ -1,4 +1,3 @@
-// DomainConfig API which configure environments for domain
 syntax = "proto3";
 
 package spaceone.api.config.v1;
@@ -45,12 +44,6 @@ service DomainConfig {
     rpc list (DomainConfigSearchQuery) returns (DomainConfigsInfo) {
         option (google.api.http) = {
             post: "/config/v1/domain-config/list"
-            body: "*"
-        };
-    }
-    rpc stat (DomainConfigStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/config/v1/domain-config/stat"
             body: "*"
         };
     }

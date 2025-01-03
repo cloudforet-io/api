@@ -548,11 +548,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |group_by||array||\n |sort||array||\n |page||PrivateWidgetPage||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"group_by" : {"items": {}, "type": "array","title": "GROUP_BY" },"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PrivateWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -577,11 +577,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1365,11 +1365,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |group_by||array||\n |sort||array||\n |page||PublicWidgetPage||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"group_by" : {"items": {}, "type": "array","title": "GROUP_BY" },"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PublicWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1394,11 +1394,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1977,16 +1977,30 @@
                 "title": "CreatePrivateWidgetRequest"
            }
            ,        "LoadPrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"},
+               "type": "array","$ref": "#/components/schemas/PrivateWidgetSort","title": "SORT"},"page" : {"$ref": "#/components/schemas/PrivateWidgetPage","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","query"],
+         "required": ["widget_id","granularity","start","end"],
                 "title": "LoadPrivateWidgetRequest"
+           }
+           ,        "LoadSumPrivateWidgetRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"vars" : {"type": "object","title": "VARS"}},
+         "type": "object",
+         "required": ["widget_id","granularity","start","end"],
+                "title": "LoadSumPrivateWidgetRequest"
            }
            ,        "PrivateWidgetInfo": {
          "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["widget_id","name","state","description","widget_type","size","options","tags","domain_id","user_id","dashboard_id","data_table_id","created_at","updated_at"],
                 "title": "PrivateWidgetInfo"
+           }
+           ,        "PrivateWidgetPage": {
+         "properties" : {"start" : {"type": "integer","title": "START"},"limit" : {"type": "integer","title": "LIMIT"}},
+         "type": "object",
+         "required": ["start","limit"],
+                "title": "PrivateWidgetPage"
            }
            ,        "PrivateWidgetQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
@@ -1999,6 +2013,12 @@
          "type": "object",
          "required": ["widget_id"],
                 "title": "PrivateWidgetRequest"
+           }
+           ,        "PrivateWidgetSort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"}},
+         "type": "object",
+         "required": ["key","desc"],
+                "title": "PrivateWidgetSort"
            }
            ,        "PrivateWidgetsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PrivateWidgetInfo"},
@@ -2277,16 +2297,30 @@
                 "title": "CreatePublicWidgetRequest"
            }
            ,        "LoadPublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"},
+               "type": "array","$ref": "#/components/schemas/PublicWidgetSort","title": "SORT"},"page" : {"$ref": "#/components/schemas/PublicWidgetPage","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","query"],
+         "required": ["widget_id","granularity","start","end"],
                 "title": "LoadPublicWidgetRequest"
+           }
+           ,        "LoadSumPublicWidgetRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"vars" : {"type": "object","title": "VARS"}},
+         "type": "object",
+         "required": ["widget_id","granularity","start","end"],
+                "title": "LoadSumPublicWidgetRequest"
            }
            ,        "PublicWidgetInfo": {
          "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["widget_id","name","state","description","widget_type","size","options","tags","resource_group","domain_id","workspace_id","project_id","dashboard_id","data_table_id","created_at","updated_at"],
                 "title": "PublicWidgetInfo"
+           }
+           ,        "PublicWidgetPage": {
+         "properties" : {"start" : {"type": "integer","title": "START"},"limit" : {"type": "integer","title": "LIMIT"}},
+         "type": "object",
+         "required": ["start","limit"],
+                "title": "PublicWidgetPage"
            }
            ,        "PublicWidgetQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
@@ -2299,6 +2333,12 @@
          "type": "object",
          "required": ["widget_id"],
                 "title": "PublicWidgetRequest"
+           }
+           ,        "PublicWidgetSort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"}},
+         "type": "object",
+         "required": ["key","desc"],
+                "title": "PublicWidgetSort"
            }
            ,        "PublicWidgetsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicWidgetInfo"},

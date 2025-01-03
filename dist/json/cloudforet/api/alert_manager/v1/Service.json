@@ -69,7 +69,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "high",
+              "name": "HIGH",
               "description": "",
               "label": "",
               "type": "int32",
@@ -81,7 +81,7 @@
               "defaultValue": ""
             },
             {
-              "name": "low",
+              "name": "LOW",
               "description": "",
               "label": "",
               "type": "int32",
@@ -130,6 +130,18 @@
             },
             {
               "name": "ACKNOWLEDGED",
+              "description": "",
+              "label": "",
+              "type": "AlertStats",
+              "longType": "AlertStats",
+              "fullType": "spaceone.api.alert_manager.v1.AlertStats",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "RESOLVED",
               "description": "",
               "label": "",
               "type": "AlertStats",
@@ -255,6 +267,78 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServiceDeleteRequest",
+          "longName": "ServiceDeleteRequest",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceDeleteRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "service_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "force",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServiceGetRequest",
+          "longName": "ServiceGetRequest",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceGetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "service_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "details",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -527,30 +611,6 @@
           ]
         },
         {
-          "name": "ServiceRequest",
-          "longName": "ServiceRequest",
-          "fullName": "spaceone.api.alert_manager.v1.ServiceRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "service_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "ServiceSearchQuery",
           "longName": "ServiceSearchQuery",
           "fullName": "spaceone.api.alert_manager.v1.ServiceSearchQuery",
@@ -591,6 +651,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "details",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -824,7 +896,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/service/change-member",
+                      "pattern": "/alert-manager/v1/service/change-members",
                       "body": "*"
                     }
                   ]
@@ -834,9 +906,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "ServiceRequest",
-              "requestLongType": "ServiceRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.ServiceRequest",
+              "requestType": "ServiceDeleteRequest",
+              "requestLongType": "ServiceDeleteRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.ServiceDeleteRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -857,9 +929,9 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "ServiceRequest",
-              "requestLongType": "ServiceRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.ServiceRequest",
+              "requestType": "ServiceGetRequest",
+              "requestLongType": "ServiceGetRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.ServiceGetRequest",
               "requestStreaming": false,
               "responseType": "ServiceInfo",
               "responseLongType": "ServiceInfo",

@@ -158,7 +158,7 @@ func local_request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler
 
 func request_Alert_History_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.AlertRequest
+		protoReq extV1.AlertHistoryRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -170,7 +170,7 @@ func request_Alert_History_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 func local_request_Alert_History_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.AlertRequest
+		protoReq extV1.AlertHistoryRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package spaceone.api.config.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/config/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service SharedConfig {
+    rpc create (CreateSharedConfigRequest) returns (SharedConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/shared-config/create"
+            body: "*"
+        };
+    }
+    rpc update (UpdateSharedConfigRequest) returns (SharedConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/shared-config/update"
+            body: "*"
+        };
+    }
+    rpc delete (SharedConfigRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/config/v1/shared-config/delete"
+            body: "*"
+        };
+    }
+    rpc get (SharedConfigSearchQuery) returns (SharedConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/shared-config/get"
+            body: "*"
+        };
+    }
+
+    rpc list (SharedConfigSearchQuery) returns (SharedConfigsInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/shared-config/list"
+            body: "*"
+        };
+    }
+}
+
+
+message CreateSharedConfigRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+        PROJECT = 3;
+    }
+
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    ResourceGroup resource_group = 20;
+    // +optional
+    string workspace_id = 21;
+    // +optional
+    string project_id = 22;
+}
+
+message UpdateSharedConfigRequest {
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    // +optional
+    string workspace_id = 21;
+    // +optional
+    string project_id = 22;
+}
+
+message SharedConfigRequest {
+    string name = 1;
+    // +optional
+    string workspace_id = 21;
+    // +optional
+    string project_id = 22;
+}
+
+message SharedConfigSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string name = 2;
+}
+
+message SharedConfigInfo {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+        PROJECT = 3;
+    }
+
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    google.protobuf.Struct tags = 3;
+
+    ResourceGroup resource_group = 20;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message SharedConfigsInfo {
+    repeated SharedConfigInfo results = 1;
+    int32 total_count = 2;
+}
+
+message SharedConfigStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}

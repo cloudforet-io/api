@@ -22,6 +22,13 @@ service UserProfile {
     };
   }
 
+  rpc update_password(UpdatePasswordUserProfileRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user-profile/update-password"
+      body: "*"
+    };
+  }
+
 
   rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -105,6 +112,17 @@ message UpdateUserProfileRequest {
   string timezone = 5;
   // +optional
   google.protobuf.Struct tags = 6;
+}
+
+//{
+//   "current_password": "password",
+//   "new_password": "new_password"
+//}
+message UpdatePasswordUserProfileRequest {
+  string new_password = 1;
+  // +optional
+  string current_password = 2;
+
 }
 
 //{

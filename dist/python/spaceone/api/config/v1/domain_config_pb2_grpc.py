@@ -4,7 +4,6 @@ import grpc
 import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.config.v1 import domain_config_pb2 as spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
@@ -71,11 +70,6 @@ class DomainConfigStub(object):
                 request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.FromString,
                 _registered_method=True)
-        self.stat = channel.unary_unary(
-                '/spaceone.api.config.v1.DomainConfig/stat',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigStatQuery.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
-                _registered_method=True)
 
 
 class DomainConfigServicer(object):
@@ -117,12 +111,6 @@ class DomainConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def stat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_DomainConfigServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -155,11 +143,6 @@ def add_DomainConfigServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.SerializeToString,
-            ),
-            'stat': grpc.unary_unary_rpc_method_handler(
-                    servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigStatQuery.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -324,33 +307,6 @@ class DomainConfig(object):
             '/spaceone.api.config.v1.DomainConfig/list',
             spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def stat(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.config.v1.DomainConfig/stat',
-            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigStatQuery.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

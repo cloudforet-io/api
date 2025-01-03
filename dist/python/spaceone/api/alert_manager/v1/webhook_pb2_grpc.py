@@ -56,11 +56,6 @@ class WebhookStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdatePluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
                 _registered_method=True)
-        self.verify_plugin = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Webhook/verify_plugin',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
         self.enable = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Webhook/enable',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookRequest.SerializeToString,
@@ -109,12 +104,6 @@ class WebhookServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update_plugin(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def verify_plugin(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -173,11 +162,6 @@ def add_WebhookServicer_to_server(servicer, server):
                     servicer.update_plugin,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdatePluginRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.SerializeToString,
-            ),
-            'verify_plugin': grpc.unary_unary_rpc_method_handler(
-                    servicer.verify_plugin,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
                     servicer.enable,
@@ -291,33 +275,6 @@ class Webhook(object):
             '/spaceone.api.alert_manager.v1.Webhook/update_plugin',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdatePluginRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def verify_plugin(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Webhook/verify_plugin',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

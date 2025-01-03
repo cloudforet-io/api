@@ -25,15 +25,6 @@ enum EventType {
   ALERT = 2;
 }
 
-message EventResource {
-  // +optional
-  string resource_id = 1;
-  // +optional
-  string resource_type = 2;
-  // +optional
-  string name = 3;
-}
-
 message EventInfo {
   string event_key = 1;
   EventType event_type = 2;
@@ -43,8 +34,6 @@ message EventInfo {
   string rule = 6;
   string image_url = 7;
   repeated string resources = 8;
-  string provider = 9;
-  string account = 10;
   google.protobuf.Struct additional_info = 11;
 
   string occurred_at = 31;

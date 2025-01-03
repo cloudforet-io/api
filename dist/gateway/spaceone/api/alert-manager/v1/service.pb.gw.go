@@ -110,7 +110,7 @@ func local_request_Service_ChangeMembers_0(ctx context.Context, marshaler runtim
 
 func request_Service_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.ServiceRequest
+		protoReq extV1.ServiceDeleteRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -122,7 +122,7 @@ func request_Service_Delete_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 func local_request_Service_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.ServiceRequest
+		protoReq extV1.ServiceDeleteRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -134,7 +134,7 @@ func local_request_Service_Delete_0(ctx context.Context, marshaler runtime.Marsh
 
 func request_Service_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.ServiceRequest
+		protoReq extV1.ServiceGetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -146,7 +146,7 @@ func request_Service_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 func local_request_Service_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.ServiceRequest
+		protoReq extV1.ServiceGetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -256,7 +256,7 @@ func RegisterServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Service/ChangeMembers", runtime.WithHTTPPathPattern("/alert-manager/v1/service/change-member"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Service/ChangeMembers", runtime.WithHTTPPathPattern("/alert-manager/v1/service/change-members"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -428,7 +428,7 @@ func RegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Service/ChangeMembers", runtime.WithHTTPPathPattern("/alert-manager/v1/service/change-member"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Service/ChangeMembers", runtime.WithHTTPPathPattern("/alert-manager/v1/service/change-members"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -515,7 +515,7 @@ func RegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 var (
 	pattern_Service_Create_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "create"}, ""))
 	pattern_Service_Update_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "update"}, ""))
-	pattern_Service_ChangeMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "change-member"}, ""))
+	pattern_Service_ChangeMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "change-members"}, ""))
 	pattern_Service_Delete_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "delete"}, ""))
 	pattern_Service_Get_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "get"}, ""))
 	pattern_Service_List_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service", "list"}, ""))

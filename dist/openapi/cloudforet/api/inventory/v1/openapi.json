@@ -1942,7 +1942,7 @@
          "tags": ["inventory > namespace"],
          "summary": "Create",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nCreate a new namespace.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |resource_type||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |namespace_id||string||\n |group||string||\n |icon||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
@@ -1950,7 +1950,7 @@
                "schema": {
                  "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"group" : {"type": "string","title": "GROUP" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n    \"name\": \"AKS/Cluster\",\n    \"category\": \"ASSET\",\n    \"resource_type\": \"inventory.CloudService:azure.AKS.Cluster\",\n    \"group\": \"azure\",\n    \"icon\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg\",\n    \"tags\": {},\n    \"is_managed\": true,\n    \"resource_group\": \"DOMAIN\",\n    \"domain_id\": \"domain-286776a1516a\",\n    \"workspace_id\": \"*\",\n    \"created_at\": \"2024-09-27T14:40:58.290Z\",\n    \"updated_at\": \"2024-09-27T14:40:58.290Z\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1962,7 +1962,7 @@
                  "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                     "value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n    \"name\": \"AKS/Cluster\",\n    \"category\": \"ASSET\",\n    \"resource_type\": \"inventory.CloudService:azure.AKS.Cluster\",\n    \"group\": \"azure\",\n    \"icon\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg\",\n    \"tags\": {},\n    \"is_managed\": true,\n    \"resource_group\": \"DOMAIN\",\n    \"domain_id\": \"domain-286776a1516a\",\n    \"workspace_id\": \"*\",\n    \"created_at\": \"2024-09-27T14:40:58.290Z\",\n    \"updated_at\": \"2024-09-27T14:40:58.290Z\"\n}"
                    }}
                }
              }}
@@ -1973,7 +1973,7 @@
          "tags": ["inventory > namespace"],
          "summary": "Update",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nUpdate a specific namespace.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |icon||string||\n |tags||Struct||\n<br>",
            "content": {
@@ -1981,7 +1981,7 @@
                "schema": {
                  "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -1993,7 +1993,7 @@
                  "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                     "value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n    \"name\": \"AKS/Cluster\",\n    \"category\": \"ASSET\",\n    \"resource_type\": \"inventory.CloudService:azure.AKS.Cluster\",\n    \"group\": \"azure\",\n    \"icon\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg\",\n    \"tags\": {},\n    \"is_managed\": true,\n    \"resource_group\": \"DOMAIN\",\n    \"domain_id\": \"domain-286776a1516a\",\n    \"workspace_id\": \"*\",\n    \"created_at\": \"2024-09-27T14:40:58.290Z\",\n    \"updated_at\": \"2024-09-27T14:40:58.290Z\"\n}"
                    }}
                }
              }}
@@ -2004,7 +2004,7 @@
          "tags": ["inventory > namespace"],
          "summary": "Delete",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nDelete a specific namespace.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
            "content": {
@@ -2012,7 +2012,7 @@
                "schema": {
                  "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2027,7 +2027,7 @@
          "tags": ["inventory > namespace"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nGet a specific namespace.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
            "content": {
@@ -2035,7 +2035,7 @@
                "schema": {
                  "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2047,7 +2047,7 @@
                  "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                     "value": "{\n    \"namespace_id\": \"ns-azure-aks-cluster\",\n    \"name\": \"AKS/Cluster\",\n    \"category\": \"ASSET\",\n    \"resource_type\": \"inventory.CloudService:azure.AKS.Cluster\",\n    \"group\": \"azure\",\n    \"icon\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg\",\n    \"tags\": {},\n    \"is_managed\": true,\n    \"resource_group\": \"DOMAIN\",\n    \"domain_id\": \"domain-286776a1516a\",\n    \"workspace_id\": \"*\",\n    \"created_at\": \"2024-09-27T14:40:58.290Z\",\n    \"updated_at\": \"2024-09-27T14:40:58.290Z\"\n}"
                    }}
                }
              }}
@@ -2058,7 +2058,7 @@
          "tags": ["inventory > namespace"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nList namespaces.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |namespace_id||string||\n |category||string||\n |resource_type||string||\n |group||string||\n |is_managed||string||\n |workspace_id||string||\n<br>",
            "content": {
@@ -2066,7 +2066,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"category" : {"type": "string","title": "CATEGORY" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"group" : {"type": "string","title": "GROUP" },"is_managed" : {"type": "string","title": "IS_MANAGED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"namespace_id\",\n               \"value\": \"Key\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2077,7 +2077,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/NamespacesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NamespacesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NamespacesInfo"},"Default Example":{
+                     "value": "{\n    \"results\": [\n      {\n        \"namespace_id\": \"ns-azure-aks-cluster\",\n        \"name\": \"AKS/Cluster\",\n        \"category\": \"ASSET\",\n        \"resource_type\": \"inventory.CloudService:azure.AKS.Cluster\",\n        \"group\": \"azure\",\n        \"icon\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/azure/aks.svg\",\n        \"tags\": {},\n        \"is_managed\": true,\n        \"resource_group\": \"DOMAIN\",\n        \"domain_id\": \"domain-286776a1516a\",\n        \"workspace_id\": \"*\",\n        \"created_at\": \"2024-09-27T14:40:58.290Z\",\n        \"updated_at\": \"2024-09-27T14:40:58.290Z\"\n      }\n    ],\n    \"total_count\": 89\n}"
+                   }}
                }
              }}
          }
@@ -2087,7 +2089,7 @@
          "tags": ["inventory > namespace"],
          "summary": "Stat",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nGet statistics of namespaces.",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
            "content": {

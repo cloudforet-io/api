@@ -24,17 +24,17 @@ service Service {
     }
     rpc change_members (ServiceChangeMembersRequest) returns (ServiceInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/service/change-member"
+            post: "/alert-manager/v1/service/change-members"
             body: "*"
         };
     }
-    rpc delete (ServiceRequest) returns (google.protobuf.Empty) {
+    rpc delete (ServiceDeleteRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/alert-manager/v1/service/delete"
             body: "*"
         };
     }
-    rpc get (ServiceRequest) returns (ServiceInfo) {
+    rpc get (ServiceGetRequest) returns (ServiceInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/service/get"
             body: "*"
@@ -76,14 +76,15 @@ message ServiceOptions {
 }
 
 message AlertStats {
-    int32 high = 1;
-    int32 low = 2;
+    int32 HIGH = 1;
+    int32 LOW = 2;
 }
 
 message Alerts {
     AlertStats TOTAL = 1;
     AlertStats TRIGGERED = 2;
     AlertStats ACKNOWLEDGED = 3;
+    AlertStats RESOLVED = 4;
 }
 
 message ServiceCreateRequest {
@@ -122,8 +123,16 @@ message ServiceChangeMembersRequest {
     ServiceMembers members = 2;
 }
 
-message ServiceRequest {
+message ServiceDeleteRequest {
     string service_id = 1;
+    // +optional
+    bool force = 2;
+}
+
+message ServiceGetRequest {
+    string service_id = 1;
+    // +optional
+    bool details = 2;
 }
 
 message ServiceSearchQuery {
@@ -133,6 +142,8 @@ message ServiceSearchQuery {
     string service_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    bool details = 4;
 
     // +optional
     string escalation_policy_id = 21;

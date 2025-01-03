@@ -24,7 +24,6 @@ const (
 	Webhook_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/create"
 	Webhook_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/update"
 	Webhook_UpdatePlugin_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/update_plugin"
-	Webhook_VerifyPlugin_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/verify_plugin"
 	Webhook_Enable_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/enable"
 	Webhook_Disable_FullMethodName      = "/spaceone.api.alert_manager.v1.Webhook/disable"
 	Webhook_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/delete"
@@ -40,7 +39,6 @@ type WebhookClient interface {
 	Create(ctx context.Context, in *WebhookCreateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Update(ctx context.Context, in *WebhookUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	UpdatePlugin(ctx context.Context, in *WebhookUpdatePluginRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
-	VerifyPlugin(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Enable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Disable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Delete(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -81,16 +79,6 @@ func (c *webhookClient) UpdatePlugin(ctx context.Context, in *WebhookUpdatePlugi
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WebhookInfo)
 	err := c.cc.Invoke(ctx, Webhook_UpdatePlugin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *webhookClient) VerifyPlugin(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Webhook_VerifyPlugin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -164,7 +152,6 @@ type WebhookServer interface {
 	Create(context.Context, *WebhookCreateRequest) (*WebhookInfo, error)
 	Update(context.Context, *WebhookUpdateRequest) (*WebhookInfo, error)
 	UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error)
-	VerifyPlugin(context.Context, *WebhookRequest) (*empty.Empty, error)
 	Enable(context.Context, *WebhookRequest) (*WebhookInfo, error)
 	Disable(context.Context, *WebhookRequest) (*WebhookInfo, error)
 	Delete(context.Context, *WebhookRequest) (*empty.Empty, error)
@@ -189,9 +176,6 @@ func (UnimplementedWebhookServer) Update(context.Context, *WebhookUpdateRequest)
 }
 func (UnimplementedWebhookServer) UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
-}
-func (UnimplementedWebhookServer) VerifyPlugin(context.Context, *WebhookRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VerifyPlugin not implemented")
 }
 func (UnimplementedWebhookServer) Enable(context.Context, *WebhookRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -282,24 +266,6 @@ func _Webhook_UpdatePlugin_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WebhookServer).UpdatePlugin(ctx, req.(*WebhookUpdatePluginRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Webhook_VerifyPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WebhookRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WebhookServer).VerifyPlugin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Webhook_VerifyPlugin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WebhookServer).VerifyPlugin(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -430,10 +396,6 @@ var Webhook_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update_plugin",
 			Handler:    _Webhook_UpdatePlugin_Handler,
-		},
-		{
-			MethodName: "verify_plugin",
-			Handler:    _Webhook_VerifyPlugin_Handler,
 		},
 		{
 			MethodName: "enable",

@@ -41,7 +41,7 @@ service Alert {
             body: "*"
         };
     }
-    rpc history (AlertRequest) returns (AlertHistoryInfo) {
+    rpc history (AlertHistoryRequest) returns (AlertHistoryInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/alert/history"
             body: "*"
@@ -89,10 +89,6 @@ message AlertCreateRequest {
     string image_url = 6;
     // +optional
     repeated AlertResource resources = 7;
-    // +optional
-    string provider = 8;
-    // +optional
-    string account = 9;
 
     // +optional
     google.protobuf.Struct additional_info = 11;
@@ -101,19 +97,19 @@ message AlertCreateRequest {
 }
 
 message AlertUpdateRequest {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
     }
 
     string alert_id = 1;
     // +optional
     string title = 2;
     // +optional
-    AlertState state = 3;
+    AlertStatus status = 3;
     // +optional
     string description = 4;
     // +optional
@@ -124,13 +120,33 @@ message AlertRequest {
     string alert_id = 1;
 }
 
+message AlertHistoryRequest {
+    enum AlertAction {
+        NONE = 0;
+        TRIGGERED = 1;
+        ACKNOWLEDGED = 2;
+        RESOLVED = 3;
+        NOTIFIED = 4;
+        EVENT_PUSHED = 5;
+    }
+
+    string alert_id = 1;
+    // +optional
+    AlertAction action = 2;
+    // +optional
+    bool include_event_info = 3;
+    // +optional
+    repeated spaceone.api.core.v2.Sort sort = 4;
+}
+
 message AlertSearchQuery {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
+        ERROR = 5;
     }
 
     // +optional
@@ -138,21 +154,17 @@ message AlertSearchQuery {
     // +optional
     string alert_id = 2;
     // +optional
-    AlertState state = 3;
+    AlertStatus status = 3;
     // +optional
     AlertUrgency urgency = 4;
     // +optional
     spaceone.api.alert_manager.v1.EventSeverity severity = 5;
     // +optional
-    repeated AlertResource resources = 6;
+    string resource = 6;
     // +optional
-    string provider = 7;
+    string triggered_type = 7;
     // +optional
-    string account = 8;
-    // +optional
-    string triggered_type = 9;
-    // +optional
-    string triggered_by = 10;
+    string triggered_by = 8;
 
     // +optional
     string workspace_id = 21;
@@ -173,34 +185,37 @@ message AlertStatQuery {
 }
 
 message AlertInfo {
-    enum AlertState {
+    enum AlertStatus {
         ALERT_STATE_NONE = 0;
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        ERROR = 4;
+        IGNORED = 4;
+        ERROR = 5;
     }
     enum TriggeredType {
         TRIGGERD_BY_NONE = 0;
         USER = 1;
-        WEBHOOK = 2;
+        APP = 2;
+        WEBHOOK = 3;
     }
 
     string alert_id = 1;
     string title = 2;
-    AlertState state = 3;
+    AlertStatus status = 3;
     string description = 4;
     AlertUrgency urgency = 5;
     spaceone.api.alert_manager.v1.EventSeverity severity = 6;
     string rule = 7;
     string image_url = 8;
     repeated AlertResource resources = 9;
-    string provider = 10;
-    string account = 11;
-    TriggeredType triggerd_type = 12;
-    string triggered_by = 13;
+    TriggeredType triggered_type = 10;
+    string triggered_by = 11;
+    string acknowledged_by = 12;
+    string resolved_by = 13;
 
     google.protobuf.Struct additional_info = 15;
+    repeated string labels = 16;
 
     string domain_id = 21;
     string workspace_id = 22;
@@ -234,10 +249,15 @@ message AlertEventInfo {
     string description = 3;
     spaceone.api.alert_manager.v1.EventInfo event_info = 4;
 
-    string created_at = 21;
-    string created_by = 22;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+
+    string created_at = 31;
+    string created_by = 32;
 }
 
 message AlertHistoryInfo {
     repeated AlertEventInfo results = 1;
+    int32 total_count = 2;
 }

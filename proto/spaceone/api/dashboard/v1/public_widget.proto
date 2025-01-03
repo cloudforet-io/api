@@ -40,7 +40,7 @@ service PublicWidget{
     };
   }
 
-  rpc load_sum (LoadPublicWidgetRequest) returns (google.protobuf.Struct) {
+  rpc load_sum (LoadSumPublicWidgetRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-widget/load-sum"
       body: "*"
@@ -60,6 +60,16 @@ service PublicWidget{
       body: "*"
     };
   }
+}
+
+message PublicWidgetSort {
+  string key = 1;
+  bool desc = 2;
+}
+
+message PublicWidgetPage {
+  int32 start = 1;
+  int32 limit = 2;
 }
 
 message CreatePublicWidgetRequest {
@@ -123,9 +133,26 @@ message PublicWidgetRequest {
 
 message LoadPublicWidgetRequest {
   string widget_id = 1;
-  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 2;
+  string granularity = 2;
+  string start = 3;
+  string end = 4;
   // +optional
-  google.protobuf.Struct vars = 3;
+  repeated string group_by = 5;
+  // +optional
+  repeated PublicWidgetSort sort = 6;
+  // +optional
+  PublicWidgetPage page = 7;
+  // +optional
+  google.protobuf.Struct vars = 8;
+}
+
+message LoadSumPublicWidgetRequest {
+  string widget_id = 1;
+  string granularity = 2;
+  string start = 3;
+  string end = 4;
+  // +optional
+  google.protobuf.Struct vars = 7;
 }
 
 message PublicWidgetQuery {

@@ -134,7 +134,7 @@ func local_request_PublicWidget_Load_0(ctx context.Context, marshaler runtime.Ma
 
 func request_PublicWidget_LoadSum_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PublicWidgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.LoadPublicWidgetRequest
+		protoReq extV1.LoadSumPublicWidgetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -146,7 +146,7 @@ func request_PublicWidget_LoadSum_0(ctx context.Context, marshaler runtime.Marsh
 
 func local_request_PublicWidget_LoadSum_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PublicWidgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.LoadPublicWidgetRequest
+		protoReq extV1.LoadSumPublicWidgetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

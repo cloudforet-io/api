@@ -292,7 +292,7 @@ func RegisterNoteHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Note/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/note/stat"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Note/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/note/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -435,7 +435,7 @@ func RegisterNoteHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Note/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/note/stat"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.Note/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/note/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -457,7 +457,7 @@ var (
 	pattern_Note_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "note", "delete"}, ""))
 	pattern_Note_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "note", "get"}, ""))
 	pattern_Note_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "note", "list"}, ""))
-	pattern_Note_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert_manager", "v1", "note", "stat"}, ""))
+	pattern_Note_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "note", "stat"}, ""))
 )
 
 var (

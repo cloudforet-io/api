@@ -58,7 +58,7 @@ class TaskTypeStub(object):
                 _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.opsflow.v1.TaskType/delete',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
@@ -143,7 +143,7 @@ def add_TaskTypeServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -268,7 +268,7 @@ class TaskType(object):
             request,
             target,
             '/spaceone.api.opsflow.v1.TaskType/delete',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,

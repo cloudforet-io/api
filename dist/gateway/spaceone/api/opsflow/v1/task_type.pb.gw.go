@@ -110,7 +110,7 @@ func local_request_TaskType_UpdateFields_0(ctx context.Context, marshaler runtim
 
 func request_TaskType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TaskTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.TaskTypeRequest
+		protoReq extV1.TaskTypeDeleteRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -122,7 +122,7 @@ func request_TaskType_Delete_0(ctx context.Context, marshaler runtime.Marshaler,
 
 func local_request_TaskType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TaskTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.TaskTypeRequest
+		protoReq extV1.TaskTypeDeleteRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

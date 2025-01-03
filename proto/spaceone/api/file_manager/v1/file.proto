@@ -11,12 +11,6 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service File {
-  rpc add (CreateFileRequest) returns (FileInfo) {
-    option (google.api.http) = {
-      post: "/file-manager/v2/file/add"
-      body: "*"
-    };
-  }
   rpc update (UpdateFileRequest) returns (FileInfo) {
     option (google.api.http) = {
       post: "/file-manager/v1/file/update"
@@ -26,12 +20,6 @@ service File {
   rpc delete (FileRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/file-manager/v1/file/delete"
-      body: "*"
-    };
-  }
-  rpc get_download_url (FileRequest) returns (FileInfo) {
-    option (google.api.http) = {
-      post: "/file-manager/v1/file/get-download-url"
       body: "*"
     };
   }
@@ -53,12 +41,6 @@ service File {
       body: "*"
     };
   }
-}
-
-enum FileState {
-  STATE_NONE = 0;
-  PENDING = 1;
-  DONE = 2;
 }
 
 message FileReference {
@@ -108,13 +90,11 @@ message FileSearchQuery {
   /// +optional
   string name = 3;
   // +optional
-  FileState state = 4;
+  string file_type = 4;
   // +optional
-  string file_type = 6;
+  string resource_type = 5;
   // +optional
-  string resource_type = 7;
-  // +optional
-  string resource_id = 8;
+  string resource_id = 6;
   // +optional
   string domain_id = 21;
   // +optional
@@ -132,13 +112,10 @@ message FileInfo {
 
   string file_id = 1;
   string name = 2;
-  FileState state = 3;
-  string file_type = 4;
-  string upload_url = 5;
-  google.protobuf.Struct upload_options = 6;
-  string download_url = 7;
-  google.protobuf.Struct tags = 8;
-  FileReference reference = 9;
+  string file_type = 3;
+  string download_url = 4;
+  google.protobuf.Struct tags = 5;
+  FileReference reference = 6;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;

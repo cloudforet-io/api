@@ -5,7 +5,7 @@ import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.config.v1 import workspace_config_pb2 as spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2
+from spaceone.api.opsflow.v1 import variable_pb2 as spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -22,7 +22,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in spaceone/api/config/v1/workspace_config_pb2_grpc.py depends on'
+        + f' but the generated code in spaceone/api/opsflow/v1/variable_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -32,7 +32,7 @@ if _version_not_supported:
     )
 
 
-class WorkspaceConfigStub(object):
+class VariableStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -42,43 +42,38 @@ class WorkspaceConfigStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/create',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+                '/spaceone.api.opsflow.v1.Variable/create',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableCreateRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/update',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
-                _registered_method=True)
-        self.set = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/set',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+                '/spaceone.api.opsflow.v1.Variable/update',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableUpdateRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/delete',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.SerializeToString,
+                '/spaceone.api.opsflow.v1.Variable/delete',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/get',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+                '/spaceone.api.opsflow.v1.Variable/get',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/list',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigsInfo.FromString,
+                '/spaceone.api.opsflow.v1.Variable/list',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariablesInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
-                '/spaceone.api.config.v1.WorkspaceConfig/stat',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigStatQuery.SerializeToString,
+                '/spaceone.api.opsflow.v1.Variable/stat',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
 
 
-class WorkspaceConfigServicer(object):
+class VariableServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -88,12 +83,6 @@ class WorkspaceConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def set(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -124,52 +113,47 @@ class WorkspaceConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_WorkspaceConfigServicer_to_server(servicer, server):
+def add_VariableServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableCreateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.SerializeToString,
-            ),
-            'set': grpc.unary_unary_rpc_method_handler(
-                    servicer.set,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableUpdateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariablesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.config.v1.WorkspaceConfig', rpc_method_handlers)
+            'spaceone.api.opsflow.v1.Variable', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.config.v1.WorkspaceConfig', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.opsflow.v1.Variable', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class WorkspaceConfig(object):
+class Variable(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -186,9 +170,9 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/create',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+            '/spaceone.api.opsflow.v1.Variable/create',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableCreateRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -213,36 +197,9 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/update',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def set(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.config.v1.WorkspaceConfig/set',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.CreateWorkspaceConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+            '/spaceone.api.opsflow.v1.Variable/update',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableUpdateRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -267,8 +224,8 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/delete',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.SerializeToString,
+            '/spaceone.api.opsflow.v1.Variable/delete',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -294,9 +251,9 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/get',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigInfo.FromString,
+            '/spaceone.api.opsflow.v1.Variable/get',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -321,9 +278,9 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/list',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigsInfo.FromString,
+            '/spaceone.api.opsflow.v1.Variable/list',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariablesInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -348,8 +305,8 @@ class WorkspaceConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.WorkspaceConfig/stat',
-            spaceone_dot_api_dot_config_dot_v1_dot_workspace__config__pb2.WorkspaceConfigStatQuery.SerializeToString,
+            '/spaceone.api.opsflow.v1.Variable/stat',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_variable__pb2.VariableStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,

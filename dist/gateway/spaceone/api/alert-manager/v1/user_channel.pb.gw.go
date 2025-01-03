@@ -240,7 +240,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Create", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Create", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -260,7 +260,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Update", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/update"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Update", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -280,7 +280,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Enable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/enable"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Enable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/enable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -300,7 +300,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Disable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/disable"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Disable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/disable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -320,7 +320,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Delete", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/delete"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Delete", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -340,7 +340,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Get", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/get"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Get", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -360,7 +360,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/List", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/List", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -380,7 +380,7 @@ func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/user-group/stat"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -438,7 +438,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Create", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Create", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -455,7 +455,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Update", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/update"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Update", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -472,7 +472,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Enable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/enable"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Enable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/enable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -489,7 +489,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Disable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/disable"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Disable", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/disable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -506,7 +506,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Delete", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/delete"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Delete", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -523,7 +523,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Get", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/get"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Get", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -540,7 +540,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/List", runtime.WithHTTPPathPattern("/alert-manager/v1/user-group/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/List", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -557,7 +557,7 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/user-group/stat"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.UserChannel/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/user-channel/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -574,14 +574,14 @@ func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_UserChannel_Create_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "create"}, ""))
-	pattern_UserChannel_Update_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "update"}, ""))
-	pattern_UserChannel_Enable_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "enable"}, ""))
-	pattern_UserChannel_Disable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "disable"}, ""))
-	pattern_UserChannel_Delete_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "delete"}, ""))
-	pattern_UserChannel_Get_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "get"}, ""))
-	pattern_UserChannel_List_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-group", "list"}, ""))
-	pattern_UserChannel_Stat_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert_manager", "v1", "user-group", "stat"}, ""))
+	pattern_UserChannel_Create_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "create"}, ""))
+	pattern_UserChannel_Update_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "update"}, ""))
+	pattern_UserChannel_Enable_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "enable"}, ""))
+	pattern_UserChannel_Disable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "disable"}, ""))
+	pattern_UserChannel_Delete_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "delete"}, ""))
+	pattern_UserChannel_Get_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "get"}, ""))
+	pattern_UserChannel_List_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "list"}, ""))
+	pattern_UserChannel_Stat_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "user-channel", "stat"}, ""))
 )
 
 var (

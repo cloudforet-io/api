@@ -55,7 +55,7 @@ service UserGroupChannel {
     }
     rpc stat (UserGroupChannelStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/alert_manager/v1/user-group-channel/stat"
+            post: "/alert-manager/v1/user-group-channel/stat"
             body: "*"
         };
     }
@@ -129,7 +129,8 @@ message UserGroupChannelInfo {
     string channel_id = 1;
     string name = 2;
     UserGroupChannelState state = 3;
-    spaceone.api.alert_manager.v1.ChannelSchedule schedule = 4;
+    google.protobuf.Struct data = 4;
+    spaceone.api.alert_manager.v1.ChannelSchedule schedule = 5;
 
     google.protobuf.Struct tags = 11;
 

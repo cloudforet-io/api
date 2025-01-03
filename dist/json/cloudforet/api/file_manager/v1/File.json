@@ -4,7 +4,7 @@
       "name": "spaceone/api/file_manager/v1/file.proto",
       "description": "",
       "package": "spaceone.api.file_manager.v1",
-      "hasEnums": true,
+      "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
@@ -71,29 +71,6 @@
             {
               "name": "PROJECT",
               "number": "4",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "FileState",
-          "longName": "FileState",
-          "fullName": "spaceone.api.file_manager.v1.FileState",
-          "description": "",
-          "values": [
-            {
-              "name": "STATE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "PENDING",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DONE",
-              "number": "2",
               "description": ""
             }
           ]
@@ -220,48 +197,12 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
-              "description": "",
-              "label": "",
-              "type": "FileState",
-              "longType": "FileState",
-              "fullType": "spaceone.api.file_manager.v1.FileState",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "file_type",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "upload_url",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "upload_options",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -472,18 +413,6 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
-              "description": "+optional",
-              "label": "",
-              "type": "FileState",
-              "longType": "FileState",
-              "fullType": "spaceone.api.file_manager.v1.FileState",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "file_type",
               "description": "+optional",
               "label": "",
@@ -662,29 +591,6 @@
           "description": "",
           "methods": [
             {
-              "name": "add",
-              "description": "",
-              "requestType": "CreateFileRequest",
-              "requestLongType": "CreateFileRequest",
-              "requestFullType": "spaceone.api.file_manager.v1.CreateFileRequest",
-              "requestStreaming": false,
-              "responseType": "FileInfo",
-              "responseLongType": "FileInfo",
-              "responseFullType": "spaceone.api.file_manager.v1.FileInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/file-manager/v2/file/add",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "update",
               "description": "",
               "requestType": "UpdateFileRequest",
@@ -724,29 +630,6 @@
                     {
                       "method": "POST",
                       "pattern": "/file-manager/v1/file/delete",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "get_download_url",
-              "description": "",
-              "requestType": "FileRequest",
-              "requestLongType": "FileRequest",
-              "requestFullType": "spaceone.api.file_manager.v1.FileRequest",
-              "requestStreaming": false,
-              "responseType": "FileInfo",
-              "responseLongType": "FileInfo",
-              "responseFullType": "spaceone.api.file_manager.v1.FileInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/file-manager/v1/file/get-download-url",
                       "body": "*"
                     }
                   ]

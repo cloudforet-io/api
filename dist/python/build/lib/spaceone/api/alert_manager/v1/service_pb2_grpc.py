@@ -58,12 +58,12 @@ class ServiceStub(object):
                 _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Service/delete',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceDeleteRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Service/get',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceGetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
@@ -143,12 +143,12 @@ def add_ServiceServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceDeleteRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceGetRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -268,7 +268,7 @@ class Service(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Service/delete',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceDeleteRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -295,7 +295,7 @@ class Service(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Service/get',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceGetRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.FromString,
             options,
             channel_credentials,

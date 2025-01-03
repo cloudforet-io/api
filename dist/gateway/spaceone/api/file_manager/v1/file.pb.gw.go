@@ -36,30 +36,6 @@ var (
 	_ = metadata.Join
 )
 
-func request_File_Add_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.FileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.CreateFileRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.Add(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_File_Add_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.FileServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.CreateFileRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.Add(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 func request_File_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.FileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq extV1.UpdateFileRequest
@@ -105,30 +81,6 @@ func local_request_File_Delete_0(ctx context.Context, marshaler runtime.Marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.Delete(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_File_GetDownloadUrl_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.FileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.FileRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetDownloadUrl(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_File_GetDownloadUrl_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.FileServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.FileRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetDownloadUrl(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -210,26 +162,6 @@ func local_request_File_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterFileHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterFileHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.FileServer) error {
-	mux.Handle(http.MethodPost, pattern_File_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.file_manager.v1.File/Add", runtime.WithHTTPPathPattern("/file-manager/v2/file/add"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_File_Add_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_File_Add_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_File_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -269,26 +201,6 @@ func RegisterFileHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 			return
 		}
 		forward_File_Delete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_File_GetDownloadUrl_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.file_manager.v1.File/GetDownloadUrl", runtime.WithHTTPPathPattern("/file-manager/v1/file/get-download-url"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_File_GetDownloadUrl_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_File_GetDownloadUrl_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_File_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -390,23 +302,6 @@ func RegisterFileHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "extV1.FileClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterFileHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.FileClient) error {
-	mux.Handle(http.MethodPost, pattern_File_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.file_manager.v1.File/Add", runtime.WithHTTPPathPattern("/file-manager/v2/file/add"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_File_Add_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_File_Add_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_File_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -440,23 +335,6 @@ func RegisterFileHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 			return
 		}
 		forward_File_Delete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_File_GetDownloadUrl_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.file_manager.v1.File/GetDownloadUrl", runtime.WithHTTPPathPattern("/file-manager/v1/file/get-download-url"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_File_GetDownloadUrl_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_File_GetDownloadUrl_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_File_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -513,21 +391,17 @@ func RegisterFileHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 }
 
 var (
-	pattern_File_Add_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v2", "file", "add"}, ""))
-	pattern_File_Update_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "update"}, ""))
-	pattern_File_Delete_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "delete"}, ""))
-	pattern_File_GetDownloadUrl_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "get-download-url"}, ""))
-	pattern_File_Get_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "get"}, ""))
-	pattern_File_List_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "list"}, ""))
-	pattern_File_Stat_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "stat"}, ""))
+	pattern_File_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "update"}, ""))
+	pattern_File_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "delete"}, ""))
+	pattern_File_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "get"}, ""))
+	pattern_File_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "list"}, ""))
+	pattern_File_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"file-manager", "v1", "file", "stat"}, ""))
 )
 
 var (
-	forward_File_Add_0            = runtime.ForwardResponseMessage
-	forward_File_Update_0         = runtime.ForwardResponseMessage
-	forward_File_Delete_0         = runtime.ForwardResponseMessage
-	forward_File_GetDownloadUrl_0 = runtime.ForwardResponseMessage
-	forward_File_Get_0            = runtime.ForwardResponseMessage
-	forward_File_List_0           = runtime.ForwardResponseMessage
-	forward_File_Stat_0           = runtime.ForwardResponseMessage
+	forward_File_Update_0 = runtime.ForwardResponseMessage
+	forward_File_Delete_0 = runtime.ForwardResponseMessage
+	forward_File_Get_0    = runtime.ForwardResponseMessage
+	forward_File_List_0   = runtime.ForwardResponseMessage
+	forward_File_Stat_0   = runtime.ForwardResponseMessage
 )

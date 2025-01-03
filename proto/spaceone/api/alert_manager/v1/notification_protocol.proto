@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/core/v2/plugin.proto";
 
 service NotificationProtocol {
     rpc create (NotificationProtocolCreateRequest) returns (NotificationProtocolInfo) {
@@ -28,9 +29,9 @@ service NotificationProtocol {
             body: "*"
         };
     }
-    rpc verify_plugin (NotificationProtocolRequest) returns (google.protobuf.Empty) {
+    rpc update_secret_data (NotificationProtocolUpdateSecretDataRequest) returns (NotificationProtocolInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/notification-protocol/verify-plugin"
+            post: "/alert-manager/v1/notification-protocol/update-secret-data"
             body: "*"
         };
     }
@@ -66,50 +67,15 @@ service NotificationProtocol {
     }
     rpc stat (NotificationProtocolStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/alert_manager/v1/notification-protocol/stat"
+            post: "/alert-manager/v1/notification-protocol/stat"
             body: "*"
         };
     }
 }
 
-message NotificationProtocolRequestPluginInfo {
-    enum NotificationProtocolUpgradeMode {
-        UPGRADE_MODE_NONE = 0;
-        AUTO = 1;
-        MANUAL = 2;
-    }
-
-    string plugin_id = 1;
-    string version = 2;
-    google.protobuf.Struct options = 3;
-    // +optional
-    google.protobuf.Struct secret_data = 4;
-    // +optional
-    google.protobuf.Struct schema = 5;
-    NotificationProtocolUpgradeMode upgrade_mode = 6;
-}
-
-message NotificationProtocolResponsePluginInfo {
-    enum NotificationProtocolUpgradeMode {
-        UPGRADE_MODE_NONE = 0;
-        AUTO = 1;
-        MANUAL = 2;
-    }
-
-    string plugin_id = 1;
-    string version = 2;
-    google.protobuf.Struct options = 3;
-    // +optional
-    google.protobuf.Struct metadata = 4;
-    NotificationProtocolUpgradeMode upgrade_mode = 5;
-
-    // +optional
-    string secret_id = 21;
-}
-
 message NotificationProtocolCreateRequest {
     string name = 1;
-    NotificationProtocolRequestPluginInfo plugin_info = 2;
+    spaceone.api.core.v2.PluginRequest plugin_info = 2;
 
     // +optional
     google.protobuf.Struct tags = 11;
@@ -144,6 +110,11 @@ message NotificationProtocolRequest {
     string protocol_id = 1;
 }
 
+message NotificationProtocolUpdateSecretDataRequest {
+    string protocol_id = 1;
+    google.protobuf.Struct secret_data = 2;
+}
+
 message NotificationProtocolSearchQuery {
     enum NotificationProtocolState {
         PROTOCOL_STATE_NONE = 0;
@@ -175,7 +146,7 @@ message NotificationProtocolInfo {
     string protocol_id = 1;
     string name = 2;
     NotificationProtocolState state = 3;
-    NotificationProtocolResponsePluginInfo plugin_info = 4;
+    spaceone.api.core.v2.PluginInfo plugin_info = 4;
     google.protobuf.Struct tags = 5;
 
     string domain_id = 21;

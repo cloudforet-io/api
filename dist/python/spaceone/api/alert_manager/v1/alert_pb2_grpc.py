@@ -68,7 +68,7 @@ class AlertStub(object):
                 _registered_method=True)
         self.history = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/history',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.FromString,
                 _registered_method=True)
         self.analyze = channel.unary_unary(
@@ -164,7 +164,7 @@ def add_AlertServicer_to_server(servicer, server):
             ),
             'history': grpc.unary_unary_rpc_method_handler(
                     servicer.history,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.SerializeToString,
             ),
             'analyze': grpc.unary_unary_rpc_method_handler(
@@ -338,7 +338,7 @@ class Alert(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Alert/history',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.FromString,
             options,
             channel_credentials,

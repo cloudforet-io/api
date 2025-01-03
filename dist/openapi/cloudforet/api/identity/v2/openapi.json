@@ -1336,6 +1336,37 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user-profile/update-password": {
+       "post": {
+         "tags": ["identity > user-profile"],
+         "summary": "Update Password",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |new_password||string|True|\n |current_password||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"new_password" : {"type": "string","title": "NEW_PASSWORD" },"current_password" : {"type": "string","title": "CURRENT_PASSWORD" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n  \"current_password\": \"password\",\n  \"new_password\": \"new_password\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
+                     "value": "{\n \"user_id\": \"wonny@cloudforet.io\",\n \"password\": \"Password1234!\",\n \"name\": \"Wonny\",\n \"email\": \"wonny@cloudforet.io\",\n \"auth_type\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/user-profile/verify-email": {
        "post": {
          "tags": ["identity > user-profile"],
@@ -5522,6 +5553,12 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "MyWorkspacesInfo"
+           }
+           ,        "UpdatePasswordUserProfileRequest": {
+         "properties" : {"new_password" : {"type": "string","title": "NEW_PASSWORD"},"current_password" : {"type": "string","title": "CURRENT_PASSWORD"}},
+         "type": "object",
+         "required": ["new_password"],
+                "title": "UpdatePasswordUserProfileRequest"
            }
            ,        "UpdateUserProfileRequest": {
          "properties" : {"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"}},

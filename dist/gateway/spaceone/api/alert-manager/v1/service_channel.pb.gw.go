@@ -424,7 +424,7 @@ func RegisterServiceChannelHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.ServiceChannel/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/service-channel/stat"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.ServiceChannel/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/service-channel/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -618,7 +618,7 @@ func RegisterServiceChannelHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.ServiceChannel/Stat", runtime.WithHTTPPathPattern("/alert_manager/v1/service-channel/stat"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.alert_manager.v1.ServiceChannel/Stat", runtime.WithHTTPPathPattern("/alert-manager/v1/service-channel/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -643,7 +643,7 @@ var (
 	pattern_ServiceChannel_Delete_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service-channel", "delete"}, ""))
 	pattern_ServiceChannel_Get_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service-channel", "get"}, ""))
 	pattern_ServiceChannel_List_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service-channel", "list"}, ""))
-	pattern_ServiceChannel_Stat_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert_manager", "v1", "service-channel", "stat"}, ""))
+	pattern_ServiceChannel_Stat_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"alert-manager", "v1", "service-channel", "stat"}, ""))
 )
 
 var (

@@ -1,4 +1,3 @@
-// UserConfig API which configure environments for user
 syntax = "proto3";
 
 package spaceone.api.config.v1;
@@ -45,12 +44,6 @@ service UserConfig {
     rpc list (UserConfigQuery) returns (UserConfigsInfo) {
         option (google.api.http) = {
             post: "/config/v1/user-config/list"
-            body: "*"
-        };
-    }
-    rpc stat (UserConfigStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/config/v1/user-config/stat"
             body: "*"
         };
     }
