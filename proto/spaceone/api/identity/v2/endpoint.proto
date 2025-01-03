@@ -29,19 +29,28 @@ message EndpointInfo {
   string name = 1;
   string service = 2;
   string endpoint = 3;
-  EndpointState state = 4;
-  string version = 5;
+  string internal_endpoint = 4;
+  EndpointState state = 5;
+  string version = 6;
 }
 
 //{
 //  "service": "inventory",
+//  "endpoint_type": "PUBLIC",
 //  "query": {}
 //}
 message EndpointSearchQuery {
+  enum EndpointType {
+    NONE = 0;
+    PUBLIC = 1;
+    INTERNAL = 2;
+  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
   string service = 2;
+  // +optional
+  EndpointType endpoint_type = 3;
 }
 
 //{
