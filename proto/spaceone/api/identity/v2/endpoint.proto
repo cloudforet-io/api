@@ -29,8 +29,9 @@ message EndpointInfo {
   string name = 1;
   string service = 2;
   string endpoint = 3;
-  EndpointState state = 4;
-  string version = 5;
+  string internal_endpoint = 4;
+  EndpointState state = 5;
+  string version = 6;
 }
 
 //{
@@ -42,6 +43,7 @@ message EndpointSearchQuery {
   spaceone.api.core.v2.Query query = 1;
   // +optional
   string service = 2;
+  string endpoint_type = 3;
 }
 
 //{
