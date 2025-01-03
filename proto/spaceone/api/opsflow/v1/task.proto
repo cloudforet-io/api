@@ -77,12 +77,6 @@ enum TaskPriority {
 }
 
 message TaskCreateRequest {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     string name = 1;
     string status_id = 2;
     // +optional
@@ -99,9 +93,7 @@ message TaskCreateRequest {
     google.protobuf.Struct data = 8;
     // +optional
     string reference_id = 9;
-    ResourceGroup resource_group = 10;
 
-    // +optional
     string project_id = 21;
     string task_type_id = 22;
 }
@@ -169,12 +161,6 @@ message TaskSearchQuery {
 }
 
 message TaskInfo {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     string task_id = 1;
     string name = 2;
     string status_id = 3;
@@ -186,7 +172,7 @@ message TaskInfo {
     string assignee = 9;
     string created_by = 10;
     string reference_id = 11;
-    ResourceGroup resource_group = 12;
+
     repeated string related_assets = 13;
 
     string domain_id = 21;

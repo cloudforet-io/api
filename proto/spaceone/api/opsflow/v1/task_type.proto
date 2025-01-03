@@ -57,23 +57,18 @@ service TaskType {
 }
 
 message TaskTypeCreateRequest {
-    enum Scope {
-        SCOPE_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     string name = 1;
     // +optional
     string description = 2;
     // +optional
     repeated TaskField fields = 3;
-    // +optional
-    Scope scope = 4;
+
     // +optional
     repeated string assignee_pool = 5;
     // +optional
     google.protobuf.Struct vars = 6;
+    // +optional
+    bool require_project = 7;
     // +optional
     google.protobuf.Struct tags = 11;
     string category_id = 21;
@@ -123,19 +118,14 @@ message TaskTypeSearchQuery {
 }
 
 message TaskTypeInfo {
-    enum Scope {
-        SCOPE_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     string task_type_id = 1;
     string name = 2;
     string description = 3;
     repeated TaskField fields = 4;
-    Scope scope = 5;
+
     repeated string assignee_pool = 6;
     google.protobuf.Struct vars = 7;
+    bool require_project = 8;
     google.protobuf.Struct tags = 11;
 
     string domain_id = 21;
