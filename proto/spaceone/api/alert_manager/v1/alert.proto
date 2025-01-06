@@ -146,7 +146,6 @@ message AlertSearchQuery {
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
         IGNORED = 4;
-        ERROR = 5;
     }
 
     // +optional
@@ -191,7 +190,6 @@ message AlertInfo {
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
         IGNORED = 4;
-        ERROR = 5;
     }
     enum TriggeredType {
         TRIGGERD_BY_NONE = 0;
@@ -240,8 +238,9 @@ message AlertEventInfo {
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        NOTIFIED = 4;
-        EVENT_PUSHED = 5;
+        NOTIFIED_SUCCESS = 4;
+        NOTIFIED_FAILURE = 5;
+        EVENT_PUSHED = 6;
     }
 
     string alert_id = 1;

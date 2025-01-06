@@ -5,7 +5,7 @@ import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.file_manager.v1 import userfile_pb2 as spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2
+from spaceone.api.file_manager.v1 import user_file_pb2 as spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -22,7 +22,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in spaceone/api/file_manager/v1/userfile_pb2_grpc.py depends on'
+        + f' but the generated code in spaceone/api/file_manager/v1/user_file_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -43,27 +43,27 @@ class UserFileStub(object):
         """
         self.update = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.UserFile/update',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UpdateUserFileRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.UserFile/delete',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.UserFile/get',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.UserFile/list',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFilesInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.UserFile/stat',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
 
@@ -106,27 +106,27 @@ def add_UserFileServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UpdateUserFileRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFilesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
@@ -155,8 +155,8 @@ class UserFile(object):
             request,
             target,
             '/spaceone.api.file_manager.v1.UserFile/update',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UpdateUserFileRequest.SerializeToString,
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UpdateUserFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -182,7 +182,7 @@ class UserFile(object):
             request,
             target,
             '/spaceone.api.file_manager.v1.UserFile/delete',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -209,8 +209,8 @@ class UserFile(object):
             request,
             target,
             '/spaceone.api.file_manager.v1.UserFile/get',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileRequest.SerializeToString,
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileInfo.FromString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -236,8 +236,8 @@ class UserFile(object):
             request,
             target,
             '/spaceone.api.file_manager.v1.UserFile/list',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFilesInfo.FromString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFilesInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -263,7 +263,7 @@ class UserFile(object):
             request,
             target,
             '/spaceone.api.file_manager.v1.UserFile/stat',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_userfile__pb2.UserFileStatQuery.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_user__file__pb2.UserFileStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,

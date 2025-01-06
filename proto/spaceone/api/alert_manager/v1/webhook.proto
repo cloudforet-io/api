@@ -59,6 +59,12 @@ service Webhook {
             body: "*"
         };
     }
+    rpc list_errors (WebhookErrorSearchQuery) returns (WebhookErrorsInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/webhook/list-errors"
+            body: "*"
+        };
+    }
     rpc stat (WebhookStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/alert-manager/v1/webhook/stat",
@@ -182,5 +188,30 @@ message WebhookInfo {
 
 message WebhooksInfo {
     repeated WebhookInfo results = 1;
+    int32 total_count = 2;
+}
+
+message WebhookErrorSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    string webhook_id = 2;
+}
+
+message WebhookErrorInfo {
+    string error_id = 1;
+    string message = 2;
+
+    google.protobuf.Struct raw_data = 11;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+    string webhook_id = 24;
+
+    string created_at = 31;
+}
+
+message WebhookErrorsInfo {
+    repeated WebhookErrorInfo results = 1;
     int32 total_count = 2;
 }
