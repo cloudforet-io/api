@@ -68,6 +68,9 @@ message CreateFileRequest {
   string domain_id = 21;
   // +optional
   string workspace_id = 22;
+ // +optional
+  string project_id = 23;
+
 }
 
 message UpdateFileRequest {
@@ -90,15 +93,15 @@ message FileSearchQuery {
   /// +optional
   string name = 3;
   // +optional
-  string file_type = 4;
+  string resource_type = 4;
   // +optional
-  string resource_type = 5;
-  // +optional
-  string resource_id = 6;
+  string resource_id = 5;
   // +optional
   string domain_id = 21;
   // +optional
   string workspace_id = 22;
+   // +optional
+  string project_id = 23;
 }
 
 message FileInfo {
@@ -112,15 +115,14 @@ message FileInfo {
 
   string file_id = 1;
   string name = 2;
-  string file_type = 3;
-  string download_url = 4;
+  string download_url = 3;
+  FileReference reference = 4;
   google.protobuf.Struct tags = 5;
-  FileReference reference = 6;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
-  string user_id = 23;
+  string project_id = 23;
 
   string created_at = 31;
 }
