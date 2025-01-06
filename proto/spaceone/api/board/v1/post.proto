@@ -97,6 +97,8 @@ message CreatePostRequest {
     google.protobuf.Struct options = 6;
     // +optional
     string writer = 7;
+    // +optional
+    string contents_type = 8;
     ResourceGroup resource_group = 20;
     // +optional
     repeated string workspaces = 21;
@@ -119,14 +121,17 @@ message UpdatePostRequest {
     string title = 2;
     // +optional
     string contents = 3;
+
     // +optional
-    string category = 4;
+    string contents_type = 4;
     // +optional
-    repeated string files = 5;
+    string category = 5;
     // +optional
-    google.protobuf.Struct options = 6;
+    repeated string files = 6;
     // +optional
-    string writer = 7;
+    google.protobuf.Struct options = 7;
+    // +optional
+    string writer = 8;
     // +optional
     repeated string workspaces = 21;
 }
@@ -197,10 +202,11 @@ message PostInfo {
     string category = 3;
     string title = 4;
     string contents = 5;
-    google.protobuf.Struct options = 6;
-    int32 view_count = 7;
-    string writer = 8;
-    google.protobuf.ListValue files = 9;
+    string contents_type = 6;
+    google.protobuf.Struct options = 7;
+    int32 view_count = 8;
+    string writer = 9;
+    google.protobuf.ListValue files = 10;
 
     ResourceGroup resource_group = 20;
     string domain_id = 21;
