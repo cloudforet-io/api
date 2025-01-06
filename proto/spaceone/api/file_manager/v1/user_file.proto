@@ -13,31 +13,31 @@ import "spaceone/api/core/v2/query.proto";
 service UserFile {
   rpc update (UpdateUserFileRequest) returns (UserFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/userfile/update"
+      post: "/file-manager/v1/user_file/update"
       body: "*"
     };
   }
   rpc delete (UserFileRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/file-manager/v1/userfile/delete"
+      post: "/file-manager/v1/user_file/delete"
       body: "*"
     };
   }
   rpc get (UserFileRequest) returns (UserFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/userfile/get"
+      post: "/file-manager/v1/user_file/get"
       body: "*"
     };
   }
   rpc list (UserFileSearchQuery) returns (UserFilesInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/userfile/list"
+      post: "/file-manager/v1/user_file/list"
       body: "*"
     };
   }
   rpc stat (UserFileStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
-      post: "/file-manager/v1/userfile/stat"
+      post: "/file-manager/v1/user_file/stat"
       body: "*"
     };
   }
