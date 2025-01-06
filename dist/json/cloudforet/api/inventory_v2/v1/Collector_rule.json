@@ -1,37 +1,106 @@
 {
   "files": [
     {
-      "name": "spaceone/api/opsflow/v1/task.proto",
-      "description": "",
-      "package": "spaceone.api.opsflow.v1",
+      "name": "spaceone/api/inventory_v2/v1/collector_rule.proto",
+      "description": "A CollectorRule is a cloud service resource filtering the raw data from the Collector. The Cloud Service resource is created after the raw data is filtered by the CollectorRule.",
+      "package": "spaceone.api.inventory_v2.v1",
       "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
-          "name": "TaskPriority",
-          "longName": "TaskPriority",
-          "fullName": "spaceone.api.opsflow.v1.TaskPriority",
+          "name": "ResourceGroup",
+          "longName": "CollectorRuleInfo.ResourceGroup",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "TASK_PRIORITY_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "HIGH",
+              "name": "DOMAIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "MEDIUM",
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RuleType",
+          "longName": "CollectorRuleInfo.RuleType",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleInfo.RuleType",
+          "description": "",
+          "values": [
+            {
+              "name": "RULE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANAGED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CUSTOM",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RuleType",
+          "longName": "CollectorRuleQuery.RuleType",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleQuery.RuleType",
+          "description": "",
+          "values": [
+            {
+              "name": "RULE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANAGED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CUSTOM",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ConditionsPolicy",
+          "longName": "ConditionsPolicy",
+          "fullName": "spaceone.api.inventory_v2.v1.ConditionsPolicy",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ALL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ANY",
               "number": "2",
               "description": ""
             },
             {
-              "name": "LOW",
+              "name": "ALWAYS",
               "number": "3",
               "description": ""
             }
@@ -41,17 +110,17 @@
       "extensions": [],
       "messages": [
         {
-          "name": "TaskChangeAssigneeRequest",
-          "longName": "TaskChangeAssigneeRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskChangeAssigneeRequest",
-          "description": "",
+          "name": "ChangeCollectorRuleOrderRequest",
+          "longName": "ChangeCollectorRuleOrderRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.ChangeCollectorRuleOrderRequest",
+          "description": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"order\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "collector_rule_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -63,12 +132,12 @@
               "defaultValue": ""
             },
             {
-              "name": "assignee",
+              "name": "order",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -77,9 +146,9 @@
           ]
         },
         {
-          "name": "TaskChangeStatusRequest",
-          "longName": "TaskChangeStatusRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskChangeStatusRequest",
+          "name": "CollectorRuleActions",
+          "longName": "CollectorRuleActions",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleActions",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -87,7 +156,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "change_project",
               "description": "",
               "label": "",
               "type": "string",
@@ -99,128 +168,32 @@
               "defaultValue": ""
             },
             {
-              "name": "status_id",
+              "name": "match_project",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "MatchRule",
+              "longType": "MatchRule",
+              "fullType": "spaceone.api.inventory_v2.v1.MatchRule",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "assignee",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "TaskCreateRequest",
-          "longName": "TaskCreateRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskCreateRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "name",
+              "name": "match_service_account",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "MatchRule",
+              "longType": "MatchRule",
+              "fullType": "spaceone.api.inventory_v2.v1.MatchRule",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "status_id",
+              "name": "add_additional_info",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "priority",
-              "description": "+optional",
-              "label": "",
-              "type": "TaskPriority",
-              "longType": "TaskPriority",
-              "fullType": "spaceone.api.opsflow.v1.TaskPriority",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "files",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "mentions",
-              "description": "+optional",
-              "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "data",
-              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -229,21 +202,21 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
+            }
+          ]
+        },
+        {
+          "name": "CollectorRuleCondition",
+          "longName": "CollectorRuleCondition",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleCondition",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
             {
-              "name": "reference_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
+              "name": "key",
               "description": "",
               "label": "",
               "type": "string",
@@ -255,7 +228,19 @@
               "defaultValue": ""
             },
             {
-              "name": "task_type_id",
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
               "description": "",
               "label": "",
               "type": "string",
@@ -269,17 +254,17 @@
           ]
         },
         {
-          "name": "TaskInfo",
-          "longName": "TaskInfo",
-          "fullName": "spaceone.api.opsflow.v1.TaskInfo",
-          "description": "",
+          "name": "CollectorRuleInfo",
+          "longName": "CollectorRuleInfo",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
+          "description": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "collector_rule_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -303,55 +288,79 @@
               "defaultValue": ""
             },
             {
-              "name": "status_id",
+              "name": "rule_type",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "RuleType",
+              "longType": "CollectorRuleInfo.RuleType",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo.RuleType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "status_type",
+              "name": "order",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "priority",
+              "name": "conditions",
               "description": "",
-              "label": "",
-              "type": "TaskPriority",
-              "longType": "TaskPriority",
-              "fullType": "spaceone.api.opsflow.v1.TaskPriority",
+              "label": "repeated",
+              "type": "CollectorRuleCondition",
+              "longType": "CollectorRuleCondition",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleCondition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "description",
+              "name": "conditions_policy",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ConditionsPolicy",
+              "longType": "ConditionsPolicy",
+              "fullType": "spaceone.api.inventory_v2.v1.ConditionsPolicy",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "data",
+              "name": "actions",
+              "description": "",
+              "label": "",
+              "type": "CollectorRuleActions",
+              "longType": "CollectorRuleActions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "CollectorRuleOptions",
+              "longType": "CollectorRuleOptions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
               "description": "",
               "label": "",
               "type": "Struct",
@@ -363,60 +372,12 @@
               "defaultValue": ""
             },
             {
-              "name": "files",
-              "description": "",
-              "label": "repeated",
-              "type": "FileInfo",
-              "longType": "spaceone.api.file_manager.v1.FileInfo",
-              "fullType": "spaceone.api.file_manager.v1.FileInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "created_by",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "reference_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "related_assets",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CollectorRuleInfo.ResourceGroup",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -447,31 +408,7 @@
               "defaultValue": ""
             },
             {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "task_type_id",
+              "name": "collector_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -495,18 +432,6 @@
               "defaultValue": ""
             },
             {
-              "name": "started_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "updated_at",
               "description": "",
               "label": "",
@@ -517,25 +442,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "completed_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "TaskRequest",
-          "longName": "TaskRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskRequest",
+          "name": "CollectorRuleOptions",
+          "longName": "CollectorRuleOptions",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleOptions",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -543,12 +456,12 @@
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "stop_processing",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -557,10 +470,10 @@
           ]
         },
         {
-          "name": "TaskSearchQuery",
-          "longName": "TaskSearchQuery",
-          "fullName": "spaceone.api.opsflow.v1.TaskSearchQuery",
-          "description": "",
+          "name": "CollectorRuleQuery",
+          "longName": "CollectorRuleQuery",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleQuery",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -579,7 +492,7 @@
               "defaultValue": ""
             },
             {
-              "name": "task_id",
+              "name": "collector_rule_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -603,60 +516,12 @@
               "defaultValue": ""
             },
             {
-              "name": "status_id",
+              "name": "rule_type",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "status_type",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "priority",
-              "description": "+optional",
-              "label": "",
-              "type": "TaskPriority",
-              "longType": "TaskPriority",
-              "fullType": "spaceone.api.opsflow.v1.TaskPriority",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "related_asset_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "RuleType",
+              "longType": "CollectorRuleQuery.RuleType",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleQuery.RuleType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -675,31 +540,7 @@
               "defaultValue": ""
             },
             {
-              "name": "project_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "task_type_id",
+              "name": "collector_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -713,9 +554,33 @@
           ]
         },
         {
-          "name": "TaskStatQuery",
-          "longName": "TaskStatQuery",
-          "fullName": "spaceone.api.opsflow.v1.TaskStatQuery",
+          "name": "CollectorRuleRequest",
+          "longName": "CollectorRuleRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleRequest",
+          "description": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_rule_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorRuleStatQuery",
+          "longName": "CollectorRuleStatQuery",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRuleStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -737,58 +602,34 @@
           ]
         },
         {
-          "name": "TaskUpdateDescriptionRequest",
-          "longName": "TaskUpdateDescriptionRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskUpdateDescriptionRequest",
-          "description": "",
+          "name": "CollectorRulesInfo",
+          "longName": "CollectorRulesInfo",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRulesInfo",
+          "description": "{\n   \"results\": [\n       {\n           \"collector_rule_id\": \"collector-rule-c8055231e212\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.project_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-2e39891cbbb5\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T16:01:51.858Z\"\n       },\n       {\n           \"collector_rule_id\": \"collector-rule-t3345231e167\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.account_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-7163022d49a1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-03T16:00:54.099Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "files",
+              "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "CollectorRuleInfo",
+              "longType": "CollectorRuleInfo",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "mentions",
+              "name": "total_count",
               "description": "",
               "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -797,17 +638,17 @@
           ]
         },
         {
-          "name": "TaskUpdateRequest",
-          "longName": "TaskUpdateRequest",
-          "fullName": "spaceone.api.opsflow.v1.TaskUpdateRequest",
-          "description": "",
+          "name": "CreateCollectorRuleRequest",
+          "longName": "CreateCollectorRuleRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.CreateCollectorRuleRequest",
+          "description": "{\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n   },\n   \"options\": {\"stop_processing\": true},\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"},\n   \"collector_id\": \"collector-2e39891cbbb5\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "collector_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -831,19 +672,55 @@
               "defaultValue": ""
             },
             {
-              "name": "priority",
+              "name": "conditions",
               "description": "+optional",
-              "label": "",
-              "type": "TaskPriority",
-              "longType": "TaskPriority",
-              "fullType": "spaceone.api.opsflow.v1.TaskPriority",
+              "label": "repeated",
+              "type": "CollectorRuleCondition",
+              "longType": "CollectorRuleCondition",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleCondition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "data",
+              "name": "conditions_policy",
+              "description": "",
+              "label": "",
+              "type": "ConditionsPolicy",
+              "longType": "ConditionsPolicy",
+              "fullType": "spaceone.api.inventory_v2.v1.ConditionsPolicy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "actions",
+              "description": "",
+              "label": "",
+              "type": "CollectorRuleActions",
+              "longType": "CollectorRuleActions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "CollectorRuleOptions",
+              "longType": "CollectorRuleOptions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
               "description": "+optional",
               "label": "",
               "type": "Struct",
@@ -853,10 +730,34 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MatchRule",
+          "longName": "MatchRule",
+          "fullName": "spaceone.api.inventory_v2.v1.MatchRule",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "source",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             },
             {
-              "name": "project_id",
-              "description": "+optional",
+              "name": "target",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -869,34 +770,94 @@
           ]
         },
         {
-          "name": "TasksInfo",
-          "longName": "TasksInfo",
-          "fullName": "spaceone.api.opsflow.v1.TasksInfo",
-          "description": "",
+          "name": "UpdateCollectorRuleRequest",
+          "longName": "UpdateCollectorRuleRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.UpdateCollectorRuleRequest",
+          "description": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "results",
+              "name": "collector_rule_id",
               "description": "",
-              "label": "repeated",
-              "type": "TaskInfo",
-              "longType": "TaskInfo",
-              "fullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "total_count",
-              "description": "",
+              "name": "name",
+              "description": "+optional",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "CollectorRuleCondition",
+              "longType": "CollectorRuleCondition",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleCondition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions_policy",
+              "description": "+optional",
+              "label": "",
+              "type": "ConditionsPolicy",
+              "longType": "ConditionsPolicy",
+              "fullType": "spaceone.api.inventory_v2.v1.ConditionsPolicy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "actions",
+              "description": "+optional",
+              "label": "",
+              "type": "CollectorRuleActions",
+              "longType": "CollectorRuleActions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "CollectorRuleOptions",
+              "longType": "CollectorRuleOptions",
+              "fullType": "spaceone.api.inventory_v2.v1.CollectorRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -907,28 +868,28 @@
       ],
       "services": [
         {
-          "name": "Task",
-          "longName": "Task",
-          "fullName": "spaceone.api.opsflow.v1.Task",
+          "name": "CollectorRule",
+          "longName": "CollectorRule",
+          "fullName": "spaceone.api.inventory_v2.v1.CollectorRule",
           "description": "",
           "methods": [
             {
               "name": "create",
-              "description": "",
-              "requestType": "TaskCreateRequest",
-              "requestLongType": "TaskCreateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskCreateRequest",
+              "description": "Creates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.",
+              "requestType": "CreateCollectorRuleRequest",
+              "requestLongType": "CreateCollectorRuleRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CreateCollectorRuleRequest",
               "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseType": "CollectorRuleInfo",
+              "responseLongType": "CollectorRuleInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/create",
+                      "pattern": "/inventory-v2/v1/collector-rule/create",
                       "body": "*"
                     }
                   ]
@@ -937,21 +898,21 @@
             },
             {
               "name": "update",
-              "description": "",
-              "requestType": "TaskUpdateRequest",
-              "requestLongType": "TaskUpdateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskUpdateRequest",
+              "description": "Updates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.",
+              "requestType": "UpdateCollectorRuleRequest",
+              "requestLongType": "UpdateCollectorRuleRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.UpdateCollectorRuleRequest",
               "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseType": "CollectorRuleInfo",
+              "responseLongType": "CollectorRuleInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/update",
+                      "pattern": "/inventory-v2/v1/collector-rule/update",
                       "body": "*"
                     }
                   ]
@@ -959,68 +920,22 @@
               }
             },
             {
-              "name": "update_description",
-              "description": "",
-              "requestType": "TaskUpdateDescriptionRequest",
-              "requestLongType": "TaskUpdateDescriptionRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskUpdateDescriptionRequest",
+              "name": "change_order",
+              "description": "Changes the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.",
+              "requestType": "ChangeCollectorRuleOrderRequest",
+              "requestLongType": "ChangeCollectorRuleOrderRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.ChangeCollectorRuleOrderRequest",
               "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseType": "CollectorRuleInfo",
+              "responseLongType": "CollectorRuleInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/update_description",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "change_assignee",
-              "description": "",
-              "requestType": "TaskChangeAssigneeRequest",
-              "requestLongType": "TaskChangeAssigneeRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskChangeAssigneeRequest",
-              "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/opsflow/v1/task/change_assignee",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "change_status",
-              "description": "",
-              "requestType": "TaskChangeStatusRequest",
-              "requestLongType": "TaskChangeStatusRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskChangeStatusRequest",
-              "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/opsflow/v1/task/change_status",
+                      "pattern": "/inventory-v2/v1/collector-rule/change-order",
                       "body": "*"
                     }
                   ]
@@ -1029,10 +944,10 @@
             },
             {
               "name": "delete",
-              "description": "",
-              "requestType": "TaskRequest",
-              "requestLongType": "TaskRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskRequest",
+              "description": "Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.",
+              "requestType": "CollectorRuleRequest",
+              "requestLongType": "CollectorRuleRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CollectorRuleRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -1043,7 +958,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/delete",
+                      "pattern": "/inventory-v2/v1/collector-rule/delete",
                       "body": "*"
                     }
                   ]
@@ -1052,21 +967,21 @@
             },
             {
               "name": "get",
-              "description": "",
-              "requestType": "TaskRequest",
-              "requestLongType": "TaskRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskRequest",
+              "description": "Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.",
+              "requestType": "CollectorRuleRequest",
+              "requestLongType": "CollectorRuleRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CollectorRuleRequest",
               "requestStreaming": false,
-              "responseType": "TaskInfo",
-              "responseLongType": "TaskInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseType": "CollectorRuleInfo",
+              "responseLongType": "CollectorRuleInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.CollectorRuleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/get",
+                      "pattern": "/inventory-v2/v1/collector-rule/get",
                       "body": "*"
                     }
                   ]
@@ -1075,21 +990,21 @@
             },
             {
               "name": "list",
-              "description": "",
-              "requestType": "TaskSearchQuery",
-              "requestLongType": "TaskSearchQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskSearchQuery",
+              "description": "Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.",
+              "requestType": "CollectorRuleQuery",
+              "requestLongType": "CollectorRuleQuery",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CollectorRuleQuery",
               "requestStreaming": false,
-              "responseType": "TasksInfo",
-              "responseLongType": "TasksInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.TasksInfo",
+              "responseType": "CollectorRulesInfo",
+              "responseLongType": "CollectorRulesInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.CollectorRulesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/list",
+                      "pattern": "/inventory-v2/v1/collector-rule/list",
                       "body": "*"
                     }
                   ]
@@ -1099,9 +1014,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "TaskStatQuery",
-              "requestLongType": "TaskStatQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.TaskStatQuery",
+              "requestType": "CollectorRuleStatQuery",
+              "requestLongType": "CollectorRuleStatQuery",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CollectorRuleStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -1112,7 +1027,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/task/stat",
+                      "pattern": "/inventory-v2/v1/collector-rule/stat",
                       "body": "*"
                     }
                   ]

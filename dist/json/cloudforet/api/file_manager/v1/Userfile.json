@@ -1,67 +1,20 @@
 {
   "files": [
     {
-      "name": "spaceone/api/opsflow/v1/comment.proto",
+      "name": "spaceone/api/file_manager/v1/userfile.proto",
       "description": "",
-      "package": "spaceone.api.opsflow.v1",
+      "package": "spaceone.api.file_manager.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [
-        {
-          "name": "CommentType",
-          "longName": "CommentInfo.CommentType",
-          "fullName": "spaceone.api.opsflow.v1.CommentInfo.CommentType",
-          "description": "",
-          "values": [
-            {
-              "name": "COMMENT_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "TASK_DESCRIPTION",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "COMMENT",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "ResourceGroup",
-          "longName": "CommentInfo.ResourceGroup",
-          "fullName": "spaceone.api.opsflow.v1.CommentInfo.ResourceGroup",
-          "description": "",
-          "values": [
-            {
-              "name": "RESOURCE_GROUP_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PROJECT",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        }
-      ],
+      "enums": [],
       "extensions": [],
       "messages": [
         {
-          "name": "CommentCreateRequest",
-          "longName": "CommentCreateRequest",
-          "fullName": "spaceone.api.opsflow.v1.CommentCreateRequest",
+          "name": "CreateUserFileRequest",
+          "longName": "CreateUserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.CreateUserFileRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -69,7 +22,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "task_id",
+              "name": "name",
               "description": "",
               "label": "",
               "type": "string",
@@ -81,31 +34,7 @@
               "defaultValue": ""
             },
             {
-              "name": "comment",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "mentions",
-              "description": "+optional",
-              "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "source",
+              "name": "tags",
               "description": "+optional",
               "label": "",
               "type": "Struct",
@@ -117,7 +46,31 @@
               "defaultValue": ""
             },
             {
-              "name": "reference_id",
+              "name": "reference",
+              "description": "+optional",
+              "label": "",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -131,9 +84,9 @@
           ]
         },
         {
-          "name": "CommentInfo",
-          "longName": "CommentInfo",
-          "fullName": "spaceone.api.opsflow.v1.CommentInfo",
+          "name": "UpdateUserFileRequest",
+          "longName": "UpdateUserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.UpdateUserFileRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -141,7 +94,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "comment_id",
+              "name": "file_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -153,7 +106,43 @@
               "defaultValue": ""
             },
             {
-              "name": "comment",
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "+optional",
+              "label": "",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserFileInfo",
+          "longName": "UserFileInfo",
+          "fullName": "spaceone.api.file_manager.v1.UserFileInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "file_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -165,43 +154,31 @@
               "defaultValue": ""
             },
             {
-              "name": "comment_type",
+              "name": "name",
               "description": "",
               "label": "",
-              "type": "CommentType",
-              "longType": "CommentInfo.CommentType",
-              "fullType": "spaceone.api.opsflow.v1.CommentInfo.CommentType",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "is_edited",
+              "name": "download_url",
               "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "mentions",
-              "description": "",
-              "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "source",
+              "name": "tags",
               "description": "",
               "label": "",
               "type": "Struct",
@@ -213,12 +190,12 @@
               "defaultValue": ""
             },
             {
-              "name": "reference_id",
+              "name": "reference",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "UserFileReference",
+              "longType": "UserFileReference",
+              "fullType": "spaceone.api.file_manager.v1.UserFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -237,31 +214,7 @@
               "defaultValue": ""
             },
             {
-              "name": "workspace_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "task_id",
+              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -283,37 +236,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "updated_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "created_by",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "CommentRequest",
-          "longName": "CommentRequest",
-          "fullName": "spaceone.api.opsflow.v1.CommentRequest",
+          "name": "UserFileReference",
+          "longName": "UserFileReference",
+          "fullName": "spaceone.api.file_manager.v1.UserFileReference",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -321,7 +250,19 @@
           "extensions": [],
           "fields": [
             {
-              "name": "comment_id",
+              "name": "resource_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -335,9 +276,33 @@
           ]
         },
         {
-          "name": "CommentSearchQuery",
-          "longName": "CommentSearchQuery",
-          "fullName": "spaceone.api.opsflow.v1.CommentSearchQuery",
+          "name": "UserFileRequest",
+          "longName": "UserFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.UserFileRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "file_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UserFileSearchQuery",
+          "longName": "UserFileSearchQuery",
+          "fullName": "spaceone.api.file_manager.v1.UserFileSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -357,7 +322,7 @@
               "defaultValue": ""
             },
             {
-              "name": "task_id",
+              "name": "file_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -369,7 +334,7 @@
               "defaultValue": ""
             },
             {
-              "name": "comment_id",
+              "name": "name",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -381,12 +346,36 @@
               "defaultValue": ""
             },
             {
-              "name": "comment_type",
+              "name": "resource_type",
               "description": "+optional",
               "label": "",
-              "type": "CommentType",
-              "longType": "CommentInfo.CommentType",
-              "fullType": "spaceone.api.opsflow.v1.CommentInfo.CommentType",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -403,49 +392,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "user_group_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "CommentStatQuery",
-          "longName": "CommentStatQuery",
-          "fullName": "spaceone.api.opsflow.v1.CommentStatQuery",
+          "name": "UserFileStatQuery",
+          "longName": "UserFileStatQuery",
+          "fullName": "spaceone.api.file_manager.v1.UserFileStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -467,57 +420,9 @@
           ]
         },
         {
-          "name": "CommentUpdateRequest",
-          "longName": "CommentUpdateRequest",
-          "fullName": "spaceone.api.opsflow.v1.CommentUpdateRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "comment_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "comment",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "mentions",
-              "description": "+optional",
-              "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CommentsInfo",
-          "longName": "CommentsInfo",
-          "fullName": "spaceone.api.opsflow.v1.CommentsInfo",
+          "name": "UserFilesInfo",
+          "longName": "UserFilesInfo",
+          "fullName": "spaceone.api.file_manager.v1.UserFilesInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -528,9 +433,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "CommentInfo",
-              "longType": "CommentInfo",
-              "fullType": "spaceone.api.opsflow.v1.CommentInfo",
+              "type": "UserFileInfo",
+              "longType": "UserFileInfo",
+              "fullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -549,91 +454,32 @@
               "defaultValue": ""
             }
           ]
-        },
-        {
-          "name": "Mentions",
-          "longName": "Mentions",
-          "fullName": "spaceone.api.opsflow.v1.Mentions",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "USER",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "USER_GROUP",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
         }
       ],
       "services": [
         {
-          "name": "Comment",
-          "longName": "Comment",
-          "fullName": "spaceone.api.opsflow.v1.Comment",
+          "name": "UserFile",
+          "longName": "UserFile",
+          "fullName": "spaceone.api.file_manager.v1.UserFile",
           "description": "",
           "methods": [
             {
-              "name": "create",
-              "description": "",
-              "requestType": "CommentCreateRequest",
-              "requestLongType": "CommentCreateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentCreateRequest",
-              "requestStreaming": false,
-              "responseType": "CommentInfo",
-              "responseLongType": "CommentInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.CommentInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/opsflow/v1/comment/create",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "update",
               "description": "",
-              "requestType": "CommentUpdateRequest",
-              "requestLongType": "CommentUpdateRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentUpdateRequest",
+              "requestType": "UpdateUserFileRequest",
+              "requestLongType": "UpdateUserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UpdateUserFileRequest",
               "requestStreaming": false,
-              "responseType": "CommentInfo",
-              "responseLongType": "CommentInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.CommentInfo",
+              "responseType": "UserFileInfo",
+              "responseLongType": "UserFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/comment/update",
+                      "pattern": "/file-manager/v1/userfile/update",
                       "body": "*"
                     }
                   ]
@@ -643,9 +489,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "CommentRequest",
-              "requestLongType": "CommentRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentRequest",
+              "requestType": "UserFileRequest",
+              "requestLongType": "UserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -656,7 +502,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/comment/delete",
+                      "pattern": "/file-manager/v1/userfile/delete",
                       "body": "*"
                     }
                   ]
@@ -666,20 +512,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "CommentRequest",
-              "requestLongType": "CommentRequest",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentRequest",
+              "requestType": "UserFileRequest",
+              "requestLongType": "UserFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileRequest",
               "requestStreaming": false,
-              "responseType": "CommentInfo",
-              "responseLongType": "CommentInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.CommentInfo",
+              "responseType": "UserFileInfo",
+              "responseLongType": "UserFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/comment/get",
+                      "pattern": "/file-manager/v1/userfile/get",
                       "body": "*"
                     }
                   ]
@@ -689,20 +535,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "CommentSearchQuery",
-              "requestLongType": "CommentSearchQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentSearchQuery",
+              "requestType": "UserFileSearchQuery",
+              "requestLongType": "UserFileSearchQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileSearchQuery",
               "requestStreaming": false,
-              "responseType": "CommentsInfo",
-              "responseLongType": "CommentsInfo",
-              "responseFullType": "spaceone.api.opsflow.v1.CommentsInfo",
+              "responseType": "UserFilesInfo",
+              "responseLongType": "UserFilesInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.UserFilesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/comment/list",
+                      "pattern": "/file-manager/v1/userfile/list",
                       "body": "*"
                     }
                   ]
@@ -712,9 +558,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "CommentStatQuery",
-              "requestLongType": "CommentStatQuery",
-              "requestFullType": "spaceone.api.opsflow.v1.CommentStatQuery",
+              "requestType": "UserFileStatQuery",
+              "requestLongType": "UserFileStatQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.UserFileStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -725,7 +571,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/opsflow/v1/comment/stat",
+                      "pattern": "/file-manager/v1/userfile/stat",
                       "body": "*"
                     }
                   ]

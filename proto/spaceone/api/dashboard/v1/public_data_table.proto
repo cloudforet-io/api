@@ -172,10 +172,9 @@ message ValueMappingCases {
     eq = 1;
     regex = 2;
   }
-  string key = 1;
-  ValueMappingOperator operator = 2;
-  string match = 3;
-  string value = 4;
+  ValueMappingOperator operator = 1;
+  string match = 2;
+  string value = 3;
 }
 
 message ValueMappingOperator {
@@ -186,10 +185,11 @@ message ValueMappingOperator {
   }
   string data_table_id = 1;
   string name = 2;
-  FieldType field_type = 3;
-  repeated ValueMappingCases cases = 4;
-  string else = 5;
-  string condition = 6;
+  string key = 3;
+  FieldType field_type = 4;
+  repeated ValueMappingCases cases = 5;
+  string else = 6;
+  string condition = 7;
 }
 
 message TimeDiff {
@@ -333,7 +333,6 @@ message PublicDataTableInfo {
   google.protobuf.Struct tags = 8;
   google.protobuf.Struct labels_info = 9;
   google.protobuf.Struct data_info = 10;
-  repeated string sort_keys = 11;
   string error_message = 13;
 
   ResourceGroup resource_group = 20;

@@ -1210,6 +1210,213 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/create": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_id||string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||CollectorRuleActions|True|\n |name||string||\n |conditions||array||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n   },\n   \"options\": {\"stop_processing\": true},\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"},\n   \"collector_id\": \"collector-2e39891cbbb5\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/update": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||CollectorRuleActions||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/change-order": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Change Order",
+         "operationId" : "",
+         "description": "### Description \nChanges the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |order||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"order\": 2\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/delete": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/get": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/list": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |collector_rule_id||string||\n |name||string||\n |rule_type|MANAGED, CUSTOM |string||\n |workspace_id||string||\n |collector_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"rule_type" : {"type": "string","title": "RULE_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"collector_rule_id\": \"collector-rule-c8055231e212\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.project_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-2e39891cbbb5\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T16:01:51.858Z\"\n       },\n       {\n           \"collector_rule_id\": \"collector-rule-t3345231e167\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.account_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-7163022d49a1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-03T16:00:54.099Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/stat": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory-v2/metric-example/create": {
        "post": {
          "tags": ["inventory-v2 > metric-example"],
@@ -2364,6 +2571,82 @@
          "type": "object",
          "required": ["namespace_id"],
                 "title": "UpdateNamespaceRequest"
+           }
+           ,        "ChangeCollectorRuleOrderRequest": {
+         "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"order" : {"type": "integer","title": "ORDER"}},
+         "type": "object",
+         "required": ["collector_rule_id","order"],
+                "title": "ChangeCollectorRuleOrderRequest"
+           }
+           ,        "CollectorRuleActions": {
+         "properties" : {"change_project" : {"type": "string","title": "CHANGE_PROJECT"},"match_project" : {"$ref": "#/components/schemas/MatchRule","title": "MATCH_PROJECT"},"match_service_account" : {"$ref": "#/components/schemas/MatchRule","title": "MATCH_SERVICE_ACCOUNT"},"add_additional_info" : {"type": "object","title": "ADD_ADDITIONAL_INFO"}},
+         "type": "object",
+         "required": ["change_project","match_project","match_service_account","add_additional_info"],
+                "title": "CollectorRuleActions"
+           }
+           ,        "CollectorRuleCondition": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"value" : {"type": "string","title": "VALUE"},"operator" : {"type": "string","title": "OPERATOR"}},
+         "type": "object",
+         "required": ["key","value","operator"],
+                "title": "CollectorRuleCondition"
+           }
+           ,        "CollectorRuleInfo": {
+         "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"name" : {"type": "string","title": "NAME"},"rule_type" : {"type": "string","title": "RULE_TYPE"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"},
+               "type": "array","$ref": "#/components/schemas/CollectorRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["collector_rule_id","name","rule_type","order","conditions","conditions_policy","actions","options","tags","resource_group","domain_id","workspace_id","collector_id","created_at","updated_at"],
+                "title": "CollectorRuleInfo"
+           }
+           ,        "CollectorRuleOptions": {
+         "properties" : {"stop_processing" : {"type": "boolean","title": "STOP_PROCESSING"}},
+         "type": "object",
+         "required": ["stop_processing"],
+                "title": "CollectorRuleOptions"
+           }
+           ,        "CollectorRuleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"name" : {"type": "string","title": "NAME"},"rule_type" : {"type": "string","title": "RULE_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "CollectorRuleQuery"
+           }
+           ,        "CollectorRuleRequest": {
+         "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"}},
+         "type": "object",
+         "required": ["collector_rule_id"],
+                "title": "CollectorRuleRequest"
+           }
+           ,        "CollectorRuleStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "CollectorRuleStatQuery"
+           }
+           ,        "CollectorRulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+               "type": "array","$ref": "#/components/schemas/CollectorRuleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "CollectorRulesInfo"
+           }
+           ,        "CreateCollectorRuleRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"},
+               "type": "array","$ref": "#/components/schemas/CollectorRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["collector_id","conditions_policy","actions"],
+                "title": "CreateCollectorRuleRequest"
+           }
+           ,        "MatchRule": {
+         "properties" : {"source" : {"type": "string","title": "SOURCE"},"target" : {"type": "string","title": "TARGET"}},
+         "type": "object",
+         "required": ["source","target"],
+                "title": "MatchRule"
+           }
+           ,        "UpdateCollectorRuleRequest": {
+         "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"},
+               "type": "array","$ref": "#/components/schemas/CollectorRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["collector_rule_id"],
+                "title": "UpdateCollectorRuleRequest"
            }
            ,        "CreateMetricExampleRequest": {
          "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},

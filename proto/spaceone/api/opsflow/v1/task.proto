@@ -147,6 +147,10 @@ message TaskSearchQuery {
     // +optional
     TaskPriority priority = 6;
     // +optional
+    string assignee = 7;
+    // +optional
+    string related_asset_id = 8;
+    // +optional
     string workspace_id = 11;
     // +optional
     string project_id = 12;
@@ -168,6 +172,8 @@ message TaskInfo {
     string assignee = 9;
     string created_by = 10;
     string reference_id = 11;
+
+    repeated string related_assets = 13;
 
     string domain_id = 21;
     string workspace_id = 22;

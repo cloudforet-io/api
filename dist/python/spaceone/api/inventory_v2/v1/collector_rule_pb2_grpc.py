@@ -5,7 +5,7 @@ import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.opsflow.v1 import task_type_pb2 as spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2
+from spaceone.api.inventory_v2.v1 import collector_rule_pb2 as spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -22,7 +22,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in spaceone/api/opsflow/v1/task_type_pb2_grpc.py depends on'
+        + f' but the generated code in spaceone/api/inventory_v2/v1/collector_rule_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -32,7 +32,7 @@ if _version_not_supported:
     )
 
 
-class TaskTypeStub(object):
+class CollectorRuleStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -42,77 +42,83 @@ class TaskTypeStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/create',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeCreateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/create',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CreateCollectorRuleRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/update',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/update',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.UpdateCollectorRuleRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
                 _registered_method=True)
-        self.update_fields = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/update_fields',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+        self.change_order = channel.unary_unary(
+                '/spaceone.api.inventory_v2.v1.CollectorRule/change_order',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.ChangeCollectorRuleOrderRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/delete',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.SerializeToString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/delete',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/get',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/get',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/list',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypesInfo.FromString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/list',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRulesInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
-                '/spaceone.api.opsflow.v1.TaskType/stat',
-                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeStatQuery.SerializeToString,
+                '/spaceone.api.inventory_v2.v1.CollectorRule/stat',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
 
 
-class TaskTypeServicer(object):
+class CollectorRuleServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Creates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Updates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def update_fields(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def change_order(self, request, context):
+        """Changes the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -124,52 +130,52 @@ class TaskTypeServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_TaskTypeServicer_to_server(servicer, server):
+def add_CollectorRuleServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeCreateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CreateCollectorRuleRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.UpdateCollectorRuleRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.SerializeToString,
             ),
-            'update_fields': grpc.unary_unary_rpc_method_handler(
-                    servicer.update_fields,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
+            'change_order': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_order,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.ChangeCollectorRuleOrderRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypesInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRulesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.opsflow.v1.TaskType', rpc_method_handlers)
+            'spaceone.api.inventory_v2.v1.CollectorRule', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.opsflow.v1.TaskType', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.inventory_v2.v1.CollectorRule', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class TaskType(object):
+class CollectorRule(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -186,9 +192,9 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/create',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeCreateRequest.SerializeToString,
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/create',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CreateCollectorRuleRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -213,9 +219,9 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/update',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.SerializeToString,
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/update',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.UpdateCollectorRuleRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -227,7 +233,7 @@ class TaskType(object):
             _registered_method=True)
 
     @staticmethod
-    def update_fields(request,
+    def change_order(request,
             target,
             options=(),
             channel_credentials=None,
@@ -240,9 +246,9 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/update_fields',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.SerializeToString,
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/change_order',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.ChangeCollectorRuleOrderRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -267,8 +273,8 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/delete',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeDeleteRequest.SerializeToString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/delete',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -294,9 +300,9 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/get',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.SerializeToString,
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/get',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -321,9 +327,9 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/list',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypesInfo.FromString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/list',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleQuery.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRulesInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -348,8 +354,8 @@ class TaskType(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.opsflow.v1.TaskType/stat',
-            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeStatQuery.SerializeToString,
+            '/spaceone.api.inventory_v2.v1.CollectorRule/stat',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_collector__rule__pb2.CollectorRuleStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
