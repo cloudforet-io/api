@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.6.1
-// source: spaceone/api/file_manager/v1/userfile.proto
+// source: spaceone/api/file_manager/v1/user_file.proto
 
 package v1
 
@@ -271,5 +271,5 @@ var UserFile_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "spaceone/api/file_manager/v1/userfile.proto",
+	Metadata: "spaceone/api/file_manager/v1/user_file.proto",
 }
