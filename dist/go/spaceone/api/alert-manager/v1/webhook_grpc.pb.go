@@ -29,6 +29,7 @@ const (
 	Webhook_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/delete"
 	Webhook_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Webhook/get"
 	Webhook_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/list"
+	Webhook_ListErrors_FullMethodName   = "/spaceone.api.alert_manager.v1.Webhook/list_errors"
 	Webhook_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/stat"
 )
 
@@ -44,6 +45,7 @@ type WebhookClient interface {
 	Delete(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	List(ctx context.Context, in *WebhookSearchQuery, opts ...grpc.CallOption) (*WebhooksInfo, error)
+	ListErrors(ctx context.Context, in *WebhookErrorSearchQuery, opts ...grpc.CallOption) (*WebhookErrorsInfo, error)
 	Stat(ctx context.Context, in *WebhookStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -135,6 +137,16 @@ func (c *webhookClient) List(ctx context.Context, in *WebhookSearchQuery, opts .
 	return out, nil
 }
 
+func (c *webhookClient) ListErrors(ctx context.Context, in *WebhookErrorSearchQuery, opts ...grpc.CallOption) (*WebhookErrorsInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WebhookErrorsInfo)
+	err := c.cc.Invoke(ctx, Webhook_ListErrors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *webhookClient) Stat(ctx context.Context, in *WebhookStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
@@ -157,6 +169,7 @@ type WebhookServer interface {
 	Delete(context.Context, *WebhookRequest) (*empty.Empty, error)
 	Get(context.Context, *WebhookRequest) (*WebhookInfo, error)
 	List(context.Context, *WebhookSearchQuery) (*WebhooksInfo, error)
+	ListErrors(context.Context, *WebhookErrorSearchQuery) (*WebhookErrorsInfo, error)
 	Stat(context.Context, *WebhookStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWebhookServer()
 }
@@ -191,6 +204,9 @@ func (UnimplementedWebhookServer) Get(context.Context, *WebhookRequest) (*Webhoo
 }
 func (UnimplementedWebhookServer) List(context.Context, *WebhookSearchQuery) (*WebhooksInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedWebhookServer) ListErrors(context.Context, *WebhookErrorSearchQuery) (*WebhookErrorsInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListErrors not implemented")
 }
 func (UnimplementedWebhookServer) Stat(context.Context, *WebhookStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -360,6 +376,24 @@ func _Webhook_List_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Webhook_ListErrors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookErrorSearchQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebhookServer).ListErrors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Webhook_ListErrors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebhookServer).ListErrors(ctx, req.(*WebhookErrorSearchQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Webhook_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WebhookStatQuery)
 	if err := dec(in); err != nil {
@@ -416,6 +450,10 @@ var Webhook_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Webhook_List_Handler,
+		},
+		{
+			MethodName: "list_errors",
+			Handler:    _Webhook_ListErrors_Handler,
 		},
 		{
 			MethodName: "stat",
