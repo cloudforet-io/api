@@ -9,6 +9,7 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/alert_manager/v1/event.proto";
+import "spaceone/api/alert_manager/v1/notification.proto";
 
 service Alert {
     rpc create (AlertCreateRequest) returns (AlertInfo) {
@@ -249,6 +250,7 @@ message AlertEventInfo {
     AlertAction action = 2;
     string description = 3;
     spaceone.api.alert_manager.v1.EventInfo event_info = 4;
+    spaceone.api.alert_manager.v1.NotificationInfo notification_info = 5;
 
     string domain_id = 21;
     string workspace_id = 22;
