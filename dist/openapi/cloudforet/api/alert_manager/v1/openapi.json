@@ -1532,6 +1532,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/webhook/list-errors": {
+       "post": {
+         "tags": ["alert-manager > webhook"],
+         "summary": "List Errors",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |query||Query||\n |error_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"error_id" : {"type": "string","title": "ERROR_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookErrorsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookErrorsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/alert-manager/webhook/stat": {
        "post": {
          "tags": ["alert-manager > webhook"],
@@ -2815,6 +2844,25 @@
          "type": "object",
          "required": ["name","plugin_info","service_id"],
                 "title": "WebhookCreateRequest"
+           }
+           ,        "WebhookErrorInfo": {
+         "properties" : {"error_id" : {"type": "string","title": "ERROR_ID"},"message" : {"type": "string","title": "MESSAGE"},"raw_data" : {"type": "object","title": "RAW_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["error_id","message","raw_data","domain_id","workspace_id","service_id","webhook_id","created_at"],
+                "title": "WebhookErrorInfo"
+           }
+           ,        "WebhookErrorSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"error_id" : {"type": "string","title": "ERROR_ID"}},
+         "type": "object",
+         "required": ["webhook_id"],
+                "title": "WebhookErrorSearchQuery"
+           }
+           ,        "WebhookErrorsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WebhookErrorInfo"},
+               "type": "array","$ref": "#/components/schemas/WebhookErrorInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "WebhookErrorsInfo"
            }
            ,        "WebhookInfo": {
          "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"requests" : {"$ref": "#/components/schemas/WebhookRequests","title": "REQUESTS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
