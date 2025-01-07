@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package spaceone.api.alert_manager.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1";
+
+import "google/protobuf/struct.proto";
+
+message NotificationInfo {
+    string notification_id = 1;
+    google.protobuf.Struct service_channels = 2;
+    google.protobuf.Struct user_group_channels = 3;
+    google.protobuf.Struct user_channels = 4;
+}
