@@ -1029,11 +1029,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |action|TRIGGERED, ACKNOWLEDGED, RESOLVED, NOTIFIED, EVENT_PUSHED |string||\n |include_event_info||boolean||\n |sort||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |action|TRIGGERED, ACKNOWLEDGED, RESOLVED, NOTIFIED, EVENT_PUSHED |string||\n |include_details||boolean||\n |sort||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"action" : {"type": "string","title": "ACTION" },"include_event_info" : {"type": "boolean","title": "INCLUDE_EVENT_INFO" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"action" : {"type": "string","title": "ACTION" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2730,7 +2730,7 @@
                 "title": "AlertHistoryInfo"
            }
            ,        "AlertHistoryRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"include_event_info" : {"type": "boolean","title": "INCLUDE_EVENT_INFO"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
                "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"}},
          "type": "object",
          "required": ["alert_id"],
