@@ -2266,48 +2266,11 @@
    },
    "components":{
      "schemas": {
-     "NoteCreateRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"}},
+     "NotificationInfo": {
+         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"service_channels" : {"type": "object","title": "SERVICE_CHANNELS"},"user_group_channels" : {"type": "object","title": "USER_GROUP_CHANNELS"},"user_channels" : {"type": "object","title": "USER_CHANNELS"}},
          "type": "object",
-         "required": ["alert_id","note"],
-                "title": "NoteCreateRequest"
-           }
-           ,        "NoteInfo": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
-         "type": "object",
-         "required": ["note_id","note","domain_id","workspace_id","service_id","alert_id","created_at","updated_at","created_by"],
-                "title": "NoteInfo"
-           }
-           ,        "NoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"}},
-         "type": "object",
-         "required": ["note_id"],
-                "title": "NoteRequest"
-           }
-           ,        "NoteSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note_id" : {"type": "string","title": "NOTE_ID"},"created_by" : {"type": "string","title": "CREATED_BY"}},
-         "type": "object",
-         "required": [],
-                "title": "NoteSearchQuery"
-           }
-           ,        "NoteStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "NoteStatQuery"
-           }
-           ,        "NoteUpdateRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"}},
-         "type": "object",
-         "required": ["note_id"],
-                "title": "NoteUpdateRequest"
-           }
-           ,        "NotesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
-               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "NotesInfo"
+         "required": ["notification_id","service_channels","user_group_channels","user_channels"],
+                "title": "NotificationInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2516,6 +2479,49 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
+           ,        "NoteCreateRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"}},
+         "type": "object",
+         "required": ["alert_id","note"],
+                "title": "NoteCreateRequest"
+           }
+           ,        "NoteInfo": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "type": "object",
+         "required": ["note_id","note","domain_id","workspace_id","service_id","alert_id","created_at","updated_at","created_by"],
+                "title": "NoteInfo"
+           }
+           ,        "NoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"}},
+         "type": "object",
+         "required": ["note_id"],
+                "title": "NoteRequest"
+           }
+           ,        "NoteSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note_id" : {"type": "string","title": "NOTE_ID"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "type": "object",
+         "required": [],
+                "title": "NoteSearchQuery"
+           }
+           ,        "NoteStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "NoteStatQuery"
+           }
+           ,        "NoteUpdateRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"}},
+         "type": "object",
+         "required": ["note_id"],
+                "title": "NoteUpdateRequest"
+           }
+           ,        "NotesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
+               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "NotesInfo"
+           }
            ,        "NotificationProtocolCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"type": "PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -2711,9 +2717,9 @@
                 "title": "AlertCreateRequest"
            }
            ,        "AlertEventInfo": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"description" : {"type": "string","title": "DESCRIPTION"},"event_info" : {"$ref": "#/components/schemas/EventInfo","title": "EVENT_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"description" : {"type": "string","title": "DESCRIPTION"},"event_info" : {"$ref": "#/components/schemas/EventInfo","title": "EVENT_INFO"},"notification_info" : {"$ref": "#/components/schemas/NotificationInfo","title": "NOTIFICATION_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
-         "required": ["alert_id","action","description","event_info","domain_id","workspace_id","service_id","created_at","created_by"],
+         "required": ["alert_id","action","description","event_info","notification_info","domain_id","workspace_id","service_id","created_at","created_by"],
                 "title": "AlertEventInfo"
            }
            ,        "AlertHistoryInfo": {
