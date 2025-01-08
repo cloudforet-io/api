@@ -23,6 +23,12 @@ service Webhook {
             body: "*"
         };
     }
+    rpc update_message_format (WebhookMessageFormatUpdateRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/webhook/update-message-format"
+            body: "*"
+        };
+    }
     rpc update_plugin (WebhookUpdatePluginRequest) returns (WebhookInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/webhook/update-plugin"
@@ -73,6 +79,11 @@ service Webhook {
     }
 }
 
+message WebhookMessageFormat {
+    string from = 1;
+    string to = 2;
+}
+
 message WebhookRequests {
     int64 total = 1;
     int64 error = 2;
@@ -98,6 +109,7 @@ message WebhookPluginInfo{
 message WebhookCreateRequest {
     string name = 1;
     WebhookPluginInfo plugin_info = 2;
+    repeated WebhookMessageFormat message_formats = 3;
 
     // +optional
     google.protobuf.Struct tags = 11;
@@ -112,6 +124,11 @@ message WebhookUpdateRequest {
 
     // +optional
     google.protobuf.Struct tags = 11;
+}
+
+message WebhookMessageFormatUpdateRequest {
+    string webhook_id = 1;
+    repeated WebhookMessageFormat message_formats = 2;
 }
 
 message WebhookUpdatePluginRequest {
@@ -176,6 +193,7 @@ message WebhookInfo {
     string webhook_url = 5;
     WebhookPluginInfo plugin_info = 6;
     WebhookRequests requests = 7;
+    repeated WebhookMessageFormat message_formats = 8;
 
     google.protobuf.Struct tags = 11;
 
