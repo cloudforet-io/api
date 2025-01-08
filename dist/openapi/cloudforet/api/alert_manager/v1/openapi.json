@@ -635,11 +635,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |workspace_id||string||\n |user_group_id||string||\n |protocol_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |workspace_id||string||\n |user_group_id||string||\n |protocol_id||string||\n |plugin_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1956,11 +1956,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |protocol_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |protocol_id||string||\n |plugin_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2211,11 +2211,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |channel_type|DIRECT, FORWARD |string||\n |workspace_id||string||\n |service_id||string||\n |protocol_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |channel_type|DIRECT, FORWARD |string||\n |workspace_id||string||\n |service_id||string||\n |protocol_id||string||\n |plugin_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"channel_type" : {"type": "string","title": "CHANNEL_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"channel_type" : {"type": "string","title": "CHANNEL_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2584,9 +2584,9 @@
                 "title": "UserGroupChannelCreateRequest"
            }
            ,        "UserGroupChannelInfo": {
-         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["channel_id","name","state","data","schedule","tags","domain_id","workspace_id","user_group_id","protocol_id","secret_id","created_at"],
+         "required": ["channel_id","name","state","data","schedule","tags","domain_id","workspace_id","user_group_id","protocol_id","secret_id","plugin_id","created_at"],
                 "title": "UserGroupChannelInfo"
            }
            ,        "UserGroupChannelRequest": {
@@ -2596,7 +2596,7 @@
                 "title": "UserGroupChannelRequest"
            }
            ,        "UserGroupChannelSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
          "required": [],
                 "title": "UserGroupChannelSearchQuery"
@@ -3004,9 +3004,9 @@
                 "title": "UserChannelCreateRequest"
            }
            ,        "UserChannelInfo": {
-         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_id" : {"type": "string","title": "USER_ID"},"user_secret_id" : {"type": "string","title": "USER_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_id" : {"type": "string","title": "USER_ID"},"user_secret_id" : {"type": "string","title": "USER_SECRET_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["channel_id","name","state","schedule","data","tags","domain_id","protocol_id","user_id","user_secret_id","created_at"],
+         "required": ["channel_id","name","state","schedule","data","tags","domain_id","protocol_id","user_id","user_secret_id","plugin_id","created_at"],
                 "title": "UserChannelInfo"
            }
            ,        "UserChannelRequest": {
@@ -3016,7 +3016,7 @@
                 "title": "UserChannelRequest"
            }
            ,        "UserChannelSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
          "required": [],
                 "title": "UserChannelSearchQuery"
@@ -3065,9 +3065,9 @@
                 "title": "ServiceChannelCreateRequest"
            }
            ,        "ServiceChannelInfo": {
-         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["channel_id","name","state","channel_type","schedule","data","tags","domain_id","workspace_id","service_id","protocol_id","secret_id","created_at"],
+         "required": ["channel_id","name","state","channel_type","schedule","data","tags","domain_id","workspace_id","service_id","protocol_id","secret_id","plugin_id","created_at"],
                 "title": "ServiceChannelInfo"
            }
            ,        "ServiceChannelRequest": {
@@ -3077,7 +3077,7 @@
                 "title": "ServiceChannelRequest"
            }
            ,        "ServiceChannelSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
          "required": [],
                 "title": "ServiceChannelSearchQuery"
