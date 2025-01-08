@@ -1116,11 +1116,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|GLOBAL, WEBHOOK |string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |conditions||array||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|GLOBAL, WEBHOOK |string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |conditions||array||\n |options||EventRuleOptions||\n |tags||Struct||\n |webhook_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2795,7 +2795,7 @@
            }
            ,        "EventRuleCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
-               "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+               "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
          "type": "object",
          "required": ["scope","conditions_policy","actions","service_id"],
                 "title": "EventRuleCreateRequest"
