@@ -21,16 +21,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Webhook_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/create"
-	Webhook_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/update"
-	Webhook_UpdatePlugin_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/update_plugin"
-	Webhook_Enable_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/enable"
-	Webhook_Disable_FullMethodName      = "/spaceone.api.alert_manager.v1.Webhook/disable"
-	Webhook_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/delete"
-	Webhook_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Webhook/get"
-	Webhook_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/list"
-	Webhook_ListErrors_FullMethodName   = "/spaceone.api.alert_manager.v1.Webhook/list_errors"
-	Webhook_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/stat"
+	Webhook_Create_FullMethodName              = "/spaceone.api.alert_manager.v1.Webhook/create"
+	Webhook_Update_FullMethodName              = "/spaceone.api.alert_manager.v1.Webhook/update"
+	Webhook_UpdateMessageFormat_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/update_message_format"
+	Webhook_UpdatePlugin_FullMethodName        = "/spaceone.api.alert_manager.v1.Webhook/update_plugin"
+	Webhook_Enable_FullMethodName              = "/spaceone.api.alert_manager.v1.Webhook/enable"
+	Webhook_Disable_FullMethodName             = "/spaceone.api.alert_manager.v1.Webhook/disable"
+	Webhook_Delete_FullMethodName              = "/spaceone.api.alert_manager.v1.Webhook/delete"
+	Webhook_Get_FullMethodName                 = "/spaceone.api.alert_manager.v1.Webhook/get"
+	Webhook_List_FullMethodName                = "/spaceone.api.alert_manager.v1.Webhook/list"
+	Webhook_ListErrors_FullMethodName          = "/spaceone.api.alert_manager.v1.Webhook/list_errors"
+	Webhook_Stat_FullMethodName                = "/spaceone.api.alert_manager.v1.Webhook/stat"
 )
 
 // WebhookClient is the client API for Webhook service.
@@ -39,6 +40,7 @@ const (
 type WebhookClient interface {
 	Create(ctx context.Context, in *WebhookCreateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Update(ctx context.Context, in *WebhookUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	UpdateMessageFormat(ctx context.Context, in *WebhookMessageFormatUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	UpdatePlugin(ctx context.Context, in *WebhookUpdatePluginRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Enable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	Disable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
@@ -71,6 +73,16 @@ func (c *webhookClient) Update(ctx context.Context, in *WebhookUpdateRequest, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WebhookInfo)
 	err := c.cc.Invoke(ctx, Webhook_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webhookClient) UpdateMessageFormat(ctx context.Context, in *WebhookMessageFormatUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_UpdateMessageFormat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,6 +175,7 @@ func (c *webhookClient) Stat(ctx context.Context, in *WebhookStatQuery, opts ...
 type WebhookServer interface {
 	Create(context.Context, *WebhookCreateRequest) (*WebhookInfo, error)
 	Update(context.Context, *WebhookUpdateRequest) (*WebhookInfo, error)
+	UpdateMessageFormat(context.Context, *WebhookMessageFormatUpdateRequest) (*WebhookInfo, error)
 	UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error)
 	Enable(context.Context, *WebhookRequest) (*WebhookInfo, error)
 	Disable(context.Context, *WebhookRequest) (*WebhookInfo, error)
@@ -186,6 +199,9 @@ func (UnimplementedWebhookServer) Create(context.Context, *WebhookCreateRequest)
 }
 func (UnimplementedWebhookServer) Update(context.Context, *WebhookUpdateRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedWebhookServer) UpdateMessageFormat(context.Context, *WebhookMessageFormatUpdateRequest) (*WebhookInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessageFormat not implemented")
 }
 func (UnimplementedWebhookServer) UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
@@ -264,6 +280,24 @@ func _Webhook_Update_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WebhookServer).Update(ctx, req.(*WebhookUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Webhook_UpdateMessageFormat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookMessageFormatUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebhookServer).UpdateMessageFormat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Webhook_UpdateMessageFormat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebhookServer).UpdateMessageFormat(ctx, req.(*WebhookMessageFormatUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -426,6 +460,10 @@ var Webhook_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Webhook_Update_Handler,
+		},
+		{
+			MethodName: "update_message_format",
+			Handler:    _Webhook_UpdateMessageFormat_Handler,
 		},
 		{
 			MethodName: "update_plugin",

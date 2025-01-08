@@ -139,6 +139,18 @@
               "defaultValue": ""
             },
             {
+              "name": "message_formats",
+              "description": "",
+              "label": "repeated",
+              "type": "WebhookMessageFormat",
+              "longType": "WebhookMessageFormat",
+              "fullType": "spaceone.api.alert_manager.v1.WebhookMessageFormat",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "+optional",
               "label": "",
@@ -451,6 +463,18 @@
               "defaultValue": ""
             },
             {
+              "name": "message_formats",
+              "description": "",
+              "label": "repeated",
+              "type": "WebhookMessageFormat",
+              "longType": "WebhookMessageFormat",
+              "fullType": "spaceone.api.alert_manager.v1.WebhookMessageFormat",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "",
               "label": "",
@@ -505,6 +529,78 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WebhookMessageFormat",
+          "longName": "WebhookMessageFormat",
+          "fullName": "spaceone.api.alert_manager.v1.WebhookMessageFormat",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "from",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "to",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WebhookMessageFormatUpdateRequest",
+          "longName": "WebhookMessageFormatUpdateRequest",
+          "fullName": "spaceone.api.alert_manager.v1.WebhookMessageFormatUpdateRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "webhook_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "message_formats",
+              "description": "",
+              "label": "repeated",
+              "type": "WebhookMessageFormat",
+              "longType": "WebhookMessageFormat",
+              "fullType": "spaceone.api.alert_manager.v1.WebhookMessageFormat",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -956,6 +1052,29 @@
                     {
                       "method": "POST",
                       "pattern": "/alert-manager/v1/webhook/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_message_format",
+              "description": "",
+              "requestType": "WebhookMessageFormatUpdateRequest",
+              "requestLongType": "WebhookMessageFormatUpdateRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.WebhookMessageFormatUpdateRequest",
+              "requestStreaming": false,
+              "responseType": "WebhookInfo",
+              "responseLongType": "WebhookInfo",
+              "responseFullType": "spaceone.api.alert_manager.v1.WebhookInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/alert-manager/v1/webhook/update-message-format",
                       "body": "*"
                     }
                   ]

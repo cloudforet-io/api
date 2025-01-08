@@ -1313,11 +1313,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||WebhookPluginInfo|True|\n |service_id||string|True|\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||WebhookPluginInfo|True|\n |message_formats||array|True|\n |service_id||string|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO" },"message_formats" : {"items": {"$ref": "#/components/schemas/WebhookMessageFormat"}, "type": "array","title": "MESSAGE_FORMATS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1347,6 +1347,35 @@
              "application/json": {
                "schema": {
                  "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/webhook/update-message-format": {
+       "post": {
+         "tags": ["alert-manager > webhook"],
+         "summary": "Update Message Format",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |message_formats||array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"message_formats" : {"items": {"$ref": "#/components/schemas/WebhookMessageFormat"}, "type": "array","title": "MESSAGE_FORMATS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2846,9 +2875,10 @@
                 "title": "EventRulesInfo"
            }
            ,        "WebhookCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"message_formats" : {"items": {"$ref": "#/components/schemas/WebhookMessageFormat"},
+               "type": "array","$ref": "#/components/schemas/WebhookMessageFormat","title": "MESSAGE_FORMATS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
-         "required": ["name","plugin_info","service_id"],
+         "required": ["name","plugin_info","message_formats","service_id"],
                 "title": "WebhookCreateRequest"
            }
            ,        "WebhookErrorInfo": {
@@ -2871,10 +2901,24 @@
                 "title": "WebhookErrorsInfo"
            }
            ,        "WebhookInfo": {
-         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"requests" : {"$ref": "#/components/schemas/WebhookRequests","title": "REQUESTS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"requests" : {"$ref": "#/components/schemas/WebhookRequests","title": "REQUESTS"},"message_formats" : {"items": {"$ref": "#/components/schemas/WebhookMessageFormat"},
+               "type": "array","$ref": "#/components/schemas/WebhookMessageFormat","title": "MESSAGE_FORMATS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["webhook_id","name","state","access_key","webhook_url","plugin_info","requests","tags","domain_id","workspace_id","service_id","created_at"],
+         "required": ["webhook_id","name","state","access_key","webhook_url","plugin_info","requests","message_formats","tags","domain_id","workspace_id","service_id","created_at"],
                 "title": "WebhookInfo"
+           }
+           ,        "WebhookMessageFormat": {
+         "properties" : {"from" : {"type": "string","title": "FROM"},"to" : {"type": "string","title": "TO"}},
+         "type": "object",
+         "required": ["from","to"],
+                "title": "WebhookMessageFormat"
+           }
+           ,        "WebhookMessageFormatUpdateRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"message_formats" : {"items": {"$ref": "#/components/schemas/WebhookMessageFormat"},
+               "type": "array","$ref": "#/components/schemas/WebhookMessageFormat","title": "MESSAGE_FORMATS"}},
+         "type": "object",
+         "required": ["webhook_id","message_formats"],
+                "title": "WebhookMessageFormatUpdateRequest"
            }
            ,        "WebhookPluginInfo": {
          "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},

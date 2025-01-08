@@ -51,6 +51,11 @@ class WebhookStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
                 _registered_method=True)
+        self.update_message_format = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.Webhook/update_message_format',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookMessageFormatUpdateRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
+                _registered_method=True)
         self.update_plugin = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Webhook/update_plugin',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdatePluginRequest.SerializeToString,
@@ -103,6 +108,12 @@ class WebhookServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_message_format(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -167,6 +178,11 @@ def add_WebhookServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.SerializeToString,
+            ),
+            'update_message_format': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_message_format,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookMessageFormatUpdateRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.SerializeToString,
             ),
             'update_plugin': grpc.unary_unary_rpc_method_handler(
@@ -263,6 +279,33 @@ class Webhook(object):
             target,
             '/spaceone.api.alert_manager.v1.Webhook/update',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookUpdateRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update_message_format(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.alert_manager.v1.Webhook/update_message_format',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookMessageFormatUpdateRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
             options,
             channel_credentials,
