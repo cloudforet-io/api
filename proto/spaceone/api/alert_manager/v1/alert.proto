@@ -127,8 +127,10 @@ message AlertHistoryRequest {
         TRIGGERED = 1;
         ACKNOWLEDGED = 2;
         RESOLVED = 3;
-        NOTIFIED = 4;
-        EVENT_PUSHED = 5;
+        NOTIFIED_SUCCESS = 4;
+        NOTIFIED_FAILURE = 5;
+        NOTIFIED_SKIPPED = 6;
+        EVENT_PUSHED = 7;
     }
 
     string alert_id = 1;
@@ -245,7 +247,8 @@ message AlertEventInfo {
         RESOLVED = 3;
         NOTIFIED_SUCCESS = 4;
         NOTIFIED_FAILURE = 5;
-        EVENT_PUSHED = 6;
+        NOTIFIED_SKIPPED = 6;
+        EVENT_PUSHED = 7;
     }
 
     string alert_id = 1;
