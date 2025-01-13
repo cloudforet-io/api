@@ -9,7 +9,6 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/alert_manager/v1/event.proto";
-import "spaceone/api/alert_manager/v1/notification.proto";
 
 service Alert {
     rpc create (AlertCreateRequest) returns (AlertInfo) {
@@ -66,6 +65,13 @@ enum AlertUrgency {
     ALERT_URGENCY_NONE = 0;
     HIGH = 1;
     LOW = 2;
+}
+
+message NotificationInfo {
+    string notification_id = 1;
+    google.protobuf.Struct service_channels = 2;
+    google.protobuf.Struct user_group_channels = 3;
+    google.protobuf.Struct user_channels = 4;
 }
 
 message AlertResource {
@@ -255,7 +261,7 @@ message AlertEventInfo {
     AlertAction action = 2;
     string description = 3;
     spaceone.api.alert_manager.v1.EventInfo event_info = 4;
-    spaceone.api.alert_manager.v1.NotificationInfo notification_info = 5;
+    NotificationInfo notification_info = 5;
 
     string domain_id = 21;
     string workspace_id = 22;
