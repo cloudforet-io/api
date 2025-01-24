@@ -8,7 +8,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_anal
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
-
+import "spaceone/api/cost_analysis/v1/job.proto";
 
 service JobTask {
     
@@ -80,6 +80,11 @@ message JobTaskQuery {
 //        "month": "202207",
 //        "platform": "gcp"
 //    },
+//    "changed": {
+//        "start": "2024-12",
+//        "end": "2025-01",
+//        "filter
+//    },
 //    "created_count": 1,
 //    "job_id": "job-85cf2c385252",
 //    "data_source_id": "ds-c96609f5afeb",
@@ -109,9 +114,10 @@ message JobTaskInfo {
     string job_task_id = 1;
     Status status = 2;
     google.protobuf.Struct options = 3;
-    int32 created_count = 4;
-    string error_code = 5;
-    string error_message = 6;
+    ChangedInfo changed = 4;
+    int32 created_count = 5;
+    string error_code = 6;
+    string error_message = 7;
 
     ResourceGroup resource_group = 20;
     string domain_id = 21;
