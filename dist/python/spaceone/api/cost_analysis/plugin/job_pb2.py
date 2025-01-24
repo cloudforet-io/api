@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n+spaceone/api/cost_analysis/plugin/job.proto\x12!spaceone.api.cost_analysis.plugin\x1a\x1cgoogle/protobuf/struct.proto\"\xeb\x01\n\x0fGetTasksRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06schema\x18\x03 \x01(\t\x12\r\n\x05start\x18\x04 \x01(\t\x12\x1c\n\x14last_synchronized_at\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x06 \x01(\t\x12\x30\n\x0flinked_accounts\x18\x07 \x03(\x0b\x32\x17.google.protobuf.Struct\"9\n\x08TaskInfo\x12-\n\x0ctask_options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\"R\n\x0b\x43hangedInfo\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\x12\'\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"5\n\x11SyncedAccountInfo\x12\x12\n\naccount_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\xd7\x01\n\tTasksInfo\x12:\n\x05tasks\x18\x01 \x03(\x0b\x32+.spaceone.api.cost_analysis.plugin.TaskInfo\x12?\n\x07\x63hanged\x18\x02 \x03(\x0b\x32..spaceone.api.cost_analysis.plugin.ChangedInfo\x12M\n\x0fsynced_accounts\x18\x03 \x03(\x0b\x32\x34.spaceone.api.cost_analysis.plugin.SyncedAccountInfo2v\n\x03Job\x12o\n\tget_tasks\x12\x32.spaceone.api.cost_analysis.plugin.GetTasksRequest\x1a,.spaceone.api.cost_analysis.plugin.TasksInfo\"\x00\x42HZFgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/pluginb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n+spaceone/api/cost_analysis/plugin/job.proto\x12!spaceone.api.cost_analysis.plugin\x1a\x1cgoogle/protobuf/struct.proto\"\xeb\x01\n\x0fGetTasksRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06schema\x18\x03 \x01(\t\x12\r\n\x05start\x18\x04 \x01(\t\x12\x1c\n\x14last_synchronized_at\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x06 \x01(\t\x12\x30\n\x0flinked_accounts\x18\x07 \x03(\x0b\x32\x17.google.protobuf.Struct\"\x7f\n\x08TaskInfo\x12-\n\x0ctask_options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x44\n\x0ctask_changed\x18\x02 \x01(\x0b\x32..spaceone.api.cost_analysis.plugin.ChangedInfo\"R\n\x0b\x43hangedInfo\x12\r\n\x05start\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\x12\'\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"5\n\x11SyncedAccountInfo\x12\x12\n\naccount_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\xd7\x01\n\tTasksInfo\x12:\n\x05tasks\x18\x01 \x03(\x0b\x32+.spaceone.api.cost_analysis.plugin.TaskInfo\x12?\n\x07\x63hanged\x18\x02 \x03(\x0b\x32..spaceone.api.cost_analysis.plugin.ChangedInfo\x12M\n\x0fsynced_accounts\x18\x03 \x03(\x0b\x32\x34.spaceone.api.cost_analysis.plugin.SyncedAccountInfo2v\n\x03Job\x12o\n\tget_tasks\x12\x32.spaceone.api.cost_analysis.plugin.GetTasksRequest\x1a,.spaceone.api.cost_analysis.plugin.TasksInfo\"\x00\x42HZFgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/pluginb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -26,13 +26,13 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_GETTASKSREQUEST']._serialized_start=113
   _globals['_GETTASKSREQUEST']._serialized_end=348
   _globals['_TASKINFO']._serialized_start=350
-  _globals['_TASKINFO']._serialized_end=407
-  _globals['_CHANGEDINFO']._serialized_start=409
-  _globals['_CHANGEDINFO']._serialized_end=491
-  _globals['_SYNCEDACCOUNTINFO']._serialized_start=493
-  _globals['_SYNCEDACCOUNTINFO']._serialized_end=546
-  _globals['_TASKSINFO']._serialized_start=549
-  _globals['_TASKSINFO']._serialized_end=764
-  _globals['_JOB']._serialized_start=766
-  _globals['_JOB']._serialized_end=884
+  _globals['_TASKINFO']._serialized_end=477
+  _globals['_CHANGEDINFO']._serialized_start=479
+  _globals['_CHANGEDINFO']._serialized_end=561
+  _globals['_SYNCEDACCOUNTINFO']._serialized_start=563
+  _globals['_SYNCEDACCOUNTINFO']._serialized_end=616
+  _globals['_TASKSINFO']._serialized_start=619
+  _globals['_TASKSINFO']._serialized_end=834
+  _globals['_JOB']._serialized_start=836
+  _globals['_JOB']._serialized_end=954
 # @@protoc_insertion_point(module_scope)

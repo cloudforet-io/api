@@ -8,88 +8,7 @@
      "title": "Statistics API",
      "version": "3.1.0"
    },
-   "paths":{"/statistics/history/create": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/list": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/stat": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/schedule/add": {
+   "paths":{"/statistics/schedule/add": {
        "post": {
          "tags": ["statistics > schedule"],
          "summary": "Add",
@@ -344,40 +263,153 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/create": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/list": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/stat": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "CreateHistoryRequest": {
+     "AddScheduleRequest": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["topic","options","schedule"],
+                "title": "AddScheduleRequest"
+           }
+           ,        "QueryOption": {
+         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
+         "type": "object",
+         "required": ["aggregate"],
+                "title": "QueryOption"
+           }
+           ,        "ScheduleInfo": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
+         "type": "object",
+         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
+                "title": "ScheduleInfo"
+           }
+           ,        "ScheduleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": [],
+                "title": "ScheduleQuery"
+           }
+           ,        "ScheduleRequest": {
          "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
          "type": "object",
          "required": ["schedule_id"],
-                "title": "CreateHistoryRequest"
+                "title": "ScheduleRequest"
            }
-           ,        "HistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
-               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "HistoryInfo"
-           }
-           ,        "HistoryStatRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+           ,        "ScheduleStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "HistoryStatRequest"
+                "title": "ScheduleStatQuery"
            }
-           ,        "HistoryValueInfo": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "Scheduled": {
+         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
+               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"}},
          "type": "object",
-         "required": ["topic","values","domain_id","created_at"],
-                "title": "HistoryValueInfo"
+         "required": ["cron","interval","minutes","hours"],
+                "title": "Scheduled"
            }
-           ,        "QueryHistoryRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+           ,        "SchedulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
+               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": [],
-                "title": "QueryHistoryRequest"
+         "required": ["results","total_count"],
+                "title": "SchedulesInfo"
+           }
+           ,        "UpdateScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["schedule_id"],
+                "title": "UpdateScheduleRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -580,69 +612,6 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
-           ,        "AddScheduleRequest": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["topic","options","schedule"],
-                "title": "AddScheduleRequest"
-           }
-           ,        "QueryOption": {
-         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
-         "type": "object",
-         "required": ["aggregate"],
-                "title": "QueryOption"
-           }
-           ,        "ScheduleInfo": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
-         "type": "object",
-         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
-                "title": "ScheduleInfo"
-           }
-           ,        "ScheduleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": [],
-                "title": "ScheduleQuery"
-           }
-           ,        "ScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
-         "type": "object",
-         "required": ["schedule_id"],
-                "title": "ScheduleRequest"
-           }
-           ,        "ScheduleStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "ScheduleStatQuery"
-           }
-           ,        "Scheduled": {
-         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
-               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
-               "type": "array","title": "HOURS"}},
-         "type": "object",
-         "required": ["cron","interval","minutes","hours"],
-                "title": "Scheduled"
-           }
-           ,        "SchedulesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
-               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "SchedulesInfo"
-           }
-           ,        "UpdateScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["schedule_id"],
-                "title": "UpdateScheduleRequest"
-           }
            ,        "ResourceStatRequest": {
          "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
                "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
@@ -692,6 +661,37 @@
          "type": "object",
          "required": ["limit"],
                 "title": "StatPage"
+           }
+           ,        "CreateHistoryRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
+         "type": "object",
+         "required": ["schedule_id"],
+                "title": "CreateHistoryRequest"
+           }
+           ,        "HistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
+               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "HistoryInfo"
+           }
+           ,        "HistoryStatRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "HistoryStatRequest"
+           }
+           ,        "HistoryValueInfo": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["topic","values","domain_id","created_at"],
+                "title": "HistoryValueInfo"
+           }
+           ,        "QueryHistoryRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": [],
+                "title": "QueryHistoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
