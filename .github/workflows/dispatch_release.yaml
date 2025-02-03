@@ -60,14 +60,14 @@ jobs:
           push_options: '--force'
           tagging_message: ${{ env.VERSION }}
 
-      - name: Push json to api-doc repository
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.PAT_TOKEN }}
-          src_path: dist/json/.
-          dst_path: dist/json/.
-          dst_owner: cloudforet-io
-          dst_repo_name: api-doc
+#      - name: Push json to api-doc repository
+#        uses: andstor/copycat-action@v3
+#        with:
+#          personal_token: ${{ secrets.PAT_TOKEN }}
+#          src_path: dist/json/.
+#          dst_path: dist/json/.
+#          dst_owner: cloudforet-io
+#          dst_repo_name: api-doc
 
       - name: Notice when job fails
         if: failure()
@@ -77,18 +77,18 @@ jobs:
           fields: repo,workflow,job
           author_name: Github Action Slack
 
-  trigger_api_doc_release:
-    needs: build_and_push
-    runs-on: ubuntu-latest
-    steps:
-      - name: task
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
-          repo: cloudforet-io/api-doc
-          workflow: dispatch_release.yaml
-          ref: master
-          inputs: '{"version": "${{ env.VERSION }}"}'
+#  trigger_api_doc_release:
+#    needs: build_and_push
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: task
+#        uses: benc-uk/workflow-dispatch@v1
+#        with:
+#          token: ${{ secrets.PAT_TOKEN }}
+#          repo: cloudforet-io/api-doc
+#          workflow: dispatch_release.yaml
+#          ref: master
+#          inputs: '{"version": "${{ env.VERSION }}"}'
 
   notification:
     needs: build_and_push
