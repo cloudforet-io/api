@@ -26,12 +26,12 @@ jobs:
       - name: Set python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8' 
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |
-            python -m pip install --upgrade pip
-            pip install setuptools wheel twine
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
 
       - name: Make all and Packaging
         run: |
@@ -44,22 +44,22 @@ jobs:
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: ${{ secrets.PYPI_USERNAME }}
-          password: ${{ secrets.PYPI_PASSWORD }}
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
           verbose: true
           packages-dir: dist/python/dist/
 
 
-      - name: Push artifacts to ${{ env.BRANCH_NAME }}
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "[CI] api has been built"
-          commit_user_name: cloudforet-admin
-          commit_user_email: admin@cloudforet.io
-          commit_author: cloudforet-admin <admin@cloudforet.io>
-          push_options: '--force'
-          tagging_message: ${{ env.VERSION }}
-
+#      - name: Push artifacts to ${{ env.BRANCH_NAME }}
+#        uses: stefanzweifel/git-auto-commit-action@v4
+#        with:
+#          commit_message: "[CI] api has been built"
+#          commit_user_name: cloudforet-admin
+#          commit_user_email: admin@cloudforet.io
+#          commit_author: cloudforet-admin <admin@cloudforet.io>
+#          push_options: '--force'
+#          tagging_message: ${{ env.VERSION }}
+#
 #      - name: Push json to api-doc repository
 #        uses: andstor/copycat-action@v3
 #        with:
