@@ -60,22 +60,6 @@ service DataSource {
     };
   }
 
-  // Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
-  rpc enable (DataSourceRequest) returns (DataSourceInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/data-source/enable"
-      body: "*"
-    };
-  }
-
-  // Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
-  rpc disable (DataSourceRequest) returns (DataSourceInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/data-source/disable"
-      body: "*"
-    };
-  }
-
   // Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
   rpc deregister (DeregisterDataSourceRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -144,6 +128,17 @@ message PluginInfo {
   string schema_id = 6;
   string secret_id = 7;
   UpgradeMode upgrade_mode = 8;
+}
+
+message Schedule {
+    enum ScheduleState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    ScheduleState state = 1;
+    int32 hour = 2;
 }
 
 //{
@@ -406,13 +401,13 @@ message DataSourceInfo {
 
   string data_source_id = 1;
   string name = 2;
-  State state = 3;
-  DataSourceType data_source_type = 4;
-  google.protobuf.Struct permissions = 5;
-  string provider = 6;
-  SecretType secret_type = 7;
-  SecretFilter secret_filter = 8;
-  PluginInfo plugin_info = 9;
+  DataSourceType data_source_type = 3;
+  google.protobuf.Struct permissions = 4;
+  string provider = 5;
+  SecretType secret_type = 6;
+  SecretFilter secret_filter = 7;
+  PluginInfo plugin_info = 8;
+  Schedule schedule = 9;
   google.protobuf.Struct template = 10;
   google.protobuf.Struct tags = 11;
   repeated string cost_tag_keys = 12;
