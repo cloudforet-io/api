@@ -76,7 +76,7 @@ service DataSource {
     };
   }
 
-  // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
+  // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
   rpc get (DataSourceRequest) returns (DataSourceInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/data-source/get"
@@ -166,6 +166,10 @@ message Schedule {
 //                    "name": "match_service_account"
 //                }
 //            ]
+//        },
+//.       "schedule": {
+//           "state": "ENABLED",
+//           "hour": 19,
 //        },
 //        "secret_id": "secret-ca134639483",
 //        "upgrade_mode": "AUTO"
@@ -313,20 +317,17 @@ message DataSourceQuery {
   // +optional
   string name = 3;
   // +optional
-  string state = 4;
+  DataSourceType data_source_type = 4;
   // +optional
-  DataSourceType data_source_type = 5;
+  string provider = 5;
   // +optional
-  string provider = 6;
-  // +optional
-  string connected_workspace_id = 7;
+  string connected_workspace_id = 6;
   string workspace_id = 21;
 }
 
 //{
 //        "data_source_id": "ds-085d1e872789",
 //        "name": "AWS HyperBilling Data Source test",
-//        "state": "ENABLED",
 //        "data_source_type": "EXTERNAL",
 //        "plugin_info": {
 //            "plugin_id": "plugin-aws-hyperbilling-cost-datasource",
@@ -355,6 +356,10 @@ message DataSourceQuery {
 //            },
 //            "secret_id": "secret-ca134639483",
 //            "upgrade_mode": "AUTO"
+//        },
+//.       "schedule": {
+//            "state": "ENABLED",
+//            "hour": 19,
 //        },
 //        "template": {},
 //        "tags": {
@@ -433,7 +438,6 @@ message DataSourceInfo {
 //            {
 //                "data_source_id": "ds-085d1e872789",
 //                "name": "AWS HyperBilling Data Source test",
-//                "state": "ENABLED",
 //                "data_source_type": "EXTERNAL",
 //                "plugin_info": {
 //                    "plugin_id": "plugin-aws-hyperbilling-cost-datasource",
@@ -462,6 +466,10 @@ message DataSourceInfo {
 //                    },
 //                    "secret_id": "secret-ca134639483",
 //                    "upgrade_mode": "AUTO"
+//                },
+//.               "schedule": {
+//                    "state": "ENABLED",
+//                    "hour": 19,
 //                },
 //                "template": {},
 //                "tags": {
