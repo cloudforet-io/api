@@ -29,8 +29,6 @@ const (
 	DataSource_UpdatePlugin_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/update_plugin"
 	DataSource_UpdateSecretData_FullMethodName  = "/spaceone.api.cost_analysis.v1.DataSource/update_secret_data"
 	DataSource_VerifyPlugin_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
-	DataSource_Enable_FullMethodName            = "/spaceone.api.cost_analysis.v1.DataSource/enable"
-	DataSource_Disable_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/disable"
 	DataSource_Deregister_FullMethodName        = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
 	DataSource_Sync_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/sync"
 	DataSource_Get_FullMethodName               = "/spaceone.api.cost_analysis.v1.DataSource/get"
@@ -53,15 +51,11 @@ type DataSourceClient interface {
 	UpdateSecretData(ctx context.Context, in *UpdateSecretDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
 	VerifyPlugin(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
-	Enable(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
-	// Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
-	Disable(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
 	Deregister(ctx context.Context, in *DeregisterDataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(ctx context.Context, in *SyncDataSourceRequest, opts ...grpc.CallOption) (*JobInfo, error)
-	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
+	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
 	Get(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
 	List(ctx context.Context, in *DataSourceQuery, opts ...grpc.CallOption) (*DataSourcesInfo, error)
@@ -136,26 +130,6 @@ func (c *dataSourceClient) VerifyPlugin(ctx context.Context, in *DataSourceReque
 	return out, nil
 }
 
-func (c *dataSourceClient) Enable(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DataSourceInfo)
-	err := c.cc.Invoke(ctx, DataSource_Enable_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataSourceClient) Disable(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DataSourceInfo)
-	err := c.cc.Invoke(ctx, DataSource_Disable_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dataSourceClient) Deregister(ctx context.Context, in *DeregisterDataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
@@ -221,15 +195,11 @@ type DataSourceServer interface {
 	UpdateSecretData(context.Context, *UpdateSecretDataSourceRequest) (*DataSourceInfo, error)
 	// Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
 	VerifyPlugin(context.Context, *DataSourceRequest) (*empty.Empty, error)
-	// Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
-	Enable(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
-	// Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
-	Disable(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
 	// Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
 	Deregister(context.Context, *DeregisterDataSourceRequest) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error)
-	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
+	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
 	Get(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
 	List(context.Context, *DataSourceQuery) (*DataSourcesInfo, error)
@@ -261,12 +231,6 @@ func (UnimplementedDataSourceServer) UpdateSecretData(context.Context, *UpdateSe
 }
 func (UnimplementedDataSourceServer) VerifyPlugin(context.Context, *DataSourceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPlugin not implemented")
-}
-func (UnimplementedDataSourceServer) Enable(context.Context, *DataSourceRequest) (*DataSourceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
-}
-func (UnimplementedDataSourceServer) Disable(context.Context, *DataSourceRequest) (*DataSourceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
 }
 func (UnimplementedDataSourceServer) Deregister(context.Context, *DeregisterDataSourceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Deregister not implemented")
@@ -412,42 +376,6 @@ func _DataSource_VerifyPlugin_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataSource_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataSourceServer).Enable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataSource_Enable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourceServer).Enable(ctx, req.(*DataSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataSource_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataSourceServer).Disable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataSource_Disable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourceServer).Disable(ctx, req.(*DataSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DataSource_Deregister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeregisterDataSourceRequest)
 	if err := dec(in); err != nil {
@@ -568,14 +496,6 @@ var DataSource_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "verify_plugin",
 			Handler:    _DataSource_VerifyPlugin_Handler,
-		},
-		{
-			MethodName: "enable",
-			Handler:    _DataSource_Enable_Handler,
-		},
-		{
-			MethodName: "disable",
-			Handler:    _DataSource_Disable_Handler,
 		},
 		{
 			MethodName: "deregister",

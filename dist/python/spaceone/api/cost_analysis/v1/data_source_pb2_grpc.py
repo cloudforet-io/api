@@ -72,16 +72,6 @@ class DataSourceStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.enable = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.DataSource/enable',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
-                _registered_method=True)
-        self.disable = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.DataSource/disable',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
-                _registered_method=True)
         self.deregister = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/deregister',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DeregisterDataSourceRequest.SerializeToString,
@@ -153,20 +143,6 @@ class DataSourceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def enable(self, request, context):
-        """Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def disable(self, request, context):
-        """Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def deregister(self, request, context):
         """Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
         """
@@ -182,7 +158,7 @@ class DataSourceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
+        """Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -233,16 +209,6 @@ def add_DataSourceServicer_to_server(servicer, server):
                     servicer.verify_plugin,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'enable': grpc.unary_unary_rpc_method_handler(
-                    servicer.enable,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
-            ),
-            'disable': grpc.unary_unary_rpc_method_handler(
-                    servicer.disable,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
             ),
             'deregister': grpc.unary_unary_rpc_method_handler(
                     servicer.deregister,
@@ -432,60 +398,6 @@ class DataSource(object):
             '/spaceone.api.cost_analysis.v1.DataSource/verify_plugin',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def enable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.cost_analysis.v1.DataSource/enable',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def disable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.cost_analysis.v1.DataSource/disable',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
             options,
             channel_credentials,
             insecure,
