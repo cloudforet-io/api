@@ -241,7 +241,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING |string|True|\n |options||TransformOptions|True|\n |name||string||\n |vars||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING, SORT |string|True|\n |options||TransformOptions|True|\n |name||string||\n |vars||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -380,7 +380,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type|ADDED, TRANSFORMED |string||\n |source_type|ASSET, COST |string||\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type|ADDED, TRANSFORMED |string||\n |source_type|ASSET, COST |string||\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING, SORT |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1912,7 +1912,8 @@
            ,        "AddOptions": {
          "properties" : {"ASSET" : {"$ref": "#/components/schemas/AssetSource","title": "ASSET"},"COST" : {"$ref": "#/components/schemas/CostSource","title": "COST"},"data_name" : {"type": "string","title": "DATA_NAME"},"data_unit" : {"type": "string","title": "DATA_UNIT"},"group_by" : {"type": "array","title": "GROUP_BY"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
-               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"timediff" : {"$ref": "#/components/schemas/TimeDiff","title": "TIMEDIFF"}},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+               "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"},"timediff" : {"$ref": "#/components/schemas/TimeDiff","title": "TIMEDIFF"}},
          "type": "object",
          "required": ["ASSET","COST","data_name"],
                 "title": "AddOptions"
@@ -2023,6 +2024,13 @@
          "required": ["data_table_id","conditions"],
                 "title": "QueryOperator"
            }
+           ,        "SortOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+               "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"}},
+         "type": "object",
+         "required": ["data_table_id","sort"],
+                "title": "SortOperator"
+           }
            ,        "TimeDiff": {
          "properties" : {"years" : {"type": "integer","title": "YEARS"},"months" : {"type": "integer","title": "MONTHS"},"data_name" : {"type": "string","title": "DATA_NAME"}},
          "type": "object",
@@ -2030,9 +2038,9 @@
                 "title": "TimeDiff"
            }
            ,        "TransformOptions": {
-         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"QUERY" : {"$ref": "#/components/schemas/QueryOperator","title": "QUERY"},"EVAL" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVAL"},"PIVOT" : {"$ref": "#/components/schemas/PivotOperator","title": "PIVOT"},"ADD_LABELS" : {"$ref": "#/components/schemas/AddLabelsOperator","title": "ADD_LABELS"},"VALUE_MAPPING" : {"type": "string","title": "VALUE_MAPPING"}},
+         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"QUERY" : {"$ref": "#/components/schemas/QueryOperator","title": "QUERY"},"EVAL" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVAL"},"PIVOT" : {"$ref": "#/components/schemas/PivotOperator","title": "PIVOT"},"ADD_LABELS" : {"$ref": "#/components/schemas/AddLabelsOperator","title": "ADD_LABELS"},"VALUE_MAPPING" : {"type": "string","title": "VALUE_MAPPING"},"SORT" : {"$ref": "#/components/schemas/SortOperator","title": "SORT"}},
          "type": "object",
-         "required": ["JOIN","CONCAT","AGGREGATE","QUERY","EVAL","PIVOT","ADD_LABELS","VALUE_MAPPING"],
+         "required": ["JOIN","CONCAT","AGGREGATE","QUERY","EVAL","PIVOT","ADD_LABELS","VALUE_MAPPING","SORT"],
                 "title": "TransformOptions"
            }
            ,        "TransformPublicDataTableRequest": {
