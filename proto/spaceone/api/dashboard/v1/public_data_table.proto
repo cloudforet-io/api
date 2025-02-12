@@ -85,6 +85,7 @@ enum Operator {
   PIVOT = 6;
   ADD_LABELS = 7;
   VALUE_MAPPING = 8;
+  SORT = 9;
 }
 
 message AssetSource {
@@ -192,6 +193,11 @@ message ValueMappingOperator {
   string condition = 7;
 }
 
+message SortOperator {
+  string data_table_id = 1;
+  repeated spaceone.api.core.v2.Sort sort = 8;
+}
+
 message TimeDiff {
   oneof timediff {
     int32 years = 1;
@@ -215,6 +221,8 @@ message AddOptions {
   // +optional
   repeated spaceone.api.core.v2.Filter filter_or = 7;
   // +optional
+  repeated spaceone.api.core.v2.Sort sort = 8;
+  // +optional
   TimeDiff timediff = 10;
 }
 
@@ -228,6 +236,7 @@ message TransformOptions {
     PivotOperator PIVOT = 6;
     AddLabelsOperator ADD_LABELS = 7;
     ValueMappingOperator VALUE_MAPPING = 8;
+    SortOperator SORT = 9;
   }
 }
 
