@@ -73,6 +73,7 @@ enum SourceType {
   SOURCE_TYPE_NONE = 0;
   ASSET = 1;
   COST = 2;
+  UNIFIED_COST = 3;
 }
 
 enum Operator {
@@ -98,6 +99,10 @@ message CostSource {
     string plugin_id = 2;
   }
 
+  string data_key = 3;
+}
+
+message UnifiedCostSource {
   string data_key = 3;
 }
 
@@ -210,20 +215,21 @@ message AddOptions {
   oneof source {
     AssetSource ASSET = 1;
     CostSource COST = 2;
+    UnifiedCostSource UNIFIED_COST = 4;
   }
-  string data_name = 3;
+  string data_name = 5;
   // +optional
-  string data_unit = 4;
+  string data_unit = 6;
   // +optional
-  google.protobuf.ListValue group_by = 5;
+  google.protobuf.ListValue group_by = 7;
   // +optional
-  repeated spaceone.api.core.v2.Filter filter = 6;
+  repeated spaceone.api.core.v2.Filter filter = 8;
   // +optional
-  repeated spaceone.api.core.v2.Filter filter_or = 7;
+  repeated spaceone.api.core.v2.Filter filter_or = 9;
   // +optional
-  repeated spaceone.api.core.v2.Sort sort = 8;
+  repeated spaceone.api.core.v2.Sort sort = 10;
   // +optional
-  TimeDiff timediff = 10;
+  TimeDiff timediff = 11;
 }
 
 message TransformOptions {
