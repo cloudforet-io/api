@@ -8,146 +8,7 @@
      "title": "File Manager API",
      "version": "3.1.0"
    },
-   "paths":{"/file-manager/user_file/update": {
-       "post": {
-         "tags": ["file-manager > user_file"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |tags||Struct||\n |reference||UserFileReference||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/user_file/delete": {
-       "post": {
-         "tags": ["file-manager > user_file"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/user_file/get": {
-       "post": {
-         "tags": ["file-manager > user_file"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/user_file/list": {
-       "post": {
-         "tags": ["file-manager > user_file"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |resource_type||string||\n |resource_id||string||\n |domain_id||string||\n |user_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserFilesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserFilesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/user_file/stat": {
-       "post": {
-         "tags": ["file-manager > user_file"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/file/update": {
+   "paths":{"/file-manager/file/update": {
        "post": {
          "tags": ["file-manager > file"],
          "summary": "Update",
@@ -286,58 +147,197 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/file-manager/user_file/update": {
+       "post": {
+         "tags": ["file-manager > user_file"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |tags||Struct||\n |reference||UserFileReference||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserFileInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserFileInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/file-manager/user_file/delete": {
+       "post": {
+         "tags": ["file-manager > user_file"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/file-manager/user_file/get": {
+       "post": {
+         "tags": ["file-manager > user_file"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserFileInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserFileInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/file-manager/user_file/list": {
+       "post": {
+         "tags": ["file-manager > user_file"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |resource_type||string||\n |resource_id||string||\n |domain_id||string||\n |user_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserFilesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserFilesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/file-manager/user_file/stat": {
+       "post": {
+         "tags": ["file-manager > user_file"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "CreateUserFileRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+     "CreateFileRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["name"],
-                "title": "CreateUserFileRequest"
+         "required": ["name","resource_group"],
+                "title": "CreateFileRequest"
            }
-           ,        "UpdateUserFileRequest": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"}},
+           ,        "FileInfo": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["file_id"],
-                "title": "UpdateUserFileRequest"
+         "required": ["file_id","name","download_url","reference","tags","resource_group","domain_id","workspace_id","project_id","created_at"],
+                "title": "FileInfo"
            }
-           ,        "UserFileInfo": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["file_id","name","download_url","tags","reference","domain_id","user_id","created_at"],
-                "title": "UserFileInfo"
-           }
-           ,        "UserFileReference": {
+           ,        "FileReference": {
          "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
          "type": "object",
          "required": ["resource_type","resource_id"],
-                "title": "UserFileReference"
+                "title": "FileReference"
            }
-           ,        "UserFileRequest": {
+           ,        "FileRequest": {
          "properties" : {"file_id" : {"type": "string","title": "FILE_ID"}},
          "type": "object",
          "required": ["file_id"],
-                "title": "UserFileRequest"
+                "title": "FileRequest"
            }
-           ,        "UserFileSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+           ,        "FileSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
-                "title": "UserFileSearchQuery"
+                "title": "FileSearchQuery"
            }
-           ,        "UserFileStatQuery": {
+           ,        "FileStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "UserFileStatQuery"
+                "title": "FileStatQuery"
            }
-           ,        "UserFilesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserFileInfo"},
-               "type": "array","$ref": "#/components/schemas/UserFileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "FilesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/FileInfo"},
+               "type": "array","$ref": "#/components/schemas/FileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "UserFilesInfo"
+                "title": "FilesInfo"
+           }
+           ,        "UpdateFileRequest": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["file_id"],
+                "title": "UpdateFileRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -546,54 +546,54 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "CreateFileRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "CreateUserFileRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
          "type": "object",
-         "required": ["name","resource_group"],
-                "title": "CreateFileRequest"
+         "required": ["name"],
+                "title": "CreateUserFileRequest"
            }
-           ,        "FileInfo": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "UpdateUserFileRequest": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"}},
          "type": "object",
-         "required": ["file_id","name","download_url","reference","tags","resource_group","domain_id","workspace_id","project_id","created_at"],
-                "title": "FileInfo"
+         "required": ["file_id"],
+                "title": "UpdateUserFileRequest"
            }
-           ,        "FileReference": {
+           ,        "UserFileInfo": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/UserFileReference","title": "REFERENCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["file_id","name","download_url","tags","reference","domain_id","user_id","created_at"],
+                "title": "UserFileInfo"
+           }
+           ,        "UserFileReference": {
          "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
          "type": "object",
          "required": ["resource_type","resource_id"],
-                "title": "FileReference"
+                "title": "UserFileReference"
            }
-           ,        "FileRequest": {
+           ,        "UserFileRequest": {
          "properties" : {"file_id" : {"type": "string","title": "FILE_ID"}},
          "type": "object",
          "required": ["file_id"],
-                "title": "FileRequest"
+                "title": "UserFileRequest"
            }
-           ,        "FileSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "UserFileSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
          "type": "object",
          "required": [],
-                "title": "FileSearchQuery"
+                "title": "UserFileSearchQuery"
            }
-           ,        "FileStatQuery": {
+           ,        "UserFileStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "FileStatQuery"
+                "title": "UserFileStatQuery"
            }
-           ,        "FilesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/FileInfo"},
-               "type": "array","$ref": "#/components/schemas/FileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "UserFilesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserFileInfo"},
+               "type": "array","$ref": "#/components/schemas/UserFileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "FilesInfo"
-           }
-           ,        "UpdateFileRequest": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["file_id"],
-                "title": "UpdateFileRequest"
+                "title": "UserFilesInfo"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

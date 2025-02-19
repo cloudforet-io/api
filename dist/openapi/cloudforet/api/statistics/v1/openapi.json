@@ -234,35 +234,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/resource/stat": {
-       "post": {
-         "tags": ["statistics > resource"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |page||StatPage||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/statistics/history/create": {
        "post": {
          "tags": ["statistics > history"],
@@ -327,6 +298,35 @@
              "application/json": {
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/resource/stat": {
+       "post": {
+         "tags": ["statistics > resource"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |page||StatPage||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -612,6 +612,37 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
+           ,        "CreateHistoryRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
+         "type": "object",
+         "required": ["schedule_id"],
+                "title": "CreateHistoryRequest"
+           }
+           ,        "HistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
+               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "HistoryInfo"
+           }
+           ,        "HistoryStatRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "HistoryStatRequest"
+           }
+           ,        "HistoryValueInfo": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["topic","values","domain_id","created_at"],
+                "title": "HistoryValueInfo"
+           }
+           ,        "QueryHistoryRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": [],
+                "title": "QueryHistoryRequest"
+           }
            ,        "ResourceStatRequest": {
          "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
                "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
@@ -661,37 +692,6 @@
          "type": "object",
          "required": ["limit"],
                 "title": "StatPage"
-           }
-           ,        "CreateHistoryRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
-         "type": "object",
-         "required": ["schedule_id"],
-                "title": "CreateHistoryRequest"
-           }
-           ,        "HistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
-               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "HistoryInfo"
-           }
-           ,        "HistoryStatRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "HistoryStatRequest"
-           }
-           ,        "HistoryValueInfo": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["topic","values","domain_id","created_at"],
-                "title": "HistoryValueInfo"
-           }
-           ,        "QueryHistoryRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": [],
-                "title": "QueryHistoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
