@@ -12,6 +12,8 @@ import "spaceone/api/core/v2/query.proto";
 
 service UnifiedCost {
 
+  rpc run (UnifiedCostRunRequest) returns (google.protobuf.Empty) {}
+
   rpc get (UnifiedCostRequest) returns (UnifiedCostInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/unified-cost/get"
@@ -39,6 +41,22 @@ service UnifiedCost {
       body: "*"
     };
   }
+}
+
+//{
+//  "unified_month": "2024-08",
+//  "exchange_date": "2024-07-15",
+//  "is_last_exchange_day": false,
+//  "bank": "Yahoo! Finance",
+//}
+message UnifiedCostRunRequest {
+  string unified_month = 1;
+  // +optional
+  string exchange_date = 2;
+  // +optional
+  bool is_last_exchange_day = 3;
+  // +optional
+  string bank = 4;
 }
 
 //{
@@ -73,6 +91,7 @@ message UnifiedCostAnalyzeQuery {
 //    "USD": 1,
 //    "JPY": 100
 //  },
+//  "usage_quantity": 20.2,
 //  "billed_month": "2024-08",
 //  "billed_year": "2024",
 //  "exchange_date": "2024-08-14",
@@ -95,28 +114,30 @@ message UnifiedCostAnalyzeQuery {
 message UnifiedCostInfo {
   string unified_cost_id = 1;
   google.protobuf.Struct cost = 2;
+  double usage_quantity = 3;
   // ex). 2021-01
-  string billed_month = 3;
+  string billed_month = 4;
   // ex). 2021
-  string billed_year = 4;
+  string billed_year = 5;
   // ex). 2021-01-01
-  string aggregation_date = 5;
-  string exchange_date = 6;
+  string aggregation_date = 6;
+  string exchange_date = 7;
   // ex). Yahoo Finance
-  string exchange_source = 7;
+  string exchange_source = 8;
   // Original currency of cost
-  string currency = 8;
-  bool is_confirmed = 9;
-  string provider = 10;
-  string region_code = 11;
-  string region_key = 12;
-  string product = 13;
-  string usage_type = 14;
-  string usage_unit = 15;
-  string service_account_name = 16;
-  string data_source_name = 17;
-  string project_name = 18;
-  string workspace_name = 19;
+  string currency = 9;
+  bool is_confirmed = 10;
+  string provider = 11;
+  string region_code = 12;
+  string region_key = 13;
+  string product = 14;
+  string usage_type = 15;
+  string usage_unit = 16;
+  string service_account_name = 17;
+  string data_source_name = 18;
+  string project_name = 19;
+  string workspace_name = 20;
+
   string domain_id = 21;
   string workspace_id = 22;
   string project_id = 23;
