@@ -10,6 +10,7 @@ package v1
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,6 +23,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	UnifiedCost_Run_FullMethodName     = "/spaceone.api.cost_analysis.v1.UnifiedCost/run"
 	UnifiedCost_Get_FullMethodName     = "/spaceone.api.cost_analysis.v1.UnifiedCost/get"
 	UnifiedCost_List_FullMethodName    = "/spaceone.api.cost_analysis.v1.UnifiedCost/list"
 	UnifiedCost_Analyze_FullMethodName = "/spaceone.api.cost_analysis.v1.UnifiedCost/analyze"
@@ -32,6 +34,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UnifiedCostClient interface {
+	Run(ctx context.Context, in *UnifiedCostRunRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *UnifiedCostRequest, opts ...grpc.CallOption) (*UnifiedCostInfo, error)
 	List(ctx context.Context, in *UnifiedCostQuery, opts ...grpc.CallOption) (*UnifiedCostsInfo, error)
 	Analyze(ctx context.Context, in *UnifiedCostAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -44,6 +47,16 @@ type unifiedCostClient struct {
 
 func NewUnifiedCostClient(cc grpc.ClientConnInterface) UnifiedCostClient {
 	return &unifiedCostClient{cc}
+}
+
+func (c *unifiedCostClient) Run(ctx context.Context, in *UnifiedCostRunRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, UnifiedCost_Run_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *unifiedCostClient) Get(ctx context.Context, in *UnifiedCostRequest, opts ...grpc.CallOption) (*UnifiedCostInfo, error) {
@@ -90,6 +103,7 @@ func (c *unifiedCostClient) Stat(ctx context.Context, in *UnifiedCostStatQuery, 
 // All implementations must embed UnimplementedUnifiedCostServer
 // for forward compatibility.
 type UnifiedCostServer interface {
+	Run(context.Context, *UnifiedCostRunRequest) (*empty.Empty, error)
 	Get(context.Context, *UnifiedCostRequest) (*UnifiedCostInfo, error)
 	List(context.Context, *UnifiedCostQuery) (*UnifiedCostsInfo, error)
 	Analyze(context.Context, *UnifiedCostAnalyzeQuery) (*_struct.Struct, error)
@@ -104,6 +118,9 @@ type UnifiedCostServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUnifiedCostServer struct{}
 
+func (UnimplementedUnifiedCostServer) Run(context.Context, *UnifiedCostRunRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
+}
 func (UnimplementedUnifiedCostServer) Get(context.Context, *UnifiedCostRequest) (*UnifiedCostInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
@@ -135,6 +152,24 @@ func RegisterUnifiedCostServer(s grpc.ServiceRegistrar, srv UnifiedCostServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&UnifiedCost_ServiceDesc, srv)
+}
+
+func _UnifiedCost_Run_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnifiedCostRunRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UnifiedCostServer).Run(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UnifiedCost_Run_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UnifiedCostServer).Run(ctx, req.(*UnifiedCostRunRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _UnifiedCost_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -216,6 +251,10 @@ var UnifiedCost_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "spaceone.api.cost_analysis.v1.UnifiedCost",
 	HandlerType: (*UnifiedCostServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "run",
+			Handler:    _UnifiedCost_Run_Handler,
+		},
 		{
 			MethodName: "get",
 			Handler:    _UnifiedCost_Get_Handler,
