@@ -8,204 +8,7 @@
      "title": "Opsflow API",
      "version": "3.1.0"
    },
-   "paths":{"/opsflow/task-type/create": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |vars||Struct||\n |require_project||boolean||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/update": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |assignee_pool||array||\n |vars||Struct||\n |tags||Struct||\n |category_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/update_fields": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Update Fields",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |fields||array|True|\n |force||boolean|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/delete": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |new_task_type_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"new_task_type_id" : {"type": "string","title": "NEW_TASK_TYPE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/get": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |include_category_fields||boolean||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"include_category_fields" : {"type": "boolean","title": "INCLUDE_CATEGORY_FIELDS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/list": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_type_id||string||\n |name||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TaskTypesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TaskTypesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/task-type/stat": {
-       "post": {
-         "tags": ["opsflow > task-type"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/variable/create": {
+   "paths":{"/opsflow/variable/create": {
        "post": {
          "tags": ["opsflow > variable"],
          "summary": "Create",
@@ -347,232 +150,6 @@
      },"/opsflow/variable/stat": {
        "post": {
          "tags": ["opsflow > variable"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/event/list": {
-       "post": {
-         "tags": ["opsflow > event"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_id||string||\n |event_type|CREATED, UPDATED, CHANGE_STATUS, COMMENTED |string||\n |created_type||string||\n |event_id||string||\n |created_by||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_id" : {"type": "string","title": "TASK_ID" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"created_type" : {"type": "string","title": "CREATED_TYPE" },"event_id" : {"type": "string","title": "EVENT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EventsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EventsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/event/stat": {
-       "post": {
-         "tags": ["opsflow > event"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/create": {
-       "post": {
-         "tags": ["opsflow > comment"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n |source||Struct||\n |reference_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"source" : {"type": "object","title": "SOURCE" },"reference_id" : {"type": "string","title": "REFERENCE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/update": {
-       "post": {
-         "tags": ["opsflow > comment"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/delete": {
-       "post": {
-         "tags": ["opsflow > comment"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/get": {
-       "post": {
-         "tags": ["opsflow > comment"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/list": {
-       "post": {
-         "tags": ["opsflow > comment"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_id||string||\n |comment_id||string||\n |comment_type|TASK_DESCRIPTION, COMMENT |string||\n |user_id||string||\n |user_group_id||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_id" : {"type": "string","title": "TASK_ID" },"comment_id" : {"type": "string","title": "COMMENT_ID" },"comment_type" : {"type": "string","title": "COMMENT_TYPE" },"user_id" : {"type": "string","title": "USER_ID" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CommentsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CommentsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/opsflow/comment/stat": {
-       "post": {
-         "tags": ["opsflow > comment"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -776,6 +353,261 @@
      },"/opsflow/task-category/stat": {
        "post": {
          "tags": ["opsflow > task-category"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/event/list": {
+       "post": {
+         "tags": ["opsflow > event"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_id||string||\n |event_type|CREATED, UPDATED, CHANGE_STATUS, COMMENTED |string||\n |created_type||string||\n |event_id||string||\n |created_by||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_id" : {"type": "string","title": "TASK_ID" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"created_type" : {"type": "string","title": "CREATED_TYPE" },"event_id" : {"type": "string","title": "EVENT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/event/stat": {
+       "post": {
+         "tags": ["opsflow > event"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/create": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |vars||Struct||\n |require_project||boolean||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/update": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |assignee_pool||array||\n |vars||Struct||\n |tags||Struct||\n |category_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"vars" : {"type": "object","title": "VARS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/update_fields": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Update Fields",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |fields||array|True|\n |force||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/delete": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |new_task_type_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"new_task_type_id" : {"type": "string","title": "NEW_TASK_TYPE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/get": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |include_category_fields||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"include_category_fields" : {"type": "boolean","title": "INCLUDE_CATEGORY_FIELDS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/list": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_type_id||string||\n |name||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/stat": {
+       "post": {
+         "tags": ["opsflow > task-type"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1057,76 +889,220 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/create": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n |source||Struct||\n |reference_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"source" : {"type": "object","title": "SOURCE" },"reference_id" : {"type": "string","title": "REFERENCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/update": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n |comment||string|True|\n |mentions||Mentions||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" },"comment" : {"type": "string","title": "COMMENT" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/delete": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/get": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |comment_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"comment_id" : {"type": "string","title": "COMMENT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CommentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CommentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/list": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |task_id||string||\n |comment_id||string||\n |comment_type|TASK_DESCRIPTION, COMMENT |string||\n |user_id||string||\n |user_group_id||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"task_id" : {"type": "string","title": "TASK_ID" },"comment_id" : {"type": "string","title": "COMMENT_ID" },"comment_type" : {"type": "string","title": "COMMENT_TYPE" },"user_id" : {"type": "string","title": "USER_ID" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CommentsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CommentsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/comment/stat": {
+       "post": {
+         "tags": ["opsflow > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "TaskTypeCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+     "VariableCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["name","category_id"],
-                "title": "TaskTypeCreateRequest"
+         "required": ["name","value"],
+                "title": "VariableCreateRequest"
            }
-           ,        "TaskTypeDeleteRequest": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"new_task_type_id" : {"type": "string","title": "NEW_TASK_TYPE_ID"}},
+           ,        "VariableInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["task_type_id"],
-                "title": "TaskTypeDeleteRequest"
+         "required": ["name","value","tags","domain_id","workspace_id","created_at","updated_at"],
+                "title": "VariableInfo"
            }
-           ,        "TaskTypeInfo": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "VariableRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"}},
          "type": "object",
-         "required": ["task_type_id","name","description","fields","assignee_pool","vars","require_project","tags","domain_id","category_id","created_at","updated_at"],
-                "title": "TaskTypeInfo"
+         "required": ["name"],
+                "title": "VariableRequest"
            }
-           ,        "TaskTypeRequest": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"include_category_fields" : {"type": "boolean","title": "INCLUDE_CATEGORY_FIELDS"}},
-         "type": "object",
-         "required": ["task_type_id"],
-                "title": "TaskTypeRequest"
-           }
-           ,        "TaskTypeSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"}},
+           ,        "VariableSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": [],
-                "title": "TaskTypeSearchQuery"
+                "title": "VariableSearchQuery"
            }
-           ,        "TaskTypeStatQuery": {
+           ,        "VariableStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "TaskTypeStatQuery"
+                "title": "VariableStatQuery"
            }
-           ,        "TaskTypeUpdateFieldsRequest": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"}},
+           ,        "VariableUpdateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["task_type_id","fields","force"],
-                "title": "TaskTypeUpdateFieldsRequest"
+         "required": ["name"],
+                "title": "VariableUpdateRequest"
            }
-           ,        "TaskTypeUpdateRequest": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee_pool" : {"items": {"type": "string"},
-               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
-         "type": "object",
-         "required": ["task_type_id"],
-                "title": "TaskTypeUpdateRequest"
-           }
-           ,        "TaskTypesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/TaskTypeInfo"},
-               "type": "array","$ref": "#/components/schemas/TaskTypeInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "VariablesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/VariableInfo"},
+               "type": "array","$ref": "#/components/schemas/VariableInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "TaskTypesInfo"
-           }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+                "title": "VariablesInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -1329,124 +1305,11 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VariableCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["name","value"],
-                "title": "VariableCreateRequest"
-           }
-           ,        "VariableInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["name","value","tags","domain_id","workspace_id","created_at","updated_at"],
-                "title": "VariableInfo"
-           }
-           ,        "VariableRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"}},
-         "type": "object",
-         "required": ["name"],
-                "title": "VariableRequest"
-           }
-           ,        "VariableSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "VariableSearchQuery"
-           }
-           ,        "VariableStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "VariableStatQuery"
-           }
-           ,        "VariableUpdateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"value" : {"type": "string","title": "VALUE"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["name"],
-                "title": "VariableUpdateRequest"
-           }
-           ,        "VariablesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/VariableInfo"},
-               "type": "array","$ref": "#/components/schemas/VariableInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "VariablesInfo"
-           }
-           ,        "EventInfo": {
-         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"created_type" : {"type": "string","title": "CREATED_TYPE"},"created_by" : {"type": "string","title": "CREATED_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["event_id","event_type","name","description","created_type","created_by","additional_info","domain_id","workspace_id","project_id","task_id","created_at","updated_at"],
-                "title": "EventInfo"
-           }
-           ,        "EventSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_id" : {"type": "string","title": "TASK_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"created_type" : {"type": "string","title": "CREATED_TYPE"},"event_id" : {"type": "string","title": "EVENT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "EventSearchQuery"
-           }
-           ,        "EventStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "EventStatQuery"
-           }
-           ,        "EventsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EventInfo"},
-               "type": "array","$ref": "#/components/schemas/EventInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "EventsInfo"
-           }
-           ,        "CommentCreateRequest": {
-         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"}},
-         "type": "object",
-         "required": ["task_id","comment"],
-                "title": "CommentCreateRequest"
-           }
-           ,        "CommentInfo": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"contents_type" : {"type": "string","title": "CONTENTS_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
-         "type": "object",
-         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","reference_id","contents_type","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
-                "title": "CommentInfo"
-           }
-           ,        "CommentRequest": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"}},
-         "type": "object",
-         "required": ["comment_id"],
-                "title": "CommentRequest"
-           }
-           ,        "CommentSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_id" : {"type": "string","title": "TASK_ID"},"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"user_id" : {"type": "string","title": "USER_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "CommentSearchQuery"
-           }
-           ,        "CommentStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "CommentStatQuery"
-           }
-           ,        "CommentUpdateRequest": {
-         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"}},
-         "type": "object",
-         "required": ["comment_id","comment"],
-                "title": "CommentUpdateRequest"
-           }
-           ,        "CommentsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CommentInfo"},
-               "type": "array","$ref": "#/components/schemas/CommentInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "CommentsInfo"
-           }
-           ,        "Mentions": {
-         "properties" : {"USER" : {"items": {"type": "string"},
-               "type": "array","title": "USER"},"USER_GROUP" : {"items": {"type": "string"},
-               "type": "array","title": "USER_GROUP"}},
-         "type": "object",
-         "required": ["USER","USER_GROUP"],
-                "title": "Mentions"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "StatusOption": {
          "properties" : {"status_id" : {"type": "string","title": "STATUS_ID"},"name" : {"type": "string","title": "NAME"},"color" : {"type": "string","title": "COLOR"},"is_default" : {"type": "boolean","title": "IS_DEFAULT"}},
@@ -1521,6 +1384,92 @@
          "required": ["field_id","name","description","field_type","options","selection_type","is_required","is_primary"],
                 "title": "TaskField"
            }
+           ,        "EventInfo": {
+         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"created_type" : {"type": "string","title": "CREATED_TYPE"},"created_by" : {"type": "string","title": "CREATED_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["event_id","event_type","name","description","created_type","created_by","additional_info","domain_id","workspace_id","project_id","task_id","created_at","updated_at"],
+                "title": "EventInfo"
+           }
+           ,        "EventSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_id" : {"type": "string","title": "TASK_ID"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"created_type" : {"type": "string","title": "CREATED_TYPE"},"event_id" : {"type": "string","title": "EVENT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "EventSearchQuery"
+           }
+           ,        "EventStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "EventStatQuery"
+           }
+           ,        "EventsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EventInfo"},
+               "type": "array","$ref": "#/components/schemas/EventInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "EventsInfo"
+           }
+           ,        "TaskTypeCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+         "type": "object",
+         "required": ["name","category_id"],
+                "title": "TaskTypeCreateRequest"
+           }
+           ,        "TaskTypeDeleteRequest": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"new_task_type_id" : {"type": "string","title": "NEW_TASK_TYPE_ID"}},
+         "type": "object",
+         "required": ["task_type_id"],
+                "title": "TaskTypeDeleteRequest"
+           }
+           ,        "TaskTypeInfo": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"require_project" : {"type": "boolean","title": "REQUIRE_PROJECT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["task_type_id","name","description","fields","assignee_pool","vars","require_project","tags","domain_id","category_id","created_at","updated_at"],
+                "title": "TaskTypeInfo"
+           }
+           ,        "TaskTypeRequest": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"include_category_fields" : {"type": "boolean","title": "INCLUDE_CATEGORY_FIELDS"}},
+         "type": "object",
+         "required": ["task_type_id"],
+                "title": "TaskTypeRequest"
+           }
+           ,        "TaskTypeSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": [],
+                "title": "TaskTypeSearchQuery"
+           }
+           ,        "TaskTypeStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "TaskTypeStatQuery"
+           }
+           ,        "TaskTypeUpdateFieldsRequest": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"}},
+         "type": "object",
+         "required": ["task_type_id","fields","force"],
+                "title": "TaskTypeUpdateFieldsRequest"
+           }
+           ,        "TaskTypeUpdateRequest": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"vars" : {"type": "object","title": "VARS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+         "type": "object",
+         "required": ["task_type_id"],
+                "title": "TaskTypeUpdateRequest"
+           }
+           ,        "TaskTypesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/TaskTypeInfo"},
+               "type": "array","$ref": "#/components/schemas/TaskTypeInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "TaskTypesInfo"
+           }
            ,        "TaskChangeAssigneeRequest": {
          "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
          "type": "object",
@@ -1585,6 +1534,57 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "TasksInfo"
+           }
+           ,        "CommentCreateRequest": {
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"}},
+         "type": "object",
+         "required": ["task_id","comment"],
+                "title": "CommentCreateRequest"
+           }
+           ,        "CommentInfo": {
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"is_edited" : {"type": "boolean","title": "IS_EDITED"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"source" : {"type": "object","title": "SOURCE"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"contents_type" : {"type": "string","title": "CONTENTS_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"task_id" : {"type": "string","title": "TASK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "type": "object",
+         "required": ["comment_id","comment","comment_type","is_edited","mentions","source","reference_id","contents_type","domain_id","workspace_id","project_id","task_id","created_at","updated_at","created_by"],
+                "title": "CommentInfo"
+           }
+           ,        "CommentRequest": {
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"}},
+         "type": "object",
+         "required": ["comment_id"],
+                "title": "CommentRequest"
+           }
+           ,        "CommentSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"task_id" : {"type": "string","title": "TASK_ID"},"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment_type" : {"type": "string","title": "COMMENT_TYPE"},"user_id" : {"type": "string","title": "USER_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "CommentSearchQuery"
+           }
+           ,        "CommentStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "CommentStatQuery"
+           }
+           ,        "CommentUpdateRequest": {
+         "properties" : {"comment_id" : {"type": "string","title": "COMMENT_ID"},"comment" : {"type": "string","title": "COMMENT"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"}},
+         "type": "object",
+         "required": ["comment_id","comment"],
+                "title": "CommentUpdateRequest"
+           }
+           ,        "CommentsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CommentInfo"},
+               "type": "array","$ref": "#/components/schemas/CommentInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "CommentsInfo"
+           }
+           ,        "Mentions": {
+         "properties" : {"USER" : {"items": {"type": "string"},
+               "type": "array","title": "USER"},"USER_GROUP" : {"items": {"type": "string"},
+               "type": "array","title": "USER_GROUP"}},
+         "type": "object",
+         "required": ["USER","USER_GROUP"],
+                "title": "Mentions"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
