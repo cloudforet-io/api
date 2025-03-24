@@ -71,14 +71,43 @@ service Budget {
 
 message PlannedLimit {
     string date = 1;
-    float limit = 2;
+    double limit = 2;
 }
 
-message BudgetNotification {
+message BudgetNotificationRecipients {
+    enum ServiceAccountManager {
+        SERVICE_ACCOUNT_MANAGER_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        WORKSPACE_OWNER = 1;
+        WORKSPACE_MEMBER = 2;
+    }
+    repeated string users = 1;
+    repeated RoleType role_types = 2;
+    ServiceAccountManager service_account_manager = 3;
+
+}
+
+message BudgetNotificationPlan{
     enum Unit {
         UNIT_NONE = 0;
         PERCENT = 1;
         ACTUAL_COST = 2;
+    }
+
+    double threshold = 1;
+    Unit unit = 3;
+}
+
+message BudgetNotification {
+    enum BudgetNotificationState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
     }
 
     enum NotificationType {
@@ -87,41 +116,49 @@ message BudgetNotification {
         WARNING = 2;
     }
 
-    float threshold = 1;
-    Unit unit = 2;
-    NotificationType notification_type = 3;
+    BudgetNotificationState state = 1;
+    repeated BudgetNotificationPlan plans = 2;
+    BudgetNotificationRecipients recipients = 3;
 }
 
-message ProviderFilter {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-
-    State state = 1;
-    repeated string providers = 2;
-}
 
 //{
 //    "name": "Cloudforet-Budget",
-//    "planned_limits": [{"date": "2022-01", "limit": 1000.0},
-//                       {"date": "2022-02", "limit": 1100.0},
-//                       {"date": "2022-03", "limit": 1200.0},
-//                       {"date": "2022-04", "limit": 1300.0},
-//                       {"date": "2022-05", "limit": 1400.0},
-//                       {"date": "2022-06", "limit": 1500.0},
-//                       {"date": "2022-07", "limit": 1600.0},
-//                       {"date": "2022-08", "limit": 1700.0},
-//                       {"date": "2022-09", "limit": 1800.0},
-//                       {"date": "2022-10", "limit": 1900.0},
-//                       {"date": "2022-11", "limit": 2000.0},
-//                       {"date": "2022-12", "limit": 2100.0}],
+//    "planned_limits": [{"date": "2025-01", "limit": 1000.0},
+//                       {"date": "2025-02", "limit": 1100.0},
+//                       {"date": "2025-03", "limit": 1200.0},
+//                       {"date": "2025-04", "limit": 1300.0},
+//                       {"date": "2025-05", "limit": 1400.0},
+//                       {"date": "2025-06", "limit": 1500.0},
+//                       {"date": "2025-07", "limit": 1600.0},
+//                       {"date": "2025-08", "limit": 1700.0},
+//                       {"date": "2025-09", "limit": 1800.0},
+//                       {"date": "2025-10", "limit": 1900.0},
+//                       {"date": "2025-11", "limit": 2000.0},
+//                       {"date": "2025-12", "limit": 2100.0}],
 //    "time_unit": "MONTHLY",
 //    "start": "2022-01",
 //    "end": "2022-12",
-//    "project_group_id": "pg-812c90990877",
+//    "notifications": {
+//        "state": "ENABLED",
+//        "plans": [
+//            {
+//                "threshold": 20.0,
+//                "unit": "PERCENT"
+//            }
+//            ],
+//        "recipients": {
+//            "users": ["wonny@cloudforet.io"],
+//            "role_types": [],
+//            "service_account_manager": "ENABLED",
+//        }
+//    },
+//    "tags": {},
+//    "resource_group" : "PROJECT",
 //    "data_source_id": "ds-fcba92ca73b1"
+//    "workspace_id": "workspace-1234567890",
+//    "project_id": "project-1234567890",
+//    "service_account_id": "service-account-1234567890"
 //}
 message CreateBudgetRequest {
     enum TimeUnit {
@@ -135,22 +172,18 @@ message CreateBudgetRequest {
         WORKSPACE = 1;
         PROJECT = 2;
     }
-
-
     string data_source_id = 1;
     // +optional
     string name = 2;
     // +optional
-    float limit = 3;
+    double limit = 3;
     // +optional
     repeated PlannedLimit planned_limits = 4;
-    // +optional
-    ProviderFilter provider_filter = 5;
     TimeUnit time_unit = 6;
     string start = 7;
     string end = 8;
     // +optional
-    repeated BudgetNotification notifications = 9;
+    BudgetNotification notifications = 9;
     // +optional
     google.protobuf.Struct tags = 10;
     ResourceGroup resource_group = 20;
@@ -158,6 +191,8 @@ message CreateBudgetRequest {
     string workspace_id = 21;
     // +optional
     string project_id = 22;
+    // +optional
+    string service_account_id = 23;
 }
 
 //{
@@ -180,7 +215,7 @@ message UpdateBudgetRequest {
     // +optional
     string name = 2;
     // +optional
-    float limit = 3;
+    double limit = 3;
     // +optional
     repeated PlannedLimit planned_limits = 4;
     // +optional
@@ -189,22 +224,27 @@ message UpdateBudgetRequest {
 
 //{
 //    "budget_id": "budget-4c8606da4521",
-//    "notifications": [
+//    "notifications":{
+//        "state": "ENABLED",
+//        "plans": [
 //        {
 //            "threshold": 20.0,
-//            "unit": "PERCENT",
-//            "notification_type": "CRITICAL"
+//            "unit": "PERCENT"
 //        },
 //        {
-//            "threshold": 1000.0,
-//            "unit": "ACTUAL_COST",
-//            "notification_type": "WARNING"
+//            "threshold": 90.0,
+//            "unit": "PERCENT"
+//        }],
+//        "recipients": {
+//            "users": ["wonny@cloudforet.io"],
+//            "role_types": ["WORKSPACE_OWNER"],
+//            "service_account_manager": "ENABLED"
 //        }
-//    ]
+//    }
 //}
 message SetBudgetNotificationRequest {
     string budget_id = 1;
-    repeated BudgetNotification notifications = 2;
+    BudgetNotification notifications = 2;
 }
 
 //{
@@ -215,7 +255,17 @@ message BudgetRequest {
 }
 
 //{
-//    "query": {}
+//    "query": {
+//        "page": {
+//            "limit": 10,
+//            "start": 1
+//        },
+//        "filter": {
+//            "key": "project_id",
+//            "value": "project-1234567890",
+//            "operator": "eq"
+//        }
+//    }
 //}
 message BudgetQuery {
     enum TimeUnit {
@@ -237,7 +287,9 @@ message BudgetQuery {
     // +optional
     string project_id = 22;
     // +optional
-    string data_source_id = 23;
+    string service_account_id = 23;
+    // +optional
+    string data_source_id = 24;
 }
 
 //{
@@ -246,68 +298,76 @@ message BudgetQuery {
 //        "limit": 18600.0,
 //        "planned_limits": [
 //            {
-//                "date": "2022-01",
+//                "date": "2025-01",
 //                "limit": 1000.0
 //            },
 //            {
-//                "date": "2022-02",
+//                "date": "2025-02",
 //                "limit": 1100.0
 //            },
 //            {
-//                "date": "2022-03",
+//                "date": "2025-03",
 //                "limit": 1200.0
 //            },
 //            {
-//                "date": "2022-04",
+//                "date": "2025-04",
 //                "limit": 1300.0
 //            },
 //            {
-//                "date": "2022-05",
+//                "date": "2025-05",
 //                "limit": 1400.0
 //            },
 //            {
-//                "date": "2022-06",
+//                "date": "2025-06",
 //                "limit": 1500.0
 //            },
 //            {
-//                "date": "2022-07",
+//                "date": "2025-07",
 //                "limit": 1600.0
 //            },
 //            {
-//                "date": "2022-08",
+//                "date": "2025-08",
 //                "limit": 1700.0
 //            },
 //            {
-//                "date": "2022-09",
+//                "date": "2025-09",
 //                "limit": 1800.0
 //            },
 //            {
-//                "date": "2022-10",
+//                "date": "2025-10",
 //                "limit": 1900.0
 //            },
 //            {
-//                "date": "2022-11",
+//                "date": "2025-11",
 //                "limit": 2000.0
 //            },
 //            {
-//                "date": "2022-12",
+//                "date": "2025-12",
 //                "limit": 2100.0
 //            }
 //        ],
 //        "currency": "USD",
-//        "provider_filter": {
-//            "state": "ENABLED",
-//            "providers": [
-//                "aws",
-//                "google_cloud"
-//            ]
-//        },
 //        "time_unit": "MONTHLY",
-//        "start": "2022-01",
-//        "end": "2022-12",
+//        "start": "2025-01",
+//        "end": "2025-12",
+//        "notifications": {
+//            "state": "ENABLED",
+//            "plans": [
+//                {
+//                    "threshold": 20.0,
+//                    "unit": "PERCENT"
+//                }
+//            ],
+//            "recipients": {
+//                "users": ["wonny@cloudforet.io"],
+//                "role_types": ["WORKSPACE_OWNER"],
+//                "service_account_manager": "ENABLED"
+//            }
+//        },
 //        "tags": {},
-//        "project_group_id": "pg-812c90990877",
 //        "data_source_id": "ds-fcba92ca73b1",
+//        "service_account_id": "sa-1234567890",
+//        "workspace_id": "workspace-1234567890",
 //        "domain_id": "domain-58010aa2e451",
 //        "created_at": "2022-07-18T09:30:56.901Z",
 //        "updated_at": "2022-07-18T09:30:56.901Z"
@@ -327,21 +387,21 @@ message BudgetInfo {
 
     string budget_id = 1;
     string name = 2;
-    float limit = 3;
+    double limit = 3;
     repeated PlannedLimit planned_limits = 4;
     string currency = 5;
-    ProviderFilter provider_filter = 6;
-    TimeUnit time_unit = 7;
-    string start = 8;
-    string end = 9;
-    repeated BudgetNotification notifications = 10;
-    google.protobuf.Struct tags = 11;
+    TimeUnit time_unit = 6;
+    string start = 7;
+    string end = 8;
+    BudgetNotification notifications = 9;
+    google.protobuf.Struct tags = 19;
 
     ResourceGroup resource_group = 20;
     string domain_id = 21;
     string workspace_id = 22;
     string project_id = 23;
-    string data_source_id = 24;
+    string service_account_id= 24;
+    string data_source_id = 25;
 
     string created_at = 31;
     string updated_at = 32;
