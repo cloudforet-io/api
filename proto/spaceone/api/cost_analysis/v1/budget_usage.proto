@@ -34,17 +34,6 @@ service BudgetUsage {
     }
 }
 
-message BudgetUsageProviderFilter {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-
-    State state = 1;
-    repeated string providers = 2;
-}
-
 //{
 //    "query": {}
 //}
@@ -58,31 +47,28 @@ message BudgetUsageQuery {
     // +optional
     string workspace_id = 21;
     // +optional
-    string project_id = 22;
+    string project_id = 23;
     // +optional
-    string budget_id = 23;
+    string service_account_id = 24;
     // +optional
-    string data_source_id = 24;
+    string budget_id = 25;
+    // +optional
+    string data_source_id = 26;
 }
 
 //{
 //    "budget_id": "budget-abb377eb9e8b",
 //    "name": "Cloudforet-Budget3",
-//    "date": "2022-01",
+//    "date": "2025-01",
 //    "cost": 7671.164,
 //    "limit": 10000.0,
 //    "currency": "USD",
-//    "provider_filter": {
-//        "state": "ENABLED",
-//        "providers": [
-//            "aws",
-//            "google_cloud"
-//        ]
-//    },
-//    "project_id": "project-1b2b3b4b5b6b",
 //    "data_source_id": "data-source-1b2b3b4b5b6b",
+//    "service_account_id": "sa-1b2b3b4b5b6b",
+//    "project_id": "project-1b2b3b4b5b6b",
+//    "workspace_id": "workspace-1b2b3b4b5b6b",
 //    "domain_id": "domain-58010aa2e451",
-//    "updated_at": "2022-07-19T04:26:08.099Z"
+//    "updated_at": "2025-01-19T04:26:08.099Z"
 //}
 message BudgetUsageInfo {
 
@@ -98,13 +84,12 @@ message BudgetUsageInfo {
     float cost = 5;
     float limit = 6;
     string currency = 7;
-    BudgetUsageProviderFilter provider_filter = 8;
     ResourceGroup resource_group = 9;
-    string data_source_id = 13;
-
-    string project_id = 19;
-    string workspace_id = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string service_account_id = 24;
+    string data_source_id = 25;
 
     string updated_at = 31;
 }
@@ -114,17 +99,12 @@ message BudgetUsageInfo {
 //            {
 //                "budget_id": "budget-abb377eb9e8b",
 //                "name": "Cloudforet-Budget3",
-//                "date": "2022-01",
+//                "date": "2025-01",
 //                "cost": 7671.164,
 //                "limit": 10000.0,
 //                "currency": "USD",
-//                "provider_filter": {
-//                    "state": "ENABLED",
-//                    "providers": [
-//                        "aws",
-//                        "google_cloud"
-//                    ]
-//                },
+//                "service_account_id" : "sa-1b2b3b4b5b6b",
+//                "workspace_id": "workspace-1b2b3b4b5b6b",
 //                "project_id": "project-1b2b3b4b5b6b",
 //                "data_source_id": "data-source-1b2b3b4b5b6b",
 //                "domain_id": "domain-58010aa2e451",
@@ -137,11 +117,9 @@ message BudgetUsageInfo {
 //                "cost": 5931.771,
 //                "limit": 11000.0,
 //                "currency": "USD",
-//                "provider_filter": {
-//                    "state": "DISABLED",
-//                    "providers": []
-//                },
+//                "service_account_id" : "sa-1b2b3b4b5b6b",
 //                "project_id": "project-1b2b3b4b5b6b",
+//                "workspace_id": "workspace-1b2b3b4b5b6b",
 //                "data_source_id": "data-source-1b2b3b4b5b6b",
 //                "domain_id": "domain-58010aa2e451",
 //                "updated_at": "2022-07-19T04:26:08.105Z"
@@ -154,6 +132,23 @@ message BudgetUsagesInfo {
     int32 total_count = 2;
 }
 
+//{
+//   "query": {
+//       "group_by": [
+//           {
+//               "key": "budget_id",
+//               "name": "Budget"
+//           }
+//       ],
+//       "filter": {},
+//       "fields": {
+//           "_total_usage": {
+//               "key": "cost",
+//               "operator": "sum"
+//           }
+//       }
+//   }
+//}
 message BudgetUsageAnalyzeQuery {
     spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
     // +optional
