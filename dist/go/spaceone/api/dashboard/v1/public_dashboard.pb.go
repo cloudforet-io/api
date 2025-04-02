@@ -267,7 +267,9 @@ type CreatePublicDashboardRequest struct {
 	// +optional
 	ProjectId string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// +optional
-	FolderId      string `protobuf:"bytes,23,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId string `protobuf:"bytes,23,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
+	FolderId      string `protobuf:"bytes,24,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -389,6 +391,13 @@ func (x *CreatePublicDashboardRequest) GetWorkspaceId() string {
 func (x *CreatePublicDashboardRequest) GetProjectId() string {
 	if x != nil {
 		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *CreatePublicDashboardRequest) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
 	}
 	return ""
 }
@@ -710,7 +719,9 @@ type PublicDashboardQuery struct {
 	// +optional
 	ProjectId string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// +optional
-	FolderId      string `protobuf:"bytes,23,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId string `protobuf:"bytes,23,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
+	FolderId      string `protobuf:"bytes,24,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -794,6 +805,13 @@ func (x *PublicDashboardQuery) GetProjectId() string {
 	return ""
 }
 
+func (x *PublicDashboardQuery) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
+	}
+	return ""
+}
+
 func (x *PublicDashboardQuery) GetFolderId() string {
 	if x != nil {
 		return x.FolderId
@@ -821,7 +839,8 @@ type PublicDashboardInfo struct {
 	DomainId        string                            `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	WorkspaceId     string                            `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	ProjectId       string                            `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	FolderId        string                            `protobuf:"bytes,24,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId  string                            `protobuf:"bytes,24,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	FolderId        string                            `protobuf:"bytes,25,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	CreatedAt       string                            `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt       string                            `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -984,6 +1003,13 @@ func (x *PublicDashboardInfo) GetProjectId() string {
 	return ""
 }
 
+func (x *PublicDashboardInfo) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
+	}
+	return ""
+}
+
 func (x *PublicDashboardInfo) GetFolderId() string {
 	if x != nil {
 		return x.FolderId
@@ -1109,7 +1135,7 @@ const file_spaceone_api_dashboard_v1_public_dashboard_proto_rawDesc = "" +
 	"\x06Layout\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x121\n" +
 	"\aoptions\x18\x02 \x01(\v2\x17.google.protobuf.StructR\aoptions\x124\n" +
-	"\awidgets\x18\x03 \x01(\v2\x1a.google.protobuf.ListValueR\awidgets\"\xa6\x06\n" +
+	"\awidgets\x18\x03 \x01(\v2\x1a.google.protobuf.ListValueR\awidgets\"\xd0\x06\n" +
 	"\x1cCreatePublicDashboardRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12;\n" +
@@ -1126,8 +1152,9 @@ const file_spaceone_api_dashboard_v1_public_dashboard_proto_rawDesc = "" +
 	"\x0eresource_group\x18\x14 \x01(\x0e2E.spaceone.api.dashboard.v1.CreatePublicDashboardRequest.ResourceGroupR\rresourceGroup\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x16 \x01(\tR\tprojectId\x12\x1b\n" +
-	"\tfolder_id\x18\x17 \x01(\tR\bfolderId\"P\n" +
+	"project_id\x18\x16 \x01(\tR\tprojectId\x12(\n" +
+	"\x10project_group_id\x18\x17 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x18 \x01(\tR\bfolderId\"P\n" +
 	"\rResourceGroup\x12\x17\n" +
 	"\x13RESOURCE_GROUP_NONE\x10\x00\x12\n" +
 	"\n" +
@@ -1156,7 +1183,7 @@ const file_spaceone_api_dashboard_v1_public_dashboard_proto_rawDesc = "" +
 	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\x12?\n" +
 	"\x05scope\x18\x02 \x01(\x0e2).spaceone.api.dashboard.v1.DashboardScopeR\x05scope\";\n" +
 	"\x16PublicDashboardRequest\x12!\n" +
-	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\"\xb8\x02\n" +
+	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\"\xe2\x02\n" +
 	"\x14PublicDashboardQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12!\n" +
 	"\fdashboard_id\x18\x02 \x01(\tR\vdashboardId\x12\x12\n" +
@@ -1165,8 +1192,9 @@ const file_spaceone_api_dashboard_v1_public_dashboard_proto_rawDesc = "" +
 	"\x05scope\x18\x05 \x01(\x0e2).spaceone.api.dashboard.v1.DashboardScopeR\x05scope\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x16 \x01(\tR\tprojectId\x12\x1b\n" +
-	"\tfolder_id\x18\x17 \x01(\tR\bfolderId\"\x85\b\n" +
+	"project_id\x18\x16 \x01(\tR\tprojectId\x12(\n" +
+	"\x10project_group_id\x18\x17 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x18 \x01(\tR\bfolderId\"\xaf\b\n" +
 	"\x13PublicDashboardInfo\x12!\n" +
 	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -1188,8 +1216,9 @@ const file_spaceone_api_dashboard_v1_public_dashboard_proto_rawDesc = "" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x17 \x01(\tR\tprojectId\x12\x1b\n" +
-	"\tfolder_id\x18\x18 \x01(\tR\bfolderId\x12\x1d\n" +
+	"project_id\x18\x17 \x01(\tR\tprojectId\x12(\n" +
+	"\x10project_group_id\x18\x18 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x19 \x01(\tR\bfolderId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +

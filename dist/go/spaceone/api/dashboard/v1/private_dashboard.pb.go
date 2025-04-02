@@ -51,7 +51,9 @@ type CreatePrivateDashboardRequest struct {
 	// +optional
 	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	// +optional
-	FolderId      string `protobuf:"bytes,22,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId string `protobuf:"bytes,22,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
+	FolderId      string `protobuf:"bytes,23,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -159,6 +161,13 @@ func (x *CreatePrivateDashboardRequest) GetTags() *_struct.Struct {
 func (x *CreatePrivateDashboardRequest) GetWorkspaceId() string {
 	if x != nil {
 		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *CreatePrivateDashboardRequest) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
 	}
 	return ""
 }
@@ -421,7 +430,9 @@ type PrivateDashboardQuery struct {
 	// +optional
 	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	// +optional
-	FolderId      string `protobuf:"bytes,22,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId string `protobuf:"bytes,22,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
+	FolderId      string `protobuf:"bytes,23,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -484,6 +495,13 @@ func (x *PrivateDashboardQuery) GetWorkspaceId() string {
 	return ""
 }
 
+func (x *PrivateDashboardQuery) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
+	}
+	return ""
+}
+
 func (x *PrivateDashboardQuery) GetFolderId() string {
 	if x != nil {
 		return x.FolderId
@@ -508,7 +526,8 @@ type PrivateDashboardInfo struct {
 	DomainId        string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	WorkspaceId     string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	UserId          string                 `protobuf:"bytes,23,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	FolderId        string                 `protobuf:"bytes,24,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	ProjectGroupId  string                 `protobuf:"bytes,24,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	FolderId        string                 `protobuf:"bytes,25,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
 	CreatedAt       string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt       string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -650,6 +669,13 @@ func (x *PrivateDashboardInfo) GetUserId() string {
 	return ""
 }
 
+func (x *PrivateDashboardInfo) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
+	}
+	return ""
+}
+
 func (x *PrivateDashboardInfo) GetFolderId() string {
 	if x != nil {
 		return x.FolderId
@@ -771,7 +797,7 @@ var File_spaceone_api_dashboard_v1_private_dashboard_proto protoreflect.FileDesc
 
 const file_spaceone_api_dashboard_v1_private_dashboard_proto_rawDesc = "" +
 	"\n" +
-	"1spaceone/api/dashboard/v1/private_dashboard.proto\x12\x19spaceone.api.dashboard.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a0spaceone/api/dashboard/v1/public_dashboard.proto\"\xc8\x04\n" +
+	"1spaceone/api/dashboard/v1/private_dashboard.proto\x12\x19spaceone.api.dashboard.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a0spaceone/api/dashboard/v1/public_dashboard.proto\"\xf2\x04\n" +
 	"\x1dCreatePrivateDashboardRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12;\n" +
@@ -785,8 +811,9 @@ const file_spaceone_api_dashboard_v1_private_dashboard_proto_rawDesc = "" +
 	"\x06labels\x18\t \x01(\v2\x1a.google.protobuf.ListValueR\x06labels\x12+\n" +
 	"\x04tags\x18\n" +
 	" \x01(\v2\x17.google.protobuf.StructR\x04tags\x12!\n" +
-	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1b\n" +
-	"\tfolder_id\x18\x16 \x01(\tR\bfolderId\"\xc8\x04\n" +
+	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10project_group_id\x18\x16 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x17 \x01(\tR\bfolderId\"\xc8\x04\n" +
 	"\x1dUpdatePrivateDashboardRequest\x12!\n" +
 	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -806,13 +833,14 @@ const file_spaceone_api_dashboard_v1_private_dashboard_proto_rawDesc = "" +
 	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\x12\x1b\n" +
 	"\tfolder_id\x18\x15 \x01(\tR\bfolderId\"<\n" +
 	"\x17PrivateDashboardRequest\x12!\n" +
-	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\"\xc1\x01\n" +
+	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\"\xeb\x01\n" +
 	"\x15PrivateDashboardQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12!\n" +
 	"\fdashboard_id\x18\x02 \x01(\tR\vdashboardId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12!\n" +
-	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1b\n" +
-	"\tfolder_id\x18\x16 \x01(\tR\bfolderId\"\xf0\x05\n" +
+	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10project_group_id\x18\x16 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x17 \x01(\tR\bfolderId\"\x9a\x06\n" +
 	"\x14PrivateDashboardInfo\x12!\n" +
 	"\fdashboard_id\x18\x01 \x01(\tR\vdashboardId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -830,8 +858,9 @@ const file_spaceone_api_dashboard_v1_private_dashboard_proto_rawDesc = "" +
 	"\x04tags\x18\f \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x17\n" +
-	"\auser_id\x18\x17 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tfolder_id\x18\x18 \x01(\tR\bfolderId\x12\x1d\n" +
+	"\auser_id\x18\x17 \x01(\tR\x06userId\x12(\n" +
+	"\x10project_group_id\x18\x18 \x01(\tR\x0eprojectGroupId\x12\x1b\n" +
+	"\tfolder_id\x18\x19 \x01(\tR\bfolderId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +

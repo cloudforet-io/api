@@ -35,9 +35,11 @@ type CreatePrivateFolderRequest struct {
 	// +optional
 	Dashboards []*_struct.Struct `protobuf:"bytes,3,rep,name=dashboards,proto3" json:"dashboards,omitempty"`
 	// +optional
-	WorkspaceId   string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	WorkspaceId string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	// +optional
+	ProjectGroupId string `protobuf:"bytes,5,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CreatePrivateFolderRequest) Reset() {
@@ -94,6 +96,13 @@ func (x *CreatePrivateFolderRequest) GetDashboards() []*_struct.Struct {
 func (x *CreatePrivateFolderRequest) GetWorkspaceId() string {
 	if x != nil {
 		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *CreatePrivateFolderRequest) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
 	}
 	return ""
 }
@@ -213,9 +222,11 @@ type PrivateFolderQuery struct {
 	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	WorkspaceId   string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	WorkspaceId string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	// +optional
+	ProjectGroupId string `protobuf:"bytes,5,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *PrivateFolderQuery) Reset() {
@@ -276,18 +287,26 @@ func (x *PrivateFolderQuery) GetWorkspaceId() string {
 	return ""
 }
 
+func (x *PrivateFolderQuery) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
+	}
+	return ""
+}
+
 type PrivateFolderInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FolderId      string                 `protobuf:"bytes,1,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Tags          *_struct.Struct        `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
-	DomainId      string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	WorkspaceId   string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,23,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	FolderId       string                 `protobuf:"bytes,1,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`
+	Name           string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Tags           *_struct.Struct        `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId       string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	WorkspaceId    string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	UserId         string                 `protobuf:"bytes,23,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProjectGroupId string                 `protobuf:"bytes,24,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	CreatedAt      string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt      string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *PrivateFolderInfo) Reset() {
@@ -358,6 +377,13 @@ func (x *PrivateFolderInfo) GetWorkspaceId() string {
 func (x *PrivateFolderInfo) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *PrivateFolderInfo) GetProjectGroupId() string {
+	if x != nil {
+		return x.ProjectGroupId
 	}
 	return ""
 }
@@ -476,32 +502,35 @@ var File_spaceone_api_dashboard_v1_private_folder_proto protoreflect.FileDescrip
 
 const file_spaceone_api_dashboard_v1_private_folder_proto_rawDesc = "" +
 	"\n" +
-	".spaceone/api/dashboard/v1/private_folder.proto\x12\x19spaceone.api.dashboard.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\xb9\x01\n" +
+	".spaceone/api/dashboard/v1/private_folder.proto\x12\x19spaceone.api.dashboard.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\xe3\x01\n" +
 	"\x1aCreatePrivateFolderRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12+\n" +
 	"\x04tags\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04tags\x127\n" +
 	"\n" +
 	"dashboards\x18\x03 \x03(\v2\x17.google.protobuf.StructR\n" +
 	"dashboards\x12!\n" +
-	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\"z\n" +
+	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10project_group_id\x18\x05 \x01(\tR\x0eprojectGroupId\"z\n" +
 	"\x1aUpdatePrivateFolderRequest\x12\x1b\n" +
 	"\tfolder_id\x18\x01 \x01(\tR\bfolderId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
 	"\x04tags\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04tags\"3\n" +
 	"\x14PrivateFolderRequest\x12\x1b\n" +
-	"\tfolder_id\x18\x01 \x01(\tR\bfolderId\"\x9b\x01\n" +
+	"\tfolder_id\x18\x01 \x01(\tR\bfolderId\"\xc5\x01\n" +
 	"\x12PrivateFolderQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12\x1b\n" +
 	"\tfolder_id\x18\x02 \x01(\tR\bfolderId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12!\n" +
-	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\"\x88\x02\n" +
+	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10project_group_id\x18\x05 \x01(\tR\x0eprojectGroupId\"\xb2\x02\n" +
 	"\x11PrivateFolderInfo\x12\x1b\n" +
 	"\tfolder_id\x18\x01 \x01(\tR\bfolderId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
 	"\x04tags\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x17\n" +
-	"\auser_id\x18\x17 \x01(\tR\x06userId\x12\x1d\n" +
+	"\auser_id\x18\x17 \x01(\tR\x06userId\x12(\n" +
+	"\x10project_group_id\x18\x18 \x01(\tR\x0eprojectGroupId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
