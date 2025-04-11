@@ -642,8 +642,8 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	                      {"date": "2025-11", "limit": 2000.0},
 //	                      {"date": "2025-12", "limit": 2100.0}],
 //	   "time_unit": "MONTHLY",
-//	   "start": "2022-01",
-//	   "end": "2022-12",
+//	   "start": "2024-01",
+//	   "end": "2024-12",
 //	   "notification": {
 //	       "state": "ENABLED",
 //	       "plans": [
@@ -653,7 +653,7 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	           }
 //	           ],
 //	       "recipients": {
-//	           "users": ["wonny@cloudforet.io"]
+//	           "users": ["wonny@cloudforet.io", "octos@cloudforet.io"]
 //	       }
 //	   },
 //	   "tags": {},
@@ -661,7 +661,8 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	   "data_source_id": "ds-fcba92ca73b1"
 //	   "workspace_id": "workspace-1234567890",
 //	   "project_id": "project-1234567890",
-//	   "service_account_id": "service-account-1234567890"
+//	   "service_account_id": "service-account-1234567890",
+//	   "budget_manager_id": "wonny@cloudforet.io"
 //	}
 type CreateBudgetRequest struct {
 	state        protoimpl.MessageState `protogen:"open.v1"`
@@ -688,8 +689,10 @@ type CreateBudgetRequest struct {
 	ProjectId string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// +optional
 	ServiceAccountId string `protobuf:"bytes,23,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// +optional
+	BudgetManagerId string `protobuf:"bytes,24,opt,name=budget_manager_id,json=budgetManagerId,proto3" json:"budget_manager_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreateBudgetRequest) Reset() {
@@ -820,8 +823,16 @@ func (x *CreateBudgetRequest) GetServiceAccountId() string {
 	return ""
 }
 
+func (x *CreateBudgetRequest) GetBudgetManagerId() string {
+	if x != nil {
+		return x.BudgetManagerId
+	}
+	return ""
+}
+
 //	{
 //	   "budget_id": "budget-d51b6b6a9910",
+//	   "budget_manager_id": "wonny@cloudforet.io",
 //	   "name": "Cloudforet-Budget-test", "limit": 15000.0,
 //	   "planned_limits": [{"date": "2022-01", "limit": 500.0},
 //	                      {"date": "2022-02", "limit": 500.0},
@@ -849,9 +860,11 @@ type UpdateBudgetRequest struct {
 	// +optional
 	End string `protobuf:"bytes,6,opt,name=end,proto3" json:"end,omitempty"`
 	// +optional
-	Tags          *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Tags *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
+	// +optional
+	BudgetManagerId string `protobuf:"bytes,21,opt,name=budget_manager_id,json=budgetManagerId,proto3" json:"budget_manager_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *UpdateBudgetRequest) Reset() {
@@ -931,6 +944,13 @@ func (x *UpdateBudgetRequest) GetTags() *_struct.Struct {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *UpdateBudgetRequest) GetBudgetManagerId() string {
+	if x != nil {
+		return x.BudgetManagerId
+	}
+	return ""
 }
 
 //	{
@@ -1640,7 +1660,7 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\x10NotificationType\x12\x1a\n" +
 	"\x16NOTIFICATION_TYPE_NONE\x10\x00\x12\f\n" +
 	"\bCRITICAL\x10\x01\x12\v\n" +
-	"\aWARNING\x10\x02\"\xa8\x06\n" +
+	"\aWARNING\x10\x02\"\xd4\x06\n" +
 	"\x13CreateBudgetRequest\x12$\n" +
 	"\x0edata_source_id\x18\x01 \x01(\tR\fdataSourceId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -1657,7 +1677,8 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
 	"project_id\x18\x16 \x01(\tR\tprojectId\x12,\n" +
-	"\x12service_account_id\x18\x17 \x01(\tR\x10serviceAccountId\",\n" +
+	"\x12service_account_id\x18\x17 \x01(\tR\x10serviceAccountId\x12*\n" +
+	"\x11budget_manager_id\x18\x18 \x01(\tR\x0fbudgetManagerId\",\n" +
 	"\bTimeUnit\x12\b\n" +
 	"\x04NONE\x10\x00\x12\t\n" +
 	"\x05TOTAL\x10\x01\x12\v\n" +
@@ -1665,7 +1686,7 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\rResourceGroup\x12\x17\n" +
 	"\x13RESOURCE_GROUP_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\x85\x02\n" +
+	"\aPROJECT\x10\x02\"\xb1\x02\n" +
 	"\x13UpdateBudgetRequest\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -1673,7 +1694,8 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\x0eplanned_limits\x18\x04 \x03(\v2+.spaceone.api.cost_analysis.v1.PlannedLimitR\rplannedLimits\x12\x14\n" +
 	"\x05start\x18\x05 \x01(\tR\x05start\x12\x10\n" +
 	"\x03end\x18\x06 \x01(\tR\x03end\x12+\n" +
-	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\"\x92\x01\n" +
+	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\x12*\n" +
+	"\x11budget_manager_id\x18\x15 \x01(\tR\x0fbudgetManagerId\"\x92\x01\n" +
 	"\x1cSetBudgetNotificationRequest\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12U\n" +
 	"\fnotification\x18\x02 \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\",\n" +
