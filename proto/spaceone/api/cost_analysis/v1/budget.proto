@@ -75,20 +75,7 @@ message PlannedLimit {
 }
 
 message BudgetNotificationRecipients {
-    enum ServiceAccountManager {
-        SERVICE_ACCOUNT_MANAGER_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        WORKSPACE_OWNER = 1;
-        WORKSPACE_MEMBER = 2;
-    }
     repeated string users = 1;
-    repeated RoleType role_types = 2;
-    ServiceAccountManager service_account_manager = 3;
 
 }
 
@@ -139,7 +126,7 @@ message BudgetNotification {
 //    "time_unit": "MONTHLY",
 //    "start": "2022-01",
 //    "end": "2022-12",
-//    "notifications": {
+//    "notification": {
 //        "state": "ENABLED",
 //        "plans": [
 //            {
@@ -148,9 +135,7 @@ message BudgetNotification {
 //            }
 //            ],
 //        "recipients": {
-//            "users": ["wonny@cloudforet.io"],
-//            "role_types": [],
-//            "service_account_manager": "ENABLED",
+//            "users": ["wonny@cloudforet.io"]
 //        }
 //    },
 //    "tags": {},
@@ -183,7 +168,7 @@ message CreateBudgetRequest {
     string start = 7;
     string end = 8;
     // +optional
-    BudgetNotification notifications = 9;
+    BudgetNotification notification = 9;
     // +optional
     string currency = 10;
     // +optional
@@ -222,12 +207,16 @@ message UpdateBudgetRequest {
     // +optional
     repeated PlannedLimit planned_limits = 4;
     // +optional
-    google.protobuf.Struct tags = 5;
+    string start = 5;
+    // +optional
+    string end = 6;
+    // +optional
+    google.protobuf.Struct tags = 7;
 }
 
 //{
 //    "budget_id": "budget-4c8606da4521",
-//    "notifications":{
+//    "notification":{
 //        "state": "ENABLED",
 //        "plans": [
 //        {
@@ -239,15 +228,12 @@ message UpdateBudgetRequest {
 //            "unit": "PERCENT"
 //        }],
 //        "recipients": {
-//            "users": ["wonny@cloudforet.io"],
-//            "role_types": ["WORKSPACE_OWNER"],
-//            "service_account_manager": "ENABLED"
 //        }
 //    }
 //}
 message SetBudgetNotificationRequest {
     string budget_id = 1;
-    BudgetNotification notifications = 2;
+    BudgetNotification notification = 2;
 }
 
 //{
@@ -353,7 +339,7 @@ message BudgetQuery {
 //        "time_unit": "MONTHLY",
 //        "start": "2025-01",
 //        "end": "2025-12",
-//        "notifications": {
+//        "notification": {
 //            "state": "ENABLED",
 //            "plans": [
 //                {
@@ -362,11 +348,10 @@ message BudgetQuery {
 //                }
 //            ],
 //            "recipients": {
-//                "users": ["wonny@cloudforet.io"],
-//                "role_types": ["WORKSPACE_OWNER"],
-//                "service_account_manager": "ENABLED"
+//                "users": ["wonny@cloudforet.io"]
 //            }
 //        },
+//        "utilization_rate": 20.0,
 //        "tags": {},
 //        "data_source_id": "ds-fcba92ca73b1",
 //        "service_account_id": "sa-1234567890",
@@ -396,7 +381,8 @@ message BudgetInfo {
     TimeUnit time_unit = 6;
     string start = 7;
     string end = 8;
-    BudgetNotification notifications = 9;
+    BudgetNotification notification = 9;
+    double utilization_rate= 10;
     google.protobuf.Struct tags = 19;
 
     ResourceGroup resource_group = 20;
@@ -404,7 +390,8 @@ message BudgetInfo {
     string workspace_id = 22;
     string project_id = 23;
     string service_account_id= 24;
-    string data_source_id = 25;
+    string budget_manager_id = 25;
+
 
     string created_at = 31;
     string updated_at = 32;
