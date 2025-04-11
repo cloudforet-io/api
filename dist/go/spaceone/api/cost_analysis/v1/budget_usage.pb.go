@@ -350,7 +350,6 @@ func (x *BudgetUsageInfo) GetUpdatedAt() string {
 //	               "service_account_id" : "sa-1b2b3b4b5b6b",
 //	               "workspace_id": "workspace-1b2b3b4b5b6b",
 //	               "project_id": "project-1b2b3b4b5b6b",
-//	               "data_source_id": "data-source-1b2b3b4b5b6b",
 //	               "domain_id": "domain-58010aa2e451",
 //	               "updated_at": "2022-07-19T04:26:08.099Z"
 //	           },
@@ -364,7 +363,6 @@ func (x *BudgetUsageInfo) GetUpdatedAt() string {
 //	               "service_account_id" : "sa-1b2b3b4b5b6b",
 //	               "project_id": "project-1b2b3b4b5b6b",
 //	               "workspace_id": "workspace-1b2b3b4b5b6b",
-//	               "data_source_id": "data-source-1b2b3b4b5b6b",
 //	               "domain_id": "domain-58010aa2e451",
 //	               "updated_at": "2022-07-19T04:26:08.105Z"
 //	           }
@@ -444,9 +442,7 @@ type BudgetUsageAnalyzeQuery struct {
 	state protoimpl.MessageState     `protogen:"open.v1"`
 	Query *v2.TimeSeriesAnalyzeQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
-	BudgetId string `protobuf:"bytes,2,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
-	// +optional
-	DataSourceId  string `protobuf:"bytes,3,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	BudgetId      string `protobuf:"bytes,2,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -495,20 +491,11 @@ func (x *BudgetUsageAnalyzeQuery) GetBudgetId() string {
 	return ""
 }
 
-func (x *BudgetUsageAnalyzeQuery) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
-	}
-	return ""
-}
-
 type BudgetUsageStatQuery struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Query *v2.StatisticsQuery    `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
-	BudgetId string `protobuf:"bytes,2,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
-	// +optional
-	DataSourceId  string `protobuf:"bytes,3,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	BudgetId      string `protobuf:"bytes,2,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -557,13 +544,6 @@ func (x *BudgetUsageStatQuery) GetBudgetId() string {
 	return ""
 }
 
-func (x *BudgetUsageStatQuery) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
-	}
-	return ""
-}
-
 var File_spaceone_api_cost_analysis_v1_budget_usage_proto protoreflect.FileDescriptor
 
 const file_spaceone_api_cost_analysis_v1_budget_usage_proto_rawDesc = "" +
@@ -602,15 +582,13 @@ const file_spaceone_api_cost_analysis_v1_budget_usage_proto_rawDesc = "" +
 	"\x10BudgetUsagesInfo\x12H\n" +
 	"\aresults\x18\x01 \x03(\v2..spaceone.api.cost_analysis.v1.BudgetUsageInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xa0\x01\n" +
+	"totalCount\"z\n" +
 	"\x17BudgetUsageAnalyzeQuery\x12B\n" +
 	"\x05query\x18\x01 \x01(\v2,.spaceone.api.core.v2.TimeSeriesAnalyzeQueryR\x05query\x12\x1b\n" +
-	"\tbudget_id\x18\x02 \x01(\tR\bbudgetId\x12$\n" +
-	"\x0edata_source_id\x18\x03 \x01(\tR\fdataSourceId\"\x96\x01\n" +
+	"\tbudget_id\x18\x02 \x01(\tR\bbudgetId\"p\n" +
 	"\x14BudgetUsageStatQuery\x12;\n" +
 	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query\x12\x1b\n" +
-	"\tbudget_id\x18\x02 \x01(\tR\bbudgetId\x12$\n" +
-	"\x0edata_source_id\x18\x03 \x01(\tR\fdataSourceId2\xbf\x03\n" +
+	"\tbudget_id\x18\x02 \x01(\tR\bbudgetId2\xbf\x03\n" +
 	"\vBudgetUsage\x12\x98\x01\n" +
 	"\x04list\x12/.spaceone.api.cost_analysis.v1.BudgetUsageQuery\x1a/.spaceone.api.cost_analysis.v1.BudgetUsagesInfo\".\x82\xd3\xe4\x93\x02(:\x01*\"#/cost-analysis/v1/budget-usage/list\x12\x8d\x01\n" +
 	"\aanalyze\x126.spaceone.api.cost_analysis.v1.BudgetUsageAnalyzeQuery\x1a\x17.google.protobuf.Struct\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/cost-analysis/v1/budget-usage/analyze\x12\x84\x01\n" +
