@@ -641,9 +641,11 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	                      {"date": "2025-10", "limit": 1900.0},
 //	                      {"date": "2025-11", "limit": 2000.0},
 //	                      {"date": "2025-12", "limit": 2100.0}],
+//	   "currency": "USD",
 //	   "time_unit": "MONTHLY",
-//	   "start": "2024-01",
-//	   "end": "2024-12",
+//	   "start": "2025-01",
+//	   "end": "2025-12",
+//	   "budget_year": "2025",
 //	   "notification": {
 //	       "state": "ENABLED",
 //	       "plans": [
@@ -658,30 +660,31 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	   },
 //	   "tags": {},
 //	   "resource_group" : "PROJECT",
-//	   "data_source_id": "ds-fcba92ca73b1"
 //	   "workspace_id": "workspace-1234567890",
 //	   "project_id": "project-1234567890",
 //	   "service_account_id": "service-account-1234567890",
 //	   "budget_manager_id": "wonny@cloudforet.io"
 //	}
 type CreateBudgetRequest struct {
-	state        protoimpl.MessageState `protogen:"open.v1"`
-	DataSourceId string                 `protobuf:"bytes,1,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Limit float64 `protobuf:"fixed64,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	// +optional
-	Limit float64 `protobuf:"fixed64,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	PlannedLimits []*PlannedLimit              `protobuf:"bytes,3,rep,name=planned_limits,json=plannedLimits,proto3" json:"planned_limits,omitempty"`
+	TimeUnit      CreateBudgetRequest_TimeUnit `protobuf:"varint,4,opt,name=time_unit,json=timeUnit,proto3,enum=spaceone.api.cost_analysis.v1.CreateBudgetRequest_TimeUnit" json:"time_unit,omitempty"`
+	// Start date of the budget, e.g. 2025-01
+	Start string `protobuf:"bytes,5,opt,name=start,proto3" json:"start,omitempty"`
+	// End date of the budget, e.g. 2025-12
+	End string `protobuf:"bytes,6,opt,name=end,proto3" json:"end,omitempty"`
+	// Year of the budget, e.g. 2025, budget_year should be same as the year of start or end date
+	BudgetYear string `protobuf:"bytes,7,opt,name=budget_year,json=budgetYear,proto3" json:"budget_year,omitempty"`
 	// +optional
-	PlannedLimits []*PlannedLimit              `protobuf:"bytes,4,rep,name=planned_limits,json=plannedLimits,proto3" json:"planned_limits,omitempty"`
-	TimeUnit      CreateBudgetRequest_TimeUnit `protobuf:"varint,6,opt,name=time_unit,json=timeUnit,proto3,enum=spaceone.api.cost_analysis.v1.CreateBudgetRequest_TimeUnit" json:"time_unit,omitempty"`
-	Start         string                       `protobuf:"bytes,7,opt,name=start,proto3" json:"start,omitempty"`
-	End           string                       `protobuf:"bytes,8,opt,name=end,proto3" json:"end,omitempty"`
+	Notification *BudgetNotification `protobuf:"bytes,8,opt,name=notification,proto3" json:"notification,omitempty"`
+	// Currency of the budget, e.g. USD, KRW, JPY
+	Currency string `protobuf:"bytes,9,opt,name=currency,proto3" json:"currency,omitempty"`
 	// +optional
-	Notification *BudgetNotification `protobuf:"bytes,9,opt,name=notification,proto3" json:"notification,omitempty"`
-	// +optional
-	Currency string `protobuf:"bytes,10,opt,name=currency,proto3" json:"currency,omitempty"`
-	// +optional
-	Tags          *_struct.Struct                   `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
+	Tags          *_struct.Struct                   `protobuf:"bytes,19,opt,name=tags,proto3" json:"tags,omitempty"`
 	ResourceGroup CreateBudgetRequest_ResourceGroup `protobuf:"varint,20,opt,name=resource_group,json=resourceGroup,proto3,enum=spaceone.api.cost_analysis.v1.CreateBudgetRequest_ResourceGroup" json:"resource_group,omitempty"`
 	// +optional
 	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
@@ -725,13 +728,6 @@ func (*CreateBudgetRequest) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_budget_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CreateBudgetRequest) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
-	}
-	return ""
-}
-
 func (x *CreateBudgetRequest) GetName() string {
 	if x != nil {
 		return x.Name
@@ -770,6 +766,13 @@ func (x *CreateBudgetRequest) GetStart() string {
 func (x *CreateBudgetRequest) GetEnd() string {
 	if x != nil {
 		return x.End
+	}
+	return ""
+}
+
+func (x *CreateBudgetRequest) GetBudgetYear() string {
+	if x != nil {
+		return x.BudgetYear
 	}
 	return ""
 }
@@ -843,6 +846,7 @@ func (x *CreateBudgetRequest) GetBudgetManagerId() string {
 //	                      {"date": "2022-07", "limit": 500.0},
 //	                      {"date": "2022-08", "limit": 500.0},
 //	                      {"date": "2022-09", "limit": 500.0}],
+//	   "start": "2022-01",
 //	   "end": "2022-12",
 //	   "tags": {}
 //	}
@@ -860,7 +864,9 @@ type UpdateBudgetRequest struct {
 	// +optional
 	End string `protobuf:"bytes,6,opt,name=end,proto3" json:"end,omitempty"`
 	// +optional
-	Tags *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
+	BudgetYear string `protobuf:"bytes,7,opt,name=budget_year,json=budgetYear,proto3" json:"budget_year,omitempty"`
+	// +optional
+	Tags *_struct.Struct `protobuf:"bytes,8,opt,name=tags,proto3" json:"tags,omitempty"`
 	// +optional
 	BudgetManagerId string `protobuf:"bytes,21,opt,name=budget_manager_id,json=budgetManagerId,proto3" json:"budget_manager_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -935,6 +941,13 @@ func (x *UpdateBudgetRequest) GetStart() string {
 func (x *UpdateBudgetRequest) GetEnd() string {
 	if x != nil {
 		return x.End
+	}
+	return ""
+}
+
+func (x *UpdateBudgetRequest) GetBudgetYear() string {
+	if x != nil {
+		return x.BudgetYear
 	}
 	return ""
 }
@@ -1098,10 +1111,8 @@ type BudgetQuery struct {
 	ProjectId string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// +optional
 	ServiceAccountId string `protobuf:"bytes,23,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	// +optional
-	DataSourceId  string `protobuf:"bytes,24,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *BudgetQuery) Reset() {
@@ -1183,13 +1194,6 @@ func (x *BudgetQuery) GetServiceAccountId() string {
 	return ""
 }
 
-func (x *BudgetQuery) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
-	}
-	return ""
-}
-
 //	{
 //	       "budget_id": "budget-d51b6b6a9910",
 //	       "name": "Cloudforet-Budget",
@@ -1248,6 +1252,7 @@ func (x *BudgetQuery) GetDataSourceId() string {
 //	       "time_unit": "MONTHLY",
 //	       "start": "2025-01",
 //	       "end": "2025-12",
+//	       "budget_year": "2025",
 //	       "notification": {
 //	           "state": "ENABLED",
 //	           "plans": [
@@ -1262,7 +1267,6 @@ func (x *BudgetQuery) GetDataSourceId() string {
 //	       },
 //	       "utilization_rate": 20.0,
 //	       "tags": {},
-//	       "data_source_id": "ds-fcba92ca73b1",
 //	       "service_account_id": "sa-1234567890",
 //	       "workspace_id": "workspace-1234567890",
 //	       "domain_id": "domain-58010aa2e451",
@@ -1279,8 +1283,9 @@ type BudgetInfo struct {
 	TimeUnit         BudgetInfo_TimeUnit      `protobuf:"varint,6,opt,name=time_unit,json=timeUnit,proto3,enum=spaceone.api.cost_analysis.v1.BudgetInfo_TimeUnit" json:"time_unit,omitempty"`
 	Start            string                   `protobuf:"bytes,7,opt,name=start,proto3" json:"start,omitempty"`
 	End              string                   `protobuf:"bytes,8,opt,name=end,proto3" json:"end,omitempty"`
-	Notification     *BudgetNotification      `protobuf:"bytes,9,opt,name=notification,proto3" json:"notification,omitempty"`
-	UtilizationRate  float64                  `protobuf:"fixed64,10,opt,name=utilization_rate,json=utilizationRate,proto3" json:"utilization_rate,omitempty"`
+	BudgetYear       string                   `protobuf:"bytes,9,opt,name=budget_year,json=budgetYear,proto3" json:"budget_year,omitempty"`
+	Notification     *BudgetNotification      `protobuf:"bytes,10,opt,name=notification,proto3" json:"notification,omitempty"`
+	UtilizationRate  float64                  `protobuf:"fixed64,11,opt,name=utilization_rate,json=utilizationRate,proto3" json:"utilization_rate,omitempty"`
 	Tags             *_struct.Struct          `protobuf:"bytes,19,opt,name=tags,proto3" json:"tags,omitempty"`
 	ResourceGroup    BudgetInfo_ResourceGroup `protobuf:"varint,20,opt,name=resource_group,json=resourceGroup,proto3,enum=spaceone.api.cost_analysis.v1.BudgetInfo_ResourceGroup" json:"resource_group,omitempty"`
 	DomainId         string                   `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
@@ -1376,6 +1381,13 @@ func (x *BudgetInfo) GetStart() string {
 func (x *BudgetInfo) GetEnd() string {
 	if x != nil {
 		return x.End
+	}
+	return ""
+}
+
+func (x *BudgetInfo) GetBudgetYear() string {
+	if x != nil {
+		return x.BudgetYear
 	}
 	return ""
 }
@@ -1526,7 +1538,6 @@ func (x *BudgetInfo) GetUpdatedAt() string {
 //	               "end": "2022-12",
 //	               "tags": {},
 //	               "project_group_id": "pg-812c90990877",
-//	               "data_source_id": "ds-fcba92ca73b1",
 //	               "domain_id": "domain-58010aa2e451",
 //	               "created_at": "2022-04-12T06:09:56.917Z",
 //	               "updated_at": "2022-04-12T06:09:56.917Z"
@@ -1660,19 +1671,19 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\x10NotificationType\x12\x1a\n" +
 	"\x16NOTIFICATION_TYPE_NONE\x10\x00\x12\f\n" +
 	"\bCRITICAL\x10\x01\x12\v\n" +
-	"\aWARNING\x10\x02\"\xd4\x06\n" +
-	"\x13CreateBudgetRequest\x12$\n" +
-	"\x0edata_source_id\x18\x01 \x01(\tR\fdataSourceId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x01R\x05limit\x12R\n" +
-	"\x0eplanned_limits\x18\x04 \x03(\v2+.spaceone.api.cost_analysis.v1.PlannedLimitR\rplannedLimits\x12X\n" +
-	"\ttime_unit\x18\x06 \x01(\x0e2;.spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnitR\btimeUnit\x12\x14\n" +
-	"\x05start\x18\a \x01(\tR\x05start\x12\x10\n" +
-	"\x03end\x18\b \x01(\tR\x03end\x12U\n" +
-	"\fnotification\x18\t \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\x12\x1a\n" +
-	"\bcurrency\x18\n" +
-	" \x01(\tR\bcurrency\x12+\n" +
-	"\x04tags\x18\v \x01(\v2\x17.google.protobuf.StructR\x04tags\x12g\n" +
+	"\aWARNING\x10\x02\"\xcf\x06\n" +
+	"\x13CreateBudgetRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x01R\x05limit\x12R\n" +
+	"\x0eplanned_limits\x18\x03 \x03(\v2+.spaceone.api.cost_analysis.v1.PlannedLimitR\rplannedLimits\x12X\n" +
+	"\ttime_unit\x18\x04 \x01(\x0e2;.spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnitR\btimeUnit\x12\x14\n" +
+	"\x05start\x18\x05 \x01(\tR\x05start\x12\x10\n" +
+	"\x03end\x18\x06 \x01(\tR\x03end\x12\x1f\n" +
+	"\vbudget_year\x18\a \x01(\tR\n" +
+	"budgetYear\x12U\n" +
+	"\fnotification\x18\b \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\x12\x1a\n" +
+	"\bcurrency\x18\t \x01(\tR\bcurrency\x12+\n" +
+	"\x04tags\x18\x13 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12g\n" +
 	"\x0eresource_group\x18\x14 \x01(\x0e2@.spaceone.api.cost_analysis.v1.CreateBudgetRequest.ResourceGroupR\rresourceGroup\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
@@ -1686,21 +1697,23 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\rResourceGroup\x12\x17\n" +
 	"\x13RESOURCE_GROUP_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\xb1\x02\n" +
+	"\aPROJECT\x10\x02\"\xd2\x02\n" +
 	"\x13UpdateBudgetRequest\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x01R\x05limit\x12R\n" +
 	"\x0eplanned_limits\x18\x04 \x03(\v2+.spaceone.api.cost_analysis.v1.PlannedLimitR\rplannedLimits\x12\x14\n" +
 	"\x05start\x18\x05 \x01(\tR\x05start\x12\x10\n" +
-	"\x03end\x18\x06 \x01(\tR\x03end\x12+\n" +
-	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\x12*\n" +
+	"\x03end\x18\x06 \x01(\tR\x03end\x12\x1f\n" +
+	"\vbudget_year\x18\a \x01(\tR\n" +
+	"budgetYear\x12+\n" +
+	"\x04tags\x18\b \x01(\v2\x17.google.protobuf.StructR\x04tags\x12*\n" +
 	"\x11budget_manager_id\x18\x15 \x01(\tR\x0fbudgetManagerId\"\x92\x01\n" +
 	"\x1cSetBudgetNotificationRequest\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12U\n" +
 	"\fnotification\x18\x02 \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\",\n" +
 	"\rBudgetRequest\x12\x1b\n" +
-	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\"\x87\x03\n" +
+	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\"\xe1\x02\n" +
 	"\vBudgetQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12\x1b\n" +
 	"\tbudget_id\x18\x02 \x01(\tR\bbudgetId\x12\x12\n" +
@@ -1709,12 +1722,11 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
 	"project_id\x18\x16 \x01(\tR\tprojectId\x12,\n" +
-	"\x12service_account_id\x18\x17 \x01(\tR\x10serviceAccountId\x12$\n" +
-	"\x0edata_source_id\x18\x18 \x01(\tR\fdataSourceId\",\n" +
+	"\x12service_account_id\x18\x17 \x01(\tR\x10serviceAccountId\",\n" +
 	"\bTimeUnit\x12\b\n" +
 	"\x04NONE\x10\x00\x12\t\n" +
 	"\x05TOTAL\x10\x01\x12\v\n" +
-	"\aMONTHLY\x10\x02\"\xb6\a\n" +
+	"\aMONTHLY\x10\x02\"\xd7\a\n" +
 	"\n" +
 	"BudgetInfo\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12\x12\n" +
@@ -1724,10 +1736,12 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12O\n" +
 	"\ttime_unit\x18\x06 \x01(\x0e22.spaceone.api.cost_analysis.v1.BudgetInfo.TimeUnitR\btimeUnit\x12\x14\n" +
 	"\x05start\x18\a \x01(\tR\x05start\x12\x10\n" +
-	"\x03end\x18\b \x01(\tR\x03end\x12U\n" +
-	"\fnotification\x18\t \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\x12)\n" +
-	"\x10utilization_rate\x18\n" +
-	" \x01(\x01R\x0futilizationRate\x12+\n" +
+	"\x03end\x18\b \x01(\tR\x03end\x12\x1f\n" +
+	"\vbudget_year\x18\t \x01(\tR\n" +
+	"budgetYear\x12U\n" +
+	"\fnotification\x18\n" +
+	" \x01(\v21.spaceone.api.cost_analysis.v1.BudgetNotificationR\fnotification\x12)\n" +
+	"\x10utilization_rate\x18\v \x01(\x01R\x0futilizationRate\x12+\n" +
 	"\x04tags\x18\x13 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12^\n" +
 	"\x0eresource_group\x18\x14 \x01(\x0e27.spaceone.api.cost_analysis.v1.BudgetInfo.ResourceGroupR\rresourceGroup\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +

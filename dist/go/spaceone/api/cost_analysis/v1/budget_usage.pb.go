@@ -91,9 +91,7 @@ type BudgetUsageQuery struct {
 	// +optional
 	ServiceAccountId string `protobuf:"bytes,24,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
 	// +optional
-	BudgetId string `protobuf:"bytes,25,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
-	// +optional
-	DataSourceId  string `protobuf:"bytes,26,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	BudgetId      string `protobuf:"bytes,25,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -177,13 +175,6 @@ func (x *BudgetUsageQuery) GetBudgetId() string {
 	return ""
 }
 
-func (x *BudgetUsageQuery) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
-	}
-	return ""
-}
-
 //	{
 //	   "budget_id": "budget-abb377eb9e8b",
 //	   "name": "Cloudforet-Budget3",
@@ -191,7 +182,6 @@ func (x *BudgetUsageQuery) GetDataSourceId() string {
 //	   "cost": 7671.164,
 //	   "limit": 10000.0,
 //	   "currency": "USD",
-//	   "data_source_id": "data-source-1b2b3b4b5b6b",
 //	   "service_account_id": "sa-1b2b3b4b5b6b",
 //	   "project_id": "project-1b2b3b4b5b6b",
 //	   "workspace_id": "workspace-1b2b3b4b5b6b",
@@ -211,7 +201,6 @@ type BudgetUsageInfo struct {
 	WorkspaceId      string                        `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	ProjectId        string                        `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	ServiceAccountId string                        `protobuf:"bytes,24,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	DataSourceId     string                        `protobuf:"bytes,25,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
 	UpdatedAt        string                        `protobuf:"bytes,31,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -320,13 +309,6 @@ func (x *BudgetUsageInfo) GetProjectId() string {
 func (x *BudgetUsageInfo) GetServiceAccountId() string {
 	if x != nil {
 		return x.ServiceAccountId
-	}
-	return ""
-}
-
-func (x *BudgetUsageInfo) GetDataSourceId() string {
-	if x != nil {
-		return x.DataSourceId
 	}
 	return ""
 }
@@ -548,7 +530,7 @@ var File_spaceone_api_cost_analysis_v1_budget_usage_proto protoreflect.FileDescr
 
 const file_spaceone_api_cost_analysis_v1_budget_usage_proto_rawDesc = "" +
 	"\n" +
-	"0spaceone/api/cost_analysis/v1/budget_usage.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\xa0\x02\n" +
+	"0spaceone/api/cost_analysis/v1/budget_usage.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\xfa\x01\n" +
 	"\x10BudgetUsageQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -557,8 +539,7 @@ const file_spaceone_api_cost_analysis_v1_budget_usage_proto_rawDesc = "" +
 	"\n" +
 	"project_id\x18\x17 \x01(\tR\tprojectId\x12,\n" +
 	"\x12service_account_id\x18\x18 \x01(\tR\x10serviceAccountId\x12\x1b\n" +
-	"\tbudget_id\x18\x19 \x01(\tR\bbudgetId\x12$\n" +
-	"\x0edata_source_id\x18\x1a \x01(\tR\fdataSourceId\"\x99\x04\n" +
+	"\tbudget_id\x18\x19 \x01(\tR\bbudgetId\"\xf3\x03\n" +
 	"\x0fBudgetUsageInfo\x12\x1b\n" +
 	"\tbudget_id\x18\x01 \x01(\tR\bbudgetId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -571,8 +552,7 @@ const file_spaceone_api_cost_analysis_v1_budget_usage_proto_rawDesc = "" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
 	"project_id\x18\x17 \x01(\tR\tprojectId\x12,\n" +
-	"\x12service_account_id\x18\x18 \x01(\tR\x10serviceAccountId\x12$\n" +
-	"\x0edata_source_id\x18\x19 \x01(\tR\fdataSourceId\x12\x1d\n" +
+	"\x12service_account_id\x18\x18 \x01(\tR\x10serviceAccountId\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\x1f \x01(\tR\tupdatedAt\"D\n" +
 	"\rResourceGroup\x12\x17\n" +
