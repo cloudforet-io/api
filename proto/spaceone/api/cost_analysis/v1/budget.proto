@@ -75,7 +75,14 @@ message PlannedLimit {
 }
 
 message BudgetNotificationRecipients {
+    enum BudgetManagerNotification {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
     repeated string users = 1;
+    BudgetManagerNotification budget_manager_notification = 2;
+
 
 }
 
@@ -95,12 +102,6 @@ message BudgetNotification {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
-    }
-
-    enum NotificationType {
-        NOTIFICATION_TYPE_NONE = 0;
-        CRITICAL = 1;
-        WARNING = 2;
     }
 
     BudgetNotificationState state = 1;
@@ -137,7 +138,8 @@ message BudgetNotification {
 //            }
 //            ],
 //        "recipients": {
-//            "users": ["wonny@cloudforet.io", "octos@cloudforet.io"]
+//            "users": ["wonny@cloudforet.io", "octos@cloudforet.io"],
+//            "budget_manager_notification": "ENABLED"
 //        }
 //    },
 //    "tags": {},
@@ -193,23 +195,26 @@ message CreateBudgetRequest {
 //    "budget_id": "budget-d51b6b6a9910",
 //    "budget_manager_id": "wonny@cloudforet.io",
 //    "name": "Cloudforet-Budget-test", "limit": 15000.0,
-//    "planned_limits": [{"date": "2022-01", "limit": 500.0},
-//                       {"date": "2022-02", "limit": 500.0},
-//                       {"date": "2022-03", "limit": 500.0},
-//                       {"date": "2022-04", "limit": 500.0},
-//                       {"date": "2022-05", "limit": 500.0},
-//                       {"date": "2022-06", "limit": 500.0},
-//                       {"date": "2022-07", "limit": 500.0},
-//                       {"date": "2022-08", "limit": 500.0},
-//                       {"date": "2022-09", "limit": 500.0}],
-//    "start": "2022-01",
-//    "end": "2022-12",
+//    "planned_limits": [{"date": "2025-01", "limit": 500.0},
+//                       {"date": "2025-02", "limit": 500.0},
+//                       {"date": "2025-03", "limit": 500.0},
+//                       {"date": "2025-04", "limit": 500.0},
+//                       {"date": "2025-05", "limit": 500.0},
+//                       {"date": "2025-06", "limit": 500.0},
+//                       {"date": "2025-07", "limit": 500.0},
+//                       {"date": "2025-08", "limit": 500.0},
+//                       {"date": "2025-09", "limit": 500.0}],
+//    "limit": 15000.0,
+//    "budget_year": "2025",
+//    "start": "2025-01",
+//    "end": "2025-12",
 //    "tags": {}
 //}
 message UpdateBudgetRequest {
     string budget_id = 1;
     // +optional
     string name = 2;
+    // Only `TOTAL` time_unit budget can be updated
     // +optional
     double limit = 3;
     // +optional
@@ -240,6 +245,8 @@ message UpdateBudgetRequest {
 //            "unit": "PERCENT"
 //        }],
 //        "recipients": {
+//            "users": ["wonny@cloudforet.io"],
+//            "budget_manager_notification": "ENABLED"
 //        }
 //    }
 //}
@@ -359,7 +366,8 @@ message BudgetQuery {
 //                }
 //            ],
 //            "recipients": {
-//                "users": ["wonny@cloudforet.io"]
+//                "users": ["wonny@cloudforet.io"],
+//                "budget_manager_notification": "ENABLED"
 //            }
 //        },
 //        "utilization_rate": 20.0,
@@ -416,70 +424,68 @@ message BudgetInfo {
 //                "limit": 18600.0,
 //                "planned_limits": [
 //                    {
-//                        "date": "2022-01",
+//                        "date": "2025-01",
 //                        "limit": 1000.0
 //                    },
 //                    {
-//                        "date": "2022-02",
+//                        "date": "2025-02",
 //                        "limit": 1100.0
 //                    },
 //                    {
-//                        "date": "2022-03",
+//                        "date": "2025-03",
 //                        "limit": 1200.0
 //                    },
 //                    {
-//                        "date": "2022-04",
+//                        "date": "2025-04",
 //                        "limit": 1300.0
 //                    },
 //                    {
-//                        "date": "2022-05",
+//                        "date": "2025-05",
 //                        "limit": 1400.0
 //                    },
 //                    {
-//                        "date": "2022-06",
+//                        "date": "2025-06",
 //                        "limit": 1500.0
 //                    },
 //                    {
-//                        "date": "2022-07",
+//                        "date": "2025-07",
 //                        "limit": 1600.0
 //                    },
 //                    {
-//                        "date": "2022-08",
+//                        "date": "2025-08",
 //                        "limit": 1700.0
 //                    },
 //                    {
-//                        "date": "2022-09",
+//                        "date": "2025-09",
 //                        "limit": 1800.0
 //                    },
 //                    {
-//                        "date": "2022-10",
+//                        "date": "2025-10",
 //                        "limit": 1900.0
 //                    },
 //                    {
-//                        "date": "2022-11",
+//                        "date": "2025-11",
 //                        "limit": 2000.0
 //                    },
 //                    {
-//                        "date": "2022-12",
+//                        "date": "2025-12",
 //                        "limit": 2100.0
 //                    }
 //                ],
 //                "currency": "USD",
-//                "provider_filter": {
-//                    "state": "ENABLED",
-//                    "providers": [
-//                        "aws",
-//                        "google_cloud"
-//                    ]
-//                },
 //                "time_unit": "MONTHLY",
-//                "start": "2022-01",
-//                "end": "2022-12",
+//                "start": "2025-01",
+//                "end": "2025-12",
 //                "tags": {},
-//                "project_group_id": "pg-812c90990877",
+//                "utilization_rate": 20.0,
+//                "budget_year": "2025",
+//                "resource_group": "PROJECT",
+//                "service_account_id": "sa-1234567890",
+//                "project_id": "project-1234567890",
+//                "workspace_id": "workspace-1234567890",
 //                "domain_id": "domain-58010aa2e451",
-//                "created_at": "2022-04-12T06:09:56.917Z",
-//                "updated_at": "2022-04-12T06:09:56.917Z"
+//                "created_at": "2025-04-12T06:09:56.917Z",
+//                "updated_at": "2025-04-12T06:09:56.917Z"
 //            }
 //        ],
 //        "total_count": 6
