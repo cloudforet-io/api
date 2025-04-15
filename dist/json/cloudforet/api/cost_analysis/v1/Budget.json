@@ -79,29 +79,6 @@
           ]
         },
         {
-          "name": "NotificationType",
-          "longName": "BudgetNotification.NotificationType",
-          "fullName": "spaceone.api.cost_analysis.v1.BudgetNotification.NotificationType",
-          "description": "",
-          "values": [
-            {
-              "name": "NOTIFICATION_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "CRITICAL",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "WARNING",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "Unit",
           "longName": "BudgetNotificationPlan.Unit",
           "fullName": "spaceone.api.cost_analysis.v1.BudgetNotificationPlan.Unit",
@@ -119,6 +96,29 @@
             },
             {
               "name": "ACTUAL_COST",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "BudgetManagerNotification",
+          "longName": "BudgetNotificationRecipients.BudgetManagerNotification",
+          "fullName": "spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.BudgetManagerNotification",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
               "number": "2",
               "description": ""
             }
@@ -200,7 +200,7 @@
           "name": "BudgetInfo",
           "longName": "BudgetInfo",
           "fullName": "spaceone.api.cost_analysis.v1.BudgetInfo",
-          "description": "{\n       \"budget_id\": \"budget-d51b6b6a9910\",\n       \"name\": \"Cloudforet-Budget\",\n       \"limit\": 18600.0,\n       \"planned_limits\": [\n           {\n               \"date\": \"2025-01\",\n               \"limit\": 1000.0\n           },\n           {\n               \"date\": \"2025-02\",\n               \"limit\": 1100.0\n           },\n           {\n               \"date\": \"2025-03\",\n               \"limit\": 1200.0\n           },\n           {\n               \"date\": \"2025-04\",\n               \"limit\": 1300.0\n           },\n           {\n               \"date\": \"2025-05\",\n               \"limit\": 1400.0\n           },\n           {\n               \"date\": \"2025-06\",\n               \"limit\": 1500.0\n           },\n           {\n               \"date\": \"2025-07\",\n               \"limit\": 1600.0\n           },\n           {\n               \"date\": \"2025-08\",\n               \"limit\": 1700.0\n           },\n           {\n               \"date\": \"2025-09\",\n               \"limit\": 1800.0\n           },\n           {\n               \"date\": \"2025-10\",\n               \"limit\": 1900.0\n           },\n           {\n               \"date\": \"2025-11\",\n               \"limit\": 2000.0\n           },\n           {\n               \"date\": \"2025-12\",\n               \"limit\": 2100.0\n           }\n       ],\n       \"currency\": \"USD\",\n       \"time_unit\": \"MONTHLY\",\n       \"start\": \"2025-01\",\n       \"end\": \"2025-12\",\n       \"budget_year\": \"2025\",\n       \"notification\": {\n           \"state\": \"ENABLED\",\n           \"plans\": [\n               {\n                   \"threshold\": 20.0,\n                   \"unit\": \"PERCENT\"\n               }\n           ],\n           \"recipients\": {\n               \"users\": [\"wonny@cloudforet.io\"]\n           }\n       },\n       \"utilization_rate\": 20.0,\n       \"tags\": {},\n       \"service_account_id\": \"sa-1234567890\",\n       \"workspace_id\": \"workspace-1234567890\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-18T09:30:56.901Z\",\n       \"updated_at\": \"2022-07-18T09:30:56.901Z\"\n}",
+          "description": "{\n       \"budget_id\": \"budget-d51b6b6a9910\",\n       \"name\": \"Cloudforet-Budget\",\n       \"limit\": 18600.0,\n       \"planned_limits\": [\n           {\n               \"date\": \"2025-01\",\n               \"limit\": 1000.0\n           },\n           {\n               \"date\": \"2025-02\",\n               \"limit\": 1100.0\n           },\n           {\n               \"date\": \"2025-03\",\n               \"limit\": 1200.0\n           },\n           {\n               \"date\": \"2025-04\",\n               \"limit\": 1300.0\n           },\n           {\n               \"date\": \"2025-05\",\n               \"limit\": 1400.0\n           },\n           {\n               \"date\": \"2025-06\",\n               \"limit\": 1500.0\n           },\n           {\n               \"date\": \"2025-07\",\n               \"limit\": 1600.0\n           },\n           {\n               \"date\": \"2025-08\",\n               \"limit\": 1700.0\n           },\n           {\n               \"date\": \"2025-09\",\n               \"limit\": 1800.0\n           },\n           {\n               \"date\": \"2025-10\",\n               \"limit\": 1900.0\n           },\n           {\n               \"date\": \"2025-11\",\n               \"limit\": 2000.0\n           },\n           {\n               \"date\": \"2025-12\",\n               \"limit\": 2100.0\n           }\n       ],\n       \"currency\": \"USD\",\n       \"time_unit\": \"MONTHLY\",\n       \"start\": \"2025-01\",\n       \"end\": \"2025-12\",\n       \"budget_year\": \"2025\",\n       \"notification\": {\n           \"state\": \"ENABLED\",\n           \"plans\": [\n               {\n                   \"threshold\": 20.0,\n                   \"unit\": \"PERCENT\"\n               }\n           ],\n           \"recipients\": {\n               \"users\": [\"wonny@cloudforet.io\"],\n               \"budget_manager_notification\": \"ENABLED\"\n           }\n       },\n       \"utilization_rate\": 20.0,\n       \"tags\": {},\n       \"service_account_id\": \"sa-1234567890\",\n       \"workspace_id\": \"workspace-1234567890\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-18T09:30:56.901Z\",\n       \"updated_at\": \"2022-07-18T09:30:56.901Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -553,6 +553,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "budget_manager_notification",
+              "description": "",
+              "label": "",
+              "type": "BudgetManagerNotification",
+              "longType": "BudgetNotificationRecipients.BudgetManagerNotification",
+              "fullType": "spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.BudgetManagerNotification",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -704,7 +716,7 @@
           "name": "BudgetsInfo",
           "longName": "BudgetsInfo",
           "fullName": "spaceone.api.cost_analysis.v1.BudgetsInfo",
-          "description": "{\n       \"results\": [\n           {\n               \"budget_id\": \"budget-409e33836ea2\",\n               \"name\": \"Budget 2 - Monthly\",\n               \"limit\": 18600.0,\n               \"planned_limits\": [\n                   {\n                       \"date\": \"2022-01\",\n                       \"limit\": 1000.0\n                   },\n                   {\n                       \"date\": \"2022-02\",\n                       \"limit\": 1100.0\n                   },\n                   {\n                       \"date\": \"2022-03\",\n                       \"limit\": 1200.0\n                   },\n                   {\n                       \"date\": \"2022-04\",\n                       \"limit\": 1300.0\n                   },\n                   {\n                       \"date\": \"2022-05\",\n                       \"limit\": 1400.0\n                   },\n                   {\n                       \"date\": \"2022-06\",\n                       \"limit\": 1500.0\n                   },\n                   {\n                       \"date\": \"2022-07\",\n                       \"limit\": 1600.0\n                   },\n                   {\n                       \"date\": \"2022-08\",\n                       \"limit\": 1700.0\n                   },\n                   {\n                       \"date\": \"2022-09\",\n                       \"limit\": 1800.0\n                   },\n                   {\n                       \"date\": \"2022-10\",\n                       \"limit\": 1900.0\n                   },\n                   {\n                       \"date\": \"2022-11\",\n                       \"limit\": 2000.0\n                   },\n                   {\n                       \"date\": \"2022-12\",\n                       \"limit\": 2100.0\n                   }\n               ],\n               \"currency\": \"USD\",\n               \"provider_filter\": {\n                   \"state\": \"ENABLED\",\n                   \"providers\": [\n                       \"aws\",\n                       \"google_cloud\"\n                   ]\n               },\n               \"time_unit\": \"MONTHLY\",\n               \"start\": \"2022-01\",\n               \"end\": \"2022-12\",\n               \"tags\": {},\n               \"project_group_id\": \"pg-812c90990877\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-04-12T06:09:56.917Z\",\n               \"updated_at\": \"2022-04-12T06:09:56.917Z\"\n           }\n       ],\n       \"total_count\": 6\n}",
+          "description": "{\n       \"results\": [\n           {\n               \"budget_id\": \"budget-409e33836ea2\",\n               \"name\": \"Budget 2 - Monthly\",\n               \"limit\": 18600.0,\n               \"planned_limits\": [\n                   {\n                       \"date\": \"2025-01\",\n                       \"limit\": 1000.0\n                   },\n                   {\n                       \"date\": \"2025-02\",\n                       \"limit\": 1100.0\n                   },\n                   {\n                       \"date\": \"2025-03\",\n                       \"limit\": 1200.0\n                   },\n                   {\n                       \"date\": \"2025-04\",\n                       \"limit\": 1300.0\n                   },\n                   {\n                       \"date\": \"2025-05\",\n                       \"limit\": 1400.0\n                   },\n                   {\n                       \"date\": \"2025-06\",\n                       \"limit\": 1500.0\n                   },\n                   {\n                       \"date\": \"2025-07\",\n                       \"limit\": 1600.0\n                   },\n                   {\n                       \"date\": \"2025-08\",\n                       \"limit\": 1700.0\n                   },\n                   {\n                       \"date\": \"2025-09\",\n                       \"limit\": 1800.0\n                   },\n                   {\n                       \"date\": \"2025-10\",\n                       \"limit\": 1900.0\n                   },\n                   {\n                       \"date\": \"2025-11\",\n                       \"limit\": 2000.0\n                   },\n                   {\n                       \"date\": \"2025-12\",\n                       \"limit\": 2100.0\n                   }\n               ],\n               \"currency\": \"USD\",\n               \"time_unit\": \"MONTHLY\",\n               \"start\": \"2025-01\",\n               \"end\": \"2025-12\",\n               \"tags\": {},\n               \"utilization_rate\": 20.0,\n               \"budget_year\": \"2025\",\n               \"resource_group\": \"PROJECT\",\n               \"service_account_id\": \"sa-1234567890\",\n               \"project_id\": \"project-1234567890\",\n               \"workspace_id\": \"workspace-1234567890\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2025-04-12T06:09:56.917Z\",\n               \"updated_at\": \"2025-04-12T06:09:56.917Z\"\n           }\n       ],\n       \"total_count\": 6\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -740,7 +752,7 @@
           "name": "CreateBudgetRequest",
           "longName": "CreateBudgetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CreateBudgetRequest",
-          "description": "{\n   \"name\": \"Cloudforet-Budget\",\n   \"planned_limits\": [{\"date\": \"2025-01\", \"limit\": 1000.0},\n                      {\"date\": \"2025-02\", \"limit\": 1100.0},\n                      {\"date\": \"2025-03\", \"limit\": 1200.0},\n                      {\"date\": \"2025-04\", \"limit\": 1300.0},\n                      {\"date\": \"2025-05\", \"limit\": 1400.0},\n                      {\"date\": \"2025-06\", \"limit\": 1500.0},\n                      {\"date\": \"2025-07\", \"limit\": 1600.0},\n                      {\"date\": \"2025-08\", \"limit\": 1700.0},\n                      {\"date\": \"2025-09\", \"limit\": 1800.0},\n                      {\"date\": \"2025-10\", \"limit\": 1900.0},\n                      {\"date\": \"2025-11\", \"limit\": 2000.0},\n                      {\"date\": \"2025-12\", \"limit\": 2100.0}],\n   \"currency\": \"USD\",\n   \"time_unit\": \"MONTHLY\",\n   \"start\": \"2025-01\",\n   \"end\": \"2025-12\",\n   \"budget_year\": \"2025\",\n   \"notification\": {\n       \"state\": \"ENABLED\",\n       \"plans\": [\n           {\n               \"threshold\": 20.0,\n               \"unit\": \"PERCENT\"\n           }\n           ],\n       \"recipients\": {\n           \"users\": [\"wonny@cloudforet.io\", \"octos@cloudforet.io\"]\n       }\n   },\n   \"tags\": {},\n   \"resource_group\" : \"PROJECT\",\n   \"workspace_id\": \"workspace-1234567890\",\n   \"project_id\": \"project-1234567890\",\n   \"service_account_id\": \"service-account-1234567890\",\n   \"budget_manager_id\": \"wonny@cloudforet.io\"\n}",
+          "description": "{\n   \"name\": \"Cloudforet-Budget\",\n   \"planned_limits\": [{\"date\": \"2025-01\", \"limit\": 1000.0},\n                      {\"date\": \"2025-02\", \"limit\": 1100.0},\n                      {\"date\": \"2025-03\", \"limit\": 1200.0},\n                      {\"date\": \"2025-04\", \"limit\": 1300.0},\n                      {\"date\": \"2025-05\", \"limit\": 1400.0},\n                      {\"date\": \"2025-06\", \"limit\": 1500.0},\n                      {\"date\": \"2025-07\", \"limit\": 1600.0},\n                      {\"date\": \"2025-08\", \"limit\": 1700.0},\n                      {\"date\": \"2025-09\", \"limit\": 1800.0},\n                      {\"date\": \"2025-10\", \"limit\": 1900.0},\n                      {\"date\": \"2025-11\", \"limit\": 2000.0},\n                      {\"date\": \"2025-12\", \"limit\": 2100.0}],\n   \"currency\": \"USD\",\n   \"time_unit\": \"MONTHLY\",\n   \"start\": \"2025-01\",\n   \"end\": \"2025-12\",\n   \"budget_year\": \"2025\",\n   \"notification\": {\n       \"state\": \"ENABLED\",\n       \"plans\": [\n           {\n               \"threshold\": 20.0,\n               \"unit\": \"PERCENT\"\n           }\n           ],\n       \"recipients\": {\n           \"users\": [\"wonny@cloudforet.io\", \"octos@cloudforet.io\"],\n           \"budget_manager_notification\": \"ENABLED\"\n       }\n   },\n   \"tags\": {},\n   \"resource_group\" : \"PROJECT\",\n   \"workspace_id\": \"workspace-1234567890\",\n   \"project_id\": \"project-1234567890\",\n   \"service_account_id\": \"service-account-1234567890\",\n   \"budget_manager_id\": \"wonny@cloudforet.io\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -968,7 +980,7 @@
           "name": "SetBudgetNotificationRequest",
           "longName": "SetBudgetNotificationRequest",
           "fullName": "spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest",
-          "description": "{\n   \"budget_id\": \"budget-4c8606da4521\",\n   \"notification\":{\n       \"state\": \"ENABLED\",\n       \"plans\": [\n       {\n           \"threshold\": 20.0,\n           \"unit\": \"PERCENT\"\n       },\n       {\n           \"threshold\": 90.0,\n           \"unit\": \"PERCENT\"\n       }],\n       \"recipients\": {\n       }\n   }\n}",
+          "description": "{\n   \"budget_id\": \"budget-4c8606da4521\",\n   \"notification\":{\n       \"state\": \"ENABLED\",\n       \"plans\": [\n       {\n           \"threshold\": 20.0,\n           \"unit\": \"PERCENT\"\n       },\n       {\n           \"threshold\": 90.0,\n           \"unit\": \"PERCENT\"\n       }],\n       \"recipients\": {\n           \"users\": [\"wonny@cloudforet.io\"],\n           \"budget_manager_notification\": \"ENABLED\"\n       }\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1004,7 +1016,7 @@
           "name": "UpdateBudgetRequest",
           "longName": "UpdateBudgetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateBudgetRequest",
-          "description": "{\n   \"budget_id\": \"budget-d51b6b6a9910\",\n   \"budget_manager_id\": \"wonny@cloudforet.io\",\n   \"name\": \"Cloudforet-Budget-test\", \"limit\": 15000.0,\n   \"planned_limits\": [{\"date\": \"2022-01\", \"limit\": 500.0},\n                      {\"date\": \"2022-02\", \"limit\": 500.0},\n                      {\"date\": \"2022-03\", \"limit\": 500.0},\n                      {\"date\": \"2022-04\", \"limit\": 500.0},\n                      {\"date\": \"2022-05\", \"limit\": 500.0},\n                      {\"date\": \"2022-06\", \"limit\": 500.0},\n                      {\"date\": \"2022-07\", \"limit\": 500.0},\n                      {\"date\": \"2022-08\", \"limit\": 500.0},\n                      {\"date\": \"2022-09\", \"limit\": 500.0}],\n   \"start\": \"2022-01\",\n   \"end\": \"2022-12\",\n   \"tags\": {}\n}",
+          "description": "{\n   \"budget_id\": \"budget-d51b6b6a9910\",\n   \"budget_manager_id\": \"wonny@cloudforet.io\",\n   \"name\": \"Cloudforet-Budget-test\", \"limit\": 15000.0,\n   \"planned_limits\": [{\"date\": \"2025-01\", \"limit\": 500.0},\n                      {\"date\": \"2025-02\", \"limit\": 500.0},\n                      {\"date\": \"2025-03\", \"limit\": 500.0},\n                      {\"date\": \"2025-04\", \"limit\": 500.0},\n                      {\"date\": \"2025-05\", \"limit\": 500.0},\n                      {\"date\": \"2025-06\", \"limit\": 500.0},\n                      {\"date\": \"2025-07\", \"limit\": 500.0},\n                      {\"date\": \"2025-08\", \"limit\": 500.0},\n                      {\"date\": \"2025-09\", \"limit\": 500.0}],\n   \"limit\": 15000.0,\n   \"budget_year\": \"2025\",\n   \"start\": \"2025-01\",\n   \"end\": \"2025-12\",\n   \"tags\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1036,7 +1048,7 @@
             },
             {
               "name": "limit",
-              "description": "+optional",
+              "description": "Only `TOTAL` time_unit budget can be updated\n+optional",
               "label": "",
               "type": "double",
               "longType": "double",

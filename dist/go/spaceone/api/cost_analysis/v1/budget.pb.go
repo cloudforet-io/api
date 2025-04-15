@@ -27,6 +27,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type BudgetNotificationRecipients_BudgetManagerNotification int32
+
+const (
+	BudgetNotificationRecipients_NONE     BudgetNotificationRecipients_BudgetManagerNotification = 0
+	BudgetNotificationRecipients_ENABLED  BudgetNotificationRecipients_BudgetManagerNotification = 1
+	BudgetNotificationRecipients_DISABLED BudgetNotificationRecipients_BudgetManagerNotification = 2
+)
+
+// Enum value maps for BudgetNotificationRecipients_BudgetManagerNotification.
+var (
+	BudgetNotificationRecipients_BudgetManagerNotification_name = map[int32]string{
+		0: "NONE",
+		1: "ENABLED",
+		2: "DISABLED",
+	}
+	BudgetNotificationRecipients_BudgetManagerNotification_value = map[string]int32{
+		"NONE":     0,
+		"ENABLED":  1,
+		"DISABLED": 2,
+	}
+)
+
+func (x BudgetNotificationRecipients_BudgetManagerNotification) Enum() *BudgetNotificationRecipients_BudgetManagerNotification {
+	p := new(BudgetNotificationRecipients_BudgetManagerNotification)
+	*p = x
+	return p
+}
+
+func (x BudgetNotificationRecipients_BudgetManagerNotification) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BudgetNotificationRecipients_BudgetManagerNotification) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[0].Descriptor()
+}
+
+func (BudgetNotificationRecipients_BudgetManagerNotification) Type() protoreflect.EnumType {
+	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[0]
+}
+
+func (x BudgetNotificationRecipients_BudgetManagerNotification) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BudgetNotificationRecipients_BudgetManagerNotification.Descriptor instead.
+func (BudgetNotificationRecipients_BudgetManagerNotification) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_budget_proto_rawDescGZIP(), []int{1, 0}
+}
+
 type BudgetNotificationPlan_Unit int32
 
 const (
@@ -60,11 +109,11 @@ func (x BudgetNotificationPlan_Unit) String() string {
 }
 
 func (BudgetNotificationPlan_Unit) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[0].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[1].Descriptor()
 }
 
 func (BudgetNotificationPlan_Unit) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[0]
+	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[1]
 }
 
 func (x BudgetNotificationPlan_Unit) Number() protoreflect.EnumNumber {
@@ -109,11 +158,11 @@ func (x BudgetNotification_BudgetNotificationState) String() string {
 }
 
 func (BudgetNotification_BudgetNotificationState) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[1].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[2].Descriptor()
 }
 
 func (BudgetNotification_BudgetNotificationState) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[1]
+	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[2]
 }
 
 func (x BudgetNotification_BudgetNotificationState) Number() protoreflect.EnumNumber {
@@ -123,55 +172,6 @@ func (x BudgetNotification_BudgetNotificationState) Number() protoreflect.EnumNu
 // Deprecated: Use BudgetNotification_BudgetNotificationState.Descriptor instead.
 func (BudgetNotification_BudgetNotificationState) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_budget_proto_rawDescGZIP(), []int{3, 0}
-}
-
-type BudgetNotification_NotificationType int32
-
-const (
-	BudgetNotification_NOTIFICATION_TYPE_NONE BudgetNotification_NotificationType = 0
-	BudgetNotification_CRITICAL               BudgetNotification_NotificationType = 1
-	BudgetNotification_WARNING                BudgetNotification_NotificationType = 2
-)
-
-// Enum value maps for BudgetNotification_NotificationType.
-var (
-	BudgetNotification_NotificationType_name = map[int32]string{
-		0: "NOTIFICATION_TYPE_NONE",
-		1: "CRITICAL",
-		2: "WARNING",
-	}
-	BudgetNotification_NotificationType_value = map[string]int32{
-		"NOTIFICATION_TYPE_NONE": 0,
-		"CRITICAL":               1,
-		"WARNING":                2,
-	}
-)
-
-func (x BudgetNotification_NotificationType) Enum() *BudgetNotification_NotificationType {
-	p := new(BudgetNotification_NotificationType)
-	*p = x
-	return p
-}
-
-func (x BudgetNotification_NotificationType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (BudgetNotification_NotificationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[2].Descriptor()
-}
-
-func (BudgetNotification_NotificationType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes[2]
-}
-
-func (x BudgetNotification_NotificationType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use BudgetNotification_NotificationType.Descriptor instead.
-func (BudgetNotification_NotificationType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_budget_proto_rawDescGZIP(), []int{3, 1}
 }
 
 type CreateBudgetRequest_TimeUnit int32
@@ -472,10 +472,11 @@ func (x *PlannedLimit) GetLimit() float64 {
 }
 
 type BudgetNotificationRecipients struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Users         []string               `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                     protoimpl.MessageState                                 `protogen:"open.v1"`
+	Users                     []string                                               `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	BudgetManagerNotification BudgetNotificationRecipients_BudgetManagerNotification `protobuf:"varint,2,opt,name=budget_manager_notification,json=budgetManagerNotification,proto3,enum=spaceone.api.cost_analysis.v1.BudgetNotificationRecipients_BudgetManagerNotification" json:"budget_manager_notification,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *BudgetNotificationRecipients) Reset() {
@@ -513,6 +514,13 @@ func (x *BudgetNotificationRecipients) GetUsers() []string {
 		return x.Users
 	}
 	return nil
+}
+
+func (x *BudgetNotificationRecipients) GetBudgetManagerNotification() BudgetNotificationRecipients_BudgetManagerNotification {
+	if x != nil {
+		return x.BudgetManagerNotification
+	}
+	return BudgetNotificationRecipients_NONE
 }
 
 type BudgetNotificationPlan struct {
@@ -655,7 +663,8 @@ func (x *BudgetNotification) GetRecipients() *BudgetNotificationRecipients {
 //	           }
 //	           ],
 //	       "recipients": {
-//	           "users": ["wonny@cloudforet.io", "octos@cloudforet.io"]
+//	           "users": ["wonny@cloudforet.io", "octos@cloudforet.io"],
+//	           "budget_manager_notification": "ENABLED"
 //	       }
 //	   },
 //	   "tags": {},
@@ -837,17 +846,19 @@ func (x *CreateBudgetRequest) GetBudgetManagerId() string {
 //	   "budget_id": "budget-d51b6b6a9910",
 //	   "budget_manager_id": "wonny@cloudforet.io",
 //	   "name": "Cloudforet-Budget-test", "limit": 15000.0,
-//	   "planned_limits": [{"date": "2022-01", "limit": 500.0},
-//	                      {"date": "2022-02", "limit": 500.0},
-//	                      {"date": "2022-03", "limit": 500.0},
-//	                      {"date": "2022-04", "limit": 500.0},
-//	                      {"date": "2022-05", "limit": 500.0},
-//	                      {"date": "2022-06", "limit": 500.0},
-//	                      {"date": "2022-07", "limit": 500.0},
-//	                      {"date": "2022-08", "limit": 500.0},
-//	                      {"date": "2022-09", "limit": 500.0}],
-//	   "start": "2022-01",
-//	   "end": "2022-12",
+//	   "planned_limits": [{"date": "2025-01", "limit": 500.0},
+//	                      {"date": "2025-02", "limit": 500.0},
+//	                      {"date": "2025-03", "limit": 500.0},
+//	                      {"date": "2025-04", "limit": 500.0},
+//	                      {"date": "2025-05", "limit": 500.0},
+//	                      {"date": "2025-06", "limit": 500.0},
+//	                      {"date": "2025-07", "limit": 500.0},
+//	                      {"date": "2025-08", "limit": 500.0},
+//	                      {"date": "2025-09", "limit": 500.0}],
+//	   "limit": 15000.0,
+//	   "budget_year": "2025",
+//	   "start": "2025-01",
+//	   "end": "2025-12",
 //	   "tags": {}
 //	}
 type UpdateBudgetRequest struct {
@@ -855,6 +866,7 @@ type UpdateBudgetRequest struct {
 	BudgetId string                 `protobuf:"bytes,1,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
 	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Only `TOTAL` time_unit budget can be updated
 	// +optional
 	Limit float64 `protobuf:"fixed64,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	// +optional
@@ -980,6 +992,8 @@ func (x *UpdateBudgetRequest) GetBudgetManagerId() string {
 //	           "unit": "PERCENT"
 //	       }],
 //	       "recipients": {
+//	           "users": ["wonny@cloudforet.io"],
+//	           "budget_manager_notification": "ENABLED"
 //	       }
 //	   }
 //	}
@@ -1262,7 +1276,8 @@ func (x *BudgetQuery) GetServiceAccountId() string {
 //	               }
 //	           ],
 //	           "recipients": {
-//	               "users": ["wonny@cloudforet.io"]
+//	               "users": ["wonny@cloudforet.io"],
+//	               "budget_manager_notification": "ENABLED"
 //	           }
 //	       },
 //	       "utilization_rate": 20.0,
@@ -1477,70 +1492,68 @@ func (x *BudgetInfo) GetUpdatedAt() string {
 //	               "limit": 18600.0,
 //	               "planned_limits": [
 //	                   {
-//	                       "date": "2022-01",
+//	                       "date": "2025-01",
 //	                       "limit": 1000.0
 //	                   },
 //	                   {
-//	                       "date": "2022-02",
+//	                       "date": "2025-02",
 //	                       "limit": 1100.0
 //	                   },
 //	                   {
-//	                       "date": "2022-03",
+//	                       "date": "2025-03",
 //	                       "limit": 1200.0
 //	                   },
 //	                   {
-//	                       "date": "2022-04",
+//	                       "date": "2025-04",
 //	                       "limit": 1300.0
 //	                   },
 //	                   {
-//	                       "date": "2022-05",
+//	                       "date": "2025-05",
 //	                       "limit": 1400.0
 //	                   },
 //	                   {
-//	                       "date": "2022-06",
+//	                       "date": "2025-06",
 //	                       "limit": 1500.0
 //	                   },
 //	                   {
-//	                       "date": "2022-07",
+//	                       "date": "2025-07",
 //	                       "limit": 1600.0
 //	                   },
 //	                   {
-//	                       "date": "2022-08",
+//	                       "date": "2025-08",
 //	                       "limit": 1700.0
 //	                   },
 //	                   {
-//	                       "date": "2022-09",
+//	                       "date": "2025-09",
 //	                       "limit": 1800.0
 //	                   },
 //	                   {
-//	                       "date": "2022-10",
+//	                       "date": "2025-10",
 //	                       "limit": 1900.0
 //	                   },
 //	                   {
-//	                       "date": "2022-11",
+//	                       "date": "2025-11",
 //	                       "limit": 2000.0
 //	                   },
 //	                   {
-//	                       "date": "2022-12",
+//	                       "date": "2025-12",
 //	                       "limit": 2100.0
 //	                   }
 //	               ],
 //	               "currency": "USD",
-//	               "provider_filter": {
-//	                   "state": "ENABLED",
-//	                   "providers": [
-//	                       "aws",
-//	                       "google_cloud"
-//	                   ]
-//	               },
 //	               "time_unit": "MONTHLY",
-//	               "start": "2022-01",
-//	               "end": "2022-12",
+//	               "start": "2025-01",
+//	               "end": "2025-12",
 //	               "tags": {},
-//	               "project_group_id": "pg-812c90990877",
+//	               "utilization_rate": 20.0,
+//	               "budget_year": "2025",
+//	               "resource_group": "PROJECT",
+//	               "service_account_id": "sa-1234567890",
+//	               "project_id": "project-1234567890",
+//	               "workspace_id": "workspace-1234567890",
 //	               "domain_id": "domain-58010aa2e451",
-//	               "created_at": "2022-04-12T06:09:56.917Z",
-//	               "updated_at": "2022-04-12T06:09:56.917Z"
+//	               "created_at": "2025-04-12T06:09:56.917Z",
+//	               "updated_at": "2025-04-12T06:09:56.917Z"
 //	           }
 //	       ],
 //	       "total_count": 6
@@ -1648,16 +1661,21 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"*spaceone/api/cost_analysis/v1/budget.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"8\n" +
 	"\fPlannedLimit\x12\x12\n" +
 	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x01R\x05limit\"4\n" +
+	"\x05limit\x18\x02 \x01(\x01R\x05limit\"\x8e\x02\n" +
 	"\x1cBudgetNotificationRecipients\x12\x14\n" +
-	"\x05users\x18\x01 \x03(\tR\x05users\"\xbb\x01\n" +
+	"\x05users\x18\x01 \x03(\tR\x05users\x12\x95\x01\n" +
+	"\x1bbudget_manager_notification\x18\x02 \x01(\x0e2U.spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.BudgetManagerNotificationR\x19budgetManagerNotification\"@\n" +
+	"\x19BudgetManagerNotification\x12\b\n" +
+	"\x04NONE\x10\x00\x12\v\n" +
+	"\aENABLED\x10\x01\x12\f\n" +
+	"\bDISABLED\x10\x02\"\xbb\x01\n" +
 	"\x16BudgetNotificationPlan\x12\x1c\n" +
 	"\tthreshold\x18\x01 \x01(\x01R\tthreshold\x12N\n" +
 	"\x04unit\x18\x03 \x01(\x0e2:.spaceone.api.cost_analysis.v1.BudgetNotificationPlan.UnitR\x04unit\"3\n" +
 	"\x04Unit\x12\r\n" +
 	"\tUNIT_NONE\x10\x00\x12\v\n" +
 	"\aPERCENT\x10\x01\x12\x0f\n" +
-	"\vACTUAL_COST\x10\x02\"\xaa\x03\n" +
+	"\vACTUAL_COST\x10\x02\"\xdf\x02\n" +
 	"\x12BudgetNotification\x12_\n" +
 	"\x05state\x18\x01 \x01(\x0e2I.spaceone.api.cost_analysis.v1.BudgetNotification.BudgetNotificationStateR\x05state\x12K\n" +
 	"\x05plans\x18\x02 \x03(\v25.spaceone.api.cost_analysis.v1.BudgetNotificationPlanR\x05plans\x12[\n" +
@@ -1667,11 +1685,7 @@ const file_spaceone_api_cost_analysis_v1_budget_proto_rawDesc = "" +
 	"\x17BudgetNotificationState\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"I\n" +
-	"\x10NotificationType\x12\x1a\n" +
-	"\x16NOTIFICATION_TYPE_NONE\x10\x00\x12\f\n" +
-	"\bCRITICAL\x10\x01\x12\v\n" +
-	"\aWARNING\x10\x02\"\xcf\x06\n" +
+	"\bDISABLED\x10\x02\"\xcf\x06\n" +
 	"\x13CreateBudgetRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x01R\x05limit\x12R\n" +
@@ -1792,72 +1806,73 @@ func file_spaceone_api_cost_analysis_v1_budget_proto_rawDescGZIP() []byte {
 var file_spaceone_api_cost_analysis_v1_budget_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
 var file_spaceone_api_cost_analysis_v1_budget_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_spaceone_api_cost_analysis_v1_budget_proto_goTypes = []any{
-	(BudgetNotificationPlan_Unit)(0),                // 0: spaceone.api.cost_analysis.v1.BudgetNotificationPlan.Unit
-	(BudgetNotification_BudgetNotificationState)(0), // 1: spaceone.api.cost_analysis.v1.BudgetNotification.BudgetNotificationState
-	(BudgetNotification_NotificationType)(0),        // 2: spaceone.api.cost_analysis.v1.BudgetNotification.NotificationType
-	(CreateBudgetRequest_TimeUnit)(0),               // 3: spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnit
-	(CreateBudgetRequest_ResourceGroup)(0),          // 4: spaceone.api.cost_analysis.v1.CreateBudgetRequest.ResourceGroup
-	(BudgetQuery_TimeUnit)(0),                       // 5: spaceone.api.cost_analysis.v1.BudgetQuery.TimeUnit
-	(BudgetInfo_TimeUnit)(0),                        // 6: spaceone.api.cost_analysis.v1.BudgetInfo.TimeUnit
-	(BudgetInfo_ResourceGroup)(0),                   // 7: spaceone.api.cost_analysis.v1.BudgetInfo.ResourceGroup
-	(*PlannedLimit)(nil),                            // 8: spaceone.api.cost_analysis.v1.PlannedLimit
-	(*BudgetNotificationRecipients)(nil),            // 9: spaceone.api.cost_analysis.v1.BudgetNotificationRecipients
-	(*BudgetNotificationPlan)(nil),                  // 10: spaceone.api.cost_analysis.v1.BudgetNotificationPlan
-	(*BudgetNotification)(nil),                      // 11: spaceone.api.cost_analysis.v1.BudgetNotification
-	(*CreateBudgetRequest)(nil),                     // 12: spaceone.api.cost_analysis.v1.CreateBudgetRequest
-	(*UpdateBudgetRequest)(nil),                     // 13: spaceone.api.cost_analysis.v1.UpdateBudgetRequest
-	(*SetBudgetNotificationRequest)(nil),            // 14: spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest
-	(*BudgetRequest)(nil),                           // 15: spaceone.api.cost_analysis.v1.BudgetRequest
-	(*BudgetQuery)(nil),                             // 16: spaceone.api.cost_analysis.v1.BudgetQuery
-	(*BudgetInfo)(nil),                              // 17: spaceone.api.cost_analysis.v1.BudgetInfo
-	(*BudgetsInfo)(nil),                             // 18: spaceone.api.cost_analysis.v1.BudgetsInfo
-	(*BudgetStatQuery)(nil),                         // 19: spaceone.api.cost_analysis.v1.BudgetStatQuery
-	(*_struct.Struct)(nil),                          // 20: google.protobuf.Struct
-	(*v2.Query)(nil),                                // 21: spaceone.api.core.v2.Query
-	(*v2.StatisticsQuery)(nil),                      // 22: spaceone.api.core.v2.StatisticsQuery
-	(*empty.Empty)(nil),                             // 23: google.protobuf.Empty
+	(BudgetNotificationRecipients_BudgetManagerNotification)(0), // 0: spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.BudgetManagerNotification
+	(BudgetNotificationPlan_Unit)(0),                            // 1: spaceone.api.cost_analysis.v1.BudgetNotificationPlan.Unit
+	(BudgetNotification_BudgetNotificationState)(0),             // 2: spaceone.api.cost_analysis.v1.BudgetNotification.BudgetNotificationState
+	(CreateBudgetRequest_TimeUnit)(0),                           // 3: spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnit
+	(CreateBudgetRequest_ResourceGroup)(0),                      // 4: spaceone.api.cost_analysis.v1.CreateBudgetRequest.ResourceGroup
+	(BudgetQuery_TimeUnit)(0),                                   // 5: spaceone.api.cost_analysis.v1.BudgetQuery.TimeUnit
+	(BudgetInfo_TimeUnit)(0),                                    // 6: spaceone.api.cost_analysis.v1.BudgetInfo.TimeUnit
+	(BudgetInfo_ResourceGroup)(0),                               // 7: spaceone.api.cost_analysis.v1.BudgetInfo.ResourceGroup
+	(*PlannedLimit)(nil),                                        // 8: spaceone.api.cost_analysis.v1.PlannedLimit
+	(*BudgetNotificationRecipients)(nil),                        // 9: spaceone.api.cost_analysis.v1.BudgetNotificationRecipients
+	(*BudgetNotificationPlan)(nil),                              // 10: spaceone.api.cost_analysis.v1.BudgetNotificationPlan
+	(*BudgetNotification)(nil),                                  // 11: spaceone.api.cost_analysis.v1.BudgetNotification
+	(*CreateBudgetRequest)(nil),                                 // 12: spaceone.api.cost_analysis.v1.CreateBudgetRequest
+	(*UpdateBudgetRequest)(nil),                                 // 13: spaceone.api.cost_analysis.v1.UpdateBudgetRequest
+	(*SetBudgetNotificationRequest)(nil),                        // 14: spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest
+	(*BudgetRequest)(nil),                                       // 15: spaceone.api.cost_analysis.v1.BudgetRequest
+	(*BudgetQuery)(nil),                                         // 16: spaceone.api.cost_analysis.v1.BudgetQuery
+	(*BudgetInfo)(nil),                                          // 17: spaceone.api.cost_analysis.v1.BudgetInfo
+	(*BudgetsInfo)(nil),                                         // 18: spaceone.api.cost_analysis.v1.BudgetsInfo
+	(*BudgetStatQuery)(nil),                                     // 19: spaceone.api.cost_analysis.v1.BudgetStatQuery
+	(*_struct.Struct)(nil),                                      // 20: google.protobuf.Struct
+	(*v2.Query)(nil),                                            // 21: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                                  // 22: spaceone.api.core.v2.StatisticsQuery
+	(*empty.Empty)(nil),                                         // 23: google.protobuf.Empty
 }
 var file_spaceone_api_cost_analysis_v1_budget_proto_depIdxs = []int32{
-	0,  // 0: spaceone.api.cost_analysis.v1.BudgetNotificationPlan.unit:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationPlan.Unit
-	1,  // 1: spaceone.api.cost_analysis.v1.BudgetNotification.state:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification.BudgetNotificationState
-	10, // 2: spaceone.api.cost_analysis.v1.BudgetNotification.plans:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationPlan
-	9,  // 3: spaceone.api.cost_analysis.v1.BudgetNotification.recipients:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationRecipients
-	8,  // 4: spaceone.api.cost_analysis.v1.CreateBudgetRequest.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
-	3,  // 5: spaceone.api.cost_analysis.v1.CreateBudgetRequest.time_unit:type_name -> spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnit
-	11, // 6: spaceone.api.cost_analysis.v1.CreateBudgetRequest.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
-	20, // 7: spaceone.api.cost_analysis.v1.CreateBudgetRequest.tags:type_name -> google.protobuf.Struct
-	4,  // 8: spaceone.api.cost_analysis.v1.CreateBudgetRequest.resource_group:type_name -> spaceone.api.cost_analysis.v1.CreateBudgetRequest.ResourceGroup
-	8,  // 9: spaceone.api.cost_analysis.v1.UpdateBudgetRequest.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
-	20, // 10: spaceone.api.cost_analysis.v1.UpdateBudgetRequest.tags:type_name -> google.protobuf.Struct
-	11, // 11: spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
-	21, // 12: spaceone.api.cost_analysis.v1.BudgetQuery.query:type_name -> spaceone.api.core.v2.Query
-	5,  // 13: spaceone.api.cost_analysis.v1.BudgetQuery.time_unit:type_name -> spaceone.api.cost_analysis.v1.BudgetQuery.TimeUnit
-	8,  // 14: spaceone.api.cost_analysis.v1.BudgetInfo.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
-	6,  // 15: spaceone.api.cost_analysis.v1.BudgetInfo.time_unit:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo.TimeUnit
-	11, // 16: spaceone.api.cost_analysis.v1.BudgetInfo.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
-	20, // 17: spaceone.api.cost_analysis.v1.BudgetInfo.tags:type_name -> google.protobuf.Struct
-	7,  // 18: spaceone.api.cost_analysis.v1.BudgetInfo.resource_group:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo.ResourceGroup
-	17, // 19: spaceone.api.cost_analysis.v1.BudgetsInfo.results:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo
-	22, // 20: spaceone.api.cost_analysis.v1.BudgetStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	12, // 21: spaceone.api.cost_analysis.v1.Budget.create:input_type -> spaceone.api.cost_analysis.v1.CreateBudgetRequest
-	13, // 22: spaceone.api.cost_analysis.v1.Budget.update:input_type -> spaceone.api.cost_analysis.v1.UpdateBudgetRequest
-	14, // 23: spaceone.api.cost_analysis.v1.Budget.set_notification:input_type -> spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest
-	15, // 24: spaceone.api.cost_analysis.v1.Budget.delete:input_type -> spaceone.api.cost_analysis.v1.BudgetRequest
-	15, // 25: spaceone.api.cost_analysis.v1.Budget.get:input_type -> spaceone.api.cost_analysis.v1.BudgetRequest
-	16, // 26: spaceone.api.cost_analysis.v1.Budget.list:input_type -> spaceone.api.cost_analysis.v1.BudgetQuery
-	19, // 27: spaceone.api.cost_analysis.v1.Budget.stat:input_type -> spaceone.api.cost_analysis.v1.BudgetStatQuery
-	17, // 28: spaceone.api.cost_analysis.v1.Budget.create:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
-	17, // 29: spaceone.api.cost_analysis.v1.Budget.update:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
-	17, // 30: spaceone.api.cost_analysis.v1.Budget.set_notification:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
-	23, // 31: spaceone.api.cost_analysis.v1.Budget.delete:output_type -> google.protobuf.Empty
-	17, // 32: spaceone.api.cost_analysis.v1.Budget.get:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
-	18, // 33: spaceone.api.cost_analysis.v1.Budget.list:output_type -> spaceone.api.cost_analysis.v1.BudgetsInfo
-	20, // 34: spaceone.api.cost_analysis.v1.Budget.stat:output_type -> google.protobuf.Struct
-	28, // [28:35] is the sub-list for method output_type
-	21, // [21:28] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	0,  // 0: spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.budget_manager_notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationRecipients.BudgetManagerNotification
+	1,  // 1: spaceone.api.cost_analysis.v1.BudgetNotificationPlan.unit:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationPlan.Unit
+	2,  // 2: spaceone.api.cost_analysis.v1.BudgetNotification.state:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification.BudgetNotificationState
+	10, // 3: spaceone.api.cost_analysis.v1.BudgetNotification.plans:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationPlan
+	9,  // 4: spaceone.api.cost_analysis.v1.BudgetNotification.recipients:type_name -> spaceone.api.cost_analysis.v1.BudgetNotificationRecipients
+	8,  // 5: spaceone.api.cost_analysis.v1.CreateBudgetRequest.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
+	3,  // 6: spaceone.api.cost_analysis.v1.CreateBudgetRequest.time_unit:type_name -> spaceone.api.cost_analysis.v1.CreateBudgetRequest.TimeUnit
+	11, // 7: spaceone.api.cost_analysis.v1.CreateBudgetRequest.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
+	20, // 8: spaceone.api.cost_analysis.v1.CreateBudgetRequest.tags:type_name -> google.protobuf.Struct
+	4,  // 9: spaceone.api.cost_analysis.v1.CreateBudgetRequest.resource_group:type_name -> spaceone.api.cost_analysis.v1.CreateBudgetRequest.ResourceGroup
+	8,  // 10: spaceone.api.cost_analysis.v1.UpdateBudgetRequest.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
+	20, // 11: spaceone.api.cost_analysis.v1.UpdateBudgetRequest.tags:type_name -> google.protobuf.Struct
+	11, // 12: spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
+	21, // 13: spaceone.api.cost_analysis.v1.BudgetQuery.query:type_name -> spaceone.api.core.v2.Query
+	5,  // 14: spaceone.api.cost_analysis.v1.BudgetQuery.time_unit:type_name -> spaceone.api.cost_analysis.v1.BudgetQuery.TimeUnit
+	8,  // 15: spaceone.api.cost_analysis.v1.BudgetInfo.planned_limits:type_name -> spaceone.api.cost_analysis.v1.PlannedLimit
+	6,  // 16: spaceone.api.cost_analysis.v1.BudgetInfo.time_unit:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo.TimeUnit
+	11, // 17: spaceone.api.cost_analysis.v1.BudgetInfo.notification:type_name -> spaceone.api.cost_analysis.v1.BudgetNotification
+	20, // 18: spaceone.api.cost_analysis.v1.BudgetInfo.tags:type_name -> google.protobuf.Struct
+	7,  // 19: spaceone.api.cost_analysis.v1.BudgetInfo.resource_group:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo.ResourceGroup
+	17, // 20: spaceone.api.cost_analysis.v1.BudgetsInfo.results:type_name -> spaceone.api.cost_analysis.v1.BudgetInfo
+	22, // 21: spaceone.api.cost_analysis.v1.BudgetStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	12, // 22: spaceone.api.cost_analysis.v1.Budget.create:input_type -> spaceone.api.cost_analysis.v1.CreateBudgetRequest
+	13, // 23: spaceone.api.cost_analysis.v1.Budget.update:input_type -> spaceone.api.cost_analysis.v1.UpdateBudgetRequest
+	14, // 24: spaceone.api.cost_analysis.v1.Budget.set_notification:input_type -> spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest
+	15, // 25: spaceone.api.cost_analysis.v1.Budget.delete:input_type -> spaceone.api.cost_analysis.v1.BudgetRequest
+	15, // 26: spaceone.api.cost_analysis.v1.Budget.get:input_type -> spaceone.api.cost_analysis.v1.BudgetRequest
+	16, // 27: spaceone.api.cost_analysis.v1.Budget.list:input_type -> spaceone.api.cost_analysis.v1.BudgetQuery
+	19, // 28: spaceone.api.cost_analysis.v1.Budget.stat:input_type -> spaceone.api.cost_analysis.v1.BudgetStatQuery
+	17, // 29: spaceone.api.cost_analysis.v1.Budget.create:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
+	17, // 30: spaceone.api.cost_analysis.v1.Budget.update:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
+	17, // 31: spaceone.api.cost_analysis.v1.Budget.set_notification:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
+	23, // 32: spaceone.api.cost_analysis.v1.Budget.delete:output_type -> google.protobuf.Empty
+	17, // 33: spaceone.api.cost_analysis.v1.Budget.get:output_type -> spaceone.api.cost_analysis.v1.BudgetInfo
+	18, // 34: spaceone.api.cost_analysis.v1.Budget.list:output_type -> spaceone.api.cost_analysis.v1.BudgetsInfo
+	20, // 35: spaceone.api.cost_analysis.v1.Budget.stat:output_type -> google.protobuf.Struct
+	29, // [29:36] is the sub-list for method output_type
+	22, // [22:29] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_cost_analysis_v1_budget_proto_init() }
