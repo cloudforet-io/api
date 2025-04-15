@@ -123,9 +123,11 @@ message BudgetNotification {
 //                       {"date": "2025-10", "limit": 1900.0},
 //                       {"date": "2025-11", "limit": 2000.0},
 //                       {"date": "2025-12", "limit": 2100.0}],
+//    "currency": "USD",
 //    "time_unit": "MONTHLY",
-//    "start": "2024-01",
-//    "end": "2024-12",
+//    "start": "2025-01",
+//    "end": "2025-12",
+//    "budget_year": "2025",
 //    "notification": {
 //        "state": "ENABLED",
 //        "plans": [
@@ -140,7 +142,6 @@ message BudgetNotification {
 //    },
 //    "tags": {},
 //    "resource_group" : "PROJECT",
-//    "data_source_id": "ds-fcba92ca73b1"
 //    "workspace_id": "workspace-1234567890",
 //    "project_id": "project-1234567890",
 //    "service_account_id": "service-account-1234567890",
@@ -158,22 +159,24 @@ message CreateBudgetRequest {
         WORKSPACE = 1;
         PROJECT = 2;
     }
-    string data_source_id = 1;
+    string name = 1;
     // +optional
-    string name = 2;
+    double limit = 2;
     // +optional
-    double limit = 3;
+    repeated PlannedLimit planned_limits = 3;
+    TimeUnit time_unit = 4;
+    // Start date of the budget, e.g. 2025-01
+    string start = 5;
+    // End date of the budget, e.g. 2025-12
+    string end = 6;
+    // Year of the budget, e.g. 2025, budget_year should be same as the year of start or end date
+    string budget_year = 7;
     // +optional
-    repeated PlannedLimit planned_limits = 4;
-    TimeUnit time_unit = 6;
-    string start = 7;
-    string end = 8;
+    BudgetNotification notification = 8;
+    // Currency of the budget, e.g. USD, KRW, JPY
+    string currency = 9;
     // +optional
-    BudgetNotification notification = 9;
-    // +optional
-    string currency = 10;
-    // +optional
-    google.protobuf.Struct tags = 11;
+    google.protobuf.Struct tags = 19;
 
     ResourceGroup resource_group = 20;
     // +optional
@@ -199,6 +202,7 @@ message CreateBudgetRequest {
 //                       {"date": "2022-07", "limit": 500.0},
 //                       {"date": "2022-08", "limit": 500.0},
 //                       {"date": "2022-09", "limit": 500.0}],
+//    "start": "2022-01",
 //    "end": "2022-12",
 //    "tags": {}
 //}
@@ -215,7 +219,9 @@ message UpdateBudgetRequest {
     // +optional
     string end = 6;
     // +optional
-    google.protobuf.Struct tags = 7;
+    string budget_year = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
     // +optional
     string budget_manager_id = 21;
 }
@@ -283,8 +289,6 @@ message BudgetQuery {
     string project_id = 22;
     // +optional
     string service_account_id = 23;
-    // +optional
-    string data_source_id = 24;
 }
 
 //{
@@ -345,6 +349,7 @@ message BudgetQuery {
 //        "time_unit": "MONTHLY",
 //        "start": "2025-01",
 //        "end": "2025-12",
+//        "budget_year": "2025",
 //        "notification": {
 //            "state": "ENABLED",
 //            "plans": [
@@ -359,7 +364,6 @@ message BudgetQuery {
 //        },
 //        "utilization_rate": 20.0,
 //        "tags": {},
-//        "data_source_id": "ds-fcba92ca73b1",
 //        "service_account_id": "sa-1234567890",
 //        "workspace_id": "workspace-1234567890",
 //        "domain_id": "domain-58010aa2e451",
@@ -387,8 +391,9 @@ message BudgetInfo {
     TimeUnit time_unit = 6;
     string start = 7;
     string end = 8;
-    BudgetNotification notification = 9;
-    double utilization_rate = 10;
+    string budget_year = 9;
+    BudgetNotification notification = 10;
+    double utilization_rate = 11;
     google.protobuf.Struct tags = 19;
 
     ResourceGroup resource_group = 20;
@@ -472,7 +477,6 @@ message BudgetInfo {
 //                "end": "2022-12",
 //                "tags": {},
 //                "project_group_id": "pg-812c90990877",
-//                "data_source_id": "ds-fcba92ca73b1",
 //                "domain_id": "domain-58010aa2e451",
 //                "created_at": "2022-04-12T06:09:56.917Z",
 //                "updated_at": "2022-04-12T06:09:56.917Z"
