@@ -128,7 +128,6 @@ message BudgetNotification {
 //    "time_unit": "MONTHLY",
 //    "start": "2025-01",
 //    "end": "2025-12",
-//    "budget_year": "2025",
 //    "notification": {
 //        "state": "ENABLED",
 //        "plans": [
@@ -171,12 +170,10 @@ message CreateBudgetRequest {
     string start = 5;
     // End date of the budget, e.g. 2025-12
     string end = 6;
-    // Year of the budget, e.g. 2025, budget_year should be same as the year of start or end date
-    string budget_year = 7;
     // +optional
-    BudgetNotification notification = 8;
+    BudgetNotification notification = 7;
     // Currency of the budget, e.g. USD, KRW, JPY
-    string currency = 9;
+    string currency = 8;
     // +optional
     google.protobuf.Struct tags = 19;
 
@@ -205,7 +202,6 @@ message CreateBudgetRequest {
 //                       {"date": "2025-08", "limit": 500.0},
 //                       {"date": "2025-09", "limit": 500.0}],
 //    "limit": 15000.0,
-//    "budget_year": "2025",
 //    "start": "2025-01",
 //    "end": "2025-12",
 //    "tags": {}
@@ -223,8 +219,6 @@ message UpdateBudgetRequest {
     string start = 5;
     // +optional
     string end = 6;
-    // +optional
-    string budget_year = 7;
     // +optional
     google.protobuf.Struct tags = 8;
     // +optional
@@ -301,6 +295,7 @@ message BudgetQuery {
 //{
 //        "budget_id": "budget-d51b6b6a9910",
 //        "name": "Cloudforet-Budget",
+//        "state": "ACTIVE",
 //        "limit": 18600.0,
 //        "planned_limits": [
 //            {
@@ -356,7 +351,6 @@ message BudgetQuery {
 //        "time_unit": "MONTHLY",
 //        "start": "2025-01",
 //        "end": "2025-12",
-//        "budget_year": "2025",
 //        "notification": {
 //            "state": "ENABLED",
 //            "plans": [
@@ -379,6 +373,12 @@ message BudgetQuery {
 //        "updated_at": "2022-07-18T09:30:56.901Z"
 //}
 message BudgetInfo {
+    enum BudgetState {
+        None = 0;
+        SCHEDULED = 1;
+        ACTIVE = 2;
+        EXPIRED = 3;
+    }
     enum TimeUnit {
         NONE = 0;
         TOTAL = 1;
@@ -393,13 +393,13 @@ message BudgetInfo {
 
     string budget_id = 1;
     string name = 2;
-    double limit = 3;
-    repeated PlannedLimit planned_limits = 4;
-    string currency = 5;
-    TimeUnit time_unit = 6;
-    string start = 7;
-    string end = 8;
-    string budget_year = 9;
+    BudgetState state = 3;
+    double limit = 4;
+    repeated PlannedLimit planned_limits = 5;
+    string currency = 6;
+    TimeUnit time_unit = 7;
+    string start = 8;
+    string end = 9;
     BudgetNotification notification = 10;
     double utilization_rate = 11;
     google.protobuf.Struct tags = 19;
@@ -478,7 +478,6 @@ message BudgetInfo {
 //                "end": "2025-12",
 //                "tags": {},
 //                "utilization_rate": 20.0,
-//                "budget_year": "2025",
 //                "resource_group": "PROJECT",
 //                "service_account_id": "sa-1234567890",
 //                "project_id": "project-1234567890",
