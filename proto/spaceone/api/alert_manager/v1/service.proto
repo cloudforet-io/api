@@ -10,171 +10,177 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 
 service Service {
-    rpc create (ServiceCreateRequest) returns (ServiceInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/create"
-            body: "*"
-        };
-    }
-    rpc update (ServiceUpdateRequest) returns (ServiceInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/update"
-            body: "*"
-        };
-    }
-    rpc change_members (ServiceChangeMembersRequest) returns (ServiceInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/change-members"
-            body: "*"
-        };
-    }
-    rpc delete (ServiceDeleteRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/delete"
-            body: "*"
-        };
-    }
-    rpc get (ServiceGetRequest) returns (ServiceInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/get"
-            body: "*"
-        };
-    }
-    rpc list (ServiceSearchQuery) returns (ServicesInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/list"
-            body: "*"
-        };
-    }
-    rpc stat (ServiceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/service/stat"
-            body: "*"
-        };
-    }
+  rpc create (ServiceCreateRequest) returns (ServiceInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/create"
+      body: "*"
+    };
+  }
+  rpc update (ServiceUpdateRequest) returns (ServiceInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/update"
+      body: "*"
+    };
+  }
+  rpc change_members (ServiceChangeMembersRequest) returns (ServiceInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/change-members"
+      body: "*"
+    };
+  }
+  rpc delete (ServiceDeleteRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/delete"
+      body: "*"
+    };
+  }
+  rpc get (ServiceGetRequest) returns (ServiceInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/get"
+      body: "*"
+    };
+  }
+  rpc list (ServiceSearchQuery) returns (ServicesInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/list"
+      body: "*"
+    };
+  }
+  rpc stat (ServiceStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/service/stat"
+      body: "*"
+    };
+  }
 }
 
 message ServiceMembers {
-    repeated string USER = 1;
-    repeated string USER_GROUP = 2;
+  repeated string USER = 1;
+  repeated string USER_GROUP = 2;
 }
 
 message ServiceOptions {
-    enum NotificationUrgency {
-        URGENCY_NONE = 0;
-        ALL = 1;
-        HIGH_ONLY = 2;
-    }
-    enum RecoveryMode {
-        RECOVERY_MODE_NONE = 0;
-        MANUAL = 1;
-        AUTO = 2;
-    }
+  enum NotificationUrgency {
+    URGENCY_NONE = 0;
+    ALL = 1;
+    HIGH_ONLY = 2;
+  }
+  enum RecoveryMode {
+    RECOVERY_MODE_NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
 
-    NotificationUrgency notification_urgency = 1;
-    RecoveryMode recovery_mode = 2;
+  NotificationUrgency notification_urgency = 1;
+  RecoveryMode recovery_mode = 2;
 }
 
 message AlertStats {
-    int32 HIGH = 1;
-    int32 LOW = 2;
+  int32 HIGH = 1;
+  int32 LOW = 2;
 }
 
 message Alerts {
-    AlertStats TOTAL = 1;
-    AlertStats TRIGGERED = 2;
-    AlertStats ACKNOWLEDGED = 3;
-    AlertStats RESOLVED = 4;
+  AlertStats TOTAL = 1;
+  AlertStats TRIGGERED = 2;
+  AlertStats ACKNOWLEDGED = 3;
+  AlertStats RESOLVED = 4;
 }
 
 message ServiceCreateRequest {
-    string name = 1;
-    string service_key = 2;
-    // +optional
-    string description = 3;
+  string name = 1;
+  string service_key = 2;
+  // +optional
+  string description = 3;
 
-    // +optional
-    ServiceMembers members = 4;
-    // +optional
-    ServiceOptions options = 5;
+  // +optional
+  ServiceMembers members = 4;
+  // +optional
+  ServiceOptions options = 5;
 
-    // +optional
-    google.protobuf.Struct tags = 11;
+  // +optional
+  google.protobuf.Struct tags = 11;
 }
 
 message ServiceUpdateRequest {
-    string service_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    string description = 3;
-    // +optional
-    ServiceOptions options = 4;
+  string service_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  string description = 3;
+  // +optional
+  ServiceOptions options = 4;
 
-    // +optional
-    google.protobuf.Struct tags = 11;
+  // +optional
+  google.protobuf.Struct tags = 11;
 
-    // +optional
-    string escalation_policy_id = 21;
+  // +optional
+  string escalation_policy_id = 21;
 }
 
 message ServiceChangeMembersRequest {
-    string service_id = 1;
-    ServiceMembers members = 2;
+  string service_id = 1;
+  ServiceMembers members = 2;
 }
 
 message ServiceDeleteRequest {
-    string service_id = 1;
-    // +optional
-    bool force = 2;
+  string service_id = 1;
+  // +optional
+  bool force = 2;
 }
 
 message ServiceGetRequest {
-    string service_id = 1;
-    // +optional
-    bool details = 2;
+  string service_id = 1;
+  // +optional
+  bool details = 2;
 }
 
 message ServiceSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string service_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    bool details = 4;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string service_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  bool details = 4;
 
-    // +optional
-    string escalation_policy_id = 21;
+  // +optional
+  string escalation_policy_id = 21;
 }
 
 message ServiceStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
 message ServiceInfo {
-    string service_id = 1;
-    string name = 2;
-    string service_key = 3;
-    string description = 4;
-    ServiceMembers members = 5;
-    ServiceOptions options = 6;
-    repeated string channels = 7;
-    repeated string webhooks = 8;
-    Alerts alerts = 9;
+  enum ServiceHealthy {
+    NONE = 0;
+    HEALTHY = 1;
+    UNHEALTHY = 2;
+  }
+  string service_id = 1;
+  string name = 2;
+  string service_key = 3;
+  string description = 4;
+  ServiceMembers members = 5;
+  ServiceOptions options = 6;
+  repeated string channels = 7;
+  repeated string webhooks = 8;
+  Alerts alerts = 9;
+  ServiceHealthy service_healthy = 10;
 
-    google.protobuf.Struct tags = 11;
+  google.protobuf.Struct tags = 11;
 
-    string domain_id = 21;
-    string workspace_id = 22;
-    string escalation_policy_id = 23;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string escalation_policy_id = 23;
 
-    string created_at = 31;
-    string updated_at = 32;
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 message ServicesInfo {
-    repeated ServiceInfo results = 1;
-    int32 total_count = 2;
+  repeated ServiceInfo results = 1;
+  int32 total_count = 2;
 }
