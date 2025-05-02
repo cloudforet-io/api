@@ -147,9 +147,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/create": {
+     },"/config/public-config/create": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
@@ -169,16 +169,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/update": {
+     },"/config/public-config/update": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
@@ -198,16 +198,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/set": {
+     },"/config/public-config/set": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "Set",
          "operationId" : "",
          "description": "### Description \n",
@@ -227,25 +227,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/delete": {
+     },"/config/public-config/delete": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -257,18 +257,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/get": {
+     },"/config/public-config/get": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -279,25 +279,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/list": {
+     },"/config/public-config/list": {
        "post": {
-         "tags": ["config > user-config"],
+         "tags": ["config > public-config"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -308,9 +308,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserConfigsInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserConfigsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigsInfo"}}
                }
              }}
          }
@@ -483,9 +483,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/create": {
+     },"/config/user-config/create": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
@@ -505,16 +505,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/update": {
+     },"/config/user-config/update": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
@@ -534,16 +534,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/set": {
+     },"/config/user-config/set": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "Set",
          "operationId" : "",
          "description": "### Description \n",
@@ -563,25 +563,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/delete": {
+     },"/config/user-config/delete": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -593,18 +593,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/get": {
+     },"/config/user-config/get": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -615,25 +615,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/list": {
+     },"/config/user-config/list": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > user-config"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -644,9 +644,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigsInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserConfigsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserConfigsInfo"}}
                }
              }}
          }
@@ -697,6 +697,38 @@
          "type": "object",
          "required": ["name","data"],
                 "title": "UpdateSharedConfigRequest"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -867,80 +899,48 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
-           }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
          "required": ["version"],
                 "title": "VersionInfo"
            }
-           ,        "SetUserConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "PublicConfigInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["name","data"],
-                "title": "SetUserConfigRequest"
+         "required": ["name","data","tags","domain_id","created_at","updated_at"],
+                "title": "PublicConfigInfo"
            }
-           ,        "UserConfigInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "PublicConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name","data","tags","domain_id","user_id","created_at","updated_at"],
-                "title": "UserConfigInfo"
+         "required": ["name","domain_id"],
+                "title": "PublicConfigRequest"
            }
-           ,        "UserConfigQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"}},
+           ,        "PublicConfigSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": [],
-                "title": "UserConfigQuery"
+         "required": ["domain_id"],
+                "title": "PublicConfigSearchQuery"
            }
-           ,        "UserConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"}},
-         "type": "object",
-         "required": ["name"],
-                "title": "UserConfigRequest"
-           }
-           ,        "UserConfigStatQuery": {
+           ,        "PublicConfigStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "UserConfigStatQuery"
+                "title": "PublicConfigStatQuery"
            }
-           ,        "UserConfigsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserConfigInfo"},
-               "type": "array","$ref": "#/components/schemas/UserConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "PublicConfigsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicConfigInfo"},
+               "type": "array","$ref": "#/components/schemas/PublicConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "UserConfigsInfo"
+                "title": "PublicConfigsInfo"
+           }
+           ,        "SetPublicConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","data"],
+                "title": "SetPublicConfigRequest"
            }
            ,        "DomainConfigInfo": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
@@ -979,42 +979,42 @@
          "required": ["name","data"],
                 "title": "SetDomainConfigRequest"
            }
-           ,        "PublicConfigInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["name","data","tags","domain_id","created_at","updated_at"],
-                "title": "PublicConfigInfo"
-           }
-           ,        "PublicConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","domain_id"],
-                "title": "PublicConfigRequest"
-           }
-           ,        "PublicConfigSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "PublicConfigSearchQuery"
-           }
-           ,        "PublicConfigStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "PublicConfigStatQuery"
-           }
-           ,        "PublicConfigsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicConfigInfo"},
-               "type": "array","$ref": "#/components/schemas/PublicConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "PublicConfigsInfo"
-           }
-           ,        "SetPublicConfigRequest": {
+           ,        "SetUserConfigRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","data"],
-                "title": "SetPublicConfigRequest"
+                "title": "SetUserConfigRequest"
+           }
+           ,        "UserConfigInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["name","data","tags","domain_id","user_id","created_at","updated_at"],
+                "title": "UserConfigInfo"
+           }
+           ,        "UserConfigQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": [],
+                "title": "UserConfigQuery"
+           }
+           ,        "UserConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": ["name"],
+                "title": "UserConfigRequest"
+           }
+           ,        "UserConfigStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "UserConfigStatQuery"
+           }
+           ,        "UserConfigsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserConfigInfo"},
+               "type": "array","$ref": "#/components/schemas/UserConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "UserConfigsInfo"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

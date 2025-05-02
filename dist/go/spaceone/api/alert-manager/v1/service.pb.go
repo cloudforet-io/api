@@ -123,6 +123,55 @@ func (ServiceOptions_RecoveryMode) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_alert_manager_v1_service_proto_rawDescGZIP(), []int{1, 1}
 }
 
+type ServiceInfo_ServiceHealthy int32
+
+const (
+	ServiceInfo_NONE      ServiceInfo_ServiceHealthy = 0
+	ServiceInfo_HEALTHY   ServiceInfo_ServiceHealthy = 1
+	ServiceInfo_UNHEALTHY ServiceInfo_ServiceHealthy = 2
+)
+
+// Enum value maps for ServiceInfo_ServiceHealthy.
+var (
+	ServiceInfo_ServiceHealthy_name = map[int32]string{
+		0: "NONE",
+		1: "HEALTHY",
+		2: "UNHEALTHY",
+	}
+	ServiceInfo_ServiceHealthy_value = map[string]int32{
+		"NONE":      0,
+		"HEALTHY":   1,
+		"UNHEALTHY": 2,
+	}
+)
+
+func (x ServiceInfo_ServiceHealthy) Enum() *ServiceInfo_ServiceHealthy {
+	p := new(ServiceInfo_ServiceHealthy)
+	*p = x
+	return p
+}
+
+func (x ServiceInfo_ServiceHealthy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ServiceInfo_ServiceHealthy) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_alert_manager_v1_service_proto_enumTypes[2].Descriptor()
+}
+
+func (ServiceInfo_ServiceHealthy) Type() protoreflect.EnumType {
+	return &file_spaceone_api_alert_manager_v1_service_proto_enumTypes[2]
+}
+
+func (x ServiceInfo_ServiceHealthy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ServiceInfo_ServiceHealthy.Descriptor instead.
+func (ServiceInfo_ServiceHealthy) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_alert_manager_v1_service_proto_rawDescGZIP(), []int{11, 0}
+}
+
 type ServiceMembers struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	USER          []string               `protobuf:"bytes,1,rep,name=USER,proto3" json:"USER,omitempty"`
@@ -808,22 +857,23 @@ func (x *ServiceStatQuery) GetQuery() *v2.StatisticsQuery {
 }
 
 type ServiceInfo struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	ServiceId          string                 `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
-	Name               string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	ServiceKey         string                 `protobuf:"bytes,3,opt,name=service_key,json=serviceKey,proto3" json:"service_key,omitempty"`
-	Description        string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	Members            *ServiceMembers        `protobuf:"bytes,5,opt,name=members,proto3" json:"members,omitempty"`
-	Options            *ServiceOptions        `protobuf:"bytes,6,opt,name=options,proto3" json:"options,omitempty"`
-	Channels           []string               `protobuf:"bytes,7,rep,name=channels,proto3" json:"channels,omitempty"`
-	Webhooks           []string               `protobuf:"bytes,8,rep,name=webhooks,proto3" json:"webhooks,omitempty"`
-	Alerts             *Alerts                `protobuf:"bytes,9,opt,name=alerts,proto3" json:"alerts,omitempty"`
-	Tags               *_struct.Struct        `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
-	DomainId           string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	WorkspaceId        string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	EscalationPolicyId string                 `protobuf:"bytes,23,opt,name=escalation_policy_id,json=escalationPolicyId,proto3" json:"escalation_policy_id,omitempty"`
-	CreatedAt          string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt          string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state              protoimpl.MessageState     `protogen:"open.v1"`
+	ServiceId          string                     `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	Name               string                     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ServiceKey         string                     `protobuf:"bytes,3,opt,name=service_key,json=serviceKey,proto3" json:"service_key,omitempty"`
+	Description        string                     `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Members            *ServiceMembers            `protobuf:"bytes,5,opt,name=members,proto3" json:"members,omitempty"`
+	Options            *ServiceOptions            `protobuf:"bytes,6,opt,name=options,proto3" json:"options,omitempty"`
+	Channels           []string                   `protobuf:"bytes,7,rep,name=channels,proto3" json:"channels,omitempty"`
+	Webhooks           []string                   `protobuf:"bytes,8,rep,name=webhooks,proto3" json:"webhooks,omitempty"`
+	Alerts             *Alerts                    `protobuf:"bytes,9,opt,name=alerts,proto3" json:"alerts,omitempty"`
+	ServiceHealthy     ServiceInfo_ServiceHealthy `protobuf:"varint,10,opt,name=service_healthy,json=serviceHealthy,proto3,enum=spaceone.api.alert_manager.v1.ServiceInfo_ServiceHealthy" json:"service_healthy,omitempty"`
+	Tags               *_struct.Struct            `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId           string                     `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	WorkspaceId        string                     `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	EscalationPolicyId string                     `protobuf:"bytes,23,opt,name=escalation_policy_id,json=escalationPolicyId,proto3" json:"escalation_policy_id,omitempty"`
+	CreatedAt          string                     `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt          string                     `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -919,6 +969,13 @@ func (x *ServiceInfo) GetAlerts() *Alerts {
 		return x.Alerts
 	}
 	return nil
+}
+
+func (x *ServiceInfo) GetServiceHealthy() ServiceInfo_ServiceHealthy {
+	if x != nil {
+		return x.ServiceHealthy
+	}
+	return ServiceInfo_NONE
 }
 
 func (x *ServiceInfo) GetTags() *_struct.Struct {
@@ -1081,7 +1138,7 @@ const file_spaceone_api_alert_manager_v1_service_proto_rawDesc = "" +
 	"\adetails\x18\x04 \x01(\bR\adetails\x120\n" +
 	"\x14escalation_policy_id\x18\x15 \x01(\tR\x12escalationPolicyId\"O\n" +
 	"\x10ServiceStatQuery\x12;\n" +
-	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query\"\xe9\x04\n" +
+	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query\"\x85\x06\n" +
 	"\vServiceInfo\x12\x1d\n" +
 	"\n" +
 	"service_id\x18\x01 \x01(\tR\tserviceId\x12\x12\n" +
@@ -1093,7 +1150,9 @@ const file_spaceone_api_alert_manager_v1_service_proto_rawDesc = "" +
 	"\aoptions\x18\x06 \x01(\v2-.spaceone.api.alert_manager.v1.ServiceOptionsR\aoptions\x12\x1a\n" +
 	"\bchannels\x18\a \x03(\tR\bchannels\x12\x1a\n" +
 	"\bwebhooks\x18\b \x03(\tR\bwebhooks\x12=\n" +
-	"\x06alerts\x18\t \x01(\v2%.spaceone.api.alert_manager.v1.AlertsR\x06alerts\x12+\n" +
+	"\x06alerts\x18\t \x01(\v2%.spaceone.api.alert_manager.v1.AlertsR\x06alerts\x12b\n" +
+	"\x0fservice_healthy\x18\n" +
+	" \x01(\x0e29.spaceone.api.alert_manager.v1.ServiceInfo.ServiceHealthyR\x0eserviceHealthy\x12+\n" +
 	"\x04tags\x18\v \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x120\n" +
@@ -1101,7 +1160,11 @@ const file_spaceone_api_alert_manager_v1_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18  \x01(\tR\tupdatedAt\"u\n" +
+	"updated_at\x18  \x01(\tR\tupdatedAt\"6\n" +
+	"\x0eServiceHealthy\x12\b\n" +
+	"\x04NONE\x10\x00\x12\v\n" +
+	"\aHEALTHY\x10\x01\x12\r\n" +
+	"\tUNHEALTHY\x10\x02\"u\n" +
 	"\fServicesInfo\x12D\n" +
 	"\aresults\x18\x01 \x03(\v2*.spaceone.api.alert_manager.v1.ServiceInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
@@ -1127,68 +1190,70 @@ func file_spaceone_api_alert_manager_v1_service_proto_rawDescGZIP() []byte {
 	return file_spaceone_api_alert_manager_v1_service_proto_rawDescData
 }
 
-var file_spaceone_api_alert_manager_v1_service_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_spaceone_api_alert_manager_v1_service_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_spaceone_api_alert_manager_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_spaceone_api_alert_manager_v1_service_proto_goTypes = []any{
 	(ServiceOptions_NotificationUrgency)(0), // 0: spaceone.api.alert_manager.v1.ServiceOptions.NotificationUrgency
 	(ServiceOptions_RecoveryMode)(0),        // 1: spaceone.api.alert_manager.v1.ServiceOptions.RecoveryMode
-	(*ServiceMembers)(nil),                  // 2: spaceone.api.alert_manager.v1.ServiceMembers
-	(*ServiceOptions)(nil),                  // 3: spaceone.api.alert_manager.v1.ServiceOptions
-	(*AlertStats)(nil),                      // 4: spaceone.api.alert_manager.v1.AlertStats
-	(*Alerts)(nil),                          // 5: spaceone.api.alert_manager.v1.Alerts
-	(*ServiceCreateRequest)(nil),            // 6: spaceone.api.alert_manager.v1.ServiceCreateRequest
-	(*ServiceUpdateRequest)(nil),            // 7: spaceone.api.alert_manager.v1.ServiceUpdateRequest
-	(*ServiceChangeMembersRequest)(nil),     // 8: spaceone.api.alert_manager.v1.ServiceChangeMembersRequest
-	(*ServiceDeleteRequest)(nil),            // 9: spaceone.api.alert_manager.v1.ServiceDeleteRequest
-	(*ServiceGetRequest)(nil),               // 10: spaceone.api.alert_manager.v1.ServiceGetRequest
-	(*ServiceSearchQuery)(nil),              // 11: spaceone.api.alert_manager.v1.ServiceSearchQuery
-	(*ServiceStatQuery)(nil),                // 12: spaceone.api.alert_manager.v1.ServiceStatQuery
-	(*ServiceInfo)(nil),                     // 13: spaceone.api.alert_manager.v1.ServiceInfo
-	(*ServicesInfo)(nil),                    // 14: spaceone.api.alert_manager.v1.ServicesInfo
-	(*_struct.Struct)(nil),                  // 15: google.protobuf.Struct
-	(*v2.Query)(nil),                        // 16: spaceone.api.core.v2.Query
-	(*v2.StatisticsQuery)(nil),              // 17: spaceone.api.core.v2.StatisticsQuery
-	(*empty.Empty)(nil),                     // 18: google.protobuf.Empty
+	(ServiceInfo_ServiceHealthy)(0),         // 2: spaceone.api.alert_manager.v1.ServiceInfo.ServiceHealthy
+	(*ServiceMembers)(nil),                  // 3: spaceone.api.alert_manager.v1.ServiceMembers
+	(*ServiceOptions)(nil),                  // 4: spaceone.api.alert_manager.v1.ServiceOptions
+	(*AlertStats)(nil),                      // 5: spaceone.api.alert_manager.v1.AlertStats
+	(*Alerts)(nil),                          // 6: spaceone.api.alert_manager.v1.Alerts
+	(*ServiceCreateRequest)(nil),            // 7: spaceone.api.alert_manager.v1.ServiceCreateRequest
+	(*ServiceUpdateRequest)(nil),            // 8: spaceone.api.alert_manager.v1.ServiceUpdateRequest
+	(*ServiceChangeMembersRequest)(nil),     // 9: spaceone.api.alert_manager.v1.ServiceChangeMembersRequest
+	(*ServiceDeleteRequest)(nil),            // 10: spaceone.api.alert_manager.v1.ServiceDeleteRequest
+	(*ServiceGetRequest)(nil),               // 11: spaceone.api.alert_manager.v1.ServiceGetRequest
+	(*ServiceSearchQuery)(nil),              // 12: spaceone.api.alert_manager.v1.ServiceSearchQuery
+	(*ServiceStatQuery)(nil),                // 13: spaceone.api.alert_manager.v1.ServiceStatQuery
+	(*ServiceInfo)(nil),                     // 14: spaceone.api.alert_manager.v1.ServiceInfo
+	(*ServicesInfo)(nil),                    // 15: spaceone.api.alert_manager.v1.ServicesInfo
+	(*_struct.Struct)(nil),                  // 16: google.protobuf.Struct
+	(*v2.Query)(nil),                        // 17: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),              // 18: spaceone.api.core.v2.StatisticsQuery
+	(*empty.Empty)(nil),                     // 19: google.protobuf.Empty
 }
 var file_spaceone_api_alert_manager_v1_service_proto_depIdxs = []int32{
 	0,  // 0: spaceone.api.alert_manager.v1.ServiceOptions.notification_urgency:type_name -> spaceone.api.alert_manager.v1.ServiceOptions.NotificationUrgency
 	1,  // 1: spaceone.api.alert_manager.v1.ServiceOptions.recovery_mode:type_name -> spaceone.api.alert_manager.v1.ServiceOptions.RecoveryMode
-	4,  // 2: spaceone.api.alert_manager.v1.Alerts.TOTAL:type_name -> spaceone.api.alert_manager.v1.AlertStats
-	4,  // 3: spaceone.api.alert_manager.v1.Alerts.TRIGGERED:type_name -> spaceone.api.alert_manager.v1.AlertStats
-	4,  // 4: spaceone.api.alert_manager.v1.Alerts.ACKNOWLEDGED:type_name -> spaceone.api.alert_manager.v1.AlertStats
-	4,  // 5: spaceone.api.alert_manager.v1.Alerts.RESOLVED:type_name -> spaceone.api.alert_manager.v1.AlertStats
-	2,  // 6: spaceone.api.alert_manager.v1.ServiceCreateRequest.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
-	3,  // 7: spaceone.api.alert_manager.v1.ServiceCreateRequest.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
-	15, // 8: spaceone.api.alert_manager.v1.ServiceCreateRequest.tags:type_name -> google.protobuf.Struct
-	3,  // 9: spaceone.api.alert_manager.v1.ServiceUpdateRequest.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
-	15, // 10: spaceone.api.alert_manager.v1.ServiceUpdateRequest.tags:type_name -> google.protobuf.Struct
-	2,  // 11: spaceone.api.alert_manager.v1.ServiceChangeMembersRequest.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
-	16, // 12: spaceone.api.alert_manager.v1.ServiceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
-	17, // 13: spaceone.api.alert_manager.v1.ServiceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	2,  // 14: spaceone.api.alert_manager.v1.ServiceInfo.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
-	3,  // 15: spaceone.api.alert_manager.v1.ServiceInfo.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
-	5,  // 16: spaceone.api.alert_manager.v1.ServiceInfo.alerts:type_name -> spaceone.api.alert_manager.v1.Alerts
-	15, // 17: spaceone.api.alert_manager.v1.ServiceInfo.tags:type_name -> google.protobuf.Struct
-	13, // 18: spaceone.api.alert_manager.v1.ServicesInfo.results:type_name -> spaceone.api.alert_manager.v1.ServiceInfo
-	6,  // 19: spaceone.api.alert_manager.v1.Service.create:input_type -> spaceone.api.alert_manager.v1.ServiceCreateRequest
-	7,  // 20: spaceone.api.alert_manager.v1.Service.update:input_type -> spaceone.api.alert_manager.v1.ServiceUpdateRequest
-	8,  // 21: spaceone.api.alert_manager.v1.Service.change_members:input_type -> spaceone.api.alert_manager.v1.ServiceChangeMembersRequest
-	9,  // 22: spaceone.api.alert_manager.v1.Service.delete:input_type -> spaceone.api.alert_manager.v1.ServiceDeleteRequest
-	10, // 23: spaceone.api.alert_manager.v1.Service.get:input_type -> spaceone.api.alert_manager.v1.ServiceGetRequest
-	11, // 24: spaceone.api.alert_manager.v1.Service.list:input_type -> spaceone.api.alert_manager.v1.ServiceSearchQuery
-	12, // 25: spaceone.api.alert_manager.v1.Service.stat:input_type -> spaceone.api.alert_manager.v1.ServiceStatQuery
-	13, // 26: spaceone.api.alert_manager.v1.Service.create:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
-	13, // 27: spaceone.api.alert_manager.v1.Service.update:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
-	13, // 28: spaceone.api.alert_manager.v1.Service.change_members:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
-	18, // 29: spaceone.api.alert_manager.v1.Service.delete:output_type -> google.protobuf.Empty
-	13, // 30: spaceone.api.alert_manager.v1.Service.get:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
-	14, // 31: spaceone.api.alert_manager.v1.Service.list:output_type -> spaceone.api.alert_manager.v1.ServicesInfo
-	15, // 32: spaceone.api.alert_manager.v1.Service.stat:output_type -> google.protobuf.Struct
-	26, // [26:33] is the sub-list for method output_type
-	19, // [19:26] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	5,  // 2: spaceone.api.alert_manager.v1.Alerts.TOTAL:type_name -> spaceone.api.alert_manager.v1.AlertStats
+	5,  // 3: spaceone.api.alert_manager.v1.Alerts.TRIGGERED:type_name -> spaceone.api.alert_manager.v1.AlertStats
+	5,  // 4: spaceone.api.alert_manager.v1.Alerts.ACKNOWLEDGED:type_name -> spaceone.api.alert_manager.v1.AlertStats
+	5,  // 5: spaceone.api.alert_manager.v1.Alerts.RESOLVED:type_name -> spaceone.api.alert_manager.v1.AlertStats
+	3,  // 6: spaceone.api.alert_manager.v1.ServiceCreateRequest.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
+	4,  // 7: spaceone.api.alert_manager.v1.ServiceCreateRequest.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
+	16, // 8: spaceone.api.alert_manager.v1.ServiceCreateRequest.tags:type_name -> google.protobuf.Struct
+	4,  // 9: spaceone.api.alert_manager.v1.ServiceUpdateRequest.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
+	16, // 10: spaceone.api.alert_manager.v1.ServiceUpdateRequest.tags:type_name -> google.protobuf.Struct
+	3,  // 11: spaceone.api.alert_manager.v1.ServiceChangeMembersRequest.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
+	17, // 12: spaceone.api.alert_manager.v1.ServiceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
+	18, // 13: spaceone.api.alert_manager.v1.ServiceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	3,  // 14: spaceone.api.alert_manager.v1.ServiceInfo.members:type_name -> spaceone.api.alert_manager.v1.ServiceMembers
+	4,  // 15: spaceone.api.alert_manager.v1.ServiceInfo.options:type_name -> spaceone.api.alert_manager.v1.ServiceOptions
+	6,  // 16: spaceone.api.alert_manager.v1.ServiceInfo.alerts:type_name -> spaceone.api.alert_manager.v1.Alerts
+	2,  // 17: spaceone.api.alert_manager.v1.ServiceInfo.service_healthy:type_name -> spaceone.api.alert_manager.v1.ServiceInfo.ServiceHealthy
+	16, // 18: spaceone.api.alert_manager.v1.ServiceInfo.tags:type_name -> google.protobuf.Struct
+	14, // 19: spaceone.api.alert_manager.v1.ServicesInfo.results:type_name -> spaceone.api.alert_manager.v1.ServiceInfo
+	7,  // 20: spaceone.api.alert_manager.v1.Service.create:input_type -> spaceone.api.alert_manager.v1.ServiceCreateRequest
+	8,  // 21: spaceone.api.alert_manager.v1.Service.update:input_type -> spaceone.api.alert_manager.v1.ServiceUpdateRequest
+	9,  // 22: spaceone.api.alert_manager.v1.Service.change_members:input_type -> spaceone.api.alert_manager.v1.ServiceChangeMembersRequest
+	10, // 23: spaceone.api.alert_manager.v1.Service.delete:input_type -> spaceone.api.alert_manager.v1.ServiceDeleteRequest
+	11, // 24: spaceone.api.alert_manager.v1.Service.get:input_type -> spaceone.api.alert_manager.v1.ServiceGetRequest
+	12, // 25: spaceone.api.alert_manager.v1.Service.list:input_type -> spaceone.api.alert_manager.v1.ServiceSearchQuery
+	13, // 26: spaceone.api.alert_manager.v1.Service.stat:input_type -> spaceone.api.alert_manager.v1.ServiceStatQuery
+	14, // 27: spaceone.api.alert_manager.v1.Service.create:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
+	14, // 28: spaceone.api.alert_manager.v1.Service.update:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
+	14, // 29: spaceone.api.alert_manager.v1.Service.change_members:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
+	19, // 30: spaceone.api.alert_manager.v1.Service.delete:output_type -> google.protobuf.Empty
+	14, // 31: spaceone.api.alert_manager.v1.Service.get:output_type -> spaceone.api.alert_manager.v1.ServiceInfo
+	15, // 32: spaceone.api.alert_manager.v1.Service.list:output_type -> spaceone.api.alert_manager.v1.ServicesInfo
+	16, // 33: spaceone.api.alert_manager.v1.Service.stat:output_type -> google.protobuf.Struct
+	27, // [27:34] is the sub-list for method output_type
+	20, // [20:27] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_alert_manager_v1_service_proto_init() }
@@ -1201,7 +1266,7 @@ func file_spaceone_api_alert_manager_v1_service_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spaceone_api_alert_manager_v1_service_proto_rawDesc), len(file_spaceone_api_alert_manager_v1_service_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      3,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,

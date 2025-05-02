@@ -164,11 +164,11 @@ func (x *ResetDataSourceAccountRequest) GetResetSync() bool {
 }
 
 type DataSourceAccountRequest struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	DataSourceAccountId string                 `protobuf:"bytes,1,opt,name=data_source_account_id,json=dataSourceAccountId,proto3" json:"data_source_account_id,omitempty"`
-	AccountId           string                 `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DataSourceId  string                 `protobuf:"bytes,1,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	AccountId     string                 `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DataSourceAccountRequest) Reset() {
@@ -201,9 +201,9 @@ func (*DataSourceAccountRequest) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_data_source_account_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DataSourceAccountRequest) GetDataSourceAccountId() string {
+func (x *DataSourceAccountRequest) GetDataSourceId() string {
 	if x != nil {
-		return x.DataSourceAccountId
+		return x.DataSourceId
 	}
 	return ""
 }
@@ -611,9 +611,9 @@ const file_spaceone_api_cost_analysis_v1_data_source_account_proto_rawDesc = "" 
 	"\n" +
 	"account_id\x18\x02 \x01(\tR\taccountId\x12\x1d\n" +
 	"\n" +
-	"reset_sync\x18\x03 \x01(\bR\tresetSync\"n\n" +
-	"\x18DataSourceAccountRequest\x123\n" +
-	"\x16data_source_account_id\x18\x01 \x01(\tR\x13dataSourceAccountId\x12\x1d\n" +
+	"reset_sync\x18\x03 \x01(\bR\tresetSync\"_\n" +
+	"\x18DataSourceAccountRequest\x12$\n" +
+	"\x0edata_source_id\x18\x01 \x01(\tR\fdataSourceId\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x02 \x01(\tR\taccountId\"\x80\x02\n" +
 	"\x16DataSourceAccountQuery\x121\n" +
