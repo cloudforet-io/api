@@ -58,6 +58,29 @@
           ]
         },
         {
+          "name": "FileFormat",
+          "longName": "AlertExportRequest.FileFormat",
+          "fullName": "spaceone.api.alert_manager.v1.AlertExportRequest.FileFormat",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_FILE_FORMAT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "EXCEL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CSV",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "AlertAction",
           "longName": "AlertHistoryRequest.AlertAction",
           "fullName": "spaceone.api.alert_manager.v1.AlertHistoryRequest.AlertAction",
@@ -533,6 +556,17 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "AlertExportRequest",
+          "longName": "AlertExportRequest",
+          "fullName": "spaceone.api.alert_manager.v1.AlertExportRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
         },
         {
           "name": "AlertHistoryInfo",
@@ -1503,6 +1537,29 @@
                     {
                       "method": "POST",
                       "pattern": "/alert-manager/v1/alert/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "export",
+              "description": "",
+              "requestType": "AlertExportRequest",
+              "requestLongType": "AlertExportRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.AlertExportRequest",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/alert-manager/v1/alert/export",
                       "body": "*"
                     }
                   ]

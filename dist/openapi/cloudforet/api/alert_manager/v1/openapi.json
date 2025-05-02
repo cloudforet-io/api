@@ -147,6 +147,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/export": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Export",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/alert-manager/alert/history": {
        "post": {
          "tags": ["alert-manager > alert"],
@@ -2313,6 +2342,12 @@
          "type": "object",
          "required": ["alert_id","action","description","event_info","notification_info","domain_id","workspace_id","service_id","created_at","created_by"],
                 "title": "AlertEventInfo"
+           }
+           ,        "AlertExportRequest": {
+         "properties" : {},
+         "type": "object",
+         "required": [],
+                "title": "AlertExportRequest"
            }
            ,        "AlertHistoryInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertEventInfo"},

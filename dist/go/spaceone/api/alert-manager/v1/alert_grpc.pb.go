@@ -26,6 +26,7 @@ const (
 	Alert_Delete_FullMethodName  = "/spaceone.api.alert_manager.v1.Alert/delete"
 	Alert_Get_FullMethodName     = "/spaceone.api.alert_manager.v1.Alert/get"
 	Alert_List_FullMethodName    = "/spaceone.api.alert_manager.v1.Alert/list"
+	Alert_Export_FullMethodName  = "/spaceone.api.alert_manager.v1.Alert/export"
 	Alert_History_FullMethodName = "/spaceone.api.alert_manager.v1.Alert/history"
 	Alert_Analyze_FullMethodName = "/spaceone.api.alert_manager.v1.Alert/analyze"
 	Alert_Stat_FullMethodName    = "/spaceone.api.alert_manager.v1.Alert/stat"
@@ -40,6 +41,7 @@ type AlertClient interface {
 	Delete(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	List(ctx context.Context, in *AlertSearchQuery, opts ...grpc.CallOption) (*AlertsInfo, error)
+	Export(ctx context.Context, in *AlertExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	History(ctx context.Context, in *AlertHistoryRequest, opts ...grpc.CallOption) (*AlertHistoryInfo, error)
 	Analyze(ctx context.Context, in *AlertAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *AlertStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -103,6 +105,16 @@ func (c *alertClient) List(ctx context.Context, in *AlertSearchQuery, opts ...gr
 	return out, nil
 }
 
+func (c *alertClient) Export(ctx context.Context, in *AlertExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, Alert_Export_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *alertClient) History(ctx context.Context, in *AlertHistoryRequest, opts ...grpc.CallOption) (*AlertHistoryInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AlertHistoryInfo)
@@ -142,6 +154,7 @@ type AlertServer interface {
 	Delete(context.Context, *AlertRequest) (*empty.Empty, error)
 	Get(context.Context, *AlertRequest) (*AlertInfo, error)
 	List(context.Context, *AlertSearchQuery) (*AlertsInfo, error)
+	Export(context.Context, *AlertExportRequest) (*_struct.Struct, error)
 	History(context.Context, *AlertHistoryRequest) (*AlertHistoryInfo, error)
 	Analyze(context.Context, *AlertAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *AlertStatQuery) (*_struct.Struct, error)
@@ -169,6 +182,9 @@ func (UnimplementedAlertServer) Get(context.Context, *AlertRequest) (*AlertInfo,
 }
 func (UnimplementedAlertServer) List(context.Context, *AlertSearchQuery) (*AlertsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedAlertServer) Export(context.Context, *AlertExportRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
 }
 func (UnimplementedAlertServer) History(context.Context, *AlertHistoryRequest) (*AlertHistoryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method History not implemented")
@@ -290,6 +306,24 @@ func _Alert_List_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Alert_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AlertExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlertServer).Export(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Alert_Export_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlertServer).Export(ctx, req.(*AlertExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Alert_History_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlertHistoryRequest)
 	if err := dec(in); err != nil {
@@ -370,6 +404,10 @@ var Alert_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Alert_List_Handler,
+		},
+		{
+			MethodName: "export",
+			Handler:    _Alert_Export_Handler,
 		},
 		{
 			MethodName: "history",

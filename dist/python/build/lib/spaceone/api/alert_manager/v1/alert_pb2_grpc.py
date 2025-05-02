@@ -66,6 +66,11 @@ class AlertStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.FromString,
                 _registered_method=True)
+        self.export = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.Alert/export',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertExportRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                _registered_method=True)
         self.history = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/history',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryRequest.SerializeToString,
@@ -116,6 +121,12 @@ class AlertServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def export(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def history(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -161,6 +172,11 @@ def add_AlertServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.SerializeToString,
+            ),
+            'export': grpc.unary_unary_rpc_method_handler(
+                    servicer.export,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertExportRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'history': grpc.unary_unary_rpc_method_handler(
                     servicer.history,
@@ -313,6 +329,33 @@ class Alert(object):
             '/spaceone.api.alert_manager.v1.Alert/list',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def export(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.alert_manager.v1.Alert/export',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertExportRequest.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,
