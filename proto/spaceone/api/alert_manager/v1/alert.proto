@@ -11,267 +11,281 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/alert_manager/v1/event.proto";
 
 service Alert {
-    rpc create (AlertCreateRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/create"
-            body: "*"
-        };
-    }
-    rpc update (AlertUpdateRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/update"
-            body: "*"
-        };
-    }
-    rpc delete (AlertRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/delete"
-            body: "*"
-        };
-    }
-    rpc get (AlertRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/get"
-            body: "*"
-        };
-    }
-    rpc list (AlertSearchQuery) returns (AlertsInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/list"
-            body: "*"
-        };
-    }
-    rpc history (AlertHistoryRequest) returns (AlertHistoryInfo) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/history"
-            body: "*"
-        };
-    }
-    rpc analyze (AlertAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/analyze"
-            body: "*"
-        };
-    }
-    rpc stat (AlertStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/alert-manager/v1/alert/stat"
-            body: "*"
-        };
-    }
+  rpc create (AlertCreateRequest) returns (AlertInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/create"
+      body: "*"
+    };
+  }
+  rpc update (AlertUpdateRequest) returns (AlertInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/update"
+      body: "*"
+    };
+  }
+  rpc delete (AlertRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/delete"
+      body: "*"
+    };
+  }
+  rpc get (AlertRequest) returns (AlertInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/get"
+      body: "*"
+    };
+  }
+  rpc list (AlertSearchQuery) returns (AlertsInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/list"
+      body: "*"
+    };
+  }
+  rpc export (AlertExportRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/export"
+      body: "*"
+    };
+  }
+  rpc history (AlertHistoryRequest) returns (AlertHistoryInfo) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/history"
+      body: "*"
+    };
+  }
+  rpc analyze (AlertAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/analyze"
+      body: "*"
+    };
+  }
+  rpc stat (AlertStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/alert-manager/v1/alert/stat"
+      body: "*"
+    };
+  }
 }
 
 enum AlertUrgency {
-    ALERT_URGENCY_NONE = 0;
-    HIGH = 1;
-    LOW = 2;
+  ALERT_URGENCY_NONE = 0;
+  HIGH = 1;
+  LOW = 2;
 }
 
 message NotificationInfo {
-    string notification_id = 1;
-    google.protobuf.Struct service_channels = 2;
-    google.protobuf.Struct user_group_channels = 3;
-    google.protobuf.Struct user_channels = 4;
+  string notification_id = 1;
+  google.protobuf.Struct service_channels = 2;
+  google.protobuf.Struct user_group_channels = 3;
+  google.protobuf.Struct user_channels = 4;
 }
 
 message AlertResource {
-    string name = 1;
-    // +optional
-    string asset_id = 2;
-    // +optional
-    string asset_type = 3;
+  string name = 1;
+  // +optional
+  string asset_id = 2;
+  // +optional
+  string asset_type = 3;
 }
 
 message AlertCreateRequest {
-    string title = 1;
-    // +optional
-    string description = 2;
-    // +optional
-    AlertUrgency urgency = 3;
-    // +optional
-    spaceone.api.alert_manager.v1.EventSeverity severity = 4;
-    // +optional
-    string rule = 5;
-    // +optional
-    string image_url = 6;
-    // +optional
-    repeated AlertResource resources = 7;
+  string title = 1;
+  // +optional
+  string description = 2;
+  // +optional
+  AlertUrgency urgency = 3;
+  // +optional
+  spaceone.api.alert_manager.v1.EventSeverity severity = 4;
+  // +optional
+  string rule = 5;
+  // +optional
+  string image_url = 6;
+  // +optional
+  repeated AlertResource resources = 7;
 
-    // +optional
-    google.protobuf.Struct additional_info = 11;
+  // +optional
+  google.protobuf.Struct additional_info = 11;
 
-    string service_id = 21;
+  string service_id = 21;
 }
 
 message AlertUpdateRequest {
-    enum AlertStatus {
-        ALERT_STATE_NONE = 0;
-        TRIGGERED = 1;
-        ACKNOWLEDGED = 2;
-        RESOLVED = 3;
-        IGNORED = 4;
-    }
+  enum AlertStatus {
+    ALERT_STATE_NONE = 0;
+    TRIGGERED = 1;
+    ACKNOWLEDGED = 2;
+    RESOLVED = 3;
+    IGNORED = 4;
+  }
 
-    string alert_id = 1;
-    // +optional
-    string title = 2;
-    // +optional
-    AlertStatus status = 3;
-    // +optional
-    string description = 4;
-    // +optional
-    AlertUrgency urgency = 5;
+  string alert_id = 1;
+  // +optional
+  string title = 2;
+  // +optional
+  AlertStatus status = 3;
+  // +optional
+  string description = 4;
+  // +optional
+  AlertUrgency urgency = 5;
 }
 
 message AlertRequest {
-    string alert_id = 1;
+  string alert_id = 1;
 }
 
 message AlertHistoryRequest {
-    enum AlertAction {
-        NONE = 0;
-        TRIGGERED = 1;
-        ACKNOWLEDGED = 2;
-        RESOLVED = 3;
-        NOTIFIED_SUCCESS = 4;
-        NOTIFIED_FAILURE = 5;
-        NOTIFIED_SKIPPED = 6;
-        EVENT_PUSHED = 7;
-    }
+  enum AlertAction {
+    NONE = 0;
+    TRIGGERED = 1;
+    ACKNOWLEDGED = 2;
+    RESOLVED = 3;
+    NOTIFIED_SUCCESS = 4;
+    NOTIFIED_FAILURE = 5;
+    NOTIFIED_SKIPPED = 6;
+    EVENT_PUSHED = 7;
+  }
 
-    string alert_id = 1;
-    // +optional
-    AlertAction action = 2;
-    // +optional
-    bool include_details = 3;
-    // +optional
-    repeated spaceone.api.core.v2.Sort sort = 4;
+  string alert_id = 1;
+  // +optional
+  AlertAction action = 2;
+  // +optional
+  bool include_details = 3;
+  // +optional
+  repeated spaceone.api.core.v2.Sort sort = 4;
 }
 
 message AlertSearchQuery {
-    enum AlertStatus {
-        ALERT_STATE_NONE = 0;
-        TRIGGERED = 1;
-        ACKNOWLEDGED = 2;
-        RESOLVED = 3;
-        IGNORED = 4;
-    }
+  enum AlertStatus {
+    ALERT_STATE_NONE = 0;
+    TRIGGERED = 1;
+    ACKNOWLEDGED = 2;
+    RESOLVED = 3;
+    IGNORED = 4;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string alert_id = 2;
-    // +optional
-    AlertStatus status = 3;
-    // +optional
-    AlertUrgency urgency = 4;
-    // +optional
-    spaceone.api.alert_manager.v1.EventSeverity severity = 5;
-    // +optional
-    string resource = 6;
-    // +optional
-    string triggered_type = 7;
-    // +optional
-    string triggered_by = 8;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string alert_id = 2;
+  // +optional
+  AlertStatus status = 3;
+  // +optional
+  AlertUrgency urgency = 4;
+  // +optional
+  spaceone.api.alert_manager.v1.EventSeverity severity = 5;
+  // +optional
+  string resource = 6;
+  // +optional
+  string triggered_type = 7;
+  // +optional
+  string triggered_by = 8;
 
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string service_id = 22;
-    // +optional
-    string webhook_id = 23;
-    // +optional
-    string escalation_policy_id = 24;
-    // +optional
-    string asset_id = 25;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string service_id = 22;
+  // +optional
+  string webhook_id = 23;
+  // +optional
+  string escalation_policy_id = 24;
+  // +optional
+  string asset_id = 25;
 }
 
 message AlertAnalyzeQuery {
-    spaceone.api.core.v2.AnalyzeQuery query = 1;
+  spaceone.api.core.v2.AnalyzeQuery query = 1;
 }
 
 message AlertStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
 message AlertInfo {
-    enum AlertStatus {
-        ALERT_STATE_NONE = 0;
-        TRIGGERED = 1;
-        ACKNOWLEDGED = 2;
-        RESOLVED = 3;
-        IGNORED = 4;
-    }
-    enum TriggeredType {
-        TRIGGERD_BY_NONE = 0;
-        USER = 1;
-        APP = 2;
-        WEBHOOK = 3;
-    }
+  enum AlertStatus {
+    ALERT_STATE_NONE = 0;
+    TRIGGERED = 1;
+    ACKNOWLEDGED = 2;
+    RESOLVED = 3;
+    IGNORED = 4;
+  }
+  enum TriggeredType {
+    TRIGGERD_BY_NONE = 0;
+    USER = 1;
+    APP = 2;
+    WEBHOOK = 3;
+  }
 
-    string alert_id = 1;
-    string title = 2;
-    AlertStatus status = 3;
-    string description = 4;
-    AlertUrgency urgency = 5;
-    spaceone.api.alert_manager.v1.EventSeverity severity = 6;
-    string rule = 7;
-    string image_url = 8;
-    repeated AlertResource resources = 9;
-    TriggeredType triggered_type = 10;
-    string triggered_by = 11;
-    string acknowledged_by = 12;
-    string resolved_by = 13;
+  string alert_id = 1;
+  string title = 2;
+  AlertStatus status = 3;
+  string description = 4;
+  AlertUrgency urgency = 5;
+  spaceone.api.alert_manager.v1.EventSeverity severity = 6;
+  string rule = 7;
+  string image_url = 8;
+  repeated AlertResource resources = 9;
+  TriggeredType triggered_type = 10;
+  string triggered_by = 11;
+  string acknowledged_by = 12;
+  string resolved_by = 13;
 
-    google.protobuf.Struct additional_info = 15;
-    repeated string labels = 16;
+  google.protobuf.Struct additional_info = 15;
+  repeated string labels = 16;
 
-    string domain_id = 21;
-    string workspace_id = 22;
-    string service_id = 23;
-    string webhook_id = 24;
-    string escalation_policy_id = 25;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string service_id = 23;
+  string webhook_id = 24;
+  string escalation_policy_id = 25;
 
-    string created_at = 31;
-    string updated_at = 32;
-    string acknowledged_at = 33;
-    string resolved_at = 34;
-    int64 acknowledged_duration = 35;
-    int64 resolved_duration = 36;
+  string created_at = 31;
+  string updated_at = 32;
+  string acknowledged_at = 33;
+  string resolved_at = 34;
+  int64 acknowledged_duration = 35;
+  int64 resolved_duration = 36;
 }
 
 message AlertsInfo {
-    repeated AlertInfo results = 1;
-    int32 total_count = 2;
+  repeated AlertInfo results = 1;
+  int32 total_count = 2;
 }
 
 message AlertEventInfo {
-    enum AlertAction {
-        NONE = 0;
-        TRIGGERED = 1;
-        ACKNOWLEDGED = 2;
-        RESOLVED = 3;
-        NOTIFIED_SUCCESS = 4;
-        NOTIFIED_FAILURE = 5;
-        NOTIFIED_SKIPPED = 6;
-        EVENT_PUSHED = 7;
-    }
+  enum AlertAction {
+    NONE = 0;
+    TRIGGERED = 1;
+    ACKNOWLEDGED = 2;
+    RESOLVED = 3;
+    NOTIFIED_SUCCESS = 4;
+    NOTIFIED_FAILURE = 5;
+    NOTIFIED_SKIPPED = 6;
+    EVENT_PUSHED = 7;
+  }
 
-    string alert_id = 1;
-    AlertAction action = 2;
-    string description = 3;
-    spaceone.api.alert_manager.v1.EventInfo event_info = 4;
-    NotificationInfo notification_info = 5;
+  string alert_id = 1;
+  AlertAction action = 2;
+  string description = 3;
+  spaceone.api.alert_manager.v1.EventInfo event_info = 4;
+  NotificationInfo notification_info = 5;
 
-    string domain_id = 21;
-    string workspace_id = 22;
-    string service_id = 23;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string service_id = 23;
 
-    string created_at = 31;
-    string created_by = 32;
+  string created_at = 31;
+  string created_by = 32;
 }
 
 message AlertHistoryInfo {
-    repeated AlertEventInfo results = 1;
-    int32 total_count = 2;
+  repeated AlertEventInfo results = 1;
+  int32 total_count = 2;
+}
+
+message AlertExportRequest {
+  enum FileFormat {
+    NONE_FILE_FORMAT = 0;
+    EXCEL = 1;
+    CSV = 2;
+  }
 }
