@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/cost_analysis/v1/job.proto";
+
+service ReportAdjustment {
+  rpc create (CreateReportAdjustmentRequest) returns (ReportAdjustmentInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/create",
+      body: "*"
+    };
+  }
+
+  rpc update (UpdateReportAdjustmentRequest) returns (ReportAdjustmentInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/update",
+      body: "*"
+    };
+  }
+
+  rpc change_order (ChangeOrderReportAdjustmentRequest) returns (ReportAdjustmentInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/change-order",
+      body: "*"
+    };
+  }
+
+  rpc delete (ReportAdjustmentRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/delete"
+      body: "*"
+    };
+  }
+
+  rpc get (ReportAdjustmentRequest) returns (ReportAdjustmentInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/get",
+      body: "*"
+    };
+  }
+
+  rpc list (ReportAdjustmentQuery) returns (ReportAdjustmentsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment/list",
+      body: "*"
+    };
+  }
+
+}
+
+enum AdjustmentMethod {
+  METHOD_NONE = 0;
+  FIXED = 1;
+  RATE = 2;
+}
+
+message CreateReportAdjustmentRequest {
+  string name = 1;
+  AdjustmentMethod method = 2;
+  float value = 3;
+  // +optional
+  string description = 4;
+  // +optional
+  string provider = 5;
+  // +optional
+  string currency = 6;
+  // +optional
+  int32 order = 7;
+  // +optional
+  google.protobuf.Struct filters = 8;
+  string report_adjustment_policy_id = 10;
+}
+
+message UpdateReportAdjustmentRequest {
+  string report_adjustment_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  AdjustmentMethod method = 3;
+  // +optional
+  float value = 4;
+  // +optional
+  string description = 5;
+  // +optional
+  string provider = 6;
+  // +optional
+  google.protobuf.Struct filters = 7;
+}
+
+message ChangeOrderReportAdjustmentRequest {
+  string report_adjustment_id = 1;
+  int32 order = 2;
+}
+
+message ReportAdjustmentRequest {
+  string report_adjustment_id = 1;
+}
+
+message ReportAdjustmentQuery {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    DELETED = 3;
+  }
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  State state = 3;
+  // +optional
+  string workspace_id = 4;
+  // +optional
+  string project_id = 5;
+}
+
+message ReportAdjustmentInfo {
+  string report_adjustment_id = 1;
+  string name = 2;
+  AdjustmentMethod method = 3;
+  float value = 4;
+  string description = 5;
+  string provider = 6;
+  string currency = 7;
+  int32 order = 8;
+  google.protobuf.Struct filters = 9;
+
+  string created_at = 11;
+  string updated_at = 12;
+  string deleted_at = 13;
+
+  string cost_report_config_id = 19;
+  string report_adjustment_policy_id = 20;
+  string domain_id = 21;
+}
+
+message ReportAdjustmentsInfo {
+  repeated ReportAdjustmentInfo results = 1;
+  int32 total_count = 2;
+}

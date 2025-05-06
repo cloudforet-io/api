@@ -82,19 +82,32 @@ service CostReportConfig {
   }
 }
 
+message AdjustmentOptions {
+  bool enabled = 1;
+  int32 period = 2;
+}
+
 message CreateCostReportConfigRequest {
+  enum Scope {
+    SCOPE_NONE = 0;
+    WORKSPACE = 1;
+    PROJECT = 2;
+  }
+  Scope scope = 1;
   // +optional
-  int32 issue_day = 1;
+  int32 issue_day = 2;
   // +optional
-  bool is_last_day = 2;
+  bool is_last_day = 3;
   // +optional
-  string currency = 3;
-  google.protobuf.Struct recipients = 4;
+  AdjustmentOptions adjustment_options = 4;
   // +optional
-  google.protobuf.Struct data_source_filter = 5;
+  string currency = 6;
+  google.protobuf.Struct recipients = 7;
+  // +optional
+  google.protobuf.Struct data_source_filter = 8;
   // Default `en`
   // +optional
-  string language = 6;
+  string language = 9;
 }
 
 message UpdateCostReportConfigRequest {
@@ -105,11 +118,13 @@ message UpdateCostReportConfigRequest {
   // +optional
   bool is_last_day = 3;
   // +optional
-  string currency = 4;
+  AdjustmentOptions adjustment_options = 4;
   // +optional
-  google.protobuf.Struct data_source_filter = 5;
+  string currency = 6;
   // +optional
-  string language = 6;
+  google.protobuf.Struct data_source_filter = 7;
+  // +optional
+  string language = 8;
 
 }
 
@@ -130,6 +145,12 @@ message CostReportConfigQuery {
     DISABLED = 2;
   }
 
+  enum Scope {
+    SCOPE_NONE = 0;
+    WORKSPACE = 1;
+    PROJECT = 2;
+  }
+
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // The ID of cost report in the Protocol.
@@ -137,6 +158,8 @@ message CostReportConfigQuery {
   string cost_report_config_id = 2;
   // +optional
   State state = 3;
+  // +optional
+  Scope scope = 4;
 }
 
 message CostReportConfigInfo {
@@ -147,15 +170,23 @@ message CostReportConfigInfo {
     DELETED = 3;
   }
 
+  enum Scope {
+    SCOPE_NONE = 0;
+    WORKSPACE = 1;
+    PROJECT = 2;
+  }
+
   // The ID of cost report in the Protocol.
   string cost_report_config_id = 1;
   State state = 2;
-  int32 issue_day = 3;
-  bool is_last_day = 4;
-  string currency = 6;
-  google.protobuf.Struct recipients = 7;
-  google.protobuf.Struct data_source_filter = 8;
-  string language = 9;
+  Scope scope = 3;
+  int32 issue_day = 4;
+  bool is_last_day = 5;
+  AdjustmentOptions adjustment_options = 6;
+  string currency = 8;
+  google.protobuf.Struct recipients = 9;
+  google.protobuf.Struct data_source_filter = 10;
+  string language = 11;
   string domain_id = 21;
   string created_at = 31;
   string updated_at = 32;
