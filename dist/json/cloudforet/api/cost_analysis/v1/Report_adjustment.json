@@ -1,41 +1,41 @@
 {
   "files": [
     {
-      "name": "spaceone/api/cost_analysis/v1/cost_report.proto",
+      "name": "spaceone/api/cost_analysis/v1/report_adjustment.proto",
       "description": "",
       "package": "spaceone.api.cost_analysis.v1",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
-          "name": "Status",
-          "longName": "CostReportInfo.Status",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportInfo.Status",
+          "name": "AdjustmentMethod",
+          "longName": "AdjustmentMethod",
+          "fullName": "spaceone.api.cost_analysis.v1.AdjustmentMethod",
           "description": "",
           "values": [
             {
-              "name": "NONE",
+              "name": "METHOD_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "IN_PROGRESS",
+              "name": "FIXED",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SUCCESS",
+              "name": "RATE",
               "number": "2",
               "description": ""
             }
           ]
         },
         {
-          "name": "Status",
-          "longName": "CostReportQuery.Status",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportQuery.Status",
+          "name": "State",
+          "longName": "ReportAdjustmentQuery.State",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentQuery.State",
           "description": "",
           "values": [
             {
@@ -44,13 +44,18 @@
               "description": ""
             },
             {
-              "name": "IN_PROGRESS",
+              "name": "ENABLED",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SUCCESS",
+              "name": "DISABLED",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "DELETED",
+              "number": "3",
               "description": ""
             }
           ]
@@ -59,9 +64,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CostReportInfo",
-          "longName": "CostReportInfo",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportInfo",
+          "name": "ChangeOrderReportAdjustmentRequest",
+          "longName": "ChangeOrderReportAdjustmentRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -69,7 +74,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "cost_report_id",
+              "name": "report_adjustment_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -81,8 +86,116 @@
               "defaultValue": ""
             },
             {
-              "name": "cost",
+              "name": "order",
               "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateReportAdjustmentRequest",
+          "longName": "CreateReportAdjustmentRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "method",
+              "description": "",
+              "label": "",
+              "type": "AdjustmentMethod",
+              "longType": "AdjustmentMethod",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentMethod",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "currency",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "order",
+              "description": "+optional",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "filters",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -93,19 +206,91 @@
               "defaultValue": ""
             },
             {
-              "name": "status",
+              "name": "report_adjustment_policy_id",
               "description": "",
               "label": "",
-              "type": "Status",
-              "longType": "CostReportInfo.Status",
-              "fullType": "spaceone.api.cost_analysis.v1.CostReportInfo.Status",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ReportAdjustmentInfo",
+          "longName": "ReportAdjustmentInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "report_adjustment_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "report_number",
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "method",
+              "description": "",
+              "label": "",
+              "type": "AdjustmentMethod",
+              "longType": "AdjustmentMethod",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentMethod",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
               "description": "",
               "label": "",
               "type": "string",
@@ -129,55 +314,31 @@
               "defaultValue": ""
             },
             {
-              "name": "currency_date",
-              "description": "YYYY-mm-dd 00:00:00 2023-12-31 00:00:00",
+              "name": "order",
+              "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "issue_date",
-              "description": "YYYY-mm 2023-12",
+              "name": "filters",
+              "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "report_year",
-              "description": "YYYY",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "report_month",
-              "description": "YYYY-mm 2023-12",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_name",
+              "name": "created_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -189,7 +350,7 @@
               "defaultValue": ""
             },
             {
-              "name": "bank_name",
+              "name": "updated_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -201,12 +362,12 @@
               "defaultValue": ""
             },
             {
-              "name": "is_adjusted",
+              "name": "deleted_at",
               "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -225,19 +386,7 @@
               "defaultValue": ""
             },
             {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
+              "name": "report_adjustment_policy_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -259,25 +408,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "created_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "CostReportQuery",
-          "longName": "CostReportQuery",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportQuery",
+          "name": "ReportAdjustmentQuery",
+          "longName": "ReportAdjustmentQuery",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -297,7 +434,7 @@
               "defaultValue": ""
             },
             {
-              "name": "cost_report_id",
+              "name": "name",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -309,7 +446,19 @@
               "defaultValue": ""
             },
             {
-              "name": "cost_report_config_id",
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "State",
+              "longType": "ReportAdjustmentQuery.State",
+              "fullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentQuery.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -321,31 +470,7 @@
               "defaultValue": ""
             },
             {
-              "name": "status",
-              "description": "+optional",
-              "label": "",
-              "type": "Status",
-              "longType": "CostReportQuery.Status",
-              "fullType": "spaceone.api.cost_analysis.v1.CostReportQuery.Status",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "issue_date",
-              "description": "YYYY-mm 2023-12\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_name",
+              "name": "project_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -359,9 +484,9 @@
           ]
         },
         {
-          "name": "CostReportRequest",
-          "longName": "CostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportRequest",
+          "name": "ReportAdjustmentRequest",
+          "longName": "ReportAdjustmentRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -369,45 +494,9 @@
           "extensions": [],
           "fields": [
             {
-              "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CostReportStatQuery",
-          "longName": "CostReportStatQuery",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportStatQuery",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
+              "name": "report_adjustment_id",
               "description": "",
               "label": "",
-              "type": "StatisticsQuery",
-              "longType": "spaceone.api.core.v2.StatisticsQuery",
-              "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cost_report_id",
-              "description": "+optional",
-              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -419,9 +508,9 @@
           ]
         },
         {
-          "name": "CostReportsInfo",
-          "longName": "CostReportsInfo",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportsInfo",
+          "name": "ReportAdjustmentsInfo",
+          "longName": "ReportAdjustmentsInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -432,9 +521,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "CostReportInfo",
-              "longType": "CostReportInfo",
-              "fullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
+              "type": "ReportAdjustmentInfo",
+              "longType": "ReportAdjustmentInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -455,9 +544,9 @@
           ]
         },
         {
-          "name": "GetUrlCostReportRequest",
-          "longName": "GetUrlCostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.GetUrlCostReportRequest",
+          "name": "UpdateReportAdjustmentRequest",
+          "longName": "UpdateReportAdjustmentRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -465,12 +554,84 @@
           "extensions": [],
           "fields": [
             {
-              "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol",
+              "name": "report_adjustment_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "method",
+              "description": "+optional",
+              "label": "",
+              "type": "AdjustmentMethod",
+              "longType": "AdjustmentMethod",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentMethod",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "+optional",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "filters",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -481,17 +642,86 @@
       ],
       "services": [
         {
-          "name": "CostReport",
-          "longName": "CostReport",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReport",
+          "name": "ReportAdjustment",
+          "longName": "ReportAdjustment",
+          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustment",
           "description": "",
           "methods": [
             {
-              "name": "send",
+              "name": "create",
               "description": "",
-              "requestType": "CostReportRequest",
-              "requestLongType": "CostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
+              "requestType": "CreateReportAdjustmentRequest",
+              "requestLongType": "CreateReportAdjustmentRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest",
+              "requestStreaming": false,
+              "responseType": "ReportAdjustmentInfo",
+              "responseLongType": "ReportAdjustmentInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/report-adjustment/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "",
+              "requestType": "UpdateReportAdjustmentRequest",
+              "requestLongType": "UpdateReportAdjustmentRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest",
+              "requestStreaming": false,
+              "responseType": "ReportAdjustmentInfo",
+              "responseLongType": "ReportAdjustmentInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/report-adjustment/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_order",
+              "description": "",
+              "requestType": "ChangeOrderReportAdjustmentRequest",
+              "requestLongType": "ChangeOrderReportAdjustmentRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentRequest",
+              "requestStreaming": false,
+              "responseType": "ReportAdjustmentInfo",
+              "responseLongType": "ReportAdjustmentInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/report-adjustment/change-order",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "requestType": "ReportAdjustmentRequest",
+              "requestLongType": "ReportAdjustmentRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -502,30 +732,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/send",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "get_url",
-              "description": "",
-              "requestType": "GetUrlCostReportRequest",
-              "requestLongType": "GetUrlCostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.GetUrlCostReportRequest",
-              "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/get-url",
+                      "pattern": "/cost-analysis/v1/report-adjustment/delete",
                       "body": "*"
                     }
                   ]
@@ -535,20 +742,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "CostReportRequest",
-              "requestLongType": "CostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
+              "requestType": "ReportAdjustmentRequest",
+              "requestLongType": "ReportAdjustmentRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentRequest",
               "requestStreaming": false,
-              "responseType": "CostReportInfo",
-              "responseLongType": "CostReportInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
+              "responseType": "ReportAdjustmentInfo",
+              "responseLongType": "ReportAdjustmentInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/get",
+                      "pattern": "/cost-analysis/v1/report-adjustment/get",
                       "body": "*"
                     }
                   ]
@@ -558,43 +765,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "CostReportQuery",
-              "requestLongType": "CostReportQuery",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportQuery",
+              "requestType": "ReportAdjustmentQuery",
+              "requestLongType": "ReportAdjustmentQuery",
+              "requestFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentQuery",
               "requestStreaming": false,
-              "responseType": "CostReportsInfo",
-              "responseLongType": "CostReportsInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportsInfo",
+              "responseType": "ReportAdjustmentsInfo",
+              "responseLongType": "ReportAdjustmentsInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/list",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "stat",
-              "description": "",
-              "requestType": "CostReportStatQuery",
-              "requestLongType": "CostReportStatQuery",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportStatQuery",
-              "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/stat",
+                      "pattern": "/cost-analysis/v1/report-adjustment/list",
                       "body": "*"
                     }
                   ]

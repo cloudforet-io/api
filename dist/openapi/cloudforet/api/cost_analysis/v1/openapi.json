@@ -358,6 +358,174 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/create": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |scope|WORKSPACE, PROJECT |string|True|\n |cost_report_config_id||string|True|\n |order||int||\n |tags||Struct||\n |project_id||string||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"order" : {"type": "integer","title": "ORDER" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/update": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n |name||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/change-order": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "Change Order",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n |order||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/delete": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/get": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment-policy/list": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment-policy"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n |state|ENABLED, DISABLED, DELETED |string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentPolicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/cost-analysis/job/cancel": {
        "post": {
          "tags": ["cost-analysis > job"],
@@ -476,6 +644,174 @@
                  "schema": {"type": "object"},
                  "examples": {
                    "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/create": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |method|FIXED, RATE |string|True|\n |value||float|True|\n |report_adjustment_policy_id||string|True|\n |description||string||\n |provider||string||\n |currency||string||\n |order||int||\n |filters||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"method" : {"type": "string","title": "METHOD" },"value" : {"type": "float","title": "VALUE" },"description" : {"type": "string","title": "DESCRIPTION" },"provider" : {"type": "string","title": "PROVIDER" },"currency" : {"type": "string","title": "CURRENCY" },"order" : {"type": "integer","title": "ORDER" },"filters" : {"type": "object","title": "FILTERS" },"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/update": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n |name||string||\n |method|FIXED, RATE |string||\n |value||float||\n |description||string||\n |provider||string||\n |filters||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" },"name" : {"type": "string","title": "NAME" },"method" : {"type": "string","title": "METHOD" },"value" : {"type": "float","title": "VALUE" },"description" : {"type": "string","title": "DESCRIPTION" },"provider" : {"type": "string","title": "PROVIDER" },"filters" : {"type": "object","title": "FILTERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/change-order": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "Change Order",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n |order||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/delete": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/get": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/report-adjustment/list": {
+       "post": {
+         "tags": ["cost-analysis > report-adjustment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n |state|ENABLED, DISABLED, DELETED |string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ReportAdjustmentsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ReportAdjustmentsInfo"}}
                }
              }}
          }
@@ -810,11 +1146,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|WORKSPACE, PROJECT |string|True|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||boolean||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+                 "properties": {"scope" : {"type": "string","title": "SCOPE" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -839,11 +1175,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||boolean||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1030,11 +1366,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_config_id|The ID of cost report in the Protocol. |string||\n |state|ENABLED, DISABLED |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_config_id|The ID of cost report in the Protocol. |string||\n |state|ENABLED, DISABLED |string||\n |scope|WORKSPACE, PROJECT |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"state" : {"type": "string","title": "STATE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"state" : {"type": "string","title": "STATE" },"scope" : {"type": "string","title": "SCOPE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2249,7 +2585,7 @@
                 "title": "AuthenticationResponse"
            }
            ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
          "type": "object",
          "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
                 "title": "AuthorizationRequest"
@@ -2486,6 +2822,50 @@
          "required": ["cost_query_set_id"],
                 "title": "UpdateCostQuerySetRequest"
            }
+           ,        "ChangeOrderReportAdjustmentPolicyRequest": {
+         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"order" : {"type": "integer","title": "ORDER"}},
+         "type": "object",
+         "required": ["report_adjustment_policy_id","order"],
+                "title": "ChangeOrderReportAdjustmentPolicyRequest"
+           }
+           ,        "CreateReportAdjustmentPolicyRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["name","scope","cost_report_config_id"],
+                "title": "CreateReportAdjustmentPolicyRequest"
+           }
+           ,        "ReportAdjustmentPolicesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ReportAdjustmentPolicyInfo"},
+               "type": "array","$ref": "#/components/schemas/ReportAdjustmentPolicyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ReportAdjustmentPolicesInfo"
+           }
+           ,        "ReportAdjustmentPolicyInfo": {
+         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"adjustments" : {"items": {"type": "string"},
+               "type": "array","title": "ADJUSTMENTS"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["report_adjustment_policy_id","name","state","adjustments","scope","order","tags","cost_report_config_id","created_at","updated_at","deleted_at","project_id","workspace_id","domain_id"],
+                "title": "ReportAdjustmentPolicyInfo"
+           }
+           ,        "ReportAdjustmentPolicyQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "ReportAdjustmentPolicyQuery"
+           }
+           ,        "ReportAdjustmentPolicyRequest": {
+         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"}},
+         "type": "object",
+         "required": ["report_adjustment_policy_id"],
+                "title": "ReportAdjustmentPolicyRequest"
+           }
+           ,        "UpdateReportAdjustmentPolicyRequest": {
+         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["report_adjustment_policy_id"],
+                "title": "UpdateReportAdjustmentPolicyRequest"
+           }
            ,        "ChangedInfo": {
          "properties" : {"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"filter" : {"type": "object","title": "FILTER"}},
          "type": "object",
@@ -2530,6 +2910,49 @@
          "type": "object",
          "required": ["account_id"],
                 "title": "SyncedAccountInfo"
+           }
+           ,        "ChangeOrderReportAdjustmentRequest": {
+         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"},"order" : {"type": "integer","title": "ORDER"}},
+         "type": "object",
+         "required": ["report_adjustment_id","order"],
+                "title": "ChangeOrderReportAdjustmentRequest"
+           }
+           ,        "CreateReportAdjustmentRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"method" : {"type": "string","title": "METHOD"},"value" : {"type": "float","title": "VALUE"},"description" : {"type": "string","title": "DESCRIPTION"},"provider" : {"type": "string","title": "PROVIDER"},"currency" : {"type": "string","title": "CURRENCY"},"order" : {"type": "integer","title": "ORDER"},"filters" : {"type": "object","title": "FILTERS"},"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"}},
+         "type": "object",
+         "required": ["name","method","value","report_adjustment_policy_id"],
+                "title": "CreateReportAdjustmentRequest"
+           }
+           ,        "ReportAdjustmentInfo": {
+         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"},"name" : {"type": "string","title": "NAME"},"method" : {"type": "string","title": "METHOD"},"value" : {"type": "float","title": "VALUE"},"description" : {"type": "string","title": "DESCRIPTION"},"provider" : {"type": "string","title": "PROVIDER"},"currency" : {"type": "string","title": "CURRENCY"},"order" : {"type": "integer","title": "ORDER"},"filters" : {"type": "object","title": "FILTERS"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["report_adjustment_id","name","method","value","description","provider","currency","order","filters","created_at","updated_at","deleted_at","cost_report_config_id","report_adjustment_policy_id","domain_id"],
+                "title": "ReportAdjustmentInfo"
+           }
+           ,        "ReportAdjustmentQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "ReportAdjustmentQuery"
+           }
+           ,        "ReportAdjustmentRequest": {
+         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"}},
+         "type": "object",
+         "required": ["report_adjustment_id"],
+                "title": "ReportAdjustmentRequest"
+           }
+           ,        "ReportAdjustmentsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ReportAdjustmentInfo"},
+               "type": "array","$ref": "#/components/schemas/ReportAdjustmentInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ReportAdjustmentsInfo"
+           }
+           ,        "UpdateReportAdjustmentRequest": {
+         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"},"name" : {"type": "string","title": "NAME"},"method" : {"type": "string","title": "METHOD"},"value" : {"type": "float","title": "VALUE"},"description" : {"type": "string","title": "DESCRIPTION"},"provider" : {"type": "string","title": "PROVIDER"},"filters" : {"type": "object","title": "FILTERS"}},
+         "type": "object",
+         "required": ["report_adjustment_id"],
+                "title": "UpdateReportAdjustmentRequest"
            }
            ,        "DataSourceInfo": {
          "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE"},"permissions" : {"type": "object","title": "PERMISSIONS"},"provider" : {"type": "string","title": "PROVIDER"},"secret_type" : {"type": "string","title": "SECRET_TYPE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"schedule" : {"$ref": "#/components/schemas/Schedule","title": "SCHEDULE"},"template" : {"type": "object","title": "TEMPLATE"},"tags" : {"type": "object","title": "TAGS"},"cost_tag_keys" : {"items": {"type": "string"},
@@ -2628,14 +3051,20 @@
          "required": ["data_source_id","secret_schema_id","secret_data"],
                 "title": "UpdateSecretDataSourceRequest"
            }
-           ,        "CostReportConfigInfo": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "AdjustmentOptions": {
+         "properties" : {"enabled" : {"type": "boolean","title": "ENABLED"},"period" : {"type": "integer","title": "PERIOD"}},
          "type": "object",
-         "required": ["cost_report_config_id","state","issue_day","is_last_day","currency","recipients","data_source_filter","language","domain_id","created_at","updated_at"],
+         "required": ["enabled","period"],
+                "title": "AdjustmentOptions"
+           }
+           ,        "CostReportConfigInfo": {
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["cost_report_config_id","state","scope","issue_day","is_last_day","adjustment_options","currency","recipients","data_source_filter","language","domain_id","created_at","updated_at"],
                 "title": "CostReportConfigInfo"
            }
            ,        "CostReportConfigQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"scope" : {"type": "string","title": "SCOPE"}},
          "type": "object",
          "required": [],
                 "title": "CostReportConfigQuery"
@@ -2660,9 +3089,9 @@
                 "title": "CostReportConfigsInfo"
            }
            ,        "CreateCostReportConfigRequest": {
-         "properties" : {"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
+         "properties" : {"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
-         "required": ["recipients"],
+         "required": ["scope","recipients"],
                 "title": "CreateCostReportConfigRequest"
            }
            ,        "UpdateCostReportConfigRecipientsRequest": {
@@ -2672,7 +3101,7 @@
                 "title": "UpdateCostReportConfigRecipientsRequest"
            }
            ,        "UpdateCostReportConfigRequest": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
          "required": ["cost_report_config_id"],
                 "title": "UpdateCostReportConfigRequest"
@@ -2887,9 +3316,9 @@
                 "title": "CostReportDataAnalyzeQuery"
            }
            ,        "CostReportDataInfo": {
-         "properties" : {"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"cost" : {"type": "object","title": "COST"},"cost_report_name" : {"type": "string","title": "COST_REPORT_NAME"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"provider" : {"type": "string","title": "PROVIDER"},"product" : {"type": "string","title": "PRODUCT"},"service_account_name" : {"type": "string","title": "SERVICE_ACCOUNT_NAME"},"data_source_name" : {"type": "string","title": "DATA_SOURCE_NAME"},"project_name" : {"type": "string","title": "PROJECT_NAME"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"cost" : {"type": "object","title": "COST"},"cost_report_name" : {"type": "string","title": "COST_REPORT_NAME"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"is_adjusted" : {"type": "boolean","title": "IS_ADJUSTED"},"provider" : {"type": "string","title": "PROVIDER"},"product" : {"type": "string","title": "PRODUCT"},"service_account_name" : {"type": "string","title": "SERVICE_ACCOUNT_NAME"},"data_source_name" : {"type": "string","title": "DATA_SOURCE_NAME"},"project_name" : {"type": "string","title": "PROJECT_NAME"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["cost_report_data_id","cost","cost_report_name","issue_date","report_year","report_month","is_confirmed","provider","product","service_account_name","data_source_name","project_name","workspace_name","domain_id","workspace_id","project_id","cost_report_config_id","cost_report_id","data_source_id","service_account_id","created_at"],
+         "required": ["cost_report_data_id","cost","cost_report_name","issue_date","report_year","report_month","is_confirmed","is_adjusted","provider","product","service_account_name","data_source_name","project_name","workspace_name","domain_id","workspace_id","project_id","cost_report_config_id","report_adjustment_policy_id","cost_report_id","data_source_id","service_account_id","created_at"],
                 "title": "CostReportDataInfo"
            }
            ,        "CostReportDataQuery": {
@@ -2943,9 +3372,9 @@
                 "title": "JobTasksInfo"
            }
            ,        "CostReportInfo": {
-         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost" : {"type": "object","title": "COST"},"status" : {"type": "string","title": "STATUS"},"report_number" : {"type": "string","title": "REPORT_NUMBER"},"currency" : {"type": "string","title": "CURRENCY"},"currency_date" : {"type": "string","title": "CURRENCY_DATE"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"bank_name" : {"type": "string","title": "BANK_NAME"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost" : {"type": "object","title": "COST"},"status" : {"type": "string","title": "STATUS"},"report_number" : {"type": "string","title": "REPORT_NUMBER"},"currency" : {"type": "string","title": "CURRENCY"},"currency_date" : {"type": "string","title": "CURRENCY_DATE"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"bank_name" : {"type": "string","title": "BANK_NAME"},"is_adjusted" : {"type": "boolean","title": "IS_ADJUSTED"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["cost_report_id","cost","status","report_number","currency","currency_date","issue_date","report_year","report_month","workspace_name","bank_name","cost_report_config_id","workspace_id","domain_id","created_at"],
+         "required": ["cost_report_id","cost","status","report_number","currency","currency_date","issue_date","report_year","report_month","workspace_name","bank_name","is_adjusted","cost_report_config_id","project_id","workspace_id","domain_id","created_at"],
                 "title": "CostReportInfo"
            }
            ,        "CostReportQuery": {

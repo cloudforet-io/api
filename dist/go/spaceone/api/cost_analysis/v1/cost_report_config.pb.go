@@ -25,6 +25,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CreateCostReportConfigRequest_Scope int32
+
+const (
+	CreateCostReportConfigRequest_SCOPE_NONE CreateCostReportConfigRequest_Scope = 0
+	CreateCostReportConfigRequest_WORKSPACE  CreateCostReportConfigRequest_Scope = 1
+	CreateCostReportConfigRequest_PROJECT    CreateCostReportConfigRequest_Scope = 2
+)
+
+// Enum value maps for CreateCostReportConfigRequest_Scope.
+var (
+	CreateCostReportConfigRequest_Scope_name = map[int32]string{
+		0: "SCOPE_NONE",
+		1: "WORKSPACE",
+		2: "PROJECT",
+	}
+	CreateCostReportConfigRequest_Scope_value = map[string]int32{
+		"SCOPE_NONE": 0,
+		"WORKSPACE":  1,
+		"PROJECT":    2,
+	}
+)
+
+func (x CreateCostReportConfigRequest_Scope) Enum() *CreateCostReportConfigRequest_Scope {
+	p := new(CreateCostReportConfigRequest_Scope)
+	*p = x
+	return p
+}
+
+func (x CreateCostReportConfigRequest_Scope) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CreateCostReportConfigRequest_Scope) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[0].Descriptor()
+}
+
+func (CreateCostReportConfigRequest_Scope) Type() protoreflect.EnumType {
+	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[0]
+}
+
+func (x CreateCostReportConfigRequest_Scope) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use CreateCostReportConfigRequest_Scope.Descriptor instead.
+func (CreateCostReportConfigRequest_Scope) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{1, 0}
+}
+
 type CostReportConfigQuery_State int32
 
 const (
@@ -58,11 +107,11 @@ func (x CostReportConfigQuery_State) String() string {
 }
 
 func (CostReportConfigQuery_State) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[0].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[1].Descriptor()
 }
 
 func (CostReportConfigQuery_State) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[0]
+	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[1]
 }
 
 func (x CostReportConfigQuery_State) Number() protoreflect.EnumNumber {
@@ -71,7 +120,56 @@ func (x CostReportConfigQuery_State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CostReportConfigQuery_State.Descriptor instead.
 func (CostReportConfigQuery_State) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{4, 0}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{5, 0}
+}
+
+type CostReportConfigQuery_Scope int32
+
+const (
+	CostReportConfigQuery_SCOPE_NONE CostReportConfigQuery_Scope = 0
+	CostReportConfigQuery_WORKSPACE  CostReportConfigQuery_Scope = 1
+	CostReportConfigQuery_PROJECT    CostReportConfigQuery_Scope = 2
+)
+
+// Enum value maps for CostReportConfigQuery_Scope.
+var (
+	CostReportConfigQuery_Scope_name = map[int32]string{
+		0: "SCOPE_NONE",
+		1: "WORKSPACE",
+		2: "PROJECT",
+	}
+	CostReportConfigQuery_Scope_value = map[string]int32{
+		"SCOPE_NONE": 0,
+		"WORKSPACE":  1,
+		"PROJECT":    2,
+	}
+)
+
+func (x CostReportConfigQuery_Scope) Enum() *CostReportConfigQuery_Scope {
+	p := new(CostReportConfigQuery_Scope)
+	*p = x
+	return p
+}
+
+func (x CostReportConfigQuery_Scope) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CostReportConfigQuery_Scope) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[2].Descriptor()
+}
+
+func (CostReportConfigQuery_Scope) Type() protoreflect.EnumType {
+	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[2]
+}
+
+func (x CostReportConfigQuery_Scope) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use CostReportConfigQuery_Scope.Descriptor instead.
+func (CostReportConfigQuery_Scope) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{5, 1}
 }
 
 type CostReportConfigInfo_State int32
@@ -110,11 +208,11 @@ func (x CostReportConfigInfo_State) String() string {
 }
 
 func (CostReportConfigInfo_State) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[1].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[3].Descriptor()
 }
 
 func (CostReportConfigInfo_State) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[1]
+	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[3]
 }
 
 func (x CostReportConfigInfo_State) Number() protoreflect.EnumNumber {
@@ -123,30 +221,134 @@ func (x CostReportConfigInfo_State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CostReportConfigInfo_State.Descriptor instead.
 func (CostReportConfigInfo_State) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{5, 0}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{6, 0}
+}
+
+type CostReportConfigInfo_Scope int32
+
+const (
+	CostReportConfigInfo_SCOPE_NONE CostReportConfigInfo_Scope = 0
+	CostReportConfigInfo_WORKSPACE  CostReportConfigInfo_Scope = 1
+	CostReportConfigInfo_PROJECT    CostReportConfigInfo_Scope = 2
+)
+
+// Enum value maps for CostReportConfigInfo_Scope.
+var (
+	CostReportConfigInfo_Scope_name = map[int32]string{
+		0: "SCOPE_NONE",
+		1: "WORKSPACE",
+		2: "PROJECT",
+	}
+	CostReportConfigInfo_Scope_value = map[string]int32{
+		"SCOPE_NONE": 0,
+		"WORKSPACE":  1,
+		"PROJECT":    2,
+	}
+)
+
+func (x CostReportConfigInfo_Scope) Enum() *CostReportConfigInfo_Scope {
+	p := new(CostReportConfigInfo_Scope)
+	*p = x
+	return p
+}
+
+func (x CostReportConfigInfo_Scope) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CostReportConfigInfo_Scope) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[4].Descriptor()
+}
+
+func (CostReportConfigInfo_Scope) Type() protoreflect.EnumType {
+	return &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes[4]
+}
+
+func (x CostReportConfigInfo_Scope) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use CostReportConfigInfo_Scope.Descriptor instead.
+func (CostReportConfigInfo_Scope) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{6, 1}
+}
+
+type AdjustmentOptions struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Enabled       bool                   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Period        int32                  `protobuf:"varint,2,opt,name=period,proto3" json:"period,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdjustmentOptions) Reset() {
+	*x = AdjustmentOptions{}
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdjustmentOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdjustmentOptions) ProtoMessage() {}
+
+func (x *AdjustmentOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdjustmentOptions.ProtoReflect.Descriptor instead.
+func (*AdjustmentOptions) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *AdjustmentOptions) GetEnabled() bool {
+	if x != nil {
+		return x.Enabled
+	}
+	return false
+}
+
+func (x *AdjustmentOptions) GetPeriod() int32 {
+	if x != nil {
+		return x.Period
+	}
+	return 0
 }
 
 type CreateCostReportConfigRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState              `protogen:"open.v1"`
+	Scope CreateCostReportConfigRequest_Scope `protobuf:"varint,1,opt,name=scope,proto3,enum=spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest_Scope" json:"scope,omitempty"`
 	// +optional
-	IssueDay int32 `protobuf:"varint,1,opt,name=issue_day,json=issueDay,proto3" json:"issue_day,omitempty"`
+	IssueDay int32 `protobuf:"varint,2,opt,name=issue_day,json=issueDay,proto3" json:"issue_day,omitempty"`
 	// +optional
-	IsLastDay bool `protobuf:"varint,2,opt,name=is_last_day,json=isLastDay,proto3" json:"is_last_day,omitempty"`
+	IsLastDay bool `protobuf:"varint,3,opt,name=is_last_day,json=isLastDay,proto3" json:"is_last_day,omitempty"`
 	// +optional
-	Currency   string          `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
-	Recipients *_struct.Struct `protobuf:"bytes,4,opt,name=recipients,proto3" json:"recipients,omitempty"`
+	AdjustmentOptions *AdjustmentOptions `protobuf:"bytes,4,opt,name=adjustment_options,json=adjustmentOptions,proto3" json:"adjustment_options,omitempty"`
 	// +optional
-	DataSourceFilter *_struct.Struct `protobuf:"bytes,5,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
+	Currency   string          `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
+	Recipients *_struct.Struct `protobuf:"bytes,7,opt,name=recipients,proto3" json:"recipients,omitempty"`
+	// +optional
+	DataSourceFilter *_struct.Struct `protobuf:"bytes,8,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
 	// Default `en`
 	// +optional
-	Language      string `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
+	Language      string `protobuf:"bytes,9,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateCostReportConfigRequest) Reset() {
 	*x = CreateCostReportConfigRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[0]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +360,7 @@ func (x *CreateCostReportConfigRequest) String() string {
 func (*CreateCostReportConfigRequest) ProtoMessage() {}
 
 func (x *CreateCostReportConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[0]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +373,14 @@ func (x *CreateCostReportConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCostReportConfigRequest.ProtoReflect.Descriptor instead.
 func (*CreateCostReportConfigRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{0}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CreateCostReportConfigRequest) GetScope() CreateCostReportConfigRequest_Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return CreateCostReportConfigRequest_SCOPE_NONE
 }
 
 func (x *CreateCostReportConfigRequest) GetIssueDay() int32 {
@@ -186,6 +395,13 @@ func (x *CreateCostReportConfigRequest) GetIsLastDay() bool {
 		return x.IsLastDay
 	}
 	return false
+}
+
+func (x *CreateCostReportConfigRequest) GetAdjustmentOptions() *AdjustmentOptions {
+	if x != nil {
+		return x.AdjustmentOptions
+	}
+	return nil
 }
 
 func (x *CreateCostReportConfigRequest) GetCurrency() string {
@@ -225,18 +441,20 @@ type UpdateCostReportConfigRequest struct {
 	// +optional
 	IsLastDay bool `protobuf:"varint,3,opt,name=is_last_day,json=isLastDay,proto3" json:"is_last_day,omitempty"`
 	// +optional
-	Currency string `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency,omitempty"`
+	AdjustmentOptions *AdjustmentOptions `protobuf:"bytes,4,opt,name=adjustment_options,json=adjustmentOptions,proto3" json:"adjustment_options,omitempty"`
 	// +optional
-	DataSourceFilter *_struct.Struct `protobuf:"bytes,5,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
+	Currency string `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
 	// +optional
-	Language      string `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
+	DataSourceFilter *_struct.Struct `protobuf:"bytes,7,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
+	// +optional
+	Language      string `protobuf:"bytes,8,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UpdateCostReportConfigRequest) Reset() {
 	*x = UpdateCostReportConfigRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[1]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +466,7 @@ func (x *UpdateCostReportConfigRequest) String() string {
 func (*UpdateCostReportConfigRequest) ProtoMessage() {}
 
 func (x *UpdateCostReportConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[1]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +479,7 @@ func (x *UpdateCostReportConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCostReportConfigRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCostReportConfigRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{1}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *UpdateCostReportConfigRequest) GetCostReportConfigId() string {
@@ -283,6 +501,13 @@ func (x *UpdateCostReportConfigRequest) GetIsLastDay() bool {
 		return x.IsLastDay
 	}
 	return false
+}
+
+func (x *UpdateCostReportConfigRequest) GetAdjustmentOptions() *AdjustmentOptions {
+	if x != nil {
+		return x.AdjustmentOptions
+	}
+	return nil
 }
 
 func (x *UpdateCostReportConfigRequest) GetCurrency() string {
@@ -317,7 +542,7 @@ type UpdateCostReportConfigRecipientsRequest struct {
 
 func (x *UpdateCostReportConfigRecipientsRequest) Reset() {
 	*x = UpdateCostReportConfigRecipientsRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[2]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -329,7 +554,7 @@ func (x *UpdateCostReportConfigRecipientsRequest) String() string {
 func (*UpdateCostReportConfigRecipientsRequest) ProtoMessage() {}
 
 func (x *UpdateCostReportConfigRecipientsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[2]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,7 +567,7 @@ func (x *UpdateCostReportConfigRecipientsRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UpdateCostReportConfigRecipientsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCostReportConfigRecipientsRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{2}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UpdateCostReportConfigRecipientsRequest) GetCostReportConfigId() string {
@@ -369,7 +594,7 @@ type CostReportConfigRequest struct {
 
 func (x *CostReportConfigRequest) Reset() {
 	*x = CostReportConfigRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[3]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -381,7 +606,7 @@ func (x *CostReportConfigRequest) String() string {
 func (*CostReportConfigRequest) ProtoMessage() {}
 
 func (x *CostReportConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[3]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,7 +619,7 @@ func (x *CostReportConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostReportConfigRequest.ProtoReflect.Descriptor instead.
 func (*CostReportConfigRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{3}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CostReportConfigRequest) GetCostReportConfigId() string {
@@ -412,14 +637,16 @@ type CostReportConfigQuery struct {
 	// +optional
 	CostReportConfigId string `protobuf:"bytes,2,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
 	// +optional
-	State         CostReportConfigQuery_State `protobuf:"varint,3,opt,name=state,proto3,enum=spaceone.api.cost_analysis.v1.CostReportConfigQuery_State" json:"state,omitempty"`
+	State CostReportConfigQuery_State `protobuf:"varint,3,opt,name=state,proto3,enum=spaceone.api.cost_analysis.v1.CostReportConfigQuery_State" json:"state,omitempty"`
+	// +optional
+	Scope         CostReportConfigQuery_Scope `protobuf:"varint,4,opt,name=scope,proto3,enum=spaceone.api.cost_analysis.v1.CostReportConfigQuery_Scope" json:"scope,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CostReportConfigQuery) Reset() {
 	*x = CostReportConfigQuery{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[4]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -431,7 +658,7 @@ func (x *CostReportConfigQuery) String() string {
 func (*CostReportConfigQuery) ProtoMessage() {}
 
 func (x *CostReportConfigQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[4]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -444,7 +671,7 @@ func (x *CostReportConfigQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostReportConfigQuery.ProtoReflect.Descriptor instead.
 func (*CostReportConfigQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{4}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CostReportConfigQuery) GetQuery() *v2.Query {
@@ -468,17 +695,26 @@ func (x *CostReportConfigQuery) GetState() CostReportConfigQuery_State {
 	return CostReportConfigQuery_NONE
 }
 
+func (x *CostReportConfigQuery) GetScope() CostReportConfigQuery_Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return CostReportConfigQuery_SCOPE_NONE
+}
+
 type CostReportConfigInfo struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The ID of cost report in the Protocol.
 	CostReportConfigId string                     `protobuf:"bytes,1,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
 	State              CostReportConfigInfo_State `protobuf:"varint,2,opt,name=state,proto3,enum=spaceone.api.cost_analysis.v1.CostReportConfigInfo_State" json:"state,omitempty"`
-	IssueDay           int32                      `protobuf:"varint,3,opt,name=issue_day,json=issueDay,proto3" json:"issue_day,omitempty"`
-	IsLastDay          bool                       `protobuf:"varint,4,opt,name=is_last_day,json=isLastDay,proto3" json:"is_last_day,omitempty"`
-	Currency           string                     `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
-	Recipients         *_struct.Struct            `protobuf:"bytes,7,opt,name=recipients,proto3" json:"recipients,omitempty"`
-	DataSourceFilter   *_struct.Struct            `protobuf:"bytes,8,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
-	Language           string                     `protobuf:"bytes,9,opt,name=language,proto3" json:"language,omitempty"`
+	Scope              CostReportConfigInfo_Scope `protobuf:"varint,3,opt,name=scope,proto3,enum=spaceone.api.cost_analysis.v1.CostReportConfigInfo_Scope" json:"scope,omitempty"`
+	IssueDay           int32                      `protobuf:"varint,4,opt,name=issue_day,json=issueDay,proto3" json:"issue_day,omitempty"`
+	IsLastDay          bool                       `protobuf:"varint,5,opt,name=is_last_day,json=isLastDay,proto3" json:"is_last_day,omitempty"`
+	AdjustmentOptions  *AdjustmentOptions         `protobuf:"bytes,6,opt,name=adjustment_options,json=adjustmentOptions,proto3" json:"adjustment_options,omitempty"`
+	Currency           string                     `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`
+	Recipients         *_struct.Struct            `protobuf:"bytes,9,opt,name=recipients,proto3" json:"recipients,omitempty"`
+	DataSourceFilter   *_struct.Struct            `protobuf:"bytes,10,opt,name=data_source_filter,json=dataSourceFilter,proto3" json:"data_source_filter,omitempty"`
+	Language           string                     `protobuf:"bytes,11,opt,name=language,proto3" json:"language,omitempty"`
 	DomainId           string                     `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	CreatedAt          string                     `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt          string                     `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -488,7 +724,7 @@ type CostReportConfigInfo struct {
 
 func (x *CostReportConfigInfo) Reset() {
 	*x = CostReportConfigInfo{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[5]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -500,7 +736,7 @@ func (x *CostReportConfigInfo) String() string {
 func (*CostReportConfigInfo) ProtoMessage() {}
 
 func (x *CostReportConfigInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[5]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -513,7 +749,7 @@ func (x *CostReportConfigInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostReportConfigInfo.ProtoReflect.Descriptor instead.
 func (*CostReportConfigInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{5}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CostReportConfigInfo) GetCostReportConfigId() string {
@@ -530,6 +766,13 @@ func (x *CostReportConfigInfo) GetState() CostReportConfigInfo_State {
 	return CostReportConfigInfo_NONE
 }
 
+func (x *CostReportConfigInfo) GetScope() CostReportConfigInfo_Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return CostReportConfigInfo_SCOPE_NONE
+}
+
 func (x *CostReportConfigInfo) GetIssueDay() int32 {
 	if x != nil {
 		return x.IssueDay
@@ -542,6 +785,13 @@ func (x *CostReportConfigInfo) GetIsLastDay() bool {
 		return x.IsLastDay
 	}
 	return false
+}
+
+func (x *CostReportConfigInfo) GetAdjustmentOptions() *AdjustmentOptions {
+	if x != nil {
+		return x.AdjustmentOptions
+	}
+	return nil
 }
 
 func (x *CostReportConfigInfo) GetCurrency() string {
@@ -603,7 +853,7 @@ type CostReportConfigsInfo struct {
 
 func (x *CostReportConfigsInfo) Reset() {
 	*x = CostReportConfigsInfo{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[6]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +865,7 @@ func (x *CostReportConfigsInfo) String() string {
 func (*CostReportConfigsInfo) ProtoMessage() {}
 
 func (x *CostReportConfigsInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[6]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +878,7 @@ func (x *CostReportConfigsInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostReportConfigsInfo.ProtoReflect.Descriptor instead.
 func (*CostReportConfigsInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{6}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CostReportConfigsInfo) GetResults() []*CostReportConfigInfo {
@@ -654,7 +904,7 @@ type CostReportConfigStatQuery struct {
 
 func (x *CostReportConfigStatQuery) Reset() {
 	*x = CostReportConfigStatQuery{}
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[7]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +916,7 @@ func (x *CostReportConfigStatQuery) String() string {
 func (*CostReportConfigStatQuery) ProtoMessage() {}
 
 func (x *CostReportConfigStatQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[7]
+	mi := &file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +929,7 @@ func (x *CostReportConfigStatQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostReportConfigStatQuery.ProtoReflect.Descriptor instead.
 func (*CostReportConfigStatQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{7}
+	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CostReportConfigStatQuery) GetQuery() *v2.StatisticsQuery {
@@ -693,49 +943,69 @@ var File_spaceone_api_cost_analysis_v1_cost_report_config_proto protoreflect.Fil
 
 const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"\n" +
-	"6spaceone/api/cost_analysis/v1/cost_report_config.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"\x94\x02\n" +
-	"\x1dCreateCostReportConfigRequest\x12\x1b\n" +
-	"\tissue_day\x18\x01 \x01(\x05R\bissueDay\x12\x1e\n" +
-	"\vis_last_day\x18\x02 \x01(\bR\tisLastDay\x12\x1a\n" +
-	"\bcurrency\x18\x03 \x01(\tR\bcurrency\x127\n" +
+	"6spaceone/api/cost_analysis/v1/cost_report_config.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"E\n" +
+	"\x11AdjustmentOptions\x12\x18\n" +
+	"\aenabled\x18\x01 \x01(\bR\aenabled\x12\x16\n" +
+	"\x06period\x18\x02 \x01(\x05R\x06period\"\x84\x04\n" +
+	"\x1dCreateCostReportConfigRequest\x12X\n" +
+	"\x05scope\x18\x01 \x01(\x0e2B.spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.ScopeR\x05scope\x12\x1b\n" +
+	"\tissue_day\x18\x02 \x01(\x05R\bissueDay\x12\x1e\n" +
+	"\vis_last_day\x18\x03 \x01(\bR\tisLastDay\x12_\n" +
+	"\x12adjustment_options\x18\x04 \x01(\v20.spaceone.api.cost_analysis.v1.AdjustmentOptionsR\x11adjustmentOptions\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x127\n" +
 	"\n" +
-	"recipients\x18\x04 \x01(\v2\x17.google.protobuf.StructR\n" +
+	"recipients\x18\a \x01(\v2\x17.google.protobuf.StructR\n" +
 	"recipients\x12E\n" +
-	"\x12data_source_filter\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
-	"\blanguage\x18\x06 \x01(\tR\blanguage\"\x8e\x02\n" +
+	"\x12data_source_filter\x18\b \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
+	"\blanguage\x18\t \x01(\tR\blanguage\"3\n" +
+	"\x05Scope\x12\x0e\n" +
+	"\n" +
+	"SCOPE_NONE\x10\x00\x12\r\n" +
+	"\tWORKSPACE\x10\x01\x12\v\n" +
+	"\aPROJECT\x10\x02\"\xef\x02\n" +
 	"\x1dUpdateCostReportConfigRequest\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12\x1b\n" +
 	"\tissue_day\x18\x02 \x01(\x05R\bissueDay\x12\x1e\n" +
-	"\vis_last_day\x18\x03 \x01(\bR\tisLastDay\x12\x1a\n" +
-	"\bcurrency\x18\x04 \x01(\tR\bcurrency\x12E\n" +
-	"\x12data_source_filter\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
-	"\blanguage\x18\x06 \x01(\tR\blanguage\"\x95\x01\n" +
+	"\vis_last_day\x18\x03 \x01(\bR\tisLastDay\x12_\n" +
+	"\x12adjustment_options\x18\x04 \x01(\v20.spaceone.api.cost_analysis.v1.AdjustmentOptionsR\x11adjustmentOptions\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12E\n" +
+	"\x12data_source_filter\x18\a \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
+	"\blanguage\x18\b \x01(\tR\blanguage\"\x95\x01\n" +
 	"'UpdateCostReportConfigRecipientsRequest\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x127\n" +
 	"\n" +
 	"recipients\x18\x02 \x01(\v2\x17.google.protobuf.StructR\n" +
 	"recipients\"L\n" +
 	"\x17CostReportConfigRequest\x121\n" +
-	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\"\xfd\x01\n" +
+	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\"\x84\x03\n" +
 	"\x15CostReportConfigQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x121\n" +
 	"\x15cost_report_config_id\x18\x02 \x01(\tR\x12costReportConfigId\x12P\n" +
-	"\x05state\x18\x03 \x01(\x0e2:.spaceone.api.cost_analysis.v1.CostReportConfigQuery.StateR\x05state\",\n" +
+	"\x05state\x18\x03 \x01(\x0e2:.spaceone.api.cost_analysis.v1.CostReportConfigQuery.StateR\x05state\x12P\n" +
+	"\x05scope\x18\x04 \x01(\x0e2:.spaceone.api.cost_analysis.v1.CostReportConfigQuery.ScopeR\x05scope\",\n" +
 	"\x05State\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"\xa5\x04\n" +
+	"\bDISABLED\x10\x02\"3\n" +
+	"\x05Scope\x12\x0e\n" +
+	"\n" +
+	"SCOPE_NONE\x10\x00\x12\r\n" +
+	"\tWORKSPACE\x10\x01\x12\v\n" +
+	"\aPROJECT\x10\x02\"\x8c\x06\n" +
 	"\x14CostReportConfigInfo\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12O\n" +
-	"\x05state\x18\x02 \x01(\x0e29.spaceone.api.cost_analysis.v1.CostReportConfigInfo.StateR\x05state\x12\x1b\n" +
-	"\tissue_day\x18\x03 \x01(\x05R\bissueDay\x12\x1e\n" +
-	"\vis_last_day\x18\x04 \x01(\bR\tisLastDay\x12\x1a\n" +
-	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x127\n" +
+	"\x05state\x18\x02 \x01(\x0e29.spaceone.api.cost_analysis.v1.CostReportConfigInfo.StateR\x05state\x12O\n" +
+	"\x05scope\x18\x03 \x01(\x0e29.spaceone.api.cost_analysis.v1.CostReportConfigInfo.ScopeR\x05scope\x12\x1b\n" +
+	"\tissue_day\x18\x04 \x01(\x05R\bissueDay\x12\x1e\n" +
+	"\vis_last_day\x18\x05 \x01(\bR\tisLastDay\x12_\n" +
+	"\x12adjustment_options\x18\x06 \x01(\v20.spaceone.api.cost_analysis.v1.AdjustmentOptionsR\x11adjustmentOptions\x12\x1a\n" +
+	"\bcurrency\x18\b \x01(\tR\bcurrency\x127\n" +
 	"\n" +
-	"recipients\x18\a \x01(\v2\x17.google.protobuf.StructR\n" +
+	"recipients\x18\t \x01(\v2\x17.google.protobuf.StructR\n" +
 	"recipients\x12E\n" +
-	"\x12data_source_filter\x18\b \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
-	"\blanguage\x18\t \x01(\tR\blanguage\x12\x1b\n" +
+	"\x12data_source_filter\x18\n" +
+	" \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
+	"\blanguage\x18\v \x01(\tR\blanguage\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
@@ -745,7 +1015,12 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
 	"\bDISABLED\x10\x02\x12\v\n" +
-	"\aDELETED\x10\x03\"\x87\x01\n" +
+	"\aDELETED\x10\x03\"3\n" +
+	"\x05Scope\x12\x0e\n" +
+	"\n" +
+	"SCOPE_NONE\x10\x00\x12\r\n" +
+	"\tWORKSPACE\x10\x01\x12\v\n" +
+	"\aPROJECT\x10\x02\"\x87\x01\n" +
 	"\x15CostReportConfigsInfo\x12M\n" +
 	"\aresults\x18\x01 \x03(\v23.spaceone.api.cost_analysis.v1.CostReportConfigInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
@@ -776,61 +1051,71 @@ func file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescGZIP() [
 	return file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDescData
 }
 
-var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_goTypes = []any{
-	(CostReportConfigQuery_State)(0),                // 0: spaceone.api.cost_analysis.v1.CostReportConfigQuery.State
-	(CostReportConfigInfo_State)(0),                 // 1: spaceone.api.cost_analysis.v1.CostReportConfigInfo.State
-	(*CreateCostReportConfigRequest)(nil),           // 2: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest
-	(*UpdateCostReportConfigRequest)(nil),           // 3: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest
-	(*UpdateCostReportConfigRecipientsRequest)(nil), // 4: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest
-	(*CostReportConfigRequest)(nil),                 // 5: spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	(*CostReportConfigQuery)(nil),                   // 6: spaceone.api.cost_analysis.v1.CostReportConfigQuery
-	(*CostReportConfigInfo)(nil),                    // 7: spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	(*CostReportConfigsInfo)(nil),                   // 8: spaceone.api.cost_analysis.v1.CostReportConfigsInfo
-	(*CostReportConfigStatQuery)(nil),               // 9: spaceone.api.cost_analysis.v1.CostReportConfigStatQuery
-	(*_struct.Struct)(nil),                          // 10: google.protobuf.Struct
-	(*v2.Query)(nil),                                // 11: spaceone.api.core.v2.Query
-	(*v2.StatisticsQuery)(nil),                      // 12: spaceone.api.core.v2.StatisticsQuery
-	(*empty.Empty)(nil),                             // 13: google.protobuf.Empty
+	(CreateCostReportConfigRequest_Scope)(0),        // 0: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.Scope
+	(CostReportConfigQuery_State)(0),                // 1: spaceone.api.cost_analysis.v1.CostReportConfigQuery.State
+	(CostReportConfigQuery_Scope)(0),                // 2: spaceone.api.cost_analysis.v1.CostReportConfigQuery.Scope
+	(CostReportConfigInfo_State)(0),                 // 3: spaceone.api.cost_analysis.v1.CostReportConfigInfo.State
+	(CostReportConfigInfo_Scope)(0),                 // 4: spaceone.api.cost_analysis.v1.CostReportConfigInfo.Scope
+	(*AdjustmentOptions)(nil),                       // 5: spaceone.api.cost_analysis.v1.AdjustmentOptions
+	(*CreateCostReportConfigRequest)(nil),           // 6: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest
+	(*UpdateCostReportConfigRequest)(nil),           // 7: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest
+	(*UpdateCostReportConfigRecipientsRequest)(nil), // 8: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest
+	(*CostReportConfigRequest)(nil),                 // 9: spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	(*CostReportConfigQuery)(nil),                   // 10: spaceone.api.cost_analysis.v1.CostReportConfigQuery
+	(*CostReportConfigInfo)(nil),                    // 11: spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	(*CostReportConfigsInfo)(nil),                   // 12: spaceone.api.cost_analysis.v1.CostReportConfigsInfo
+	(*CostReportConfigStatQuery)(nil),               // 13: spaceone.api.cost_analysis.v1.CostReportConfigStatQuery
+	(*_struct.Struct)(nil),                          // 14: google.protobuf.Struct
+	(*v2.Query)(nil),                                // 15: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                      // 16: spaceone.api.core.v2.StatisticsQuery
+	(*empty.Empty)(nil),                             // 17: google.protobuf.Empty
 }
 var file_spaceone_api_cost_analysis_v1_cost_report_config_proto_depIdxs = []int32{
-	10, // 0: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.recipients:type_name -> google.protobuf.Struct
-	10, // 1: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.data_source_filter:type_name -> google.protobuf.Struct
-	10, // 2: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest.data_source_filter:type_name -> google.protobuf.Struct
-	10, // 3: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest.recipients:type_name -> google.protobuf.Struct
-	11, // 4: spaceone.api.cost_analysis.v1.CostReportConfigQuery.query:type_name -> spaceone.api.core.v2.Query
-	0,  // 5: spaceone.api.cost_analysis.v1.CostReportConfigQuery.state:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigQuery.State
-	1,  // 6: spaceone.api.cost_analysis.v1.CostReportConfigInfo.state:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigInfo.State
-	10, // 7: spaceone.api.cost_analysis.v1.CostReportConfigInfo.recipients:type_name -> google.protobuf.Struct
-	10, // 8: spaceone.api.cost_analysis.v1.CostReportConfigInfo.data_source_filter:type_name -> google.protobuf.Struct
-	7,  // 9: spaceone.api.cost_analysis.v1.CostReportConfigsInfo.results:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	12, // 10: spaceone.api.cost_analysis.v1.CostReportConfigStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	2,  // 11: spaceone.api.cost_analysis.v1.CostReportConfig.create:input_type -> spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest
-	3,  // 12: spaceone.api.cost_analysis.v1.CostReportConfig.update:input_type -> spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest
-	4,  // 13: spaceone.api.cost_analysis.v1.CostReportConfig.update_recipients:input_type -> spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest
-	5,  // 14: spaceone.api.cost_analysis.v1.CostReportConfig.enable:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	5,  // 15: spaceone.api.cost_analysis.v1.CostReportConfig.disable:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	5,  // 16: spaceone.api.cost_analysis.v1.CostReportConfig.delete:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	5,  // 17: spaceone.api.cost_analysis.v1.CostReportConfig.run:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	5,  // 18: spaceone.api.cost_analysis.v1.CostReportConfig.get:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
-	6,  // 19: spaceone.api.cost_analysis.v1.CostReportConfig.list:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigQuery
-	9,  // 20: spaceone.api.cost_analysis.v1.CostReportConfig.stat:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigStatQuery
-	7,  // 21: spaceone.api.cost_analysis.v1.CostReportConfig.create:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	7,  // 22: spaceone.api.cost_analysis.v1.CostReportConfig.update:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	7,  // 23: spaceone.api.cost_analysis.v1.CostReportConfig.update_recipients:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	7,  // 24: spaceone.api.cost_analysis.v1.CostReportConfig.enable:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	7,  // 25: spaceone.api.cost_analysis.v1.CostReportConfig.disable:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	13, // 26: spaceone.api.cost_analysis.v1.CostReportConfig.delete:output_type -> google.protobuf.Empty
-	13, // 27: spaceone.api.cost_analysis.v1.CostReportConfig.run:output_type -> google.protobuf.Empty
-	7,  // 28: spaceone.api.cost_analysis.v1.CostReportConfig.get:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
-	8,  // 29: spaceone.api.cost_analysis.v1.CostReportConfig.list:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigsInfo
-	8,  // 30: spaceone.api.cost_analysis.v1.CostReportConfig.stat:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigsInfo
-	21, // [21:31] is the sub-list for method output_type
-	11, // [11:21] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	0,  // 0: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.scope:type_name -> spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.Scope
+	5,  // 1: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.adjustment_options:type_name -> spaceone.api.cost_analysis.v1.AdjustmentOptions
+	14, // 2: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.recipients:type_name -> google.protobuf.Struct
+	14, // 3: spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.data_source_filter:type_name -> google.protobuf.Struct
+	5,  // 4: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest.adjustment_options:type_name -> spaceone.api.cost_analysis.v1.AdjustmentOptions
+	14, // 5: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest.data_source_filter:type_name -> google.protobuf.Struct
+	14, // 6: spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest.recipients:type_name -> google.protobuf.Struct
+	15, // 7: spaceone.api.cost_analysis.v1.CostReportConfigQuery.query:type_name -> spaceone.api.core.v2.Query
+	1,  // 8: spaceone.api.cost_analysis.v1.CostReportConfigQuery.state:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigQuery.State
+	2,  // 9: spaceone.api.cost_analysis.v1.CostReportConfigQuery.scope:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigQuery.Scope
+	3,  // 10: spaceone.api.cost_analysis.v1.CostReportConfigInfo.state:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigInfo.State
+	4,  // 11: spaceone.api.cost_analysis.v1.CostReportConfigInfo.scope:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigInfo.Scope
+	5,  // 12: spaceone.api.cost_analysis.v1.CostReportConfigInfo.adjustment_options:type_name -> spaceone.api.cost_analysis.v1.AdjustmentOptions
+	14, // 13: spaceone.api.cost_analysis.v1.CostReportConfigInfo.recipients:type_name -> google.protobuf.Struct
+	14, // 14: spaceone.api.cost_analysis.v1.CostReportConfigInfo.data_source_filter:type_name -> google.protobuf.Struct
+	11, // 15: spaceone.api.cost_analysis.v1.CostReportConfigsInfo.results:type_name -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	16, // 16: spaceone.api.cost_analysis.v1.CostReportConfigStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	6,  // 17: spaceone.api.cost_analysis.v1.CostReportConfig.create:input_type -> spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest
+	7,  // 18: spaceone.api.cost_analysis.v1.CostReportConfig.update:input_type -> spaceone.api.cost_analysis.v1.UpdateCostReportConfigRequest
+	8,  // 19: spaceone.api.cost_analysis.v1.CostReportConfig.update_recipients:input_type -> spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest
+	9,  // 20: spaceone.api.cost_analysis.v1.CostReportConfig.enable:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	9,  // 21: spaceone.api.cost_analysis.v1.CostReportConfig.disable:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	9,  // 22: spaceone.api.cost_analysis.v1.CostReportConfig.delete:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	9,  // 23: spaceone.api.cost_analysis.v1.CostReportConfig.run:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	9,  // 24: spaceone.api.cost_analysis.v1.CostReportConfig.get:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigRequest
+	10, // 25: spaceone.api.cost_analysis.v1.CostReportConfig.list:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigQuery
+	13, // 26: spaceone.api.cost_analysis.v1.CostReportConfig.stat:input_type -> spaceone.api.cost_analysis.v1.CostReportConfigStatQuery
+	11, // 27: spaceone.api.cost_analysis.v1.CostReportConfig.create:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	11, // 28: spaceone.api.cost_analysis.v1.CostReportConfig.update:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	11, // 29: spaceone.api.cost_analysis.v1.CostReportConfig.update_recipients:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	11, // 30: spaceone.api.cost_analysis.v1.CostReportConfig.enable:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	11, // 31: spaceone.api.cost_analysis.v1.CostReportConfig.disable:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	17, // 32: spaceone.api.cost_analysis.v1.CostReportConfig.delete:output_type -> google.protobuf.Empty
+	17, // 33: spaceone.api.cost_analysis.v1.CostReportConfig.run:output_type -> google.protobuf.Empty
+	11, // 34: spaceone.api.cost_analysis.v1.CostReportConfig.get:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigInfo
+	12, // 35: spaceone.api.cost_analysis.v1.CostReportConfig.list:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigsInfo
+	12, // 36: spaceone.api.cost_analysis.v1.CostReportConfig.stat:output_type -> spaceone.api.cost_analysis.v1.CostReportConfigsInfo
+	27, // [27:37] is the sub-list for method output_type
+	17, // [17:27] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_cost_analysis_v1_cost_report_config_proto_init() }
@@ -844,8 +1129,8 @@ func file_spaceone_api_cost_analysis_v1_cost_report_config_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc), len(file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   8,
+			NumEnums:      5,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

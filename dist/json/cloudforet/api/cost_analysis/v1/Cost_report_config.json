@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "Scope",
+          "longName": "CostReportConfigInfo.Scope",
+          "fullName": "spaceone.api.cost_analysis.v1.CostReportConfigInfo.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "CostReportConfigInfo.State",
           "fullName": "spaceone.api.cost_analysis.v1.CostReportConfigInfo.State",
@@ -38,6 +61,29 @@
           ]
         },
         {
+          "name": "Scope",
+          "longName": "CostReportConfigQuery.Scope",
+          "fullName": "spaceone.api.cost_analysis.v1.CostReportConfigQuery.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "CostReportConfigQuery.State",
           "fullName": "spaceone.api.cost_analysis.v1.CostReportConfigQuery.State",
@@ -59,10 +105,69 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "Scope",
+          "longName": "CreateCostReportConfigRequest.Scope",
+          "fullName": "spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
       "messages": [
+        {
+          "name": "AdjustmentOptions",
+          "longName": "AdjustmentOptions",
+          "fullName": "spaceone.api.cost_analysis.v1.AdjustmentOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "enabled",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "period",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
         {
           "name": "CostReportConfigInfo",
           "longName": "CostReportConfigInfo",
@@ -98,6 +203,18 @@
               "defaultValue": ""
             },
             {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "Scope",
+              "longType": "CostReportConfigInfo.Scope",
+              "fullType": "spaceone.api.cost_analysis.v1.CostReportConfigInfo.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "issue_day",
               "description": "",
               "label": "",
@@ -116,6 +233,18 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "adjustment_options",
+              "description": "",
+              "label": "",
+              "type": "AdjustmentOptions",
+              "longType": "AdjustmentOptions",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -252,6 +381,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "+optional",
+              "label": "",
+              "type": "Scope",
+              "longType": "CostReportConfigQuery.Scope",
+              "fullType": "spaceone.api.cost_analysis.v1.CostReportConfigQuery.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -350,6 +491,18 @@
           "extensions": [],
           "fields": [
             {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "Scope",
+              "longType": "CreateCostReportConfigRequest.Scope",
+              "fullType": "spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "issue_day",
               "description": "+optional",
               "label": "",
@@ -368,6 +521,18 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "adjustment_options",
+              "description": "+optional",
+              "label": "",
+              "type": "AdjustmentOptions",
+              "longType": "AdjustmentOptions",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -500,6 +665,18 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "adjustment_options",
+              "description": "+optional",
+              "label": "",
+              "type": "AdjustmentOptions",
+              "longType": "AdjustmentOptions",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

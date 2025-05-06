@@ -260,30 +260,32 @@ func (x *CostReportDataAnalyzeQuery) GetDataSourceId() string {
 }
 
 type CostReportDataInfo struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	CostReportDataId   string                 `protobuf:"bytes,1,opt,name=cost_report_data_id,json=costReportDataId,proto3" json:"cost_report_data_id,omitempty"`
-	Cost               *_struct.Struct        `protobuf:"bytes,2,opt,name=cost,proto3" json:"cost,omitempty"`
-	CostReportName     string                 `protobuf:"bytes,3,opt,name=cost_report_name,json=costReportName,proto3" json:"cost_report_name,omitempty"`
-	IssueDate          string                 `protobuf:"bytes,4,opt,name=issue_date,json=issueDate,proto3" json:"issue_date,omitempty"`
-	ReportYear         string                 `protobuf:"bytes,5,opt,name=report_year,json=reportYear,proto3" json:"report_year,omitempty"`
-	ReportMonth        string                 `protobuf:"bytes,6,opt,name=report_month,json=reportMonth,proto3" json:"report_month,omitempty"`
-	IsConfirmed        bool                   `protobuf:"varint,7,opt,name=is_confirmed,json=isConfirmed,proto3" json:"is_confirmed,omitempty"`
-	Provider           string                 `protobuf:"bytes,8,opt,name=provider,proto3" json:"provider,omitempty"`
-	Product            string                 `protobuf:"bytes,9,opt,name=product,proto3" json:"product,omitempty"`
-	ServiceAccountName string                 `protobuf:"bytes,10,opt,name=service_account_name,json=serviceAccountName,proto3" json:"service_account_name,omitempty"`
-	DataSourceName     string                 `protobuf:"bytes,11,opt,name=data_source_name,json=dataSourceName,proto3" json:"data_source_name,omitempty"`
-	ProjectName        string                 `protobuf:"bytes,12,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	WorkspaceName      string                 `protobuf:"bytes,13,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
-	DomainId           string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	WorkspaceId        string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	ProjectId          string                 `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	CostReportConfigId string                 `protobuf:"bytes,24,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
-	CostReportId       string                 `protobuf:"bytes,25,opt,name=cost_report_id,json=costReportId,proto3" json:"cost_report_id,omitempty"`
-	DataSourceId       string                 `protobuf:"bytes,26,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
-	ServiceAccountId   string                 `protobuf:"bytes,27,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	CreatedAt          string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"open.v1"`
+	CostReportDataId         string                 `protobuf:"bytes,1,opt,name=cost_report_data_id,json=costReportDataId,proto3" json:"cost_report_data_id,omitempty"`
+	Cost                     *_struct.Struct        `protobuf:"bytes,2,opt,name=cost,proto3" json:"cost,omitempty"`
+	CostReportName           string                 `protobuf:"bytes,3,opt,name=cost_report_name,json=costReportName,proto3" json:"cost_report_name,omitempty"`
+	IssueDate                string                 `protobuf:"bytes,4,opt,name=issue_date,json=issueDate,proto3" json:"issue_date,omitempty"`
+	ReportYear               string                 `protobuf:"bytes,5,opt,name=report_year,json=reportYear,proto3" json:"report_year,omitempty"`
+	ReportMonth              string                 `protobuf:"bytes,6,opt,name=report_month,json=reportMonth,proto3" json:"report_month,omitempty"`
+	IsConfirmed              bool                   `protobuf:"varint,7,opt,name=is_confirmed,json=isConfirmed,proto3" json:"is_confirmed,omitempty"`
+	IsAdjusted               bool                   `protobuf:"varint,8,opt,name=is_adjusted,json=isAdjusted,proto3" json:"is_adjusted,omitempty"`
+	Provider                 string                 `protobuf:"bytes,9,opt,name=provider,proto3" json:"provider,omitempty"`
+	Product                  string                 `protobuf:"bytes,10,opt,name=product,proto3" json:"product,omitempty"`
+	ServiceAccountName       string                 `protobuf:"bytes,11,opt,name=service_account_name,json=serviceAccountName,proto3" json:"service_account_name,omitempty"`
+	DataSourceName           string                 `protobuf:"bytes,12,opt,name=data_source_name,json=dataSourceName,proto3" json:"data_source_name,omitempty"`
+	ProjectName              string                 `protobuf:"bytes,13,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	WorkspaceName            string                 `protobuf:"bytes,14,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
+	DomainId                 string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	WorkspaceId              string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	ProjectId                string                 `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	CostReportConfigId       string                 `protobuf:"bytes,24,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
+	ReportAdjustmentPolicyId string                 `protobuf:"bytes,25,opt,name=report_adjustment_policy_id,json=reportAdjustmentPolicyId,proto3" json:"report_adjustment_policy_id,omitempty"`
+	CostReportId             string                 `protobuf:"bytes,26,opt,name=cost_report_id,json=costReportId,proto3" json:"cost_report_id,omitempty"`
+	DataSourceId             string                 `protobuf:"bytes,27,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	ServiceAccountId         string                 `protobuf:"bytes,28,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
+	CreatedAt                string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *CostReportDataInfo) Reset() {
@@ -365,6 +367,13 @@ func (x *CostReportDataInfo) GetIsConfirmed() bool {
 	return false
 }
 
+func (x *CostReportDataInfo) GetIsAdjusted() bool {
+	if x != nil {
+		return x.IsAdjusted
+	}
+	return false
+}
+
 func (x *CostReportDataInfo) GetProvider() string {
 	if x != nil {
 		return x.Provider
@@ -431,6 +440,13 @@ func (x *CostReportDataInfo) GetProjectId() string {
 func (x *CostReportDataInfo) GetCostReportConfigId() string {
 	if x != nil {
 		return x.CostReportConfigId
+	}
+	return ""
+}
+
+func (x *CostReportDataInfo) GetReportAdjustmentPolicyId() string {
+	if x != nil {
+		return x.ReportAdjustmentPolicyId
 	}
 	return ""
 }
@@ -602,7 +618,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_data_proto_rawDesc = "" +
 	"project_id\x18\x16 \x01(\tR\tprojectId\x121\n" +
 	"\x15cost_report_config_id\x18\x17 \x01(\tR\x12costReportConfigId\x12$\n" +
 	"\x0ecost_report_id\x18\x18 \x01(\tR\fcostReportId\x12$\n" +
-	"\x0edata_source_id\x18\x19 \x01(\tR\fdataSourceId\"\xa7\x06\n" +
+	"\x0edata_source_id\x18\x19 \x01(\tR\fdataSourceId\"\x87\a\n" +
 	"\x12CostReportDataInfo\x12-\n" +
 	"\x13cost_report_data_id\x18\x01 \x01(\tR\x10costReportDataId\x12+\n" +
 	"\x04cost\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04cost\x12(\n" +
@@ -612,22 +628,25 @@ const file_spaceone_api_cost_analysis_v1_cost_report_data_proto_rawDesc = "" +
 	"\vreport_year\x18\x05 \x01(\tR\n" +
 	"reportYear\x12!\n" +
 	"\freport_month\x18\x06 \x01(\tR\vreportMonth\x12!\n" +
-	"\fis_confirmed\x18\a \x01(\bR\visConfirmed\x12\x1a\n" +
-	"\bprovider\x18\b \x01(\tR\bprovider\x12\x18\n" +
-	"\aproduct\x18\t \x01(\tR\aproduct\x120\n" +
-	"\x14service_account_name\x18\n" +
-	" \x01(\tR\x12serviceAccountName\x12(\n" +
-	"\x10data_source_name\x18\v \x01(\tR\x0edataSourceName\x12!\n" +
-	"\fproject_name\x18\f \x01(\tR\vprojectName\x12%\n" +
-	"\x0eworkspace_name\x18\r \x01(\tR\rworkspaceName\x12\x1b\n" +
+	"\fis_confirmed\x18\a \x01(\bR\visConfirmed\x12\x1f\n" +
+	"\vis_adjusted\x18\b \x01(\bR\n" +
+	"isAdjusted\x12\x1a\n" +
+	"\bprovider\x18\t \x01(\tR\bprovider\x12\x18\n" +
+	"\aproduct\x18\n" +
+	" \x01(\tR\aproduct\x120\n" +
+	"\x14service_account_name\x18\v \x01(\tR\x12serviceAccountName\x12(\n" +
+	"\x10data_source_name\x18\f \x01(\tR\x0edataSourceName\x12!\n" +
+	"\fproject_name\x18\r \x01(\tR\vprojectName\x12%\n" +
+	"\x0eworkspace_name\x18\x0e \x01(\tR\rworkspaceName\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
 	"project_id\x18\x17 \x01(\tR\tprojectId\x121\n" +
-	"\x15cost_report_config_id\x18\x18 \x01(\tR\x12costReportConfigId\x12$\n" +
-	"\x0ecost_report_id\x18\x19 \x01(\tR\fcostReportId\x12$\n" +
-	"\x0edata_source_id\x18\x1a \x01(\tR\fdataSourceId\x12,\n" +
-	"\x12service_account_id\x18\x1b \x01(\tR\x10serviceAccountId\x12\x1d\n" +
+	"\x15cost_report_config_id\x18\x18 \x01(\tR\x12costReportConfigId\x12=\n" +
+	"\x1breport_adjustment_policy_id\x18\x19 \x01(\tR\x18reportAdjustmentPolicyId\x12$\n" +
+	"\x0ecost_report_id\x18\x1a \x01(\tR\fcostReportId\x12$\n" +
+	"\x0edata_source_id\x18\x1b \x01(\tR\fdataSourceId\x12,\n" +
+	"\x12service_account_id\x18\x1c \x01(\tR\x10serviceAccountId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x1f \x01(\tR\tcreatedAt\"\x83\x01\n" +
 	"\x13CostReportsDataInfo\x12K\n" +
