@@ -1146,11 +1146,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|WORKSPACE, PROJECT |string|True|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||boolean||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |scope|WORKSPACE, PROJECT |string|True|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||BoolValue||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"scope" : {"type": "string","title": "SCOPE" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+                 "properties": {"scope" : {"type": "string","title": "SCOPE" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "BoolValue","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1175,11 +1175,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||boolean||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||BoolValue||\n |adjustment_options||AdjustmentOptions||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "BoolValue","title": "IS_LAST_DAY" },"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3052,13 +3052,13 @@
                 "title": "UpdateSecretDataSourceRequest"
            }
            ,        "AdjustmentOptions": {
-         "properties" : {"enabled" : {"type": "boolean","title": "ENABLED"},"period" : {"type": "integer","title": "PERIOD"}},
+         "properties" : {"enabled" : {"type": "BoolValue","title": "ENABLED"},"period" : {"type": "integer","title": "PERIOD"}},
          "type": "object",
          "required": ["enabled","period"],
                 "title": "AdjustmentOptions"
            }
            ,        "CostReportConfigInfo": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "BoolValue","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["cost_report_config_id","state","scope","issue_day","is_last_day","adjustment_options","currency","recipients","data_source_filter","language","domain_id","created_at","updated_at"],
                 "title": "CostReportConfigInfo"
@@ -3089,7 +3089,7 @@
                 "title": "CostReportConfigsInfo"
            }
            ,        "CreateCostReportConfigRequest": {
-         "properties" : {"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
+         "properties" : {"scope" : {"type": "string","title": "SCOPE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "BoolValue","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
          "required": ["scope","recipients"],
                 "title": "CreateCostReportConfigRequest"
@@ -3101,7 +3101,7 @@
                 "title": "UpdateCostReportConfigRecipientsRequest"
            }
            ,        "UpdateCostReportConfigRequest": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "BoolValue","title": "IS_LAST_DAY"},"adjustment_options" : {"$ref": "#/components/schemas/AdjustmentOptions","title": "ADJUSTMENT_OPTIONS"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
          "required": ["cost_report_config_id"],
                 "title": "UpdateCostReportConfigRequest"
