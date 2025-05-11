@@ -69,9 +69,9 @@ message CreateReportAdjustmentPolicyRequest {
   // +optional
   google.protobuf.Struct tags = 6;
   // +optional
-  string project_id = 7;
+  repeated string project_ids = 7;
   // +optional
-  string workspace_id = 8;
+  repeated string workspace_ids = 8;
 }
 
 message UpdateReportAdjustmentPolicyRequest {
@@ -81,7 +81,9 @@ message UpdateReportAdjustmentPolicyRequest {
   // +optional
   google.protobuf.Struct tags = 6;
   // +optional
-  string workspace_id = 8;
+  repeated string workspace_ids = 8;
+  // +optional
+  repeated string project_ids = 9;
 }
 
 message ChangeOrderReportAdjustmentPolicyRequest {
@@ -107,9 +109,9 @@ message ReportAdjustmentPolicyQuery {
   // +optional
   State state = 3;
   // +optional
-  string workspace_id = 4;
+  repeated string workspace_ids = 4;
   // +optional
-  string project_id = 5;
+  repeated string project_ids = 5;
 }
 
 message ReportAdjustmentPolicyInfo {
@@ -138,8 +140,8 @@ message ReportAdjustmentPolicyInfo {
   string updated_at = 12;
   string deleted_at = 13;
 
-  string project_id = 21;
-  string workspace_id = 22;
+  repeated string project_ids = 21;
+  repeated string workspace_ids = 22;
   string domain_id = 23;
 }
 
