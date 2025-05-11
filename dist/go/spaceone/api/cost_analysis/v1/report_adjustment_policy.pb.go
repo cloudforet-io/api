@@ -237,9 +237,9 @@ type CreateReportAdjustmentPolicyRequest struct {
 	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
 	// +optional
-	ProjectId string `protobuf:"bytes,7,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	ProjectIds []string `protobuf:"bytes,7,rep,name=project_ids,json=projectIds,proto3" json:"project_ids,omitempty"`
 	// +optional
-	WorkspaceId   string `protobuf:"bytes,8,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	WorkspaceIds  []string `protobuf:"bytes,8,rep,name=workspace_ids,json=workspaceIds,proto3" json:"workspace_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -309,18 +309,18 @@ func (x *CreateReportAdjustmentPolicyRequest) GetTags() *_struct.Struct {
 	return nil
 }
 
-func (x *CreateReportAdjustmentPolicyRequest) GetProjectId() string {
+func (x *CreateReportAdjustmentPolicyRequest) GetProjectIds() []string {
 	if x != nil {
-		return x.ProjectId
+		return x.ProjectIds
 	}
-	return ""
+	return nil
 }
 
-func (x *CreateReportAdjustmentPolicyRequest) GetWorkspaceId() string {
+func (x *CreateReportAdjustmentPolicyRequest) GetWorkspaceIds() []string {
 	if x != nil {
-		return x.WorkspaceId
+		return x.WorkspaceIds
 	}
-	return ""
+	return nil
 }
 
 type UpdateReportAdjustmentPolicyRequest struct {
@@ -331,7 +331,9 @@ type UpdateReportAdjustmentPolicyRequest struct {
 	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
 	// +optional
-	WorkspaceId   string `protobuf:"bytes,8,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	WorkspaceIds []string `protobuf:"bytes,8,rep,name=workspace_ids,json=workspaceIds,proto3" json:"workspace_ids,omitempty"`
+	// +optional
+	ProjectIds    []string `protobuf:"bytes,9,rep,name=project_ids,json=projectIds,proto3" json:"project_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -387,11 +389,18 @@ func (x *UpdateReportAdjustmentPolicyRequest) GetTags() *_struct.Struct {
 	return nil
 }
 
-func (x *UpdateReportAdjustmentPolicyRequest) GetWorkspaceId() string {
+func (x *UpdateReportAdjustmentPolicyRequest) GetWorkspaceIds() []string {
 	if x != nil {
-		return x.WorkspaceId
+		return x.WorkspaceIds
 	}
-	return ""
+	return nil
+}
+
+func (x *UpdateReportAdjustmentPolicyRequest) GetProjectIds() []string {
+	if x != nil {
+		return x.ProjectIds
+	}
+	return nil
 }
 
 type ChangeOrderReportAdjustmentPolicyRequest struct {
@@ -499,9 +508,9 @@ type ReportAdjustmentPolicyQuery struct {
 	// +optional
 	State ReportAdjustmentPolicyQuery_State `protobuf:"varint,3,opt,name=state,proto3,enum=spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery_State" json:"state,omitempty"`
 	// +optional
-	WorkspaceId string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	WorkspaceIds []string `protobuf:"bytes,4,rep,name=workspace_ids,json=workspaceIds,proto3" json:"workspace_ids,omitempty"`
 	// +optional
-	ProjectId     string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	ProjectIds    []string `protobuf:"bytes,5,rep,name=project_ids,json=projectIds,proto3" json:"project_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -557,18 +566,18 @@ func (x *ReportAdjustmentPolicyQuery) GetState() ReportAdjustmentPolicyQuery_Sta
 	return ReportAdjustmentPolicyQuery_NONE
 }
 
-func (x *ReportAdjustmentPolicyQuery) GetWorkspaceId() string {
+func (x *ReportAdjustmentPolicyQuery) GetWorkspaceIds() []string {
 	if x != nil {
-		return x.WorkspaceId
+		return x.WorkspaceIds
 	}
-	return ""
+	return nil
 }
 
-func (x *ReportAdjustmentPolicyQuery) GetProjectId() string {
+func (x *ReportAdjustmentPolicyQuery) GetProjectIds() []string {
 	if x != nil {
-		return x.ProjectId
+		return x.ProjectIds
 	}
-	return ""
+	return nil
 }
 
 type ReportAdjustmentPolicyInfo struct {
@@ -584,8 +593,8 @@ type ReportAdjustmentPolicyInfo struct {
 	CreatedAt                string                           `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt                string                           `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	DeletedAt                string                           `protobuf:"bytes,13,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
-	ProjectId                string                           `protobuf:"bytes,21,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	WorkspaceId              string                           `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	ProjectIds               []string                         `protobuf:"bytes,21,rep,name=project_ids,json=projectIds,proto3" json:"project_ids,omitempty"`
+	WorkspaceIds             []string                         `protobuf:"bytes,22,rep,name=workspace_ids,json=workspaceIds,proto3" json:"workspace_ids,omitempty"`
 	DomainId                 string                           `protobuf:"bytes,23,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
@@ -698,18 +707,18 @@ func (x *ReportAdjustmentPolicyInfo) GetDeletedAt() string {
 	return ""
 }
 
-func (x *ReportAdjustmentPolicyInfo) GetProjectId() string {
+func (x *ReportAdjustmentPolicyInfo) GetProjectIds() []string {
 	if x != nil {
-		return x.ProjectId
+		return x.ProjectIds
 	}
-	return ""
+	return nil
 }
 
-func (x *ReportAdjustmentPolicyInfo) GetWorkspaceId() string {
+func (x *ReportAdjustmentPolicyInfo) GetWorkspaceIds() []string {
 	if x != nil {
-		return x.WorkspaceId
+		return x.WorkspaceIds
 	}
-	return ""
+	return nil
 }
 
 func (x *ReportAdjustmentPolicyInfo) GetDomainId() string {
@@ -775,43 +784,45 @@ var File_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto protorefle
 
 const file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc = "" +
 	"\n" +
-	"<spaceone/api/cost_analysis/v1/report_adjustment_policy.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"\x86\x03\n" +
+	"<spaceone/api/cost_analysis/v1/report_adjustment_policy.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"\x8a\x03\n" +
 	"#CreateReportAdjustmentPolicyRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12^\n" +
 	"\x05scope\x18\x02 \x01(\x0e2H.spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.ScopeR\x05scope\x121\n" +
 	"\x15cost_report_config_id\x18\x03 \x01(\tR\x12costReportConfigId\x12\x14\n" +
 	"\x05order\x18\x04 \x01(\x05R\x05order\x12+\n" +
-	"\x04tags\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\a \x01(\tR\tprojectId\x12!\n" +
-	"\fworkspace_id\x18\b \x01(\tR\vworkspaceId\"3\n" +
+	"\x04tags\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\x1f\n" +
+	"\vproject_ids\x18\a \x03(\tR\n" +
+	"projectIds\x12#\n" +
+	"\rworkspace_ids\x18\b \x03(\tR\fworkspaceIds\"3\n" +
 	"\x05Scope\x12\x0e\n" +
 	"\n" +
 	"SCOPE_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\xc8\x01\n" +
+	"\aPROJECT\x10\x02\"\xeb\x01\n" +
 	"#UpdateReportAdjustmentPolicyRequest\x12=\n" +
 	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
-	"\x04tags\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12!\n" +
-	"\fworkspace_id\x18\b \x01(\tR\vworkspaceId\"\x7f\n" +
+	"\x04tags\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12#\n" +
+	"\rworkspace_ids\x18\b \x03(\tR\fworkspaceIds\x12\x1f\n" +
+	"\vproject_ids\x18\t \x03(\tR\n" +
+	"projectIds\"\x7f\n" +
 	"(ChangeOrderReportAdjustmentPolicyRequest\x12=\n" +
 	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\x12\x14\n" +
 	"\x05order\x18\x02 \x01(\x05R\x05order\"^\n" +
 	"\x1dReportAdjustmentPolicyRequest\x12=\n" +
-	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\"\xb9\x02\n" +
+	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\"\xbd\x02\n" +
 	"\x1bReportAdjustmentPolicyQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12V\n" +
-	"\x05state\x18\x03 \x01(\x0e2@.spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.StateR\x05state\x12!\n" +
-	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\x05 \x01(\tR\tprojectId\"9\n" +
+	"\x05state\x18\x03 \x01(\x0e2@.spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.StateR\x05state\x12#\n" +
+	"\rworkspace_ids\x18\x04 \x03(\tR\fworkspaceIds\x12\x1f\n" +
+	"\vproject_ids\x18\x05 \x03(\tR\n" +
+	"projectIds\"9\n" +
 	"\x05State\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
 	"\bDISABLED\x10\x02\x12\v\n" +
-	"\aDELETED\x10\x03\"\xe1\x05\n" +
+	"\aDELETED\x10\x03\"\xe5\x05\n" +
 	"\x1aReportAdjustmentPolicyInfo\x12=\n" +
 	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12U\n" +
@@ -826,10 +837,10 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc 
 	"\n" +
 	"updated_at\x18\f \x01(\tR\tupdatedAt\x12\x1d\n" +
 	"\n" +
-	"deleted_at\x18\r \x01(\tR\tdeletedAt\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\x15 \x01(\tR\tprojectId\x12!\n" +
-	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1b\n" +
+	"deleted_at\x18\r \x01(\tR\tdeletedAt\x12\x1f\n" +
+	"\vproject_ids\x18\x15 \x03(\tR\n" +
+	"projectIds\x12#\n" +
+	"\rworkspace_ids\x18\x16 \x03(\tR\fworkspaceIds\x12\x1b\n" +
 	"\tdomain_id\x18\x17 \x01(\tR\bdomainId\"3\n" +
 	"\x05Scope\x12\x0e\n" +
 	"\n" +

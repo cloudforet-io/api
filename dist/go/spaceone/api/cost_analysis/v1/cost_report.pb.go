@@ -31,6 +31,7 @@ const (
 	CostReportQuery_NONE        CostReportQuery_Status = 0
 	CostReportQuery_IN_PROGRESS CostReportQuery_Status = 1
 	CostReportQuery_SUCCESS     CostReportQuery_Status = 2
+	CostReportQuery_DONE        CostReportQuery_Status = 3
 )
 
 // Enum value maps for CostReportQuery_Status.
@@ -39,11 +40,13 @@ var (
 		0: "NONE",
 		1: "IN_PROGRESS",
 		2: "SUCCESS",
+		3: "DONE",
 	}
 	CostReportQuery_Status_value = map[string]int32{
 		"NONE":        0,
 		"IN_PROGRESS": 1,
 		"SUCCESS":     2,
+		"DONE":        3,
 	}
 )
 
@@ -80,6 +83,7 @@ const (
 	CostReportInfo_NONE        CostReportInfo_Status = 0
 	CostReportInfo_IN_PROGRESS CostReportInfo_Status = 1
 	CostReportInfo_SUCCESS     CostReportInfo_Status = 2
+	CostReportInfo_DONE        CostReportInfo_Status = 3
 )
 
 // Enum value maps for CostReportInfo_Status.
@@ -88,11 +92,13 @@ var (
 		0: "NONE",
 		1: "IN_PROGRESS",
 		2: "SUCCESS",
+		3: "DONE",
 	}
 	CostReportInfo_Status_value = map[string]int32{
 		"NONE":        0,
 		"IN_PROGRESS": 1,
 		"SUCCESS":     2,
+		"DONE":        3,
 	}
 )
 
@@ -593,7 +599,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\x11CostReportRequest\x12$\n" +
 	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"?\n" +
 	"\x17GetUrlCostReportRequest\x12$\n" +
-	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"\xe4\x02\n" +
+	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"\xee\x02\n" +
 	"\x0fCostReportQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12$\n" +
 	"\x0ecost_report_id\x18\x02 \x01(\tR\fcostReportId\x121\n" +
@@ -601,11 +607,12 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\x06status\x18\x04 \x01(\x0e25.spaceone.api.cost_analysis.v1.CostReportQuery.StatusR\x06status\x12\x1d\n" +
 	"\n" +
 	"issue_date\x18\x05 \x01(\tR\tissueDate\x12%\n" +
-	"\x0eworkspace_name\x18\x06 \x01(\tR\rworkspaceName\"0\n" +
+	"\x0eworkspace_name\x18\x06 \x01(\tR\rworkspaceName\":\n" +
 	"\x06Status\x12\b\n" +
 	"\x04NONE\x10\x00\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x01\x12\v\n" +
-	"\aSUCCESS\x10\x02\"\xc2\x05\n" +
+	"\aSUCCESS\x10\x02\x12\b\n" +
+	"\x04DONE\x10\x03\"\xcc\x05\n" +
 	"\x0eCostReportInfo\x12$\n" +
 	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\x12+\n" +
 	"\x04cost\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04cost\x12L\n" +
@@ -629,11 +636,12 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\fworkspace_id\x18\x17 \x01(\tR\vworkspaceId\x12\x1b\n" +
 	"\tdomain_id\x18\x18 \x01(\tR\bdomainId\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x1f \x01(\tR\tcreatedAt\"0\n" +
+	"created_at\x18\x1f \x01(\tR\tcreatedAt\":\n" +
 	"\x06Status\x12\b\n" +
 	"\x04NONE\x10\x00\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x01\x12\v\n" +
-	"\aSUCCESS\x10\x02\"{\n" +
+	"\aSUCCESS\x10\x02\x12\b\n" +
+	"\x04DONE\x10\x03\"{\n" +
 	"\x0fCostReportsInfo\x12G\n" +
 	"\aresults\x18\x01 \x03(\v2-.spaceone.api.cost_analysis.v1.CostReportInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

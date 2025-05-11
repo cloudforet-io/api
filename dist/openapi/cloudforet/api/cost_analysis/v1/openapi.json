@@ -365,11 +365,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |scope|WORKSPACE, PROJECT |string|True|\n |cost_report_config_id||string|True|\n |order||int||\n |tags||Struct||\n |project_id||string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |scope|WORKSPACE, PROJECT |string|True|\n |cost_report_config_id||string|True|\n |order||int||\n |tags||Struct||\n |project_ids||array||\n |workspace_ids||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"order" : {"type": "integer","title": "ORDER" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"scope" : {"type": "string","title": "SCOPE" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"order" : {"type": "integer","title": "ORDER" },"tags" : {"type": "object","title": "TAGS" },"project_ids" : {"items": {}, "type": "array","title": "PROJECT_IDS" },"workspace_ids" : {"items": {}, "type": "array","title": "WORKSPACE_IDS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -394,11 +394,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n |name||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_policy_id||string|True|\n |name||string||\n |tags||Struct||\n |workspace_ids||array||\n |project_ids||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"workspace_ids" : {"items": {}, "type": "array","title": "WORKSPACE_IDS" },"project_ids" : {"items": {}, "type": "array","title": "PROJECT_IDS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -504,11 +504,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n |state|ENABLED, DISABLED, DELETED |string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |name||string||\n |state|ENABLED, DISABLED, DELETED |string||\n |workspace_ids||array||\n |project_ids||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_ids" : {"items": {}, "type": "array","title": "WORKSPACE_IDS" },"project_ids" : {"items": {}, "type": "array","title": "PROJECT_IDS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2265,7 +2265,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |cost_report_config_id||string||\n |status|IN_PROGRESS, SUCCESS |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |cost_report_config_id||string||\n |status|IN_PROGRESS, SUCCESS, DONE |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2829,7 +2829,9 @@
                 "title": "ChangeOrderReportAdjustmentPolicyRequest"
            }
            ,        "CreateReportAdjustmentPolicyRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"scope" : {"type": "string","title": "SCOPE"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"project_ids" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_IDS"},"workspace_ids" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACE_IDS"}},
          "type": "object",
          "required": ["name","scope","cost_report_config_id"],
                 "title": "CreateReportAdjustmentPolicyRequest"
@@ -2843,13 +2845,17 @@
            }
            ,        "ReportAdjustmentPolicyInfo": {
          "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"adjustments" : {"items": {"type": "string"},
-               "type": "array","title": "ADJUSTMENTS"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "ADJUSTMENTS"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"},"project_ids" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_IDS"},"workspace_ids" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACE_IDS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["report_adjustment_policy_id","name","state","adjustments","scope","order","tags","cost_report_config_id","created_at","updated_at","deleted_at","project_id","workspace_id","domain_id"],
+         "required": ["report_adjustment_policy_id","name","state","adjustments","scope","order","tags","cost_report_config_id","created_at","updated_at","deleted_at","project_ids","workspace_ids","domain_id"],
                 "title": "ReportAdjustmentPolicyInfo"
            }
            ,        "ReportAdjustmentPolicyQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_ids" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACE_IDS"},"project_ids" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_IDS"}},
          "type": "object",
          "required": [],
                 "title": "ReportAdjustmentPolicyQuery"
@@ -2861,7 +2867,9 @@
                 "title": "ReportAdjustmentPolicyRequest"
            }
            ,        "UpdateReportAdjustmentPolicyRequest": {
-         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"workspace_ids" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACE_IDS"},"project_ids" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_IDS"}},
          "type": "object",
          "required": ["report_adjustment_policy_id"],
                 "title": "UpdateReportAdjustmentPolicyRequest"
