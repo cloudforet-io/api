@@ -154,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string||\n |file_name||string||\n |timezone||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {                 }
+                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"file_name" : {"type": "string","title": "FILE_NAME" },"timezone" : {"type": "string","title": "TIMEZONE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2344,9 +2344,10 @@
                 "title": "AlertEventInfo"
            }
            ,        "AlertExportRequest": {
-         "properties" : {},
+         "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"file_name" : {"type": "string","title": "FILE_NAME"},"timezone" : {"type": "string","title": "TIMEZONE"}},
          "type": "object",
-         "required": [],
+         "required": ["options"],
                 "title": "AlertExportRequest"
            }
            ,        "AlertHistoryInfo": {

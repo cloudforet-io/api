@@ -1614,7 +1614,14 @@ func (x *AlertHistoryInfo) GetTotalCount() int32 {
 }
 
 type AlertExportRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	Options []*v2.ExportOption     `protobuf:"bytes,1,rep,name=options,proto3" json:"options,omitempty"`
+	// +optional
+	FileFormat AlertExportRequest_FileFormat `protobuf:"varint,2,opt,name=file_format,json=fileFormat,proto3,enum=spaceone.api.alert_manager.v1.AlertExportRequest_FileFormat" json:"file_format,omitempty"`
+	// +optional
+	FileName string `protobuf:"bytes,3,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
+	// +optional
+	Timezone      string `protobuf:"bytes,4,opt,name=timezone,proto3" json:"timezone,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1647,6 +1654,34 @@ func (x *AlertExportRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AlertExportRequest.ProtoReflect.Descriptor instead.
 func (*AlertExportRequest) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_alert_manager_v1_alert_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *AlertExportRequest) GetOptions() []*v2.ExportOption {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
+func (x *AlertExportRequest) GetFileFormat() AlertExportRequest_FileFormat {
+	if x != nil {
+		return x.FileFormat
+	}
+	return AlertExportRequest_NONE_FILE_FORMAT
+}
+
+func (x *AlertExportRequest) GetFileName() string {
+	if x != nil {
+		return x.FileName
+	}
+	return ""
+}
+
+func (x *AlertExportRequest) GetTimezone() string {
+	if x != nil {
+		return x.Timezone
+	}
+	return ""
 }
 
 var File_spaceone_api_alert_manager_v1_alert_proto protoreflect.FileDescriptor
@@ -1807,8 +1842,13 @@ const file_spaceone_api_alert_manager_v1_alert_proto_rawDesc = "" +
 	"\x10AlertHistoryInfo\x12G\n" +
 	"\aresults\x18\x01 \x03(\v2-.spaceone.api.alert_manager.v1.AlertEventInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"L\n" +
-	"\x12AlertExportRequest\"6\n" +
+	"totalCount\"\xa2\x02\n" +
+	"\x12AlertExportRequest\x12<\n" +
+	"\aoptions\x18\x01 \x03(\v2\".spaceone.api.core.v2.ExportOptionR\aoptions\x12]\n" +
+	"\vfile_format\x18\x02 \x01(\x0e2<.spaceone.api.alert_manager.v1.AlertExportRequest.FileFormatR\n" +
+	"fileFormat\x12\x1b\n" +
+	"\tfile_name\x18\x03 \x01(\tR\bfileName\x12\x1a\n" +
+	"\btimezone\x18\x04 \x01(\tR\btimezone\"6\n" +
 	"\n" +
 	"FileFormat\x12\x14\n" +
 	"\x10NONE_FILE_FORMAT\x10\x00\x12\t\n" +
@@ -1873,7 +1913,8 @@ var file_spaceone_api_alert_manager_v1_alert_proto_goTypes = []any{
 	(*v2.AnalyzeQuery)(nil),              // 26: spaceone.api.core.v2.AnalyzeQuery
 	(*v2.StatisticsQuery)(nil),           // 27: spaceone.api.core.v2.StatisticsQuery
 	(*EventInfo)(nil),                    // 28: spaceone.api.alert_manager.v1.EventInfo
-	(*empty.Empty)(nil),                  // 29: google.protobuf.Empty
+	(*v2.ExportOption)(nil),              // 29: spaceone.api.core.v2.ExportOption
+	(*empty.Empty)(nil),                  // 30: google.protobuf.Empty
 }
 var file_spaceone_api_alert_manager_v1_alert_proto_depIdxs = []int32{
 	22, // 0: spaceone.api.alert_manager.v1.NotificationInfo.service_channels:type_name -> google.protobuf.Struct
@@ -1904,29 +1945,31 @@ var file_spaceone_api_alert_manager_v1_alert_proto_depIdxs = []int32{
 	28, // 25: spaceone.api.alert_manager.v1.AlertEventInfo.event_info:type_name -> spaceone.api.alert_manager.v1.EventInfo
 	8,  // 26: spaceone.api.alert_manager.v1.AlertEventInfo.notification_info:type_name -> spaceone.api.alert_manager.v1.NotificationInfo
 	19, // 27: spaceone.api.alert_manager.v1.AlertHistoryInfo.results:type_name -> spaceone.api.alert_manager.v1.AlertEventInfo
-	10, // 28: spaceone.api.alert_manager.v1.Alert.create:input_type -> spaceone.api.alert_manager.v1.AlertCreateRequest
-	11, // 29: spaceone.api.alert_manager.v1.Alert.update:input_type -> spaceone.api.alert_manager.v1.AlertUpdateRequest
-	12, // 30: spaceone.api.alert_manager.v1.Alert.delete:input_type -> spaceone.api.alert_manager.v1.AlertRequest
-	12, // 31: spaceone.api.alert_manager.v1.Alert.get:input_type -> spaceone.api.alert_manager.v1.AlertRequest
-	14, // 32: spaceone.api.alert_manager.v1.Alert.list:input_type -> spaceone.api.alert_manager.v1.AlertSearchQuery
-	21, // 33: spaceone.api.alert_manager.v1.Alert.export:input_type -> spaceone.api.alert_manager.v1.AlertExportRequest
-	13, // 34: spaceone.api.alert_manager.v1.Alert.history:input_type -> spaceone.api.alert_manager.v1.AlertHistoryRequest
-	15, // 35: spaceone.api.alert_manager.v1.Alert.analyze:input_type -> spaceone.api.alert_manager.v1.AlertAnalyzeQuery
-	16, // 36: spaceone.api.alert_manager.v1.Alert.stat:input_type -> spaceone.api.alert_manager.v1.AlertStatQuery
-	17, // 37: spaceone.api.alert_manager.v1.Alert.create:output_type -> spaceone.api.alert_manager.v1.AlertInfo
-	17, // 38: spaceone.api.alert_manager.v1.Alert.update:output_type -> spaceone.api.alert_manager.v1.AlertInfo
-	29, // 39: spaceone.api.alert_manager.v1.Alert.delete:output_type -> google.protobuf.Empty
-	17, // 40: spaceone.api.alert_manager.v1.Alert.get:output_type -> spaceone.api.alert_manager.v1.AlertInfo
-	18, // 41: spaceone.api.alert_manager.v1.Alert.list:output_type -> spaceone.api.alert_manager.v1.AlertsInfo
-	22, // 42: spaceone.api.alert_manager.v1.Alert.export:output_type -> google.protobuf.Struct
-	20, // 43: spaceone.api.alert_manager.v1.Alert.history:output_type -> spaceone.api.alert_manager.v1.AlertHistoryInfo
-	22, // 44: spaceone.api.alert_manager.v1.Alert.analyze:output_type -> google.protobuf.Struct
-	22, // 45: spaceone.api.alert_manager.v1.Alert.stat:output_type -> google.protobuf.Struct
-	37, // [37:46] is the sub-list for method output_type
-	28, // [28:37] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	29, // 28: spaceone.api.alert_manager.v1.AlertExportRequest.options:type_name -> spaceone.api.core.v2.ExportOption
+	7,  // 29: spaceone.api.alert_manager.v1.AlertExportRequest.file_format:type_name -> spaceone.api.alert_manager.v1.AlertExportRequest.FileFormat
+	10, // 30: spaceone.api.alert_manager.v1.Alert.create:input_type -> spaceone.api.alert_manager.v1.AlertCreateRequest
+	11, // 31: spaceone.api.alert_manager.v1.Alert.update:input_type -> spaceone.api.alert_manager.v1.AlertUpdateRequest
+	12, // 32: spaceone.api.alert_manager.v1.Alert.delete:input_type -> spaceone.api.alert_manager.v1.AlertRequest
+	12, // 33: spaceone.api.alert_manager.v1.Alert.get:input_type -> spaceone.api.alert_manager.v1.AlertRequest
+	14, // 34: spaceone.api.alert_manager.v1.Alert.list:input_type -> spaceone.api.alert_manager.v1.AlertSearchQuery
+	21, // 35: spaceone.api.alert_manager.v1.Alert.export:input_type -> spaceone.api.alert_manager.v1.AlertExportRequest
+	13, // 36: spaceone.api.alert_manager.v1.Alert.history:input_type -> spaceone.api.alert_manager.v1.AlertHistoryRequest
+	15, // 37: spaceone.api.alert_manager.v1.Alert.analyze:input_type -> spaceone.api.alert_manager.v1.AlertAnalyzeQuery
+	16, // 38: spaceone.api.alert_manager.v1.Alert.stat:input_type -> spaceone.api.alert_manager.v1.AlertStatQuery
+	17, // 39: spaceone.api.alert_manager.v1.Alert.create:output_type -> spaceone.api.alert_manager.v1.AlertInfo
+	17, // 40: spaceone.api.alert_manager.v1.Alert.update:output_type -> spaceone.api.alert_manager.v1.AlertInfo
+	30, // 41: spaceone.api.alert_manager.v1.Alert.delete:output_type -> google.protobuf.Empty
+	17, // 42: spaceone.api.alert_manager.v1.Alert.get:output_type -> spaceone.api.alert_manager.v1.AlertInfo
+	18, // 43: spaceone.api.alert_manager.v1.Alert.list:output_type -> spaceone.api.alert_manager.v1.AlertsInfo
+	22, // 44: spaceone.api.alert_manager.v1.Alert.export:output_type -> google.protobuf.Struct
+	20, // 45: spaceone.api.alert_manager.v1.Alert.history:output_type -> spaceone.api.alert_manager.v1.AlertHistoryInfo
+	22, // 46: spaceone.api.alert_manager.v1.Alert.analyze:output_type -> google.protobuf.Struct
+	22, // 47: spaceone.api.alert_manager.v1.Alert.stat:output_type -> google.protobuf.Struct
+	39, // [39:48] is the sub-list for method output_type
+	30, // [30:39] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_alert_manager_v1_alert_proto_init() }
