@@ -75,7 +75,7 @@ message CreateReportAdjustmentRequest {
   int32 order = 7;
   // +optional
   google.protobuf.Struct adjustment_filter = 8;
-  string report_adjustment_policy_id = 10;
+  string report_adjustment_policy_id = 21;
 }
 
 message UpdateReportAdjustmentRequest {
@@ -109,9 +109,9 @@ message ReportAdjustmentQuery {
   // +optional
   string name = 2;
   // +optional
-  string workspace_id = 4;
+  string workspace_id = 21;
   // +optional
-  string project_id = 5;
+  string project_id = 22;
 }
 
 message ReportAdjustmentInfo {
@@ -125,12 +125,12 @@ message ReportAdjustmentInfo {
   int32 order = 8;
   google.protobuf.Struct adjustment_filter = 9;
 
-  string created_at = 11;
-  string updated_at = 12;
-
-  string cost_report_config_id = 19;
-  string report_adjustment_policy_id = 20;
   string domain_id = 21;
+  string cost_report_config_id = 22;
+  string report_adjustment_policy_id = 23;
+
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 message ReportAdjustmentsInfo {
