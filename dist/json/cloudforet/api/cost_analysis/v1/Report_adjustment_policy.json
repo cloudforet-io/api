@@ -54,66 +54,46 @@
               "description": ""
             }
           ]
-        },
-        {
-          "name": "State",
-          "longName": "ReportAdjustmentPolicyInfo.State",
-          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.State",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "DELETED",
-              "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "State",
-          "longName": "ReportAdjustmentPolicyQuery.State",
-          "fullName": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.State",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "DELETED",
-              "number": "3",
-              "description": ""
-            }
-          ]
         }
       ],
       "extensions": [],
       "messages": [
+        {
+          "name": "AdjustmentPolicyFilter",
+          "longName": "AdjustmentPolicyFilter",
+          "fullName": "spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "workspace_ids",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_ids",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
         {
           "name": "ChangeOrderReportAdjustmentPolicyRequest",
           "longName": "ChangeOrderReportAdjustmentPolicyRequest",
@@ -221,24 +201,12 @@
               "defaultValue": ""
             },
             {
-              "name": "project_ids",
+              "name": "policy_filter",
               "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_ids",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "",
+              "type": "AdjustmentPolicyFilter",
+              "longType": "AdjustmentPolicyFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -311,18 +279,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "state",
-              "description": "",
-              "label": "",
-              "type": "State",
-              "longType": "ReportAdjustmentPolicyInfo.State",
-              "fullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -413,36 +369,12 @@
               "defaultValue": ""
             },
             {
-              "name": "deleted_at",
+              "name": "policy_filter",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_ids",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_ids",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "AdjustmentPolicyFilter",
+              "longType": "AdjustmentPolicyFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -497,36 +429,12 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
+              "name": "policy_filter",
               "description": "+optional",
               "label": "",
-              "type": "State",
-              "longType": "ReportAdjustmentPolicyQuery.State",
-              "fullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.State",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_ids",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_ids",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "AdjustmentPolicyFilter",
+              "longType": "AdjustmentPolicyFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -605,24 +513,12 @@
               "defaultValue": ""
             },
             {
-              "name": "workspace_ids",
+              "name": "policy_filter",
               "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_ids",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "",
+              "type": "AdjustmentPolicyFilter",
+              "longType": "AdjustmentPolicyFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
