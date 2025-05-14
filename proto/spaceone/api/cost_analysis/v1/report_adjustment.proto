@@ -58,7 +58,7 @@ service ReportAdjustment {
 enum AdjustmentMethod {
   METHOD_NONE = 0;
   FIXED = 1;
-  RATE = 2;
+  PERCENTAGE = 2;
 }
 
 message CreateReportAdjustmentRequest {
@@ -74,7 +74,7 @@ message CreateReportAdjustmentRequest {
   // +optional
   int32 order = 7;
   // +optional
-  google.protobuf.Struct filters = 8;
+  google.protobuf.Struct adjustment_filter = 8;
   string report_adjustment_policy_id = 10;
 }
 
@@ -91,7 +91,7 @@ message UpdateReportAdjustmentRequest {
   // +optional
   string provider = 6;
   // +optional
-  google.protobuf.Struct filters = 7;
+  google.protobuf.Struct adjustment_filter = 7;
 }
 
 message ChangeOrderReportAdjustmentRequest {
@@ -104,18 +104,10 @@ message ReportAdjustmentRequest {
 }
 
 message ReportAdjustmentQuery {
-  enum State {
-    NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-    DELETED = 3;
-  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
   string name = 2;
-  // +optional
-  State state = 3;
   // +optional
   string workspace_id = 4;
   // +optional
@@ -131,11 +123,10 @@ message ReportAdjustmentInfo {
   string provider = 6;
   string currency = 7;
   int32 order = 8;
-  google.protobuf.Struct filters = 9;
+  google.protobuf.Struct adjustment_filter = 9;
 
   string created_at = 11;
   string updated_at = 12;
-  string deleted_at = 13;
 
   string cost_report_config_id = 19;
   string report_adjustment_policy_id = 20;

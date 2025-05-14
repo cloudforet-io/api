@@ -55,6 +55,11 @@ service ReportAdjustmentPolicy {
 
 }
 
+message AdjustmentPolicyFilter {
+  repeated string workspace_ids = 1;
+  repeated string project_ids = 2;
+}
+
 message CreateReportAdjustmentPolicyRequest {
   enum Scope {
     SCOPE_NONE = 0;
@@ -69,9 +74,7 @@ message CreateReportAdjustmentPolicyRequest {
   // +optional
   google.protobuf.Struct tags = 6;
   // +optional
-  repeated string project_ids = 7;
-  // +optional
-  repeated string workspace_ids = 8;
+  AdjustmentPolicyFilter policy_filter = 7;
 }
 
 message UpdateReportAdjustmentPolicyRequest {
@@ -81,9 +84,7 @@ message UpdateReportAdjustmentPolicyRequest {
   // +optional
   google.protobuf.Struct tags = 6;
   // +optional
-  repeated string workspace_ids = 8;
-  // +optional
-  repeated string project_ids = 9;
+  AdjustmentPolicyFilter policy_filter = 7;
 }
 
 message ChangeOrderReportAdjustmentPolicyRequest {
@@ -96,22 +97,12 @@ message ReportAdjustmentPolicyRequest {
 }
 
 message ReportAdjustmentPolicyQuery {
-  enum State {
-    NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-    DELETED = 3;
-  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
   string name = 2;
   // +optional
-  State state = 3;
-  // +optional
-  repeated string workspace_ids = 4;
-  // +optional
-  repeated string project_ids = 5;
+  AdjustmentPolicyFilter policy_filter = 4;
 }
 
 message ReportAdjustmentPolicyInfo {
@@ -121,15 +112,8 @@ message ReportAdjustmentPolicyInfo {
     PROJECT = 2;
   }
 
-  enum State {
-    NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-    DELETED = 3;
-  }
   string report_adjustment_policy_id = 1;
   string name = 2;
-  State state = 3;
   repeated string adjustments = 4;
   Scope scope = 5;
   int32 order = 6;
@@ -138,10 +122,9 @@ message ReportAdjustmentPolicyInfo {
 
   string created_at = 11;
   string updated_at = 12;
-  string deleted_at = 13;
 
-  repeated string project_ids = 21;
-  repeated string workspace_ids = 22;
+  AdjustmentPolicyFilter policy_filter = 14;
+
   string domain_id = 23;
 }
 
