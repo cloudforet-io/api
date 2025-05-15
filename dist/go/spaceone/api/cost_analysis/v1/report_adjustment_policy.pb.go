@@ -500,11 +500,11 @@ type ReportAdjustmentPolicyInfo struct {
 	Scope                    ReportAdjustmentPolicyInfo_Scope `protobuf:"varint,5,opt,name=scope,proto3,enum=spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo_Scope" json:"scope,omitempty"`
 	Order                    int32                            `protobuf:"varint,6,opt,name=order,proto3" json:"order,omitempty"`
 	Tags                     *_struct.Struct                  `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
-	CostReportConfigId       string                           `protobuf:"bytes,8,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
-	CreatedAt                string                           `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt                string                           `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	PolicyFilter             *AdjustmentPolicyFilter          `protobuf:"bytes,14,opt,name=policy_filter,json=policyFilter,proto3" json:"policy_filter,omitempty"`
-	DomainId                 string                           `protobuf:"bytes,23,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	PolicyFilter             *AdjustmentPolicyFilter          `protobuf:"bytes,8,opt,name=policy_filter,json=policyFilter,proto3" json:"policy_filter,omitempty"`
+	DomainId                 string                           `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	CostReportConfigId       string                           `protobuf:"bytes,22,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
+	CreatedAt                string                           `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt                string                           `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -581,6 +581,20 @@ func (x *ReportAdjustmentPolicyInfo) GetTags() *_struct.Struct {
 	return nil
 }
 
+func (x *ReportAdjustmentPolicyInfo) GetPolicyFilter() *AdjustmentPolicyFilter {
+	if x != nil {
+		return x.PolicyFilter
+	}
+	return nil
+}
+
+func (x *ReportAdjustmentPolicyInfo) GetDomainId() string {
+	if x != nil {
+		return x.DomainId
+	}
+	return ""
+}
+
 func (x *ReportAdjustmentPolicyInfo) GetCostReportConfigId() string {
 	if x != nil {
 		return x.CostReportConfigId
@@ -598,20 +612,6 @@ func (x *ReportAdjustmentPolicyInfo) GetCreatedAt() string {
 func (x *ReportAdjustmentPolicyInfo) GetUpdatedAt() string {
 	if x != nil {
 		return x.UpdatedAt
-	}
-	return ""
-}
-
-func (x *ReportAdjustmentPolicyInfo) GetPolicyFilter() *AdjustmentPolicyFilter {
-	if x != nil {
-		return x.PolicyFilter
-	}
-	return nil
-}
-
-func (x *ReportAdjustmentPolicyInfo) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
 	}
 	return ""
 }
@@ -709,14 +709,14 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc 
 	"\vadjustments\x18\x04 \x03(\tR\vadjustments\x12U\n" +
 	"\x05scope\x18\x05 \x01(\x0e2?.spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.ScopeR\x05scope\x12\x14\n" +
 	"\x05order\x18\x06 \x01(\x05R\x05order\x12+\n" +
-	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\x121\n" +
-	"\x15cost_report_config_id\x18\b \x01(\tR\x12costReportConfigId\x12\x1d\n" +
+	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\x12Z\n" +
+	"\rpolicy_filter\x18\b \x01(\v25.spaceone.api.cost_analysis.v1.AdjustmentPolicyFilterR\fpolicyFilter\x12\x1b\n" +
+	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x121\n" +
+	"\x15cost_report_config_id\x18\x16 \x01(\tR\x12costReportConfigId\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\v \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\f \x01(\tR\tupdatedAt\x12Z\n" +
-	"\rpolicy_filter\x18\x0e \x01(\v25.spaceone.api.cost_analysis.v1.AdjustmentPolicyFilterR\fpolicyFilter\x12\x1b\n" +
-	"\tdomain_id\x18\x17 \x01(\tR\bdomainId\"3\n" +
+	"updated_at\x18  \x01(\tR\tupdatedAt\"3\n" +
 	"\x05Scope\x12\x0e\n" +
 	"\n" +
 	"SCOPE_NONE\x10\x00\x12\r\n" +

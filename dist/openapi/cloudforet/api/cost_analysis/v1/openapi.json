@@ -2265,7 +2265,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |cost_report_config_id||string||\n |status|IN_PROGRESS, SUCCESS, DONE |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |cost_report_config_id||string||\n |status|IN_PROGRESS, ADJUSTING, DONE |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2851,9 +2851,9 @@
            }
            ,        "ReportAdjustmentPolicyInfo": {
          "properties" : {"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"adjustments" : {"items": {"type": "string"},
-               "type": "array","title": "ADJUSTMENTS"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"policy_filter" : {"$ref": "#/components/schemas/AdjustmentPolicyFilter","title": "POLICY_FILTER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "ADJUSTMENTS"},"scope" : {"type": "string","title": "SCOPE"},"order" : {"type": "integer","title": "ORDER"},"tags" : {"type": "object","title": "TAGS"},"policy_filter" : {"$ref": "#/components/schemas/AdjustmentPolicyFilter","title": "POLICY_FILTER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["report_adjustment_policy_id","name","adjustments","scope","order","tags","cost_report_config_id","created_at","updated_at","policy_filter","domain_id"],
+         "required": ["report_adjustment_policy_id","name","adjustments","scope","order","tags","policy_filter","domain_id","cost_report_config_id","created_at","updated_at"],
                 "title": "ReportAdjustmentPolicyInfo"
            }
            ,        "ReportAdjustmentPolicyQuery": {
@@ -2932,9 +2932,9 @@
                 "title": "CreateReportAdjustmentRequest"
            }
            ,        "ReportAdjustmentInfo": {
-         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"},"name" : {"type": "string","title": "NAME"},"method" : {"type": "string","title": "METHOD"},"value" : {"type": "float","title": "VALUE"},"description" : {"type": "string","title": "DESCRIPTION"},"provider" : {"type": "string","title": "PROVIDER"},"currency" : {"type": "string","title": "CURRENCY"},"order" : {"type": "integer","title": "ORDER"},"adjustment_filter" : {"type": "object","title": "ADJUSTMENT_FILTER"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID"},"name" : {"type": "string","title": "NAME"},"method" : {"type": "string","title": "METHOD"},"value" : {"type": "float","title": "VALUE"},"description" : {"type": "string","title": "DESCRIPTION"},"provider" : {"type": "string","title": "PROVIDER"},"currency" : {"type": "string","title": "CURRENCY"},"order" : {"type": "integer","title": "ORDER"},"adjustment_filter" : {"type": "object","title": "ADJUSTMENT_FILTER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["report_adjustment_id","name","method","value","description","provider","currency","order","adjustment_filter","created_at","updated_at","cost_report_config_id","report_adjustment_policy_id","domain_id"],
+         "required": ["report_adjustment_id","name","method","value","description","provider","currency","order","adjustment_filter","domain_id","cost_report_config_id","report_adjustment_policy_id","created_at","updated_at"],
                 "title": "ReportAdjustmentInfo"
            }
            ,        "ReportAdjustmentQuery": {

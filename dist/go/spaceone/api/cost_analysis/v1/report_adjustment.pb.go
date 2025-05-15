@@ -89,7 +89,7 @@ type CreateReportAdjustmentRequest struct {
 	Order int32 `protobuf:"varint,7,opt,name=order,proto3" json:"order,omitempty"`
 	// +optional
 	AdjustmentFilter         *_struct.Struct `protobuf:"bytes,8,opt,name=adjustment_filter,json=adjustmentFilter,proto3" json:"adjustment_filter,omitempty"`
-	ReportAdjustmentPolicyId string          `protobuf:"bytes,10,opt,name=report_adjustment_policy_id,json=reportAdjustmentPolicyId,proto3" json:"report_adjustment_policy_id,omitempty"`
+	ReportAdjustmentPolicyId string          `protobuf:"bytes,21,opt,name=report_adjustment_policy_id,json=reportAdjustmentPolicyId,proto3" json:"report_adjustment_policy_id,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -388,9 +388,9 @@ type ReportAdjustmentQuery struct {
 	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	WorkspaceId string `protobuf:"bytes,4,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	// +optional
-	ProjectId     string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	ProjectId     string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -464,11 +464,11 @@ type ReportAdjustmentInfo struct {
 	Currency                 string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
 	Order                    int32                  `protobuf:"varint,8,opt,name=order,proto3" json:"order,omitempty"`
 	AdjustmentFilter         *_struct.Struct        `protobuf:"bytes,9,opt,name=adjustment_filter,json=adjustmentFilter,proto3" json:"adjustment_filter,omitempty"`
-	CreatedAt                string                 `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt                string                 `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	CostReportConfigId       string                 `protobuf:"bytes,19,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
-	ReportAdjustmentPolicyId string                 `protobuf:"bytes,20,opt,name=report_adjustment_policy_id,json=reportAdjustmentPolicyId,proto3" json:"report_adjustment_policy_id,omitempty"`
 	DomainId                 string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	CostReportConfigId       string                 `protobuf:"bytes,22,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
+	ReportAdjustmentPolicyId string                 `protobuf:"bytes,23,opt,name=report_adjustment_policy_id,json=reportAdjustmentPolicyId,proto3" json:"report_adjustment_policy_id,omitempty"`
+	CreatedAt                string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt                string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -566,16 +566,9 @@ func (x *ReportAdjustmentInfo) GetAdjustmentFilter() *_struct.Struct {
 	return nil
 }
 
-func (x *ReportAdjustmentInfo) GetCreatedAt() string {
+func (x *ReportAdjustmentInfo) GetDomainId() string {
 	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *ReportAdjustmentInfo) GetUpdatedAt() string {
-	if x != nil {
-		return x.UpdatedAt
+		return x.DomainId
 	}
 	return ""
 }
@@ -594,9 +587,16 @@ func (x *ReportAdjustmentInfo) GetReportAdjustmentPolicyId() string {
 	return ""
 }
 
-func (x *ReportAdjustmentInfo) GetDomainId() string {
+func (x *ReportAdjustmentInfo) GetCreatedAt() string {
 	if x != nil {
-		return x.DomainId
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *ReportAdjustmentInfo) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
 	}
 	return ""
 }
@@ -667,8 +667,7 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12\x14\n" +
 	"\x05order\x18\a \x01(\x05R\x05order\x12D\n" +
 	"\x11adjustment_filter\x18\b \x01(\v2\x17.google.protobuf.StructR\x10adjustmentFilter\x12=\n" +
-	"\x1breport_adjustment_policy_id\x18\n" +
-	" \x01(\tR\x18reportAdjustmentPolicyId\"\xc8\x02\n" +
+	"\x1breport_adjustment_policy_id\x18\x15 \x01(\tR\x18reportAdjustmentPolicyId\"\xc8\x02\n" +
 	"\x1dUpdateReportAdjustmentRequest\x120\n" +
 	"\x14report_adjustment_id\x18\x01 \x01(\tR\x12reportAdjustmentId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12G\n" +
@@ -685,9 +684,9 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\x15ReportAdjustmentQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
-	"\fworkspace_id\x18\x04 \x01(\tR\vworkspaceId\x12\x1d\n" +
+	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x05 \x01(\tR\tprojectId\"\xbe\x04\n" +
+	"project_id\x18\x16 \x01(\tR\tprojectId\"\xbe\x04\n" +
 	"\x14ReportAdjustmentInfo\x120\n" +
 	"\x14report_adjustment_id\x18\x01 \x01(\tR\x12reportAdjustmentId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12G\n" +
@@ -697,14 +696,14 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\bprovider\x18\x06 \x01(\tR\bprovider\x12\x1a\n" +
 	"\bcurrency\x18\a \x01(\tR\bcurrency\x12\x14\n" +
 	"\x05order\x18\b \x01(\x05R\x05order\x12D\n" +
-	"\x11adjustment_filter\x18\t \x01(\v2\x17.google.protobuf.StructR\x10adjustmentFilter\x12\x1d\n" +
+	"\x11adjustment_filter\x18\t \x01(\v2\x17.google.protobuf.StructR\x10adjustmentFilter\x12\x1b\n" +
+	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x121\n" +
+	"\x15cost_report_config_id\x18\x16 \x01(\tR\x12costReportConfigId\x12=\n" +
+	"\x1breport_adjustment_policy_id\x18\x17 \x01(\tR\x18reportAdjustmentPolicyId\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\v \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\f \x01(\tR\tupdatedAt\x121\n" +
-	"\x15cost_report_config_id\x18\x13 \x01(\tR\x12costReportConfigId\x12=\n" +
-	"\x1breport_adjustment_policy_id\x18\x14 \x01(\tR\x18reportAdjustmentPolicyId\x12\x1b\n" +
-	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\"\x87\x01\n" +
+	"updated_at\x18  \x01(\tR\tupdatedAt\"\x87\x01\n" +
 	"\x15ReportAdjustmentsInfo\x12M\n" +
 	"\aresults\x18\x01 \x03(\v23.spaceone.api.cost_analysis.v1.ReportAdjustmentInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
