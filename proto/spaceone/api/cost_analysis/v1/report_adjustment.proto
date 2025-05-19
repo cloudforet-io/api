@@ -55,15 +55,15 @@ service ReportAdjustment {
 
 }
 
-enum AdjustmentMethod {
-  METHOD_NONE = 0;
+enum AdjustmentUnit {
+  UNIT_NONE = 0;
   FIXED = 1;
   PERCENTAGE = 2;
 }
 
 message CreateReportAdjustmentRequest {
   string name = 1;
-  AdjustmentMethod method = 2;
+  AdjustmentUnit unit = 2;
   float value = 3;
   // +optional
   string description = 4;
@@ -83,7 +83,7 @@ message UpdateReportAdjustmentRequest {
   // +optional
   string name = 2;
   // +optional
-  AdjustmentMethod method = 3;
+  AdjustmentUnit unit = 3;
   // +optional
   float value = 4;
   // +optional
@@ -117,7 +117,7 @@ message ReportAdjustmentQuery {
 message ReportAdjustmentInfo {
   string report_adjustment_id = 1;
   string name = 2;
-  AdjustmentMethod method = 3;
+  AdjustmentUnit unit = 3;
   float value = 4;
   string description = 5;
   string provider = 6;
