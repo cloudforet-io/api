@@ -2238,13 +2238,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |workspace_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |page||Page|True|\n |workspace_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |auth_type||AuthType||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"auth_type" : {"type": "AuthType","title": "AUTH_TYPE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n \"keyword\": \"cloudforet\",\n \"state\": \"ENABLED\",\n \"page\": {\n      \"start\": 1,\n      \"limit\": 5\n }\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"keyword\": \"cloudforet\",\n \"state\": \"ENABLED\",\n \"auth_type\": \"LOCAL\",\n \"page\": {\n      \"start\": 1,\n      \"limit\": 5\n }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2256,7 +2256,7 @@
                  "schema": {"$ref": "#/components/schemas/UsersSummaryInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UsersSummaryInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n          \"user_id\": \"wonny@cloudforet.io\",\n          \"name\": \"Wonny\",\n          \"state\": \"ENABLED\"\n       },\n       {\n           \"user_id\": \"belty@cloudforet.io\",\n           \"name\": \"Belty\",\n           \"state\": \"ENABLED\"\n       },\n       {\n           \"user_id\": \"bolby@cloudforet.io\",\n           \"state\": \"PENDING\"\n       },\n       {\n           \"user_id\": \"cuby@cloudforet.io\",\n           \"state\": \"PENDING\"\n       },\n       {\n           \"user_id\": \"musly@cloudforet.io\",\n           \"state\": \"PENDING\"\n       }\n   ],\n   \"total_count\": 21\n}"
+                     "value": "{\n   \"results\": [\n       {\n          \"user_id\": \"wonny@cloudforet.io\",\n          \"name\": \"Wonny\",\n          \"state\": \"ENABLED\",\n          \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"belty@cloudforet.io\",\n           \"name\": \"Belty\",\n           \"state\": \"ENABLED\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"bolby@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"cuby@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"musly@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       }\n   ],\n   \"total_count\": 21\n}"
                    }}
                }
              }}
@@ -5706,9 +5706,9 @@
                 "title": "CreateWorkspaceUserRequest"
            }
            ,        "UserSummaryInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"}},
          "type": "object",
-         "required": ["user_id","name","state"],
+         "required": ["user_id","name","state","auth_type"],
                 "title": "UserSummaryInfo"
            }
            ,        "UsersSummaryInfo": {
@@ -5719,9 +5719,9 @@
                 "title": "UsersSummaryInfo"
            }
            ,        "WorkspaceUserFindRequest": {
-         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["keyword","workspace_id"],
+         "required": ["keyword","page","workspace_id"],
                 "title": "WorkspaceUserFindRequest"
            }
            ,        "WorkspaceUserInfo": {

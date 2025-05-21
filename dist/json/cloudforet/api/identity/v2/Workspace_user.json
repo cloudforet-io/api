@@ -324,6 +324,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "auth_type",
+              "description": "",
+              "label": "",
+              "type": "AuthType",
+              "longType": "AuthType",
+              "fullType": "spaceone.api.identity.v2.AuthType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -331,7 +343,7 @@
           "name": "UsersSummaryInfo",
           "longName": "UsersSummaryInfo",
           "fullName": "spaceone.api.identity.v2.UsersSummaryInfo",
-          "description": "{\n   \"results\": [\n       {\n          \"user_id\": \"wonny@cloudforet.io\",\n          \"name\": \"Wonny\",\n          \"state\": \"ENABLED\"\n       },\n       {\n           \"user_id\": \"belty@cloudforet.io\",\n           \"name\": \"Belty\",\n           \"state\": \"ENABLED\"\n       },\n       {\n           \"user_id\": \"bolby@cloudforet.io\",\n           \"state\": \"PENDING\"\n       },\n       {\n           \"user_id\": \"cuby@cloudforet.io\",\n           \"state\": \"PENDING\"\n       },\n       {\n           \"user_id\": \"musly@cloudforet.io\",\n           \"state\": \"PENDING\"\n       }\n   ],\n   \"total_count\": 21\n}",
+          "description": "{\n   \"results\": [\n       {\n          \"user_id\": \"wonny@cloudforet.io\",\n          \"name\": \"Wonny\",\n          \"state\": \"ENABLED\",\n          \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"belty@cloudforet.io\",\n           \"name\": \"Belty\",\n           \"state\": \"ENABLED\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"bolby@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"cuby@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       },\n       {\n           \"user_id\": \"musly@cloudforet.io\",\n           \"state\": \"PENDING\",\n           \"auth_type\": \"LOCAL\"\n       }\n   ],\n   \"total_count\": 21\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -367,7 +379,7 @@
           "name": "WorkspaceUserFindRequest",
           "longName": "WorkspaceUserFindRequest",
           "fullName": "spaceone.api.identity.v2.WorkspaceUserFindRequest",
-          "description": "{\n \"keyword\": \"cloudforet\",\n \"state\": \"ENABLED\",\n \"page\": {\n      \"start\": 1,\n      \"limit\": 5\n }\n}",
+          "description": "{\n \"keyword\": \"cloudforet\",\n \"state\": \"ENABLED\",\n \"auth_type\": \"LOCAL\",\n \"page\": {\n      \"start\": 1,\n      \"limit\": 5\n }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -398,8 +410,20 @@
               "defaultValue": ""
             },
             {
-              "name": "page",
+              "name": "auth_type",
               "description": "+optional",
+              "label": "",
+              "type": "AuthType",
+              "longType": "AuthType",
+              "fullType": "spaceone.api.identity.v2.AuthType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page",
+              "description": "",
               "label": "",
               "type": "Page",
               "longType": "spaceone.api.core.v2.Page",

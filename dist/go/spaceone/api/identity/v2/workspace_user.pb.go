@@ -427,6 +427,7 @@ func (x *CreateWorkspaceUserRequest) GetRoleId() string {
 //	{
 //	 "keyword": "cloudforet",
 //	 "state": "ENABLED",
+//	 "auth_type": "LOCAL",
 //	 "page": {
 //	      "start": 1,
 //	      "limit": 5
@@ -438,7 +439,8 @@ type WorkspaceUserFindRequest struct {
 	// +optional
 	State WorkspaceUserFindRequest_State `protobuf:"varint,2,opt,name=state,proto3,enum=spaceone.api.identity.v2.WorkspaceUserFindRequest_State" json:"state,omitempty"`
 	// +optional
-	Page          *v2.Page `protobuf:"bytes,3,opt,name=page,proto3" json:"page,omitempty"`
+	AuthType      AuthType `protobuf:"varint,3,opt,name=auth_type,json=authType,proto3,enum=spaceone.api.identity.v2.AuthType" json:"auth_type,omitempty"`
+	Page          *v2.Page `protobuf:"bytes,4,opt,name=page,proto3" json:"page,omitempty"`
 	WorkspaceId   string   `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -486,6 +488,13 @@ func (x *WorkspaceUserFindRequest) GetState() WorkspaceUserFindRequest_State {
 		return x.State
 	}
 	return WorkspaceUserFindRequest_NONE
+}
+
+func (x *WorkspaceUserFindRequest) GetAuthType() AuthType {
+	if x != nil {
+		return x.AuthType
+	}
+	return AuthType_NONE_BACKEND
 }
 
 func (x *WorkspaceUserFindRequest) GetPage() *v2.Page {
@@ -946,6 +955,7 @@ type UserSummaryInfo struct {
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	State         UserSummaryInfo_State  `protobuf:"varint,3,opt,name=state,proto3,enum=spaceone.api.identity.v2.UserSummaryInfo_State" json:"state,omitempty"`
+	AuthType      AuthType               `protobuf:"varint,4,opt,name=auth_type,json=authType,proto3,enum=spaceone.api.identity.v2.AuthType" json:"auth_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1001,29 +1011,41 @@ func (x *UserSummaryInfo) GetState() UserSummaryInfo_State {
 	return UserSummaryInfo_STATE_NONE
 }
 
+func (x *UserSummaryInfo) GetAuthType() AuthType {
+	if x != nil {
+		return x.AuthType
+	}
+	return AuthType_NONE_BACKEND
+}
+
 //	{
 //	   "results": [
 //	       {
 //	          "user_id": "wonny@cloudforet.io",
 //	          "name": "Wonny",
-//	          "state": "ENABLED"
+//	          "state": "ENABLED",
+//	          "auth_type": "LOCAL"
 //	       },
 //	       {
 //	           "user_id": "belty@cloudforet.io",
 //	           "name": "Belty",
-//	           "state": "ENABLED"
+//	           "state": "ENABLED",
+//	           "auth_type": "LOCAL"
 //	       },
 //	       {
 //	           "user_id": "bolby@cloudforet.io",
-//	           "state": "PENDING"
+//	           "state": "PENDING",
+//	           "auth_type": "LOCAL"
 //	       },
 //	       {
 //	           "user_id": "cuby@cloudforet.io",
-//	           "state": "PENDING"
+//	           "state": "PENDING",
+//	           "auth_type": "LOCAL"
 //	       },
 //	       {
 //	           "user_id": "musly@cloudforet.io",
-//	           "state": "PENDING"
+//	           "state": "PENDING",
+//	           "auth_type": "LOCAL"
 //	       }
 //	   ],
 //	   "total_count": 21
@@ -1148,11 +1170,12 @@ const file_spaceone_api_identity_v2_workspace_user_proto_rawDesc = "" +
 	"\x04tags\x18\b \x01(\v2\x17.google.protobuf.StructR\x04tags\x12%\n" +
 	"\x0ereset_password\x18\t \x01(\bR\rresetPassword\x12\x17\n" +
 	"\arole_id\x18\n" +
-	" \x01(\tR\x06roleId\"\x92\x02\n" +
+	" \x01(\tR\x06roleId\"\xd3\x02\n" +
 	"\x18WorkspaceUserFindRequest\x12\x18\n" +
 	"\akeyword\x18\x01 \x01(\tR\akeyword\x12N\n" +
-	"\x05state\x18\x02 \x01(\x0e28.spaceone.api.identity.v2.WorkspaceUserFindRequest.StateR\x05state\x12.\n" +
-	"\x04page\x18\x03 \x01(\v2\x1a.spaceone.api.core.v2.PageR\x04page\x12!\n" +
+	"\x05state\x18\x02 \x01(\x0e28.spaceone.api.identity.v2.WorkspaceUserFindRequest.StateR\x05state\x12?\n" +
+	"\tauth_type\x18\x03 \x01(\x0e2\".spaceone.api.identity.v2.AuthTypeR\bauthType\x12.\n" +
+	"\x04page\x18\x04 \x01(\v2\x1a.spaceone.api.core.v2.PageR\x04page\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\"9\n" +
 	"\x05State\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
@@ -1207,11 +1230,12 @@ const file_spaceone_api_identity_v2_workspace_user_proto_rawDesc = "" +
 	"\x12WorkspaceUsersInfo\x12E\n" +
 	"\aresults\x18\x01 \x03(\v2+.spaceone.api.identity.v2.WorkspaceUserInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xc6\x01\n" +
+	"totalCount\"\x87\x02\n" +
 	"\x0fUserSummaryInfo\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12E\n" +
-	"\x05state\x18\x03 \x01(\x0e2/.spaceone.api.identity.v2.UserSummaryInfo.StateR\x05state\"?\n" +
+	"\x05state\x18\x03 \x01(\x0e2/.spaceone.api.identity.v2.UserSummaryInfo.StateR\x05state\x12?\n" +
+	"\tauth_type\x18\x04 \x01(\x0e2\".spaceone.api.identity.v2.AuthTypeR\bauthType\"?\n" +
 	"\x05State\x12\x0e\n" +
 	"\n" +
 	"STATE_NONE\x10\x00\x12\v\n" +
@@ -1272,34 +1296,36 @@ var file_spaceone_api_identity_v2_workspace_user_proto_depIdxs = []int32{
 	14, // 0: spaceone.api.identity.v2.CreateWorkspaceUserRequest.auth_type:type_name -> spaceone.api.identity.v2.AuthType
 	15, // 1: spaceone.api.identity.v2.CreateWorkspaceUserRequest.tags:type_name -> google.protobuf.Struct
 	0,  // 2: spaceone.api.identity.v2.WorkspaceUserFindRequest.state:type_name -> spaceone.api.identity.v2.WorkspaceUserFindRequest.State
-	16, // 3: spaceone.api.identity.v2.WorkspaceUserFindRequest.page:type_name -> spaceone.api.core.v2.Page
-	1,  // 4: spaceone.api.identity.v2.WorkspaceUserInfo.state:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo.State
-	14, // 5: spaceone.api.identity.v2.WorkspaceUserInfo.auth_type:type_name -> spaceone.api.identity.v2.AuthType
-	2,  // 6: spaceone.api.identity.v2.WorkspaceUserInfo.role_type:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo.RoleType
-	15, // 7: spaceone.api.identity.v2.WorkspaceUserInfo.tags:type_name -> google.protobuf.Struct
-	17, // 8: spaceone.api.identity.v2.WorkspaceUserInfo.role_binding_info:type_name -> spaceone.api.identity.v2.RoleBindingInfo
-	18, // 9: spaceone.api.identity.v2.WorkspaceUserSearchQuery.query:type_name -> spaceone.api.core.v2.Query
-	3,  // 10: spaceone.api.identity.v2.WorkspaceUserSearchQuery.state:type_name -> spaceone.api.identity.v2.WorkspaceUserSearchQuery.State
-	14, // 11: spaceone.api.identity.v2.WorkspaceUserSearchQuery.auth_type:type_name -> spaceone.api.identity.v2.AuthType
-	8,  // 12: spaceone.api.identity.v2.WorkspaceUsersInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo
-	4,  // 13: spaceone.api.identity.v2.UserSummaryInfo.state:type_name -> spaceone.api.identity.v2.UserSummaryInfo.State
-	11, // 14: spaceone.api.identity.v2.UsersSummaryInfo.results:type_name -> spaceone.api.identity.v2.UserSummaryInfo
-	19, // 15: spaceone.api.identity.v2.WorkspaceUserStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	5,  // 16: spaceone.api.identity.v2.WorkspaceUser.create:input_type -> spaceone.api.identity.v2.CreateWorkspaceUserRequest
-	7,  // 17: spaceone.api.identity.v2.WorkspaceUser.get:input_type -> spaceone.api.identity.v2.WorkspaceUserRequest
-	6,  // 18: spaceone.api.identity.v2.WorkspaceUser.find:input_type -> spaceone.api.identity.v2.WorkspaceUserFindRequest
-	9,  // 19: spaceone.api.identity.v2.WorkspaceUser.list:input_type -> spaceone.api.identity.v2.WorkspaceUserSearchQuery
-	13, // 20: spaceone.api.identity.v2.WorkspaceUser.stat:input_type -> spaceone.api.identity.v2.WorkspaceUserStatQuery
-	8,  // 21: spaceone.api.identity.v2.WorkspaceUser.create:output_type -> spaceone.api.identity.v2.WorkspaceUserInfo
-	8,  // 22: spaceone.api.identity.v2.WorkspaceUser.get:output_type -> spaceone.api.identity.v2.WorkspaceUserInfo
-	12, // 23: spaceone.api.identity.v2.WorkspaceUser.find:output_type -> spaceone.api.identity.v2.UsersSummaryInfo
-	10, // 24: spaceone.api.identity.v2.WorkspaceUser.list:output_type -> spaceone.api.identity.v2.WorkspaceUsersInfo
-	15, // 25: spaceone.api.identity.v2.WorkspaceUser.stat:output_type -> google.protobuf.Struct
-	21, // [21:26] is the sub-list for method output_type
-	16, // [16:21] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	14, // 3: spaceone.api.identity.v2.WorkspaceUserFindRequest.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	16, // 4: spaceone.api.identity.v2.WorkspaceUserFindRequest.page:type_name -> spaceone.api.core.v2.Page
+	1,  // 5: spaceone.api.identity.v2.WorkspaceUserInfo.state:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo.State
+	14, // 6: spaceone.api.identity.v2.WorkspaceUserInfo.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	2,  // 7: spaceone.api.identity.v2.WorkspaceUserInfo.role_type:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo.RoleType
+	15, // 8: spaceone.api.identity.v2.WorkspaceUserInfo.tags:type_name -> google.protobuf.Struct
+	17, // 9: spaceone.api.identity.v2.WorkspaceUserInfo.role_binding_info:type_name -> spaceone.api.identity.v2.RoleBindingInfo
+	18, // 10: spaceone.api.identity.v2.WorkspaceUserSearchQuery.query:type_name -> spaceone.api.core.v2.Query
+	3,  // 11: spaceone.api.identity.v2.WorkspaceUserSearchQuery.state:type_name -> spaceone.api.identity.v2.WorkspaceUserSearchQuery.State
+	14, // 12: spaceone.api.identity.v2.WorkspaceUserSearchQuery.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	8,  // 13: spaceone.api.identity.v2.WorkspaceUsersInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceUserInfo
+	4,  // 14: spaceone.api.identity.v2.UserSummaryInfo.state:type_name -> spaceone.api.identity.v2.UserSummaryInfo.State
+	14, // 15: spaceone.api.identity.v2.UserSummaryInfo.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	11, // 16: spaceone.api.identity.v2.UsersSummaryInfo.results:type_name -> spaceone.api.identity.v2.UserSummaryInfo
+	19, // 17: spaceone.api.identity.v2.WorkspaceUserStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	5,  // 18: spaceone.api.identity.v2.WorkspaceUser.create:input_type -> spaceone.api.identity.v2.CreateWorkspaceUserRequest
+	7,  // 19: spaceone.api.identity.v2.WorkspaceUser.get:input_type -> spaceone.api.identity.v2.WorkspaceUserRequest
+	6,  // 20: spaceone.api.identity.v2.WorkspaceUser.find:input_type -> spaceone.api.identity.v2.WorkspaceUserFindRequest
+	9,  // 21: spaceone.api.identity.v2.WorkspaceUser.list:input_type -> spaceone.api.identity.v2.WorkspaceUserSearchQuery
+	13, // 22: spaceone.api.identity.v2.WorkspaceUser.stat:input_type -> spaceone.api.identity.v2.WorkspaceUserStatQuery
+	8,  // 23: spaceone.api.identity.v2.WorkspaceUser.create:output_type -> spaceone.api.identity.v2.WorkspaceUserInfo
+	8,  // 24: spaceone.api.identity.v2.WorkspaceUser.get:output_type -> spaceone.api.identity.v2.WorkspaceUserInfo
+	12, // 25: spaceone.api.identity.v2.WorkspaceUser.find:output_type -> spaceone.api.identity.v2.UsersSummaryInfo
+	10, // 26: spaceone.api.identity.v2.WorkspaceUser.list:output_type -> spaceone.api.identity.v2.WorkspaceUsersInfo
+	15, // 27: spaceone.api.identity.v2.WorkspaceUser.stat:output_type -> google.protobuf.Struct
+	23, // [23:28] is the sub-list for method output_type
+	18, // [18:23] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_identity_v2_workspace_user_proto_init() }
