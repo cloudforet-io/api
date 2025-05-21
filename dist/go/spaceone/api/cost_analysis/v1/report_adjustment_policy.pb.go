@@ -25,58 +25,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateReportAdjustmentPolicyRequest_Scope int32
-
-const (
-	CreateReportAdjustmentPolicyRequest_SCOPE_NONE      CreateReportAdjustmentPolicyRequest_Scope = 0
-	CreateReportAdjustmentPolicyRequest_WORKSPACE       CreateReportAdjustmentPolicyRequest_Scope = 1
-	CreateReportAdjustmentPolicyRequest_PROJECT         CreateReportAdjustmentPolicyRequest_Scope = 2
-	CreateReportAdjustmentPolicyRequest_SERVICE_ACCOUNT CreateReportAdjustmentPolicyRequest_Scope = 3
-)
-
-// Enum value maps for CreateReportAdjustmentPolicyRequest_Scope.
-var (
-	CreateReportAdjustmentPolicyRequest_Scope_name = map[int32]string{
-		0: "SCOPE_NONE",
-		1: "WORKSPACE",
-		2: "PROJECT",
-		3: "SERVICE_ACCOUNT",
-	}
-	CreateReportAdjustmentPolicyRequest_Scope_value = map[string]int32{
-		"SCOPE_NONE":      0,
-		"WORKSPACE":       1,
-		"PROJECT":         2,
-		"SERVICE_ACCOUNT": 3,
-	}
-)
-
-func (x CreateReportAdjustmentPolicyRequest_Scope) Enum() *CreateReportAdjustmentPolicyRequest_Scope {
-	p := new(CreateReportAdjustmentPolicyRequest_Scope)
-	*p = x
-	return p
-}
-
-func (x CreateReportAdjustmentPolicyRequest_Scope) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CreateReportAdjustmentPolicyRequest_Scope) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[0].Descriptor()
-}
-
-func (CreateReportAdjustmentPolicyRequest_Scope) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[0]
-}
-
-func (x CreateReportAdjustmentPolicyRequest_Scope) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CreateReportAdjustmentPolicyRequest_Scope.Descriptor instead.
-func (CreateReportAdjustmentPolicyRequest_Scope) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDescGZIP(), []int{1, 0}
-}
-
 type ReportAdjustmentPolicyInfo_Scope int32
 
 const (
@@ -113,11 +61,11 @@ func (x ReportAdjustmentPolicyInfo_Scope) String() string {
 }
 
 func (ReportAdjustmentPolicyInfo_Scope) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[1].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[0].Descriptor()
 }
 
 func (ReportAdjustmentPolicyInfo_Scope) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[1]
+	return &file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes[0]
 }
 
 func (x ReportAdjustmentPolicyInfo_Scope) Number() protoreflect.EnumNumber {
@@ -182,17 +130,16 @@ func (x *AdjustmentPolicyFilter) GetProjectIds() []string {
 }
 
 type CreateReportAdjustmentPolicyRequest struct {
-	state              protoimpl.MessageState                    `protogen:"open.v1"`
-	Scope              CreateReportAdjustmentPolicyRequest_Scope `protobuf:"varint,1,opt,name=scope,proto3,enum=spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest_Scope" json:"scope,omitempty"`
-	CostReportConfigId string                                    `protobuf:"bytes,2,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	CostReportConfigId string                 `protobuf:"bytes,1,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
 	// +optional
-	Order int32 `protobuf:"varint,3,opt,name=order,proto3" json:"order,omitempty"`
+	Order int32 `protobuf:"varint,2,opt,name=order,proto3" json:"order,omitempty"`
 	// +optional
-	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// +optional
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	Tags *_struct.Struct `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
 	// +optional
-	PolicyFilter  *AdjustmentPolicyFilter `protobuf:"bytes,6,opt,name=policy_filter,json=policyFilter,proto3" json:"policy_filter,omitempty"`
+	PolicyFilter  *AdjustmentPolicyFilter `protobuf:"bytes,5,opt,name=policy_filter,json=policyFilter,proto3" json:"policy_filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -225,13 +172,6 @@ func (x *CreateReportAdjustmentPolicyRequest) ProtoReflect() protoreflect.Messag
 // Deprecated: Use CreateReportAdjustmentPolicyRequest.ProtoReflect.Descriptor instead.
 func (*CreateReportAdjustmentPolicyRequest) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *CreateReportAdjustmentPolicyRequest) GetScope() CreateReportAdjustmentPolicyRequest_Scope {
-	if x != nil {
-		return x.Scope
-	}
-	return CreateReportAdjustmentPolicyRequest_SCOPE_NONE
 }
 
 func (x *CreateReportAdjustmentPolicyRequest) GetCostReportConfigId() string {
@@ -673,20 +613,13 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc 
 	"\x16AdjustmentPolicyFilter\x12#\n" +
 	"\rworkspace_ids\x18\x01 \x03(\tR\fworkspaceIds\x12\x1f\n" +
 	"\vproject_ids\x18\x02 \x03(\tR\n" +
-	"projectIds\"\xc3\x03\n" +
-	"#CreateReportAdjustmentPolicyRequest\x12^\n" +
-	"\x05scope\x18\x01 \x01(\x0e2H.spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.ScopeR\x05scope\x121\n" +
-	"\x15cost_report_config_id\x18\x02 \x01(\tR\x12costReportConfigId\x12\x14\n" +
-	"\x05order\x18\x03 \x01(\x05R\x05order\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12+\n" +
-	"\x04tags\x18\x05 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12Z\n" +
-	"\rpolicy_filter\x18\x06 \x01(\v25.spaceone.api.cost_analysis.v1.AdjustmentPolicyFilterR\fpolicyFilter\"H\n" +
-	"\x05Scope\x12\x0e\n" +
-	"\n" +
-	"SCOPE_NONE\x10\x00\x12\r\n" +
-	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\x12\x13\n" +
-	"\x0fSERVICE_ACCOUNT\x10\x03\"\x8f\x02\n" +
+	"projectIds\"\x99\x02\n" +
+	"#CreateReportAdjustmentPolicyRequest\x121\n" +
+	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12\x14\n" +
+	"\x05order\x18\x02 \x01(\x05R\x05order\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12+\n" +
+	"\x04tags\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04tags\x12Z\n" +
+	"\rpolicy_filter\x18\x05 \x01(\v25.spaceone.api.cost_analysis.v1.AdjustmentPolicyFilterR\fpolicyFilter\"\x8f\x02\n" +
 	"#UpdateReportAdjustmentPolicyRequest\x12=\n" +
 	"\x1breport_adjustment_policy_id\x18\x01 \x01(\tR\x18reportAdjustmentPolicyId\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12+\n" +
@@ -746,54 +679,52 @@ func file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDescGZ
 	return file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDescData
 }
 
-var file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_goTypes = []any{
-	(CreateReportAdjustmentPolicyRequest_Scope)(0),   // 0: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.Scope
-	(ReportAdjustmentPolicyInfo_Scope)(0),            // 1: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.Scope
-	(*AdjustmentPolicyFilter)(nil),                   // 2: spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
-	(*CreateReportAdjustmentPolicyRequest)(nil),      // 3: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest
-	(*UpdateReportAdjustmentPolicyRequest)(nil),      // 4: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest
-	(*ChangeOrderReportAdjustmentPolicyRequest)(nil), // 5: spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentPolicyRequest
-	(*ReportAdjustmentPolicyRequest)(nil),            // 6: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
-	(*ReportAdjustmentPolicyQuery)(nil),              // 7: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery
-	(*ReportAdjustmentPolicyInfo)(nil),               // 8: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	(*ReportAdjustmentPolicesInfo)(nil),              // 9: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo
-	(*_struct.Struct)(nil),                           // 10: google.protobuf.Struct
-	(*v2.Query)(nil),                                 // 11: spaceone.api.core.v2.Query
-	(*empty.Empty)(nil),                              // 12: google.protobuf.Empty
+	(ReportAdjustmentPolicyInfo_Scope)(0),            // 0: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.Scope
+	(*AdjustmentPolicyFilter)(nil),                   // 1: spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
+	(*CreateReportAdjustmentPolicyRequest)(nil),      // 2: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest
+	(*UpdateReportAdjustmentPolicyRequest)(nil),      // 3: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest
+	(*ChangeOrderReportAdjustmentPolicyRequest)(nil), // 4: spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentPolicyRequest
+	(*ReportAdjustmentPolicyRequest)(nil),            // 5: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
+	(*ReportAdjustmentPolicyQuery)(nil),              // 6: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery
+	(*ReportAdjustmentPolicyInfo)(nil),               // 7: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	(*ReportAdjustmentPolicesInfo)(nil),              // 8: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo
+	(*_struct.Struct)(nil),                           // 9: google.protobuf.Struct
+	(*v2.Query)(nil),                                 // 10: spaceone.api.core.v2.Query
+	(*empty.Empty)(nil),                              // 11: google.protobuf.Empty
 }
 var file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_depIdxs = []int32{
-	0,  // 0: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.scope:type_name -> spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.Scope
-	10, // 1: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.tags:type_name -> google.protobuf.Struct
-	2,  // 2: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
-	10, // 3: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest.tags:type_name -> google.protobuf.Struct
-	2,  // 4: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
-	11, // 5: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.query:type_name -> spaceone.api.core.v2.Query
-	2,  // 6: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
-	1,  // 7: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.scope:type_name -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.Scope
-	10, // 8: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.tags:type_name -> google.protobuf.Struct
-	2,  // 9: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
-	8,  // 10: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo.results:type_name -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	3,  // 11: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.create:input_type -> spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest
-	4,  // 12: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.update:input_type -> spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest
-	5,  // 13: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.change_order:input_type -> spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentPolicyRequest
-	6,  // 14: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.delete:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
-	6,  // 15: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.sync_currency:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
-	6,  // 16: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.get:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
-	7,  // 17: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.list:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery
-	8,  // 18: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.create:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	8,  // 19: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.update:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	8,  // 20: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.change_order:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	12, // 21: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.delete:output_type -> google.protobuf.Empty
-	8,  // 22: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.sync_currency:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	8,  // 23: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.get:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
-	9,  // 24: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.list:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo
-	18, // [18:25] is the sub-list for method output_type
-	11, // [11:18] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	9,  // 0: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.tags:type_name -> google.protobuf.Struct
+	1,  // 1: spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
+	9,  // 2: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest.tags:type_name -> google.protobuf.Struct
+	1,  // 3: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
+	10, // 4: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.query:type_name -> spaceone.api.core.v2.Query
+	1,  // 5: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
+	0,  // 6: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.scope:type_name -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.Scope
+	9,  // 7: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.tags:type_name -> google.protobuf.Struct
+	1,  // 8: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo.policy_filter:type_name -> spaceone.api.cost_analysis.v1.AdjustmentPolicyFilter
+	7,  // 9: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo.results:type_name -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	2,  // 10: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.create:input_type -> spaceone.api.cost_analysis.v1.CreateReportAdjustmentPolicyRequest
+	3,  // 11: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.update:input_type -> spaceone.api.cost_analysis.v1.UpdateReportAdjustmentPolicyRequest
+	4,  // 12: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.change_order:input_type -> spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentPolicyRequest
+	5,  // 13: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.delete:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
+	5,  // 14: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.sync_currency:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
+	5,  // 15: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.get:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest
+	6,  // 16: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.list:input_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyQuery
+	7,  // 17: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.create:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	7,  // 18: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.update:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	7,  // 19: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.change_order:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	11, // 20: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.delete:output_type -> google.protobuf.Empty
+	7,  // 21: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.sync_currency:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	7,  // 22: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.get:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo
+	8,  // 23: spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy.list:output_type -> spaceone.api.cost_analysis.v1.ReportAdjustmentPolicesInfo
+	17, // [17:24] is the sub-list for method output_type
+	10, // [10:17] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_init() }
@@ -807,7 +738,7 @@ func file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc), len(file_spaceone_api_cost_analysis_v1_report_adjustment_policy_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      1,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
