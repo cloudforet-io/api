@@ -94,6 +94,7 @@ message CreateWorkspaceUserRequest {
 //{
 //  "keyword": "cloudforet",
 //  "state": "ENABLED",
+//  "auth_type": "LOCAL",
 //  "page": {
 //       "start": 1,
 //       "limit": 5
@@ -111,7 +112,8 @@ message WorkspaceUserFindRequest {
   // +optional
   State state = 2;
   // +optional
-  spaceone.api.core.v2.Page page = 3;
+  AuthType auth_type = 3;
+  spaceone.api.core.v2.Page page = 4;
   string workspace_id = 21;
 }
 
@@ -265,6 +267,7 @@ message UserSummaryInfo {
   string user_id = 1;
   string name = 2;
   State state = 3;
+  AuthType auth_type = 4;
 }
 
 
@@ -273,24 +276,29 @@ message UserSummaryInfo {
 //        {
 //           "user_id": "wonny@cloudforet.io",
 //           "name": "Wonny",
-//           "state": "ENABLED"
+//           "state": "ENABLED",
+//           "auth_type": "LOCAL"
 //        },
 //        {
 //            "user_id": "belty@cloudforet.io",
 //            "name": "Belty",
-//            "state": "ENABLED"
+//            "state": "ENABLED",
+//            "auth_type": "LOCAL"
 //        },
 //        {
 //            "user_id": "bolby@cloudforet.io",
-//            "state": "PENDING"
+//            "state": "PENDING",
+//            "auth_type": "LOCAL"
 //        },
 //        {
 //            "user_id": "cuby@cloudforet.io",
-//            "state": "PENDING"
+//            "state": "PENDING",
+//            "auth_type": "LOCAL"
 //        },
 //        {
 //            "user_id": "musly@cloudforet.io",
-//            "state": "PENDING"
+//            "state": "PENDING",
+//            "auth_type": "LOCAL"
 //        }
 //    ],
 //    "total_count": 21
