@@ -445,275 +445,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/create": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name|The name of Protocol. It can have a maximum of 255 characters.|string|True|\n |plugin_info|Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.|PluginRequest|True|\n |tags|The tags for protocol. |Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"name\": \"Email\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/update": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |name|The Name of Protocol. It can have a maximum of 255 characters. |string||\n |tags|The tags for protocol. When updating, existing tag information is deleted all and will be updated with new. |Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email-test\",\n   \"tags\": {\n       \"type\": \"test\"\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/update-plugin": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Update Plugin",
-         "operationId" : "",
-         "description": "### Description \nUpdates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |version|The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place. |string||\n |options|The Options that contains information about using plugin. |Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"version\": \"1.0.2\",\n   \"options\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/enable": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \nEnables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/disable": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \nDisables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/delete": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/get": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Protocol. Prints detailed information about the Protocol.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
-                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/list": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of Protocols. You can use a query to get a filtered list of Protocols.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |protocol_id|The ID of Protocol. |string||\n |name|The name of Protocol. |string||\n |state|ENABLED, DISABLED The state of Protocol. ENABLED or DISABLED only. |string||\n |protocol_type|INTERNAL, EXTERNAL The type of Protocol. INTERNAL or EXTERNAL only. |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProtocolsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProtocolsInfo"},"Default Example":{
-                     "value": "{\n      \"results\":[\n         {\n            \"protocol_id\":\"protocol-123456789012\",\n            \"name\":\"Email\",\n            \"state\":\"ENABLED\",\n            \"protocol_type\":\"EXTERNAL\",\n            \"capability\":{\n               \"supported_schema\":[\n                  \"email_smtp\"\n               ]\n            },\n            \"plugin_info\":{\n               \"plugin_id\":\"plugin-email-noti-protocol\",\n               \"version\":\"1.0.1\",\n               \"options\":{\n\n               },\n               \"secret_id\":\"secret-123456789012\",\n               \"metadata\":{\n                  \"data_type\":\"PLAIN_TEXT\",\n                  \"data\":{\n                     \"schema\":{\n                        \"properties\":{\n                           \"email\":{\n                              \"pattern\":\"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                              \"examples\":[\n                                 \"user1@test.com, user2@test.com\"\n                              ],\n                              \"minLength\":10.0,\n                              \"description\":\"Email address to receive notifications\",\n                              \"type\":\"string\",\n                              \"title\":\"Email Address\"\n                           }\n                        },\n                        \"required\":[\n                           \"email\"\n                        ],\n                        \"type\":\"object\"\n                     }\n                  }\n               },\n               \"upgrade_mode\":\"AUTO\"\n            },\n            \"tags\":{\n\n            },\n            \"domain_id\":\"domain-123456789012\",\n            \"created_at\":\"2022-01-01T07:55:57.043Z\"\n         }\n      ],\n      \"total_count\":1\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/protocol/stat": {
-       "post": {
-         "tags": ["notification > protocol"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/notification/user-channel/create": {
        "post": {
          "tags": ["notification > user-channel"],
@@ -1014,6 +745,275 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/create": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name|The name of Protocol. It can have a maximum of 255 characters.|string|True|\n |plugin_info|Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.|PluginRequest|True|\n |tags|The tags for protocol. |Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"name\": \"Email\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/update": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |name|The Name of Protocol. It can have a maximum of 255 characters. |string||\n |tags|The tags for protocol. When updating, existing tag information is deleted all and will be updated with new. |Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email-test\",\n   \"tags\": {\n       \"type\": \"test\"\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/update-plugin": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Update Plugin",
+         "operationId" : "",
+         "description": "### Description \nUpdates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |version|The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place. |string||\n |options|The Options that contains information about using plugin. |Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"version\": \"1.0.2\",\n   \"options\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/enable": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \nEnables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/disable": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \nDisables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/delete": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/get": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Protocol. Prints detailed information about the Protocol.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolInfo"},"Default Example":{
+                     "value": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/list": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of Protocols. You can use a query to get a filtered list of Protocols.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |protocol_id|The ID of Protocol. |string||\n |name|The name of Protocol. |string||\n |state|ENABLED, DISABLED The state of Protocol. ENABLED or DISABLED only. |string||\n |protocol_type|INTERNAL, EXTERNAL The type of Protocol. INTERNAL or EXTERNAL only. |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProtocolsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProtocolsInfo"},"Default Example":{
+                     "value": "{\n      \"results\":[\n         {\n            \"protocol_id\":\"protocol-123456789012\",\n            \"name\":\"Email\",\n            \"state\":\"ENABLED\",\n            \"protocol_type\":\"EXTERNAL\",\n            \"capability\":{\n               \"supported_schema\":[\n                  \"email_smtp\"\n               ]\n            },\n            \"plugin_info\":{\n               \"plugin_id\":\"plugin-email-noti-protocol\",\n               \"version\":\"1.0.1\",\n               \"options\":{\n\n               },\n               \"secret_id\":\"secret-123456789012\",\n               \"metadata\":{\n                  \"data_type\":\"PLAIN_TEXT\",\n                  \"data\":{\n                     \"schema\":{\n                        \"properties\":{\n                           \"email\":{\n                              \"pattern\":\"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                              \"examples\":[\n                                 \"user1@test.com, user2@test.com\"\n                              ],\n                              \"minLength\":10.0,\n                              \"description\":\"Email address to receive notifications\",\n                              \"type\":\"string\",\n                              \"title\":\"Email Address\"\n                           }\n                        },\n                        \"required\":[\n                           \"email\"\n                        ],\n                        \"type\":\"object\"\n                     }\n                  }\n               },\n               \"upgrade_mode\":\"AUTO\"\n            },\n            \"tags\":{\n\n            },\n            \"domain_id\":\"domain-123456789012\",\n            \"created_at\":\"2022-01-01T07:55:57.043Z\"\n         }\n      ],\n      \"total_count\":1\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/protocol/stat": {
+       "post": {
+         "tags": ["notification > protocol"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -1068,37 +1068,11 @@
          "required": ["protocol_id","data","message"],
                 "title": "PushNotificationRequest"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -1269,11 +1243,37 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "CreateProjectChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
@@ -1340,67 +1340,6 @@
          "required": ["project_channel_id","is_subscribe"],
                 "title": "UpdateProjectChannelSubscriptionRequest"
            }
-           ,        "CreateProtocolRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["name","plugin_info"],
-                "title": "CreateProtocolRequest"
-           }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
-         "type": "object",
-         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
-                "title": "PluginInfo"
-           }
-           ,        "PluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schema" : {"type": "string","title": "SCHEMA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
-         "type": "object",
-         "required": ["plugin_id","version"],
-                "title": "PluginRequest"
-           }
-           ,        "ProtocolInfo": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["protocol_id","name","state","protocol_type","resource_type","capability","plugin_info","tags","domain_id","created_at"],
-                "title": "ProtocolInfo"
-           }
-           ,        "ProtocolQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"}},
-         "type": "object",
-         "required": [],
-                "title": "ProtocolQuery"
-           }
-           ,        "ProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
-         "type": "object",
-         "required": ["protocol_id"],
-                "title": "ProtocolRequest"
-           }
-           ,        "ProtocolStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "ProtocolStatQuery"
-           }
-           ,        "ProtocolsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProtocolInfo"},
-               "type": "array","$ref": "#/components/schemas/ProtocolInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "ProtocolsInfo"
-           }
-           ,        "UpdateProtocolPluginRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["protocol_id","domain_id"],
-                "title": "UpdateProtocolPluginRequest"
-           }
-           ,        "UpdateProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["protocol_id"],
-                "title": "UpdateProtocolRequest"
-           }
            ,        "CreateUserChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
                "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
@@ -1465,6 +1404,67 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "UserChannelsInfo"
+           }
+           ,        "CreateProtocolRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","plugin_info"],
+                "title": "CreateProtocolRequest"
+           }
+           ,        "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
+                "title": "PluginInfo"
+           }
+           ,        "PluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schema" : {"type": "string","title": "SCHEMA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["plugin_id","version"],
+                "title": "PluginRequest"
+           }
+           ,        "ProtocolInfo": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["protocol_id","name","state","protocol_type","resource_type","capability","plugin_info","tags","domain_id","created_at"],
+                "title": "ProtocolInfo"
+           }
+           ,        "ProtocolQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"}},
+         "type": "object",
+         "required": [],
+                "title": "ProtocolQuery"
+           }
+           ,        "ProtocolRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "type": "object",
+         "required": ["protocol_id"],
+                "title": "ProtocolRequest"
+           }
+           ,        "ProtocolStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ProtocolStatQuery"
+           }
+           ,        "ProtocolsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProtocolInfo"},
+               "type": "array","$ref": "#/components/schemas/ProtocolInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ProtocolsInfo"
+           }
+           ,        "UpdateProtocolPluginRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["protocol_id","domain_id"],
+                "title": "UpdateProtocolPluginRequest"
+           }
+           ,        "UpdateProtocolRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["protocol_id"],
+                "title": "UpdateProtocolRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

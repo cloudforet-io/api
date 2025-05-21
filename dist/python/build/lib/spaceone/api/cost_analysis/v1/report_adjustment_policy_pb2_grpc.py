@@ -60,6 +60,11 @@ class ReportAdjustmentPolicyStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
+        self.sync_currency = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/sync_currency',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyInfo.FromString,
+                _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/get',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.SerializeToString,
@@ -99,6 +104,12 @@ class ReportAdjustmentPolicyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def sync_currency(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -133,6 +144,11 @@ def add_ReportAdjustmentPolicyServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'sync_currency': grpc.unary_unary_rpc_method_handler(
+                    servicer.sync_currency,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -253,6 +269,33 @@ class ReportAdjustmentPolicy(object):
             '/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/delete',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def sync_currency(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/sync_currency',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_report__adjustment__policy__pb2.ReportAdjustmentPolicyInfo.FromString,
             options,
             channel_credentials,
             insecure,

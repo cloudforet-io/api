@@ -234,174 +234,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/create": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |price||float||\n |currency||string||\n |description||string||\n |terms||string||\n |website_url||string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"price" : {"type": "float","title": "PRICE" },"currency" : {"type": "string","title": "CURRENCY" },"description" : {"type": "string","title": "DESCRIPTION" },"terms" : {"type": "string","title": "TERMS" },"website_url" : {"type": "string","title": "WEBSITE_URL" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/update": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n |name||string||\n |status|AVAILABLE, UNAVAILABLE, DISCONTINUED |string||\n |price||float||\n |currency||string||\n |description||string||\n |terms||string||\n |website_url||string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"status" : {"type": "string","title": "STATUS" },"price" : {"type": "float","title": "PRICE" },"currency" : {"type": "string","title": "CURRENCY" },"description" : {"type": "string","title": "DESCRIPTION" },"terms" : {"type": "string","title": "TERMS" },"website_url" : {"type": "string","title": "WEBSITE_URL" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/delete": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/get": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/list": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |offering_id||string||\n |name||string||\n |status|AVAILABLE, UNAVAILABLE, DISCONTINUED |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"status" : {"type": "string","title": "STATUS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/OfferingsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/OfferingsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/offering/stat": {
-       "post": {
-         "tags": ["mzc-service-api > offering"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/mzc-service-api/contract/create": {
        "post": {
          "tags": ["mzc-service-api > contract"],
@@ -570,6 +402,174 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/create": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |price||float||\n |currency||string||\n |description||string||\n |terms||string||\n |website_url||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"price" : {"type": "float","title": "PRICE" },"currency" : {"type": "string","title": "CURRENCY" },"description" : {"type": "string","title": "DESCRIPTION" },"terms" : {"type": "string","title": "TERMS" },"website_url" : {"type": "string","title": "WEBSITE_URL" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/update": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n |name||string||\n |status|AVAILABLE, UNAVAILABLE, DISCONTINUED |string||\n |price||float||\n |currency||string||\n |description||string||\n |terms||string||\n |website_url||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"status" : {"type": "string","title": "STATUS" },"price" : {"type": "float","title": "PRICE" },"currency" : {"type": "string","title": "CURRENCY" },"description" : {"type": "string","title": "DESCRIPTION" },"terms" : {"type": "string","title": "TERMS" },"website_url" : {"type": "string","title": "WEBSITE_URL" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/delete": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/get": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |offering_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"offering_id" : {"type": "string","title": "OFFERING_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/OfferingInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/OfferingInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/list": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |offering_id||string||\n |name||string||\n |status|AVAILABLE, UNAVAILABLE, DISCONTINUED |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"status" : {"type": "string","title": "STATUS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/OfferingsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/OfferingsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/offering/stat": {
+       "post": {
+         "tags": ["mzc-service-api > offering"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -617,37 +617,11 @@
          "required": ["results","total_count"],
                 "title": "OrganizationsInfo"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -818,54 +792,37 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
            }
-           ,        "OfferingCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
          "type": "object",
-         "required": ["name","category"],
-                "title": "OfferingCreateRequest"
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
            }
-           ,        "OfferingInfo": {
-         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"status" : {"type": "string","title": "STATUS"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
          "type": "object",
-         "required": ["offering_id","name","category","status","price","currency","description","terms","website_url","tags","domain_id","created_at","updated_at"],
-                "title": "OfferingInfo"
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
            }
-           ,        "OfferingRequest": {
-         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"}},
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
          "type": "object",
-         "required": ["offering_id"],
-                "title": "OfferingRequest"
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
            }
-           ,        "OfferingSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"}},
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
          "type": "object",
-         "required": [],
-                "title": "OfferingSearchQuery"
-           }
-           ,        "OfferingStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "OfferingStatQuery"
-           }
-           ,        "OfferingUpdateRequest": {
-         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["offering_id"],
-                "title": "OfferingUpdateRequest"
-           }
-           ,        "OfferingsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/OfferingInfo"},
-               "type": "array","$ref": "#/components/schemas/OfferingInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "OfferingsInfo"
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "ContractCreateRequest": {
          "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"}},
@@ -909,6 +866,49 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "ContractsInfo"
+           }
+           ,        "OfferingCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","category"],
+                "title": "OfferingCreateRequest"
+           }
+           ,        "OfferingInfo": {
+         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"status" : {"type": "string","title": "STATUS"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["offering_id","name","category","status","price","currency","description","terms","website_url","tags","domain_id","created_at","updated_at"],
+                "title": "OfferingInfo"
+           }
+           ,        "OfferingRequest": {
+         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"}},
+         "type": "object",
+         "required": ["offering_id"],
+                "title": "OfferingRequest"
+           }
+           ,        "OfferingSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"}},
+         "type": "object",
+         "required": [],
+                "title": "OfferingSearchQuery"
+           }
+           ,        "OfferingStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "OfferingStatQuery"
+           }
+           ,        "OfferingUpdateRequest": {
+         "properties" : {"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["offering_id"],
+                "title": "OfferingUpdateRequest"
+           }
+           ,        "OfferingsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/OfferingInfo"},
+               "type": "array","$ref": "#/components/schemas/OfferingInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "OfferingsInfo"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

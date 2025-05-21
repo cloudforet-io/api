@@ -25,60 +25,60 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type AdjustmentMethod int32
+type AdjustmentUnit int32
 
 const (
-	AdjustmentMethod_METHOD_NONE AdjustmentMethod = 0
-	AdjustmentMethod_FIXED       AdjustmentMethod = 1
-	AdjustmentMethod_PERCENTAGE  AdjustmentMethod = 2
+	AdjustmentUnit_UNIT_NONE  AdjustmentUnit = 0
+	AdjustmentUnit_FIXED      AdjustmentUnit = 1
+	AdjustmentUnit_PERCENTAGE AdjustmentUnit = 2
 )
 
-// Enum value maps for AdjustmentMethod.
+// Enum value maps for AdjustmentUnit.
 var (
-	AdjustmentMethod_name = map[int32]string{
-		0: "METHOD_NONE",
+	AdjustmentUnit_name = map[int32]string{
+		0: "UNIT_NONE",
 		1: "FIXED",
 		2: "PERCENTAGE",
 	}
-	AdjustmentMethod_value = map[string]int32{
-		"METHOD_NONE": 0,
-		"FIXED":       1,
-		"PERCENTAGE":  2,
+	AdjustmentUnit_value = map[string]int32{
+		"UNIT_NONE":  0,
+		"FIXED":      1,
+		"PERCENTAGE": 2,
 	}
 )
 
-func (x AdjustmentMethod) Enum() *AdjustmentMethod {
-	p := new(AdjustmentMethod)
+func (x AdjustmentUnit) Enum() *AdjustmentUnit {
+	p := new(AdjustmentUnit)
 	*p = x
 	return p
 }
 
-func (x AdjustmentMethod) String() string {
+func (x AdjustmentUnit) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (AdjustmentMethod) Descriptor() protoreflect.EnumDescriptor {
+func (AdjustmentUnit) Descriptor() protoreflect.EnumDescriptor {
 	return file_spaceone_api_cost_analysis_v1_report_adjustment_proto_enumTypes[0].Descriptor()
 }
 
-func (AdjustmentMethod) Type() protoreflect.EnumType {
+func (AdjustmentUnit) Type() protoreflect.EnumType {
 	return &file_spaceone_api_cost_analysis_v1_report_adjustment_proto_enumTypes[0]
 }
 
-func (x AdjustmentMethod) Number() protoreflect.EnumNumber {
+func (x AdjustmentUnit) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use AdjustmentMethod.Descriptor instead.
-func (AdjustmentMethod) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use AdjustmentUnit.Descriptor instead.
+func (AdjustmentUnit) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDescGZIP(), []int{0}
 }
 
 type CreateReportAdjustmentRequest struct {
-	state  protoimpl.MessageState `protogen:"open.v1"`
-	Name   string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Method AdjustmentMethod       `protobuf:"varint,2,opt,name=method,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentMethod" json:"method,omitempty"`
-	Value  float32                `protobuf:"fixed32,3,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Unit  AdjustmentUnit         `protobuf:"varint,2,opt,name=unit,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentUnit" json:"unit,omitempty"`
+	Value float32                `protobuf:"fixed32,3,opt,name=value,proto3" json:"value,omitempty"`
 	// +optional
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// +optional
@@ -131,11 +131,11 @@ func (x *CreateReportAdjustmentRequest) GetName() string {
 	return ""
 }
 
-func (x *CreateReportAdjustmentRequest) GetMethod() AdjustmentMethod {
+func (x *CreateReportAdjustmentRequest) GetUnit() AdjustmentUnit {
 	if x != nil {
-		return x.Method
+		return x.Unit
 	}
-	return AdjustmentMethod_METHOD_NONE
+	return AdjustmentUnit_UNIT_NONE
 }
 
 func (x *CreateReportAdjustmentRequest) GetValue() float32 {
@@ -193,7 +193,7 @@ type UpdateReportAdjustmentRequest struct {
 	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	Method AdjustmentMethod `protobuf:"varint,3,opt,name=method,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentMethod" json:"method,omitempty"`
+	Unit AdjustmentUnit `protobuf:"varint,3,opt,name=unit,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentUnit" json:"unit,omitempty"`
 	// +optional
 	Value float32 `protobuf:"fixed32,4,opt,name=value,proto3" json:"value,omitempty"`
 	// +optional
@@ -250,11 +250,11 @@ func (x *UpdateReportAdjustmentRequest) GetName() string {
 	return ""
 }
 
-func (x *UpdateReportAdjustmentRequest) GetMethod() AdjustmentMethod {
+func (x *UpdateReportAdjustmentRequest) GetUnit() AdjustmentUnit {
 	if x != nil {
-		return x.Method
+		return x.Unit
 	}
-	return AdjustmentMethod_METHOD_NONE
+	return AdjustmentUnit_UNIT_NONE
 }
 
 func (x *UpdateReportAdjustmentRequest) GetValue() float32 {
@@ -457,7 +457,7 @@ type ReportAdjustmentInfo struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
 	ReportAdjustmentId       string                 `protobuf:"bytes,1,opt,name=report_adjustment_id,json=reportAdjustmentId,proto3" json:"report_adjustment_id,omitempty"`
 	Name                     string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Method                   AdjustmentMethod       `protobuf:"varint,3,opt,name=method,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentMethod" json:"method,omitempty"`
+	Unit                     AdjustmentUnit         `protobuf:"varint,3,opt,name=unit,proto3,enum=spaceone.api.cost_analysis.v1.AdjustmentUnit" json:"unit,omitempty"`
 	Value                    float32                `protobuf:"fixed32,4,opt,name=value,proto3" json:"value,omitempty"`
 	Description              string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Provider                 string                 `protobuf:"bytes,6,opt,name=provider,proto3" json:"provider,omitempty"`
@@ -517,11 +517,11 @@ func (x *ReportAdjustmentInfo) GetName() string {
 	return ""
 }
 
-func (x *ReportAdjustmentInfo) GetMethod() AdjustmentMethod {
+func (x *ReportAdjustmentInfo) GetUnit() AdjustmentUnit {
 	if x != nil {
-		return x.Method
+		return x.Unit
 	}
-	return AdjustmentMethod_METHOD_NONE
+	return AdjustmentUnit_UNIT_NONE
 }
 
 func (x *ReportAdjustmentInfo) GetValue() float32 {
@@ -657,21 +657,21 @@ var File_spaceone_api_cost_analysis_v1_report_adjustment_proto protoreflect.File
 
 const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\n" +
-	"5spaceone/api/cost_analysis/v1/report_adjustment.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"\x87\x03\n" +
+	"5spaceone/api/cost_analysis/v1/report_adjustment.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"\x81\x03\n" +
 	"\x1dCreateReportAdjustmentRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12G\n" +
-	"\x06method\x18\x02 \x01(\x0e2/.spaceone.api.cost_analysis.v1.AdjustmentMethodR\x06method\x12\x14\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12A\n" +
+	"\x04unit\x18\x02 \x01(\x0e2-.spaceone.api.cost_analysis.v1.AdjustmentUnitR\x04unit\x12\x14\n" +
 	"\x05value\x18\x03 \x01(\x02R\x05value\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1a\n" +
 	"\bprovider\x18\x05 \x01(\tR\bprovider\x12\x1a\n" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12\x14\n" +
 	"\x05order\x18\a \x01(\x05R\x05order\x12D\n" +
 	"\x11adjustment_filter\x18\b \x01(\v2\x17.google.protobuf.StructR\x10adjustmentFilter\x12=\n" +
-	"\x1breport_adjustment_policy_id\x18\x15 \x01(\tR\x18reportAdjustmentPolicyId\"\xc8\x02\n" +
+	"\x1breport_adjustment_policy_id\x18\x15 \x01(\tR\x18reportAdjustmentPolicyId\"\xc2\x02\n" +
 	"\x1dUpdateReportAdjustmentRequest\x120\n" +
 	"\x14report_adjustment_id\x18\x01 \x01(\tR\x12reportAdjustmentId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12G\n" +
-	"\x06method\x18\x03 \x01(\x0e2/.spaceone.api.cost_analysis.v1.AdjustmentMethodR\x06method\x12\x14\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12A\n" +
+	"\x04unit\x18\x03 \x01(\x0e2-.spaceone.api.cost_analysis.v1.AdjustmentUnitR\x04unit\x12\x14\n" +
 	"\x05value\x18\x04 \x01(\x02R\x05value\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x1a\n" +
 	"\bprovider\x18\x06 \x01(\tR\bprovider\x12D\n" +
@@ -686,11 +686,11 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x16 \x01(\tR\tprojectId\"\xbe\x04\n" +
+	"project_id\x18\x16 \x01(\tR\tprojectId\"\xb8\x04\n" +
 	"\x14ReportAdjustmentInfo\x120\n" +
 	"\x14report_adjustment_id\x18\x01 \x01(\tR\x12reportAdjustmentId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12G\n" +
-	"\x06method\x18\x03 \x01(\x0e2/.spaceone.api.cost_analysis.v1.AdjustmentMethodR\x06method\x12\x14\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12A\n" +
+	"\x04unit\x18\x03 \x01(\x0e2-.spaceone.api.cost_analysis.v1.AdjustmentUnitR\x04unit\x12\x14\n" +
 	"\x05value\x18\x04 \x01(\x02R\x05value\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x1a\n" +
 	"\bprovider\x18\x06 \x01(\tR\bprovider\x12\x1a\n" +
@@ -707,9 +707,9 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\x15ReportAdjustmentsInfo\x12M\n" +
 	"\aresults\x18\x01 \x03(\v23.spaceone.api.cost_analysis.v1.ReportAdjustmentInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*>\n" +
-	"\x10AdjustmentMethod\x12\x0f\n" +
-	"\vMETHOD_NONE\x10\x00\x12\t\n" +
+	"totalCount*:\n" +
+	"\x0eAdjustmentUnit\x12\r\n" +
+	"\tUNIT_NONE\x10\x00\x12\t\n" +
 	"\x05FIXED\x10\x01\x12\x0e\n" +
 	"\n" +
 	"PERCENTAGE\x10\x022\xa7\b\n" +
@@ -736,7 +736,7 @@ func file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDescGZIP() []
 var file_spaceone_api_cost_analysis_v1_report_adjustment_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_spaceone_api_cost_analysis_v1_report_adjustment_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_spaceone_api_cost_analysis_v1_report_adjustment_proto_goTypes = []any{
-	(AdjustmentMethod)(0),                      // 0: spaceone.api.cost_analysis.v1.AdjustmentMethod
+	(AdjustmentUnit)(0),                        // 0: spaceone.api.cost_analysis.v1.AdjustmentUnit
 	(*CreateReportAdjustmentRequest)(nil),      // 1: spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest
 	(*UpdateReportAdjustmentRequest)(nil),      // 2: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest
 	(*ChangeOrderReportAdjustmentRequest)(nil), // 3: spaceone.api.cost_analysis.v1.ChangeOrderReportAdjustmentRequest
@@ -749,12 +749,12 @@ var file_spaceone_api_cost_analysis_v1_report_adjustment_proto_goTypes = []any{
 	(*empty.Empty)(nil),                        // 10: google.protobuf.Empty
 }
 var file_spaceone_api_cost_analysis_v1_report_adjustment_proto_depIdxs = []int32{
-	0,  // 0: spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest.method:type_name -> spaceone.api.cost_analysis.v1.AdjustmentMethod
+	0,  // 0: spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest.unit:type_name -> spaceone.api.cost_analysis.v1.AdjustmentUnit
 	8,  // 1: spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest.adjustment_filter:type_name -> google.protobuf.Struct
-	0,  // 2: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest.method:type_name -> spaceone.api.cost_analysis.v1.AdjustmentMethod
+	0,  // 2: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest.unit:type_name -> spaceone.api.cost_analysis.v1.AdjustmentUnit
 	8,  // 3: spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest.adjustment_filter:type_name -> google.protobuf.Struct
 	9,  // 4: spaceone.api.cost_analysis.v1.ReportAdjustmentQuery.query:type_name -> spaceone.api.core.v2.Query
-	0,  // 5: spaceone.api.cost_analysis.v1.ReportAdjustmentInfo.method:type_name -> spaceone.api.cost_analysis.v1.AdjustmentMethod
+	0,  // 5: spaceone.api.cost_analysis.v1.ReportAdjustmentInfo.unit:type_name -> spaceone.api.cost_analysis.v1.AdjustmentUnit
 	8,  // 6: spaceone.api.cost_analysis.v1.ReportAdjustmentInfo.adjustment_filter:type_name -> google.protobuf.Struct
 	6,  // 7: spaceone.api.cost_analysis.v1.ReportAdjustmentsInfo.results:type_name -> spaceone.api.cost_analysis.v1.ReportAdjustmentInfo
 	1,  // 8: spaceone.api.cost_analysis.v1.ReportAdjustment.create:input_type -> spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest

@@ -29,9 +29,10 @@ const (
 type CreateCostReportConfigRequest_Scope int32
 
 const (
-	CreateCostReportConfigRequest_SCOPE_NONE CreateCostReportConfigRequest_Scope = 0
-	CreateCostReportConfigRequest_WORKSPACE  CreateCostReportConfigRequest_Scope = 1
-	CreateCostReportConfigRequest_PROJECT    CreateCostReportConfigRequest_Scope = 2
+	CreateCostReportConfigRequest_SCOPE_NONE      CreateCostReportConfigRequest_Scope = 0
+	CreateCostReportConfigRequest_WORKSPACE       CreateCostReportConfigRequest_Scope = 1
+	CreateCostReportConfigRequest_PROJECT         CreateCostReportConfigRequest_Scope = 2
+	CreateCostReportConfigRequest_SERVICE_ACCOUNT CreateCostReportConfigRequest_Scope = 3
 )
 
 // Enum value maps for CreateCostReportConfigRequest_Scope.
@@ -40,11 +41,13 @@ var (
 		0: "SCOPE_NONE",
 		1: "WORKSPACE",
 		2: "PROJECT",
+		3: "SERVICE_ACCOUNT",
 	}
 	CreateCostReportConfigRequest_Scope_value = map[string]int32{
-		"SCOPE_NONE": 0,
-		"WORKSPACE":  1,
-		"PROJECT":    2,
+		"SCOPE_NONE":      0,
+		"WORKSPACE":       1,
+		"PROJECT":         2,
+		"SERVICE_ACCOUNT": 3,
 	}
 )
 
@@ -228,9 +231,10 @@ func (CostReportConfigInfo_State) EnumDescriptor() ([]byte, []int) {
 type CostReportConfigInfo_Scope int32
 
 const (
-	CostReportConfigInfo_SCOPE_NONE CostReportConfigInfo_Scope = 0
-	CostReportConfigInfo_WORKSPACE  CostReportConfigInfo_Scope = 1
-	CostReportConfigInfo_PROJECT    CostReportConfigInfo_Scope = 2
+	CostReportConfigInfo_SCOPE_NONE      CostReportConfigInfo_Scope = 0
+	CostReportConfigInfo_WORKSPACE       CostReportConfigInfo_Scope = 1
+	CostReportConfigInfo_PROJECT         CostReportConfigInfo_Scope = 2
+	CostReportConfigInfo_SERVICE_ACCOUNT CostReportConfigInfo_Scope = 3
 )
 
 // Enum value maps for CostReportConfigInfo_Scope.
@@ -239,11 +243,13 @@ var (
 		0: "SCOPE_NONE",
 		1: "WORKSPACE",
 		2: "PROJECT",
+		3: "SERVICE_ACCOUNT",
 	}
 	CostReportConfigInfo_Scope_value = map[string]int32{
-		"SCOPE_NONE": 0,
-		"WORKSPACE":  1,
-		"PROJECT":    2,
+		"SCOPE_NONE":      0,
+		"WORKSPACE":       1,
+		"PROJECT":         2,
+		"SERVICE_ACCOUNT": 3,
 	}
 )
 
@@ -947,7 +953,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"6spaceone/api/cost_analysis/v1/cost_report_config.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a'spaceone/api/cost_analysis/v1/job.proto\"a\n" +
 	"\x11AdjustmentOptions\x124\n" +
 	"\aenabled\x18\x01 \x01(\v2\x1a.google.protobuf.BoolValueR\aenabled\x12\x16\n" +
-	"\x06period\x18\x02 \x01(\x05R\x06period\"\xa0\x04\n" +
+	"\x06period\x18\x02 \x01(\x05R\x06period\"\xb5\x04\n" +
 	"\x1dCreateCostReportConfigRequest\x12X\n" +
 	"\x05scope\x18\x01 \x01(\x0e2B.spaceone.api.cost_analysis.v1.CreateCostReportConfigRequest.ScopeR\x05scope\x12\x1b\n" +
 	"\tissue_day\x18\x02 \x01(\x05R\bissueDay\x12:\n" +
@@ -958,12 +964,13 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"recipients\x18\a \x01(\v2\x17.google.protobuf.StructR\n" +
 	"recipients\x12E\n" +
 	"\x12data_source_filter\x18\b \x01(\v2\x17.google.protobuf.StructR\x10dataSourceFilter\x12\x1a\n" +
-	"\blanguage\x18\t \x01(\tR\blanguage\"3\n" +
+	"\blanguage\x18\t \x01(\tR\blanguage\"H\n" +
 	"\x05Scope\x12\x0e\n" +
 	"\n" +
 	"SCOPE_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\x8b\x03\n" +
+	"\aPROJECT\x10\x02\x12\x13\n" +
+	"\x0fSERVICE_ACCOUNT\x10\x03\"\x8b\x03\n" +
 	"\x1dUpdateCostReportConfigRequest\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12\x1b\n" +
 	"\tissue_day\x18\x02 \x01(\x05R\bissueDay\x12:\n" +
@@ -992,7 +999,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"\n" +
 	"SCOPE_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\xa8\x06\n" +
+	"\aPROJECT\x10\x02\"\xbd\x06\n" +
 	"\x14CostReportConfigInfo\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12O\n" +
 	"\x05state\x18\x02 \x01(\x0e29.spaceone.api.cost_analysis.v1.CostReportConfigInfo.StateR\x05state\x12O\n" +
@@ -1016,12 +1023,13 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
 	"\bDISABLED\x10\x02\x12\v\n" +
-	"\aDELETED\x10\x03\"3\n" +
+	"\aDELETED\x10\x03\"H\n" +
 	"\x05Scope\x12\x0e\n" +
 	"\n" +
 	"SCOPE_NONE\x10\x00\x12\r\n" +
 	"\tWORKSPACE\x10\x01\x12\v\n" +
-	"\aPROJECT\x10\x02\"\x87\x01\n" +
+	"\aPROJECT\x10\x02\x12\x13\n" +
+	"\x0fSERVICE_ACCOUNT\x10\x03\"\x87\x01\n" +
 	"\x15CostReportConfigsInfo\x12M\n" +
 	"\aresults\x18\x01 \x03(\v23.spaceone.api.cost_analysis.v1.CostReportConfigInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

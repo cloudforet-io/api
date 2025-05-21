@@ -20,12 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ReportAdjustmentPolicy_Create_FullMethodName      = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/create"
-	ReportAdjustmentPolicy_Update_FullMethodName      = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/update"
-	ReportAdjustmentPolicy_ChangeOrder_FullMethodName = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/change_order"
-	ReportAdjustmentPolicy_Delete_FullMethodName      = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/delete"
-	ReportAdjustmentPolicy_Get_FullMethodName         = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/get"
-	ReportAdjustmentPolicy_List_FullMethodName        = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/list"
+	ReportAdjustmentPolicy_Create_FullMethodName       = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/create"
+	ReportAdjustmentPolicy_Update_FullMethodName       = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/update"
+	ReportAdjustmentPolicy_ChangeOrder_FullMethodName  = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/change_order"
+	ReportAdjustmentPolicy_Delete_FullMethodName       = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/delete"
+	ReportAdjustmentPolicy_SyncCurrency_FullMethodName = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/sync_currency"
+	ReportAdjustmentPolicy_Get_FullMethodName          = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/get"
+	ReportAdjustmentPolicy_List_FullMethodName         = "/spaceone.api.cost_analysis.v1.ReportAdjustmentPolicy/list"
 )
 
 // ReportAdjustmentPolicyClient is the client API for ReportAdjustmentPolicy service.
@@ -36,6 +37,7 @@ type ReportAdjustmentPolicyClient interface {
 	Update(ctx context.Context, in *UpdateReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error)
 	ChangeOrder(ctx context.Context, in *ChangeOrderReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error)
 	Delete(ctx context.Context, in *ReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	SyncCurrency(ctx context.Context, in *ReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error)
 	Get(ctx context.Context, in *ReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error)
 	List(ctx context.Context, in *ReportAdjustmentPolicyQuery, opts ...grpc.CallOption) (*ReportAdjustmentPolicesInfo, error)
 }
@@ -88,6 +90,16 @@ func (c *reportAdjustmentPolicyClient) Delete(ctx context.Context, in *ReportAdj
 	return out, nil
 }
 
+func (c *reportAdjustmentPolicyClient) SyncCurrency(ctx context.Context, in *ReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReportAdjustmentPolicyInfo)
+	err := c.cc.Invoke(ctx, ReportAdjustmentPolicy_SyncCurrency_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *reportAdjustmentPolicyClient) Get(ctx context.Context, in *ReportAdjustmentPolicyRequest, opts ...grpc.CallOption) (*ReportAdjustmentPolicyInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReportAdjustmentPolicyInfo)
@@ -116,6 +128,7 @@ type ReportAdjustmentPolicyServer interface {
 	Update(context.Context, *UpdateReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error)
 	ChangeOrder(context.Context, *ChangeOrderReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error)
 	Delete(context.Context, *ReportAdjustmentPolicyRequest) (*empty.Empty, error)
+	SyncCurrency(context.Context, *ReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error)
 	Get(context.Context, *ReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error)
 	List(context.Context, *ReportAdjustmentPolicyQuery) (*ReportAdjustmentPolicesInfo, error)
 	mustEmbedUnimplementedReportAdjustmentPolicyServer()
@@ -139,6 +152,9 @@ func (UnimplementedReportAdjustmentPolicyServer) ChangeOrder(context.Context, *C
 }
 func (UnimplementedReportAdjustmentPolicyServer) Delete(context.Context, *ReportAdjustmentPolicyRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedReportAdjustmentPolicyServer) SyncCurrency(context.Context, *ReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncCurrency not implemented")
 }
 func (UnimplementedReportAdjustmentPolicyServer) Get(context.Context, *ReportAdjustmentPolicyRequest) (*ReportAdjustmentPolicyInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -240,6 +256,24 @@ func _ReportAdjustmentPolicy_Delete_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ReportAdjustmentPolicy_SyncCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReportAdjustmentPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReportAdjustmentPolicyServer).SyncCurrency(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ReportAdjustmentPolicy_SyncCurrency_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReportAdjustmentPolicyServer).SyncCurrency(ctx, req.(*ReportAdjustmentPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ReportAdjustmentPolicy_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReportAdjustmentPolicyRequest)
 	if err := dec(in); err != nil {
@@ -298,6 +332,10 @@ var ReportAdjustmentPolicy_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _ReportAdjustmentPolicy_Delete_Handler,
+		},
+		{
+			MethodName: "sync_currency",
+			Handler:    _ReportAdjustmentPolicy_SyncCurrency_Handler,
 		},
 		{
 			MethodName: "get",

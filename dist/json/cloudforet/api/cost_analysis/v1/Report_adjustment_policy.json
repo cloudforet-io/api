@@ -29,6 +29,11 @@
               "name": "PROJECT",
               "number": "2",
               "description": ""
+            },
+            {
+              "name": "SERVICE_ACCOUNT",
+              "number": "3",
+              "description": ""
             }
           ]
         },
@@ -51,6 +56,11 @@
             {
               "name": "PROJECT",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "SERVICE_ACCOUNT",
+              "number": "3",
               "description": ""
             }
           ]
@@ -141,18 +151,6 @@
           "extensions": [],
           "fields": [
             {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "scope",
               "description": "",
               "label": "",
@@ -183,6 +181,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -273,18 +283,6 @@
               "defaultValue": ""
             },
             {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "adjustments",
               "description": "",
               "label": "repeated",
@@ -315,6 +313,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -417,18 +427,6 @@
               "defaultValue": ""
             },
             {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "policy_filter",
               "description": "+optional",
               "label": "",
@@ -489,7 +487,7 @@
               "defaultValue": ""
             },
             {
-              "name": "name",
+              "name": "description",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -502,7 +500,7 @@
             },
             {
               "name": "tags",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -620,6 +618,29 @@
                     {
                       "method": "POST",
                       "pattern": "/cost-analysis/v1/report-adjustment-policy/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "sync_currency",
+              "description": "",
+              "requestType": "ReportAdjustmentPolicyRequest",
+              "requestLongType": "ReportAdjustmentPolicyRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyRequest",
+              "requestStreaming": false,
+              "responseType": "ReportAdjustmentPolicyInfo",
+              "responseLongType": "ReportAdjustmentPolicyInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.ReportAdjustmentPolicyInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/report-adjustment-policy/sync-currency",
                       "body": "*"
                     }
                   ]
