@@ -39,6 +39,13 @@ service ReportAdjustmentPolicy {
     };
   }
 
+  rpc sync_currency (ReportAdjustmentPolicyRequest) returns (ReportAdjustmentPolicyInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment-policy/sync-currency"
+      body: "*"
+    };
+  }
+
   rpc get (ReportAdjustmentPolicyRequest) returns (ReportAdjustmentPolicyInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/report-adjustment-policy/get",
