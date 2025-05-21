@@ -67,23 +67,16 @@ message AdjustmentPolicyFilter {
   repeated string project_ids = 2;
 }
 
-message CreateReportAdjustmentPolicyRequest {
-  enum Scope {
-    SCOPE_NONE = 0;
-    WORKSPACE = 1;
-    PROJECT = 2;
-    SERVICE_ACCOUNT = 3;
-  }
-  Scope scope = 1;
-  string cost_report_config_id = 2;
+message CreateReportAdjustmentPolicyRequest {;
+  string cost_report_config_id = 1;
   // +optional
-  int32 order = 3;
+  int32 order = 2;
   // +optional
-  string description = 4;
+  string description = 3;
   // +optional
-  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct tags = 4;
   // +optional
-  AdjustmentPolicyFilter policy_filter = 6;
+  AdjustmentPolicyFilter policy_filter = 5;
 }
 
 message UpdateReportAdjustmentPolicyRequest {
