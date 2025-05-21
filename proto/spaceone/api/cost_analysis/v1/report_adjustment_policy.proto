@@ -39,6 +39,13 @@ service ReportAdjustmentPolicy {
     };
   }
 
+  rpc sync_currency (ReportAdjustmentPolicyRequest) returns (ReportAdjustmentPolicyInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/report-adjustment-policy/sync-currency"
+      body: "*"
+    };
+  }
+
   rpc get (ReportAdjustmentPolicyRequest) returns (ReportAdjustmentPolicyInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/report-adjustment-policy/get",
@@ -65,26 +72,27 @@ message CreateReportAdjustmentPolicyRequest {
     SCOPE_NONE = 0;
     WORKSPACE = 1;
     PROJECT = 2;
+    SERVICE_ACCOUNT = 3;
   }
-  string name = 1;
-  Scope scope = 2;
-  string cost_report_config_id = 3;
+  Scope scope = 1;
+  string cost_report_config_id = 2;
   // +optional
-  int32 order = 4;
+  int32 order = 3;
   // +optional
-  google.protobuf.Struct tags = 6;
+  string description = 4;
   // +optional
-  AdjustmentPolicyFilter policy_filter = 7;
+  google.protobuf.Struct tags = 5;
+  // +optional
+  AdjustmentPolicyFilter policy_filter = 6;
 }
 
 message UpdateReportAdjustmentPolicyRequest {
   string report_adjustment_policy_id = 1;
   // +optional
-  string name = 2;
+  string description = 2;
+  google.protobuf.Struct tags = 3;
   // +optional
-  google.protobuf.Struct tags = 6;
-  // +optional
-  AdjustmentPolicyFilter policy_filter = 7;
+  AdjustmentPolicyFilter policy_filter = 4;
 }
 
 message ChangeOrderReportAdjustmentPolicyRequest {
@@ -100,9 +108,7 @@ message ReportAdjustmentPolicyQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
-  string name = 2;
-  // +optional
-  AdjustmentPolicyFilter policy_filter = 4;
+  AdjustmentPolicyFilter policy_filter = 2;
 }
 
 message ReportAdjustmentPolicyInfo {
@@ -110,15 +116,16 @@ message ReportAdjustmentPolicyInfo {
     SCOPE_NONE = 0;
     WORKSPACE = 1;
     PROJECT = 2;
+    SERVICE_ACCOUNT = 3;
   }
 
   string report_adjustment_policy_id = 1;
-  string name = 2;
-  repeated string adjustments = 4;
-  Scope scope = 5;
-  int32 order = 6;
-  google.protobuf.Struct tags = 7;
-  AdjustmentPolicyFilter policy_filter = 8;
+  repeated string adjustments = 2;
+  Scope scope = 3;
+  int32 order = 4;
+  string description = 5;
+  google.protobuf.Struct tags = 6;
+  AdjustmentPolicyFilter policy_filter = 7;
   string domain_id = 21;
   string cost_report_config_id = 22;
 
