@@ -1471,13 +1471,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |unit|FIXED, PERCENTAGE |string|True|\n |value||float|True|\n |report_adjustment_policy_id||string|True|\n |description||string||\n |provider||string||\n |currency||string||\n |order||int||\n |adjustment_filter||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |unit|FIXED, PERCENT |string|True|\n |value||float|True|\n |report_adjustment_policy_id||string|True|\n |description||string||\n |provider||string||\n |currency|When created, the currency is set to the same as the cost report config. If currency changes, please use the sync_currency API. |string||\n |order||int||\n |adjustment_filter||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
                  "properties": {"name" : {"type": "string","title": "NAME" },"unit" : {"type": "string","title": "UNIT" },"value" : {"type": "float","title": "VALUE" },"description" : {"type": "string","title": "DESCRIPTION" },"provider" : {"type": "string","title": "PROVIDER" },"currency" : {"type": "string","title": "CURRENCY" },"order" : {"type": "integer","title": "ORDER" },"adjustment_filter" : {"type": "object","title": "ADJUSTMENT_FILTER" },"report_adjustment_policy_id" : {"type": "string","title": "REPORT_ADJUSTMENT_POLICY_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n  \"name\" : \"Service Fee Policy\",\n  \"unit\" : \"FIXED\",\n  \"value\" : 10000.0,\n  \"description\" : \"Service Fee\",\n  \"provider\" : \"AWS\",\n  \"currency\" : \"USD\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1500,13 +1500,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n |name||string||\n |unit|FIXED, PERCENTAGE |string||\n |value||float||\n |description||string||\n |provider||string||\n |adjustment_filter||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_adjustment_id||string|True|\n |name||string||\n |unit|FIXED, PERCENT |string||\n |value||float||\n |description||string||\n |provider||string||\n |adjustment_filter||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
                  "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" },"name" : {"type": "string","title": "NAME" },"unit" : {"type": "string","title": "UNIT" },"value" : {"type": "float","title": "VALUE" },"description" : {"type": "string","title": "DESCRIPTION" },"provider" : {"type": "string","title": "PROVIDER" },"adjustment_filter" : {"type": "object","title": "ADJUSTMENT_FILTER" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n  \"report_adjustment_id\" : \"report_adjustment_id\",\n  \"name\" : \"Service Fee Policy\",\n  \"unit\" : \"PERCENT\",\n  \"value\" : 10.0,\n  \"description\" : \"Service Fee\",\n  \"provider\" : \"AWS\",\n  \"adjustment_filter\" : {}\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1535,7 +1535,7 @@
                "schema": {
                  "properties": {"report_adjustment_id" : {"type": "string","title": "REPORT_ADJUSTMENT_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"report_adjustment_id\" : \"report_adjustment_id\",\n \"order\" : 2\n}"},"Schema":{}
                }
              }
            },"required": true

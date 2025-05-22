@@ -28,9 +28,9 @@ const (
 type AdjustmentUnit int32
 
 const (
-	AdjustmentUnit_UNIT_NONE  AdjustmentUnit = 0
-	AdjustmentUnit_FIXED      AdjustmentUnit = 1
-	AdjustmentUnit_PERCENTAGE AdjustmentUnit = 2
+	AdjustmentUnit_UNIT_NONE AdjustmentUnit = 0
+	AdjustmentUnit_FIXED     AdjustmentUnit = 1
+	AdjustmentUnit_PERCENT   AdjustmentUnit = 2
 )
 
 // Enum value maps for AdjustmentUnit.
@@ -38,12 +38,12 @@ var (
 	AdjustmentUnit_name = map[int32]string{
 		0: "UNIT_NONE",
 		1: "FIXED",
-		2: "PERCENTAGE",
+		2: "PERCENT",
 	}
 	AdjustmentUnit_value = map[string]int32{
-		"UNIT_NONE":  0,
-		"FIXED":      1,
-		"PERCENTAGE": 2,
+		"UNIT_NONE": 0,
+		"FIXED":     1,
+		"PERCENT":   2,
 	}
 )
 
@@ -74,6 +74,14 @@ func (AdjustmentUnit) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDescGZIP(), []int{0}
 }
 
+//	{
+//	  "name" : "Service Fee Policy",
+//	  "unit" : "FIXED",
+//	  "value" : 10000.0,
+//	  "description" : "Service Fee",
+//	  "provider" : "AWS",
+//	  "currency" : "USD"
+//	}
 type CreateReportAdjustmentRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -83,6 +91,8 @@ type CreateReportAdjustmentRequest struct {
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// +optional
 	Provider string `protobuf:"bytes,5,opt,name=provider,proto3" json:"provider,omitempty"`
+	// When created, the currency is set to the same as the cost report config.
+	// If currency changes, please use the sync_currency API.
 	// +optional
 	Currency string `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
 	// +optional
@@ -187,6 +197,15 @@ func (x *CreateReportAdjustmentRequest) GetReportAdjustmentPolicyId() string {
 	return ""
 }
 
+//	{
+//	  "report_adjustment_id" : "report_adjustment_id",
+//	  "name" : "Service Fee Policy",
+//	  "unit" : "PERCENT",
+//	  "value" : 10.0,
+//	  "description" : "Service Fee",
+//	  "provider" : "AWS",
+//	  "adjustment_filter" : {}
+//	}
 type UpdateReportAdjustmentRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	ReportAdjustmentId string                 `protobuf:"bytes,1,opt,name=report_adjustment_id,json=reportAdjustmentId,proto3" json:"report_adjustment_id,omitempty"`
@@ -285,6 +304,10 @@ func (x *UpdateReportAdjustmentRequest) GetAdjustmentFilter() *_struct.Struct {
 	return nil
 }
 
+//	{
+//	 "report_adjustment_id" : "report_adjustment_id",
+//	 "order" : 2
+//	}
 type ChangeOrderReportAdjustmentRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	ReportAdjustmentId string                 `protobuf:"bytes,1,opt,name=report_adjustment_id,json=reportAdjustmentId,proto3" json:"report_adjustment_id,omitempty"`
@@ -707,12 +730,11 @@ const file_spaceone_api_cost_analysis_v1_report_adjustment_proto_rawDesc = "" +
 	"\x15ReportAdjustmentsInfo\x12M\n" +
 	"\aresults\x18\x01 \x03(\v23.spaceone.api.cost_analysis.v1.ReportAdjustmentInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount*:\n" +
+	"totalCount*7\n" +
 	"\x0eAdjustmentUnit\x12\r\n" +
 	"\tUNIT_NONE\x10\x00\x12\t\n" +
-	"\x05FIXED\x10\x01\x12\x0e\n" +
-	"\n" +
-	"PERCENTAGE\x10\x022\xa7\b\n" +
+	"\x05FIXED\x10\x01\x12\v\n" +
+	"\aPERCENT\x10\x022\xa7\b\n" +
 	"\x10ReportAdjustment\x12\xb2\x01\n" +
 	"\x06create\x12<.spaceone.api.cost_analysis.v1.CreateReportAdjustmentRequest\x1a3.spaceone.api.cost_analysis.v1.ReportAdjustmentInfo\"5\x82\xd3\xe4\x93\x02/:\x01*\"*/cost-analysis/v1/report-adjustment/create\x12\xb2\x01\n" +
 	"\x06update\x12<.spaceone.api.cost_analysis.v1.UpdateReportAdjustmentRequest\x1a3.spaceone.api.cost_analysis.v1.ReportAdjustmentInfo\"5\x82\xd3\xe4\x93\x02/:\x01*\"*/cost-analysis/v1/report-adjustment/update\x12\xc3\x01\n" +
