@@ -58,9 +58,17 @@ service ReportAdjustment {
 enum AdjustmentUnit {
   UNIT_NONE = 0;
   FIXED = 1;
-  PERCENTAGE = 2;
+  PERCENT = 2;
 }
 
+//{
+//   "name" : "Service Fee Policy",
+//   "unit" : "FIXED",
+//   "value" : 10000.0,
+//   "description" : "Service Fee",
+//   "provider" : "AWS",
+//   "currency" : "USD"
+//}
 message CreateReportAdjustmentRequest {
   string name = 1;
   AdjustmentUnit unit = 2;
@@ -69,6 +77,8 @@ message CreateReportAdjustmentRequest {
   string description = 4;
   // +optional
   string provider = 5;
+  // When created, the currency is set to the same as the cost report config.
+  // If currency changes, please use the sync_currency API.
   // +optional
   string currency = 6;
   // +optional
@@ -78,6 +88,15 @@ message CreateReportAdjustmentRequest {
   string report_adjustment_policy_id = 21;
 }
 
+//{
+//   "report_adjustment_id" : "report_adjustment_id",
+//   "name" : "Service Fee Policy",
+//   "unit" : "PERCENT",
+//   "value" : 10.0,
+//   "description" : "Service Fee",
+//   "provider" : "AWS",
+//   "adjustment_filter" : {}
+//}
 message UpdateReportAdjustmentRequest {
   string report_adjustment_id = 1;
   // +optional
@@ -94,6 +113,10 @@ message UpdateReportAdjustmentRequest {
   google.protobuf.Struct adjustment_filter = 7;
 }
 
+//{
+//  "report_adjustment_id" : "report_adjustment_id",
+//  "order" : 2
+//}
 message ChangeOrderReportAdjustmentRequest {
   string report_adjustment_id = 1;
   int32 order = 2;
