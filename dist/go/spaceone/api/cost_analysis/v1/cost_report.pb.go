@@ -233,7 +233,7 @@ type CostReportQuery struct {
 	// +optional
 	IssueDate string `protobuf:"bytes,5,opt,name=issue_date,json=issueDate,proto3" json:"issue_date,omitempty"`
 	// +optional
-	WorkspaceName string `protobuf:"bytes,6,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
+	Name          string `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -303,9 +303,9 @@ func (x *CostReportQuery) GetIssueDate() string {
 	return ""
 }
 
-func (x *CostReportQuery) GetWorkspaceName() string {
+func (x *CostReportQuery) GetName() string {
 	if x != nil {
-		return x.WorkspaceName
+		return x.Name
 	}
 	return ""
 }
@@ -325,7 +325,7 @@ type CostReportInfo struct {
 	ReportYear string `protobuf:"bytes,8,opt,name=report_year,json=reportYear,proto3" json:"report_year,omitempty"`
 	// YYYY-mm 2023-12
 	ReportMonth        string `protobuf:"bytes,9,opt,name=report_month,json=reportMonth,proto3" json:"report_month,omitempty"`
-	WorkspaceName      string `protobuf:"bytes,10,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
+	Name               string `protobuf:"bytes,10,opt,name=name,proto3" json:"name,omitempty"`
 	BankName           string `protobuf:"bytes,11,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
 	IsAdjusted         bool   `protobuf:"varint,12,opt,name=is_adjusted,json=isAdjusted,proto3" json:"is_adjusted,omitempty"`
 	CostReportConfigId string `protobuf:"bytes,21,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
@@ -430,9 +430,9 @@ func (x *CostReportInfo) GetReportMonth() string {
 	return ""
 }
 
-func (x *CostReportInfo) GetWorkspaceName() string {
+func (x *CostReportInfo) GetName() string {
 	if x != nil {
-		return x.WorkspaceName
+		return x.Name
 	}
 	return ""
 }
@@ -599,20 +599,20 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\x11CostReportRequest\x12$\n" +
 	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"?\n" +
 	"\x17GetUrlCostReportRequest\x12$\n" +
-	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"\xf0\x02\n" +
+	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\"\xdd\x02\n" +
 	"\x0fCostReportQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12$\n" +
 	"\x0ecost_report_id\x18\x02 \x01(\tR\fcostReportId\x121\n" +
 	"\x15cost_report_config_id\x18\x03 \x01(\tR\x12costReportConfigId\x12M\n" +
 	"\x06status\x18\x04 \x01(\x0e25.spaceone.api.cost_analysis.v1.CostReportQuery.StatusR\x06status\x12\x1d\n" +
 	"\n" +
-	"issue_date\x18\x05 \x01(\tR\tissueDate\x12%\n" +
-	"\x0eworkspace_name\x18\x06 \x01(\tR\rworkspaceName\"<\n" +
+	"issue_date\x18\x05 \x01(\tR\tissueDate\x12\x12\n" +
+	"\x04name\x18\x06 \x01(\tR\x04name\"<\n" +
 	"\x06Status\x12\b\n" +
 	"\x04NONE\x10\x00\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x01\x12\r\n" +
 	"\tADJUSTING\x10\x02\x12\b\n" +
-	"\x04DONE\x10\x03\"\xce\x05\n" +
+	"\x04DONE\x10\x03\"\xbb\x05\n" +
 	"\x0eCostReportInfo\x12$\n" +
 	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\x12+\n" +
 	"\x04cost\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04cost\x12L\n" +
@@ -624,9 +624,9 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"issue_date\x18\a \x01(\tR\tissueDate\x12\x1f\n" +
 	"\vreport_year\x18\b \x01(\tR\n" +
 	"reportYear\x12!\n" +
-	"\freport_month\x18\t \x01(\tR\vreportMonth\x12%\n" +
-	"\x0eworkspace_name\x18\n" +
-	" \x01(\tR\rworkspaceName\x12\x1b\n" +
+	"\freport_month\x18\t \x01(\tR\vreportMonth\x12\x12\n" +
+	"\x04name\x18\n" +
+	" \x01(\tR\x04name\x12\x1b\n" +
 	"\tbank_name\x18\v \x01(\tR\bbankName\x12\x1f\n" +
 	"\vis_adjusted\x18\f \x01(\bR\n" +
 	"isAdjusted\x121\n" +
