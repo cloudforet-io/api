@@ -329,10 +329,12 @@ type CostReportInfo struct {
 	BankName           string `protobuf:"bytes,11,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
 	IsAdjusted         bool   `protobuf:"varint,12,opt,name=is_adjusted,json=isAdjusted,proto3" json:"is_adjusted,omitempty"`
 	CostReportConfigId string `protobuf:"bytes,21,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
-	ProjectId          string `protobuf:"bytes,22,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	WorkspaceId        string `protobuf:"bytes,23,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	DomainId           string `protobuf:"bytes,24,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	ServiceAccountId   string `protobuf:"bytes,22,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
+	ProjectId          string `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	WorkspaceId        string `protobuf:"bytes,24,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	DomainId           string `protobuf:"bytes,25,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	CreatedAt          string `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt          string `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -458,6 +460,13 @@ func (x *CostReportInfo) GetCostReportConfigId() string {
 	return ""
 }
 
+func (x *CostReportInfo) GetServiceAccountId() string {
+	if x != nil {
+		return x.ServiceAccountId
+	}
+	return ""
+}
+
 func (x *CostReportInfo) GetProjectId() string {
 	if x != nil {
 		return x.ProjectId
@@ -482,6 +491,13 @@ func (x *CostReportInfo) GetDomainId() string {
 func (x *CostReportInfo) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *CostReportInfo) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
 	}
 	return ""
 }
@@ -612,7 +628,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\x04NONE\x10\x00\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x01\x12\r\n" +
 	"\tADJUSTING\x10\x02\x12\b\n" +
-	"\x04DONE\x10\x03\"\xbb\x05\n" +
+	"\x04DONE\x10\x03\"\x88\x06\n" +
 	"\x0eCostReportInfo\x12$\n" +
 	"\x0ecost_report_id\x18\x01 \x01(\tR\fcostReportId\x12+\n" +
 	"\x04cost\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04cost\x12L\n" +
@@ -630,13 +646,16 @@ const file_spaceone_api_cost_analysis_v1_cost_report_proto_rawDesc = "" +
 	"\tbank_name\x18\v \x01(\tR\bbankName\x12\x1f\n" +
 	"\vis_adjusted\x18\f \x01(\bR\n" +
 	"isAdjusted\x121\n" +
-	"\x15cost_report_config_id\x18\x15 \x01(\tR\x12costReportConfigId\x12\x1d\n" +
+	"\x15cost_report_config_id\x18\x15 \x01(\tR\x12costReportConfigId\x12,\n" +
+	"\x12service_account_id\x18\x16 \x01(\tR\x10serviceAccountId\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x16 \x01(\tR\tprojectId\x12!\n" +
-	"\fworkspace_id\x18\x17 \x01(\tR\vworkspaceId\x12\x1b\n" +
-	"\tdomain_id\x18\x18 \x01(\tR\bdomainId\x12\x1d\n" +
+	"project_id\x18\x17 \x01(\tR\tprojectId\x12!\n" +
+	"\fworkspace_id\x18\x18 \x01(\tR\vworkspaceId\x12\x1b\n" +
+	"\tdomain_id\x18\x19 \x01(\tR\bdomainId\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x1f \x01(\tR\tcreatedAt\"<\n" +
+	"created_at\x18\x1f \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18  \x01(\tR\tupdatedAt\"<\n" +
 	"\x06Status\x12\b\n" +
 	"\x04NONE\x10\x00\x12\x0f\n" +
 	"\vIN_PROGRESS\x10\x01\x12\r\n" +
