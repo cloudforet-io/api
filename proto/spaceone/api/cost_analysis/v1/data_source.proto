@@ -130,6 +130,14 @@ message PluginInfo {
   UpgradeMode upgrade_mode = 8;
 }
 
+message WarehouseInfo {
+  enum WarehouseType {
+    NONE = 0;
+    DATABRICKS = 1;
+  }
+  WarehouseType type = 1;
+}
+
 message Schedule {
     enum ScheduleState {
         NONE = 0;
@@ -208,9 +216,11 @@ message RegisterDataSourceRequest {
   google.protobuf.Struct template = 6;
   // +optional
   PluginInfo plugin_info = 7;
-  Schedule schedule = 8;
+  // +optoinal
+  WarehouseInfo warehouse_info = 8;
+  Schedule schedule = 9;
   // +optional
-  google.protobuf.Struct tags = 9;
+  google.protobuf.Struct tags = 10;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -422,14 +432,15 @@ message DataSourceInfo {
   SecretType secret_type = 6;
   SecretFilter secret_filter = 7;
   PluginInfo plugin_info = 8;
-  Schedule schedule = 9;
-  google.protobuf.Struct template = 10;
-  google.protobuf.Struct tags = 11;
-  repeated string cost_tag_keys = 12;
-  repeated string cost_additional_info_keys = 13;
-  repeated string cost_data_keys = 14;
-  int32 data_source_account_count = 15;
-  int32 connected_workspace_count = 16;
+  WarehouseInfo warehouse_info = 9;
+  Schedule schedule = 10;
+  google.protobuf.Struct template = 11;
+  google.protobuf.Struct tags = 12;
+  repeated string cost_tag_keys = 13;
+  repeated string cost_additional_info_keys = 14;
+  repeated string cost_data_keys = 15;
+  int32 data_source_account_count = 16;
+  int32 connected_workspace_count = 17;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
