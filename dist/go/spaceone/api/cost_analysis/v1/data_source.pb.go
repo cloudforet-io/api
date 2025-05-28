@@ -177,9 +177,10 @@ func (Schedule_ScheduleState) EnumDescriptor() ([]byte, []int) {
 type RegisterDataSourceRequest_DataSourceType int32
 
 const (
-	RegisterDataSourceRequest_NONE     RegisterDataSourceRequest_DataSourceType = 0
-	RegisterDataSourceRequest_LOCAL    RegisterDataSourceRequest_DataSourceType = 1
-	RegisterDataSourceRequest_EXTERNAL RegisterDataSourceRequest_DataSourceType = 2
+	RegisterDataSourceRequest_NONE      RegisterDataSourceRequest_DataSourceType = 0
+	RegisterDataSourceRequest_LOCAL     RegisterDataSourceRequest_DataSourceType = 1
+	RegisterDataSourceRequest_EXTERNAL  RegisterDataSourceRequest_DataSourceType = 2
+	RegisterDataSourceRequest_WAREHOUSE RegisterDataSourceRequest_DataSourceType = 3
 )
 
 // Enum value maps for RegisterDataSourceRequest_DataSourceType.
@@ -188,11 +189,13 @@ var (
 		0: "NONE",
 		1: "LOCAL",
 		2: "EXTERNAL",
+		3: "WAREHOUSE",
 	}
 	RegisterDataSourceRequest_DataSourceType_value = map[string]int32{
-		"NONE":     0,
-		"LOCAL":    1,
-		"EXTERNAL": 2,
+		"NONE":      0,
+		"LOCAL":     1,
+		"EXTERNAL":  2,
+		"WAREHOUSE": 3,
 	}
 )
 
@@ -474,6 +477,7 @@ const (
 	DataSourceInfo_TYPE_NONE DataSourceInfo_DataSourceType = 0
 	DataSourceInfo_LOCAL     DataSourceInfo_DataSourceType = 1
 	DataSourceInfo_EXTERNAL  DataSourceInfo_DataSourceType = 2
+	DataSourceInfo_WAREHOUSE DataSourceInfo_DataSourceType = 3
 )
 
 // Enum value maps for DataSourceInfo_DataSourceType.
@@ -482,11 +486,13 @@ var (
 		0: "TYPE_NONE",
 		1: "LOCAL",
 		2: "EXTERNAL",
+		3: "WAREHOUSE",
 	}
 	DataSourceInfo_DataSourceType_value = map[string]int32{
 		"TYPE_NONE": 0,
 		"LOCAL":     1,
 		"EXTERNAL":  2,
+		"WAREHOUSE": 3,
 	}
 )
 
@@ -2031,7 +2037,7 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\rScheduleState\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"\xc5\a\n" +
+	"\bDISABLED\x10\x02\"\xd4\a\n" +
 	"\x19RegisterDataSourceRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12q\n" +
 	"\x10data_source_type\x18\x02 \x01(\x0e2G.spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceTypeR\x0edataSourceType\x12\x1a\n" +
@@ -2045,11 +2051,12 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\bschedule\x18\b \x01(\v2'.spaceone.api.cost_analysis.v1.ScheduleR\bschedule\x12+\n" +
 	"\x04tags\x18\t \x01(\v2\x17.google.protobuf.StructR\x04tags\x12m\n" +
 	"\x0eresource_group\x18\x14 \x01(\x0e2F.spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroupR\rresourceGroup\x12!\n" +
-	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\"3\n" +
+	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\"B\n" +
 	"\x0eDataSourceType\x12\b\n" +
 	"\x04NONE\x10\x00\x12\t\n" +
 	"\x05LOCAL\x10\x01\x12\f\n" +
-	"\bEXTERNAL\x10\x02\"N\n" +
+	"\bEXTERNAL\x10\x02\x12\r\n" +
+	"\tWAREHOUSE\x10\x03\"N\n" +
 	"\n" +
 	"SecretType\x12\x14\n" +
 	"\x10SECRET_TYPE_NONE\x10\x00\x12\n" +
@@ -2106,7 +2113,7 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\x0eDataSourceType\x12\r\n" +
 	"\tTYPE_NONE\x10\x00\x12\t\n" +
 	"\x05LOCAL\x10\x01\x12\f\n" +
-	"\bEXTERNAL\x10\x02\"\xbc\v\n" +
+	"\bEXTERNAL\x10\x02\"\xcb\v\n" +
 	"\x0eDataSourceInfo\x12$\n" +
 	"\x0edata_source_id\x18\x01 \x01(\tR\fdataSourceId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12f\n" +
@@ -2139,11 +2146,12 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\n" +
 	"STATE_NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"8\n" +
+	"\bDISABLED\x10\x02\"G\n" +
 	"\x0eDataSourceType\x12\r\n" +
 	"\tTYPE_NONE\x10\x00\x12\t\n" +
 	"\x05LOCAL\x10\x01\x12\f\n" +
-	"\bEXTERNAL\x10\x02\"N\n" +
+	"\bEXTERNAL\x10\x02\x12\r\n" +
+	"\tWAREHOUSE\x10\x03\"N\n" +
 	"\n" +
 	"SecretType\x12\x14\n" +
 	"\x10SECRET_TYPE_NONE\x10\x00\x12\n" +
