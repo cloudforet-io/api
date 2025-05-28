@@ -125,6 +125,52 @@ func (PluginInfo_UpgradeMode) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{1, 0}
 }
 
+type WarehouseInfo_WarehouseType int32
+
+const (
+	WarehouseInfo_NONE       WarehouseInfo_WarehouseType = 0
+	WarehouseInfo_DATABRICKS WarehouseInfo_WarehouseType = 1
+)
+
+// Enum value maps for WarehouseInfo_WarehouseType.
+var (
+	WarehouseInfo_WarehouseType_name = map[int32]string{
+		0: "NONE",
+		1: "DATABRICKS",
+	}
+	WarehouseInfo_WarehouseType_value = map[string]int32{
+		"NONE":       0,
+		"DATABRICKS": 1,
+	}
+)
+
+func (x WarehouseInfo_WarehouseType) Enum() *WarehouseInfo_WarehouseType {
+	p := new(WarehouseInfo_WarehouseType)
+	*p = x
+	return p
+}
+
+func (x WarehouseInfo_WarehouseType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (WarehouseInfo_WarehouseType) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[2].Descriptor()
+}
+
+func (WarehouseInfo_WarehouseType) Type() protoreflect.EnumType {
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[2]
+}
+
+func (x WarehouseInfo_WarehouseType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use WarehouseInfo_WarehouseType.Descriptor instead.
+func (WarehouseInfo_WarehouseType) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{2, 0}
+}
+
 type Schedule_ScheduleState int32
 
 const (
@@ -158,11 +204,11 @@ func (x Schedule_ScheduleState) String() string {
 }
 
 func (Schedule_ScheduleState) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[2].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[3].Descriptor()
 }
 
 func (Schedule_ScheduleState) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[2]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[3]
 }
 
 func (x Schedule_ScheduleState) Number() protoreflect.EnumNumber {
@@ -171,7 +217,7 @@ func (x Schedule_ScheduleState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Schedule_ScheduleState.Descriptor instead.
 func (Schedule_ScheduleState) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{2, 0}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3, 0}
 }
 
 type RegisterDataSourceRequest_DataSourceType int32
@@ -210,11 +256,11 @@ func (x RegisterDataSourceRequest_DataSourceType) String() string {
 }
 
 func (RegisterDataSourceRequest_DataSourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[3].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[4].Descriptor()
 }
 
 func (RegisterDataSourceRequest_DataSourceType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[3]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[4]
 }
 
 func (x RegisterDataSourceRequest_DataSourceType) Number() protoreflect.EnumNumber {
@@ -223,7 +269,7 @@ func (x RegisterDataSourceRequest_DataSourceType) Number() protoreflect.EnumNumb
 
 // Deprecated: Use RegisterDataSourceRequest_DataSourceType.Descriptor instead.
 func (RegisterDataSourceRequest_DataSourceType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3, 0}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{4, 0}
 }
 
 type RegisterDataSourceRequest_SecretType int32
@@ -259,11 +305,11 @@ func (x RegisterDataSourceRequest_SecretType) String() string {
 }
 
 func (RegisterDataSourceRequest_SecretType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[4].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[5].Descriptor()
 }
 
 func (RegisterDataSourceRequest_SecretType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[4]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[5]
 }
 
 func (x RegisterDataSourceRequest_SecretType) Number() protoreflect.EnumNumber {
@@ -272,7 +318,7 @@ func (x RegisterDataSourceRequest_SecretType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RegisterDataSourceRequest_SecretType.Descriptor instead.
 func (RegisterDataSourceRequest_SecretType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3, 1}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{4, 1}
 }
 
 type RegisterDataSourceRequest_ResourceGroup int32
@@ -308,11 +354,11 @@ func (x RegisterDataSourceRequest_ResourceGroup) String() string {
 }
 
 func (RegisterDataSourceRequest_ResourceGroup) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[5].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[6].Descriptor()
 }
 
 func (RegisterDataSourceRequest_ResourceGroup) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[5]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[6]
 }
 
 func (x RegisterDataSourceRequest_ResourceGroup) Number() protoreflect.EnumNumber {
@@ -321,7 +367,7 @@ func (x RegisterDataSourceRequest_ResourceGroup) Number() protoreflect.EnumNumbe
 
 // Deprecated: Use RegisterDataSourceRequest_ResourceGroup.Descriptor instead.
 func (RegisterDataSourceRequest_ResourceGroup) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3, 2}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{4, 2}
 }
 
 type UpdateDataSourcePluginRequest_UpgradeMode int32
@@ -357,11 +403,11 @@ func (x UpdateDataSourcePluginRequest_UpgradeMode) String() string {
 }
 
 func (UpdateDataSourcePluginRequest_UpgradeMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[6].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[7].Descriptor()
 }
 
 func (UpdateDataSourcePluginRequest_UpgradeMode) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[6]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[7]
 }
 
 func (x UpdateDataSourcePluginRequest_UpgradeMode) Number() protoreflect.EnumNumber {
@@ -370,7 +416,7 @@ func (x UpdateDataSourcePluginRequest_UpgradeMode) Number() protoreflect.EnumNum
 
 // Deprecated: Use UpdateDataSourcePluginRequest_UpgradeMode.Descriptor instead.
 func (UpdateDataSourcePluginRequest_UpgradeMode) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{6, 0}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{7, 0}
 }
 
 type DataSourceQuery_DataSourceType int32
@@ -406,11 +452,11 @@ func (x DataSourceQuery_DataSourceType) String() string {
 }
 
 func (DataSourceQuery_DataSourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[7].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[8].Descriptor()
 }
 
 func (DataSourceQuery_DataSourceType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[7]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[8]
 }
 
 func (x DataSourceQuery_DataSourceType) Number() protoreflect.EnumNumber {
@@ -419,7 +465,7 @@ func (x DataSourceQuery_DataSourceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataSourceQuery_DataSourceType.Descriptor instead.
 func (DataSourceQuery_DataSourceType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{11, 0}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12, 0}
 }
 
 type DataSourceInfo_State int32
@@ -455,11 +501,11 @@ func (x DataSourceInfo_State) String() string {
 }
 
 func (DataSourceInfo_State) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[8].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[9].Descriptor()
 }
 
 func (DataSourceInfo_State) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[8]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[9]
 }
 
 func (x DataSourceInfo_State) Number() protoreflect.EnumNumber {
@@ -468,7 +514,7 @@ func (x DataSourceInfo_State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataSourceInfo_State.Descriptor instead.
 func (DataSourceInfo_State) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12, 0}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13, 0}
 }
 
 type DataSourceInfo_DataSourceType int32
@@ -507,11 +553,11 @@ func (x DataSourceInfo_DataSourceType) String() string {
 }
 
 func (DataSourceInfo_DataSourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[9].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[10].Descriptor()
 }
 
 func (DataSourceInfo_DataSourceType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[9]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[10]
 }
 
 func (x DataSourceInfo_DataSourceType) Number() protoreflect.EnumNumber {
@@ -520,7 +566,7 @@ func (x DataSourceInfo_DataSourceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataSourceInfo_DataSourceType.Descriptor instead.
 func (DataSourceInfo_DataSourceType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12, 1}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13, 1}
 }
 
 type DataSourceInfo_SecretType int32
@@ -556,11 +602,11 @@ func (x DataSourceInfo_SecretType) String() string {
 }
 
 func (DataSourceInfo_SecretType) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[10].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[11].Descriptor()
 }
 
 func (DataSourceInfo_SecretType) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[10]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[11]
 }
 
 func (x DataSourceInfo_SecretType) Number() protoreflect.EnumNumber {
@@ -569,7 +615,7 @@ func (x DataSourceInfo_SecretType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataSourceInfo_SecretType.Descriptor instead.
 func (DataSourceInfo_SecretType) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12, 2}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13, 2}
 }
 
 type DataSourceInfo_ResourceGroup int32
@@ -605,11 +651,11 @@ func (x DataSourceInfo_ResourceGroup) String() string {
 }
 
 func (DataSourceInfo_ResourceGroup) Descriptor() protoreflect.EnumDescriptor {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[11].Descriptor()
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[12].Descriptor()
 }
 
 func (DataSourceInfo_ResourceGroup) Type() protoreflect.EnumType {
-	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[11]
+	return &file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes[12]
 }
 
 func (x DataSourceInfo_ResourceGroup) Number() protoreflect.EnumNumber {
@@ -618,7 +664,7 @@ func (x DataSourceInfo_ResourceGroup) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataSourceInfo_ResourceGroup.Descriptor instead.
 func (DataSourceInfo_ResourceGroup) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12, 3}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13, 3}
 }
 
 type SecretFilter struct {
@@ -789,6 +835,50 @@ func (x *PluginInfo) GetUpgradeMode() PluginInfo_UpgradeMode {
 	return PluginInfo_NONE
 }
 
+type WarehouseInfo struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Type          WarehouseInfo_WarehouseType `protobuf:"varint,1,opt,name=type,proto3,enum=spaceone.api.cost_analysis.v1.WarehouseInfo_WarehouseType" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WarehouseInfo) Reset() {
+	*x = WarehouseInfo{}
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WarehouseInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WarehouseInfo) ProtoMessage() {}
+
+func (x *WarehouseInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WarehouseInfo.ProtoReflect.Descriptor instead.
+func (*WarehouseInfo) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *WarehouseInfo) GetType() WarehouseInfo_WarehouseType {
+	if x != nil {
+		return x.Type
+	}
+	return WarehouseInfo_NONE
+}
+
 type Schedule struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	State         Schedule_ScheduleState `protobuf:"varint,1,opt,name=state,proto3,enum=spaceone.api.cost_analysis.v1.Schedule_ScheduleState" json:"state,omitempty"`
@@ -799,7 +889,7 @@ type Schedule struct {
 
 func (x *Schedule) Reset() {
 	*x = Schedule{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[2]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -811,7 +901,7 @@ func (x *Schedule) String() string {
 func (*Schedule) ProtoMessage() {}
 
 func (x *Schedule) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[2]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -824,7 +914,7 @@ func (x *Schedule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Schedule.ProtoReflect.Descriptor instead.
 func (*Schedule) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{2}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Schedule) GetState() Schedule_ScheduleState {
@@ -891,9 +981,11 @@ type RegisterDataSourceRequest struct {
 	Template *_struct.Struct `protobuf:"bytes,6,opt,name=template,proto3" json:"template,omitempty"`
 	// +optional
 	PluginInfo *PluginInfo `protobuf:"bytes,7,opt,name=plugin_info,json=pluginInfo,proto3" json:"plugin_info,omitempty"`
-	Schedule   *Schedule   `protobuf:"bytes,8,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	// +optoinal
+	WarehouseInfo *WarehouseInfo `protobuf:"bytes,8,opt,name=warehouse_info,json=warehouseInfo,proto3" json:"warehouse_info,omitempty"`
+	Schedule      *Schedule      `protobuf:"bytes,9,opt,name=schedule,proto3" json:"schedule,omitempty"`
 	// +optional
-	Tags          *_struct.Struct                         `protobuf:"bytes,9,opt,name=tags,proto3" json:"tags,omitempty"`
+	Tags          *_struct.Struct                         `protobuf:"bytes,10,opt,name=tags,proto3" json:"tags,omitempty"`
 	ResourceGroup RegisterDataSourceRequest_ResourceGroup `protobuf:"varint,20,opt,name=resource_group,json=resourceGroup,proto3,enum=spaceone.api.cost_analysis.v1.RegisterDataSourceRequest_ResourceGroup" json:"resource_group,omitempty"`
 	// +optional
 	WorkspaceId   string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
@@ -903,7 +995,7 @@ type RegisterDataSourceRequest struct {
 
 func (x *RegisterDataSourceRequest) Reset() {
 	*x = RegisterDataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[3]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -915,7 +1007,7 @@ func (x *RegisterDataSourceRequest) String() string {
 func (*RegisterDataSourceRequest) ProtoMessage() {}
 
 func (x *RegisterDataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[3]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +1020,7 @@ func (x *RegisterDataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterDataSourceRequest.ProtoReflect.Descriptor instead.
 func (*RegisterDataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{3}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RegisterDataSourceRequest) GetName() string {
@@ -976,6 +1068,13 @@ func (x *RegisterDataSourceRequest) GetTemplate() *_struct.Struct {
 func (x *RegisterDataSourceRequest) GetPluginInfo() *PluginInfo {
 	if x != nil {
 		return x.PluginInfo
+	}
+	return nil
+}
+
+func (x *RegisterDataSourceRequest) GetWarehouseInfo() *WarehouseInfo {
+	if x != nil {
+		return x.WarehouseInfo
 	}
 	return nil
 }
@@ -1040,7 +1139,7 @@ type UpdateDataSourceRequest struct {
 
 func (x *UpdateDataSourceRequest) Reset() {
 	*x = UpdateDataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[4]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1052,7 +1151,7 @@ func (x *UpdateDataSourceRequest) String() string {
 func (*UpdateDataSourceRequest) ProtoMessage() {}
 
 func (x *UpdateDataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[4]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1065,7 +1164,7 @@ func (x *UpdateDataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDataSourceRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{4}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateDataSourceRequest) GetDataSourceId() string {
@@ -1124,7 +1223,7 @@ type UpdateDataSourcePermissionsRequest struct {
 
 func (x *UpdateDataSourcePermissionsRequest) Reset() {
 	*x = UpdateDataSourcePermissionsRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[5]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1136,7 +1235,7 @@ func (x *UpdateDataSourcePermissionsRequest) String() string {
 func (*UpdateDataSourcePermissionsRequest) ProtoMessage() {}
 
 func (x *UpdateDataSourcePermissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[5]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1149,7 +1248,7 @@ func (x *UpdateDataSourcePermissionsRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UpdateDataSourcePermissionsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDataSourcePermissionsRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{5}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateDataSourcePermissionsRequest) GetDataSourceId() string {
@@ -1187,7 +1286,7 @@ type UpdateDataSourcePluginRequest struct {
 
 func (x *UpdateDataSourcePluginRequest) Reset() {
 	*x = UpdateDataSourcePluginRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[6]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1199,7 +1298,7 @@ func (x *UpdateDataSourcePluginRequest) String() string {
 func (*UpdateDataSourcePluginRequest) ProtoMessage() {}
 
 func (x *UpdateDataSourcePluginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[6]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1212,7 +1311,7 @@ func (x *UpdateDataSourcePluginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDataSourcePluginRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDataSourcePluginRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{6}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateDataSourcePluginRequest) GetDataSourceId() string {
@@ -1254,7 +1353,7 @@ type UpdateSecretDataSourceRequest struct {
 
 func (x *UpdateSecretDataSourceRequest) Reset() {
 	*x = UpdateSecretDataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[7]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1266,7 +1365,7 @@ func (x *UpdateSecretDataSourceRequest) String() string {
 func (*UpdateSecretDataSourceRequest) ProtoMessage() {}
 
 func (x *UpdateSecretDataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[7]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1279,7 +1378,7 @@ func (x *UpdateSecretDataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSecretDataSourceRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSecretDataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{7}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateSecretDataSourceRequest) GetDataSourceId() string {
@@ -1320,7 +1419,7 @@ type DeregisterDataSourceRequest struct {
 
 func (x *DeregisterDataSourceRequest) Reset() {
 	*x = DeregisterDataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[8]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1332,7 +1431,7 @@ func (x *DeregisterDataSourceRequest) String() string {
 func (*DeregisterDataSourceRequest) ProtoMessage() {}
 
 func (x *DeregisterDataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[8]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1345,7 +1444,7 @@ func (x *DeregisterDataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeregisterDataSourceRequest.ProtoReflect.Descriptor instead.
 func (*DeregisterDataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{8}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeregisterDataSourceRequest) GetDataSourceId() string {
@@ -1375,7 +1474,7 @@ type SyncDataSourceRequest struct {
 
 func (x *SyncDataSourceRequest) Reset() {
 	*x = SyncDataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[9]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1387,7 +1486,7 @@ func (x *SyncDataSourceRequest) String() string {
 func (*SyncDataSourceRequest) ProtoMessage() {}
 
 func (x *SyncDataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[9]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1400,7 +1499,7 @@ func (x *SyncDataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncDataSourceRequest.ProtoReflect.Descriptor instead.
 func (*SyncDataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{9}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SyncDataSourceRequest) GetDataSourceId() string {
@@ -1436,7 +1535,7 @@ type DataSourceRequest struct {
 
 func (x *DataSourceRequest) Reset() {
 	*x = DataSourceRequest{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[10]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1448,7 +1547,7 @@ func (x *DataSourceRequest) String() string {
 func (*DataSourceRequest) ProtoMessage() {}
 
 func (x *DataSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[10]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1461,7 +1560,7 @@ func (x *DataSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataSourceRequest.ProtoReflect.Descriptor instead.
 func (*DataSourceRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{10}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DataSourceRequest) GetDataSourceId() string {
@@ -1495,7 +1594,7 @@ type DataSourceQuery struct {
 
 func (x *DataSourceQuery) Reset() {
 	*x = DataSourceQuery{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[11]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1507,7 +1606,7 @@ func (x *DataSourceQuery) String() string {
 func (*DataSourceQuery) ProtoMessage() {}
 
 func (x *DataSourceQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[11]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1520,7 +1619,7 @@ func (x *DataSourceQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataSourceQuery.ProtoReflect.Descriptor instead.
 func (*DataSourceQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{11}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DataSourceQuery) GetQuery() *v2.Query {
@@ -1640,14 +1739,15 @@ type DataSourceInfo struct {
 	SecretType              DataSourceInfo_SecretType     `protobuf:"varint,6,opt,name=secret_type,json=secretType,proto3,enum=spaceone.api.cost_analysis.v1.DataSourceInfo_SecretType" json:"secret_type,omitempty"`
 	SecretFilter            *SecretFilter                 `protobuf:"bytes,7,opt,name=secret_filter,json=secretFilter,proto3" json:"secret_filter,omitempty"`
 	PluginInfo              *PluginInfo                   `protobuf:"bytes,8,opt,name=plugin_info,json=pluginInfo,proto3" json:"plugin_info,omitempty"`
-	Schedule                *Schedule                     `protobuf:"bytes,9,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	Template                *_struct.Struct               `protobuf:"bytes,10,opt,name=template,proto3" json:"template,omitempty"`
-	Tags                    *_struct.Struct               `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
-	CostTagKeys             []string                      `protobuf:"bytes,12,rep,name=cost_tag_keys,json=costTagKeys,proto3" json:"cost_tag_keys,omitempty"`
-	CostAdditionalInfoKeys  []string                      `protobuf:"bytes,13,rep,name=cost_additional_info_keys,json=costAdditionalInfoKeys,proto3" json:"cost_additional_info_keys,omitempty"`
-	CostDataKeys            []string                      `protobuf:"bytes,14,rep,name=cost_data_keys,json=costDataKeys,proto3" json:"cost_data_keys,omitempty"`
-	DataSourceAccountCount  int32                         `protobuf:"varint,15,opt,name=data_source_account_count,json=dataSourceAccountCount,proto3" json:"data_source_account_count,omitempty"`
-	ConnectedWorkspaceCount int32                         `protobuf:"varint,16,opt,name=connected_workspace_count,json=connectedWorkspaceCount,proto3" json:"connected_workspace_count,omitempty"`
+	WarehouseInfo           *WarehouseInfo                `protobuf:"bytes,9,opt,name=warehouse_info,json=warehouseInfo,proto3" json:"warehouse_info,omitempty"`
+	Schedule                *Schedule                     `protobuf:"bytes,10,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	Template                *_struct.Struct               `protobuf:"bytes,11,opt,name=template,proto3" json:"template,omitempty"`
+	Tags                    *_struct.Struct               `protobuf:"bytes,12,opt,name=tags,proto3" json:"tags,omitempty"`
+	CostTagKeys             []string                      `protobuf:"bytes,13,rep,name=cost_tag_keys,json=costTagKeys,proto3" json:"cost_tag_keys,omitempty"`
+	CostAdditionalInfoKeys  []string                      `protobuf:"bytes,14,rep,name=cost_additional_info_keys,json=costAdditionalInfoKeys,proto3" json:"cost_additional_info_keys,omitempty"`
+	CostDataKeys            []string                      `protobuf:"bytes,15,rep,name=cost_data_keys,json=costDataKeys,proto3" json:"cost_data_keys,omitempty"`
+	DataSourceAccountCount  int32                         `protobuf:"varint,16,opt,name=data_source_account_count,json=dataSourceAccountCount,proto3" json:"data_source_account_count,omitempty"`
+	ConnectedWorkspaceCount int32                         `protobuf:"varint,17,opt,name=connected_workspace_count,json=connectedWorkspaceCount,proto3" json:"connected_workspace_count,omitempty"`
 	ResourceGroup           DataSourceInfo_ResourceGroup  `protobuf:"varint,20,opt,name=resource_group,json=resourceGroup,proto3,enum=spaceone.api.cost_analysis.v1.DataSourceInfo_ResourceGroup" json:"resource_group,omitempty"`
 	DomainId                string                        `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	WorkspaceId             string                        `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
@@ -1660,7 +1760,7 @@ type DataSourceInfo struct {
 
 func (x *DataSourceInfo) Reset() {
 	*x = DataSourceInfo{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[12]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1672,7 +1772,7 @@ func (x *DataSourceInfo) String() string {
 func (*DataSourceInfo) ProtoMessage() {}
 
 func (x *DataSourceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[12]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1685,7 +1785,7 @@ func (x *DataSourceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataSourceInfo.ProtoReflect.Descriptor instead.
 func (*DataSourceInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{12}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DataSourceInfo) GetDataSourceId() string {
@@ -1740,6 +1840,13 @@ func (x *DataSourceInfo) GetSecretFilter() *SecretFilter {
 func (x *DataSourceInfo) GetPluginInfo() *PluginInfo {
 	if x != nil {
 		return x.PluginInfo
+	}
+	return nil
+}
+
+func (x *DataSourceInfo) GetWarehouseInfo() *WarehouseInfo {
+	if x != nil {
+		return x.WarehouseInfo
 	}
 	return nil
 }
@@ -1915,7 +2022,7 @@ type DataSourcesInfo struct {
 
 func (x *DataSourcesInfo) Reset() {
 	*x = DataSourcesInfo{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[13]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1927,7 +2034,7 @@ func (x *DataSourcesInfo) String() string {
 func (*DataSourcesInfo) ProtoMessage() {}
 
 func (x *DataSourcesInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[13]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1940,7 +2047,7 @@ func (x *DataSourcesInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataSourcesInfo.ProtoReflect.Descriptor instead.
 func (*DataSourcesInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{13}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DataSourcesInfo) GetResults() []*DataSourceInfo {
@@ -1966,7 +2073,7 @@ type DataSourceStatQuery struct {
 
 func (x *DataSourceStatQuery) Reset() {
 	*x = DataSourceStatQuery{}
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[14]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1978,7 +2085,7 @@ func (x *DataSourceStatQuery) String() string {
 func (*DataSourceStatQuery) ProtoMessage() {}
 
 func (x *DataSourceStatQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[14]
+	mi := &file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1991,7 +2098,7 @@ func (x *DataSourceStatQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataSourceStatQuery.ProtoReflect.Descriptor instead.
 func (*DataSourceStatQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{14}
+	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DataSourceStatQuery) GetQuery() *v2.StatisticsQuery {
@@ -2030,14 +2137,20 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\x04NONE\x10\x00\x12\n" +
 	"\n" +
 	"\x06MANUAL\x10\x01\x12\b\n" +
-	"\x04AUTO\x10\x02\"\xa1\x01\n" +
+	"\x04AUTO\x10\x02\"\x8a\x01\n" +
+	"\rWarehouseInfo\x12N\n" +
+	"\x04type\x18\x01 \x01(\x0e2:.spaceone.api.cost_analysis.v1.WarehouseInfo.WarehouseTypeR\x04type\")\n" +
+	"\rWarehouseType\x12\b\n" +
+	"\x04NONE\x10\x00\x12\x0e\n" +
+	"\n" +
+	"DATABRICKS\x10\x01\"\xa1\x01\n" +
 	"\bSchedule\x12K\n" +
 	"\x05state\x18\x01 \x01(\x0e25.spaceone.api.cost_analysis.v1.Schedule.ScheduleStateR\x05state\x12\x12\n" +
 	"\x04hour\x18\x02 \x01(\x05R\x04hour\"4\n" +
 	"\rScheduleState\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"\xd4\a\n" +
+	"\bDISABLED\x10\x02\"\xa9\b\n" +
 	"\x19RegisterDataSourceRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12q\n" +
 	"\x10data_source_type\x18\x02 \x01(\x0e2G.spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceTypeR\x0edataSourceType\x12\x1a\n" +
@@ -2047,9 +2160,11 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\rsecret_filter\x18\x05 \x01(\v2+.spaceone.api.cost_analysis.v1.SecretFilterR\fsecretFilter\x123\n" +
 	"\btemplate\x18\x06 \x01(\v2\x17.google.protobuf.StructR\btemplate\x12J\n" +
 	"\vplugin_info\x18\a \x01(\v2).spaceone.api.cost_analysis.v1.PluginInfoR\n" +
-	"pluginInfo\x12C\n" +
-	"\bschedule\x18\b \x01(\v2'.spaceone.api.cost_analysis.v1.ScheduleR\bschedule\x12+\n" +
-	"\x04tags\x18\t \x01(\v2\x17.google.protobuf.StructR\x04tags\x12m\n" +
+	"pluginInfo\x12S\n" +
+	"\x0ewarehouse_info\x18\b \x01(\v2,.spaceone.api.cost_analysis.v1.WarehouseInfoR\rwarehouseInfo\x12C\n" +
+	"\bschedule\x18\t \x01(\v2'.spaceone.api.cost_analysis.v1.ScheduleR\bschedule\x12+\n" +
+	"\x04tags\x18\n" +
+	" \x01(\v2\x17.google.protobuf.StructR\x04tags\x12m\n" +
 	"\x0eresource_group\x18\x14 \x01(\x0e2F.spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroupR\rresourceGroup\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\"B\n" +
 	"\x0eDataSourceType\x12\b\n" +
@@ -2113,7 +2228,7 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\x0eDataSourceType\x12\r\n" +
 	"\tTYPE_NONE\x10\x00\x12\t\n" +
 	"\x05LOCAL\x10\x01\x12\f\n" +
-	"\bEXTERNAL\x10\x02\"\xcb\v\n" +
+	"\bEXTERNAL\x10\x02\"\xa0\f\n" +
 	"\x0eDataSourceInfo\x12$\n" +
 	"\x0edata_source_id\x18\x01 \x01(\tR\fdataSourceId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12f\n" +
@@ -2124,16 +2239,17 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"secretType\x12P\n" +
 	"\rsecret_filter\x18\a \x01(\v2+.spaceone.api.cost_analysis.v1.SecretFilterR\fsecretFilter\x12J\n" +
 	"\vplugin_info\x18\b \x01(\v2).spaceone.api.cost_analysis.v1.PluginInfoR\n" +
-	"pluginInfo\x12C\n" +
-	"\bschedule\x18\t \x01(\v2'.spaceone.api.cost_analysis.v1.ScheduleR\bschedule\x123\n" +
-	"\btemplate\x18\n" +
-	" \x01(\v2\x17.google.protobuf.StructR\btemplate\x12+\n" +
-	"\x04tags\x18\v \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\"\n" +
-	"\rcost_tag_keys\x18\f \x03(\tR\vcostTagKeys\x129\n" +
-	"\x19cost_additional_info_keys\x18\r \x03(\tR\x16costAdditionalInfoKeys\x12$\n" +
-	"\x0ecost_data_keys\x18\x0e \x03(\tR\fcostDataKeys\x129\n" +
-	"\x19data_source_account_count\x18\x0f \x01(\x05R\x16dataSourceAccountCount\x12:\n" +
-	"\x19connected_workspace_count\x18\x10 \x01(\x05R\x17connectedWorkspaceCount\x12b\n" +
+	"pluginInfo\x12S\n" +
+	"\x0ewarehouse_info\x18\t \x01(\v2,.spaceone.api.cost_analysis.v1.WarehouseInfoR\rwarehouseInfo\x12C\n" +
+	"\bschedule\x18\n" +
+	" \x01(\v2'.spaceone.api.cost_analysis.v1.ScheduleR\bschedule\x123\n" +
+	"\btemplate\x18\v \x01(\v2\x17.google.protobuf.StructR\btemplate\x12+\n" +
+	"\x04tags\x18\f \x01(\v2\x17.google.protobuf.StructR\x04tags\x12\"\n" +
+	"\rcost_tag_keys\x18\r \x03(\tR\vcostTagKeys\x129\n" +
+	"\x19cost_additional_info_keys\x18\x0e \x03(\tR\x16costAdditionalInfoKeys\x12$\n" +
+	"\x0ecost_data_keys\x18\x0f \x03(\tR\fcostDataKeys\x129\n" +
+	"\x19data_source_account_count\x18\x10 \x01(\x05R\x16dataSourceAccountCount\x12:\n" +
+	"\x19connected_workspace_count\x18\x11 \x01(\x05R\x17connectedWorkspaceCount\x12b\n" +
 	"\x0eresource_group\x18\x14 \x01(\x0e2;.spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroupR\rresourceGroup\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1d\n" +
@@ -2196,105 +2312,110 @@ func file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescGZIP() []byte {
 	return file_spaceone_api_cost_analysis_v1_data_source_proto_rawDescData
 }
 
-var file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes = make([]protoimpl.EnumInfo, 12)
-var file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_spaceone_api_cost_analysis_v1_data_source_proto_enumTypes = make([]protoimpl.EnumInfo, 13)
+var file_spaceone_api_cost_analysis_v1_data_source_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_spaceone_api_cost_analysis_v1_data_source_proto_goTypes = []any{
 	(SecretFilter_SecretFilterState)(0),            // 0: spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState
 	(PluginInfo_UpgradeMode)(0),                    // 1: spaceone.api.cost_analysis.v1.PluginInfo.UpgradeMode
-	(Schedule_ScheduleState)(0),                    // 2: spaceone.api.cost_analysis.v1.Schedule.ScheduleState
-	(RegisterDataSourceRequest_DataSourceType)(0),  // 3: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType
-	(RegisterDataSourceRequest_SecretType)(0),      // 4: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType
-	(RegisterDataSourceRequest_ResourceGroup)(0),   // 5: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup
-	(UpdateDataSourcePluginRequest_UpgradeMode)(0), // 6: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode
-	(DataSourceQuery_DataSourceType)(0),            // 7: spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType
-	(DataSourceInfo_State)(0),                      // 8: spaceone.api.cost_analysis.v1.DataSourceInfo.State
-	(DataSourceInfo_DataSourceType)(0),             // 9: spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType
-	(DataSourceInfo_SecretType)(0),                 // 10: spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType
-	(DataSourceInfo_ResourceGroup)(0),              // 11: spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup
-	(*SecretFilter)(nil),                           // 12: spaceone.api.cost_analysis.v1.SecretFilter
-	(*PluginInfo)(nil),                             // 13: spaceone.api.cost_analysis.v1.PluginInfo
-	(*Schedule)(nil),                               // 14: spaceone.api.cost_analysis.v1.Schedule
-	(*RegisterDataSourceRequest)(nil),              // 15: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest
-	(*UpdateDataSourceRequest)(nil),                // 16: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest
-	(*UpdateDataSourcePermissionsRequest)(nil),     // 17: spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest
-	(*UpdateDataSourcePluginRequest)(nil),          // 18: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest
-	(*UpdateSecretDataSourceRequest)(nil),          // 19: spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest
-	(*DeregisterDataSourceRequest)(nil),            // 20: spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest
-	(*SyncDataSourceRequest)(nil),                  // 21: spaceone.api.cost_analysis.v1.SyncDataSourceRequest
-	(*DataSourceRequest)(nil),                      // 22: spaceone.api.cost_analysis.v1.DataSourceRequest
-	(*DataSourceQuery)(nil),                        // 23: spaceone.api.cost_analysis.v1.DataSourceQuery
-	(*DataSourceInfo)(nil),                         // 24: spaceone.api.cost_analysis.v1.DataSourceInfo
-	(*DataSourcesInfo)(nil),                        // 25: spaceone.api.cost_analysis.v1.DataSourcesInfo
-	(*DataSourceStatQuery)(nil),                    // 26: spaceone.api.cost_analysis.v1.DataSourceStatQuery
-	(*_struct.Struct)(nil),                         // 27: google.protobuf.Struct
-	(*v2.Query)(nil),                               // 28: spaceone.api.core.v2.Query
-	(*v2.StatisticsQuery)(nil),                     // 29: spaceone.api.core.v2.StatisticsQuery
-	(*empty.Empty)(nil),                            // 30: google.protobuf.Empty
-	(*JobInfo)(nil),                                // 31: spaceone.api.cost_analysis.v1.JobInfo
+	(WarehouseInfo_WarehouseType)(0),               // 2: spaceone.api.cost_analysis.v1.WarehouseInfo.WarehouseType
+	(Schedule_ScheduleState)(0),                    // 3: spaceone.api.cost_analysis.v1.Schedule.ScheduleState
+	(RegisterDataSourceRequest_DataSourceType)(0),  // 4: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType
+	(RegisterDataSourceRequest_SecretType)(0),      // 5: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType
+	(RegisterDataSourceRequest_ResourceGroup)(0),   // 6: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup
+	(UpdateDataSourcePluginRequest_UpgradeMode)(0), // 7: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode
+	(DataSourceQuery_DataSourceType)(0),            // 8: spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType
+	(DataSourceInfo_State)(0),                      // 9: spaceone.api.cost_analysis.v1.DataSourceInfo.State
+	(DataSourceInfo_DataSourceType)(0),             // 10: spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType
+	(DataSourceInfo_SecretType)(0),                 // 11: spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType
+	(DataSourceInfo_ResourceGroup)(0),              // 12: spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup
+	(*SecretFilter)(nil),                           // 13: spaceone.api.cost_analysis.v1.SecretFilter
+	(*PluginInfo)(nil),                             // 14: spaceone.api.cost_analysis.v1.PluginInfo
+	(*WarehouseInfo)(nil),                          // 15: spaceone.api.cost_analysis.v1.WarehouseInfo
+	(*Schedule)(nil),                               // 16: spaceone.api.cost_analysis.v1.Schedule
+	(*RegisterDataSourceRequest)(nil),              // 17: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest
+	(*UpdateDataSourceRequest)(nil),                // 18: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest
+	(*UpdateDataSourcePermissionsRequest)(nil),     // 19: spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest
+	(*UpdateDataSourcePluginRequest)(nil),          // 20: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest
+	(*UpdateSecretDataSourceRequest)(nil),          // 21: spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest
+	(*DeregisterDataSourceRequest)(nil),            // 22: spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest
+	(*SyncDataSourceRequest)(nil),                  // 23: spaceone.api.cost_analysis.v1.SyncDataSourceRequest
+	(*DataSourceRequest)(nil),                      // 24: spaceone.api.cost_analysis.v1.DataSourceRequest
+	(*DataSourceQuery)(nil),                        // 25: spaceone.api.cost_analysis.v1.DataSourceQuery
+	(*DataSourceInfo)(nil),                         // 26: spaceone.api.cost_analysis.v1.DataSourceInfo
+	(*DataSourcesInfo)(nil),                        // 27: spaceone.api.cost_analysis.v1.DataSourcesInfo
+	(*DataSourceStatQuery)(nil),                    // 28: spaceone.api.cost_analysis.v1.DataSourceStatQuery
+	(*_struct.Struct)(nil),                         // 29: google.protobuf.Struct
+	(*v2.Query)(nil),                               // 30: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                     // 31: spaceone.api.core.v2.StatisticsQuery
+	(*empty.Empty)(nil),                            // 32: google.protobuf.Empty
+	(*JobInfo)(nil),                                // 33: spaceone.api.cost_analysis.v1.JobInfo
 }
 var file_spaceone_api_cost_analysis_v1_data_source_proto_depIdxs = []int32{
 	0,  // 0: spaceone.api.cost_analysis.v1.SecretFilter.state:type_name -> spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState
-	27, // 1: spaceone.api.cost_analysis.v1.PluginInfo.options:type_name -> google.protobuf.Struct
-	27, // 2: spaceone.api.cost_analysis.v1.PluginInfo.metadata:type_name -> google.protobuf.Struct
-	27, // 3: spaceone.api.cost_analysis.v1.PluginInfo.secret_data:type_name -> google.protobuf.Struct
+	29, // 1: spaceone.api.cost_analysis.v1.PluginInfo.options:type_name -> google.protobuf.Struct
+	29, // 2: spaceone.api.cost_analysis.v1.PluginInfo.metadata:type_name -> google.protobuf.Struct
+	29, // 3: spaceone.api.cost_analysis.v1.PluginInfo.secret_data:type_name -> google.protobuf.Struct
 	1,  // 4: spaceone.api.cost_analysis.v1.PluginInfo.upgrade_mode:type_name -> spaceone.api.cost_analysis.v1.PluginInfo.UpgradeMode
-	2,  // 5: spaceone.api.cost_analysis.v1.Schedule.state:type_name -> spaceone.api.cost_analysis.v1.Schedule.ScheduleState
-	3,  // 6: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.data_source_type:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType
-	4,  // 7: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.secret_type:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType
-	12, // 8: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
-	27, // 9: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.template:type_name -> google.protobuf.Struct
-	13, // 10: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.plugin_info:type_name -> spaceone.api.cost_analysis.v1.PluginInfo
-	14, // 11: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
-	27, // 12: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.tags:type_name -> google.protobuf.Struct
-	5,  // 13: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.resource_group:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup
-	12, // 14: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
-	27, // 15: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.template:type_name -> google.protobuf.Struct
-	14, // 16: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
-	27, // 17: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.tags:type_name -> google.protobuf.Struct
-	27, // 18: spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest.permissions:type_name -> google.protobuf.Struct
-	27, // 19: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.options:type_name -> google.protobuf.Struct
-	6,  // 20: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.upgrade_mode:type_name -> spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode
-	27, // 21: spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest.secret_data:type_name -> google.protobuf.Struct
-	28, // 22: spaceone.api.cost_analysis.v1.DataSourceQuery.query:type_name -> spaceone.api.core.v2.Query
-	7,  // 23: spaceone.api.cost_analysis.v1.DataSourceQuery.data_source_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType
-	9,  // 24: spaceone.api.cost_analysis.v1.DataSourceInfo.data_source_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType
-	27, // 25: spaceone.api.cost_analysis.v1.DataSourceInfo.permissions:type_name -> google.protobuf.Struct
-	10, // 26: spaceone.api.cost_analysis.v1.DataSourceInfo.secret_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType
-	12, // 27: spaceone.api.cost_analysis.v1.DataSourceInfo.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
-	13, // 28: spaceone.api.cost_analysis.v1.DataSourceInfo.plugin_info:type_name -> spaceone.api.cost_analysis.v1.PluginInfo
-	14, // 29: spaceone.api.cost_analysis.v1.DataSourceInfo.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
-	27, // 30: spaceone.api.cost_analysis.v1.DataSourceInfo.template:type_name -> google.protobuf.Struct
-	27, // 31: spaceone.api.cost_analysis.v1.DataSourceInfo.tags:type_name -> google.protobuf.Struct
-	11, // 32: spaceone.api.cost_analysis.v1.DataSourceInfo.resource_group:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup
-	24, // 33: spaceone.api.cost_analysis.v1.DataSourcesInfo.results:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	29, // 34: spaceone.api.cost_analysis.v1.DataSourceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	15, // 35: spaceone.api.cost_analysis.v1.DataSource.register:input_type -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest
-	16, // 36: spaceone.api.cost_analysis.v1.DataSource.update:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourceRequest
-	17, // 37: spaceone.api.cost_analysis.v1.DataSource.update_permissions:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest
-	18, // 38: spaceone.api.cost_analysis.v1.DataSource.update_plugin:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest
-	19, // 39: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:input_type -> spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest
-	22, // 40: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
-	20, // 41: spaceone.api.cost_analysis.v1.DataSource.deregister:input_type -> spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest
-	21, // 42: spaceone.api.cost_analysis.v1.DataSource.sync:input_type -> spaceone.api.cost_analysis.v1.SyncDataSourceRequest
-	22, // 43: spaceone.api.cost_analysis.v1.DataSource.get:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
-	23, // 44: spaceone.api.cost_analysis.v1.DataSource.list:input_type -> spaceone.api.cost_analysis.v1.DataSourceQuery
-	26, // 45: spaceone.api.cost_analysis.v1.DataSource.stat:input_type -> spaceone.api.cost_analysis.v1.DataSourceStatQuery
-	24, // 46: spaceone.api.cost_analysis.v1.DataSource.register:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	24, // 47: spaceone.api.cost_analysis.v1.DataSource.update:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	24, // 48: spaceone.api.cost_analysis.v1.DataSource.update_permissions:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	24, // 49: spaceone.api.cost_analysis.v1.DataSource.update_plugin:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	24, // 50: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	30, // 51: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:output_type -> google.protobuf.Empty
-	30, // 52: spaceone.api.cost_analysis.v1.DataSource.deregister:output_type -> google.protobuf.Empty
-	31, // 53: spaceone.api.cost_analysis.v1.DataSource.sync:output_type -> spaceone.api.cost_analysis.v1.JobInfo
-	24, // 54: spaceone.api.cost_analysis.v1.DataSource.get:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	25, // 55: spaceone.api.cost_analysis.v1.DataSource.list:output_type -> spaceone.api.cost_analysis.v1.DataSourcesInfo
-	27, // 56: spaceone.api.cost_analysis.v1.DataSource.stat:output_type -> google.protobuf.Struct
-	46, // [46:57] is the sub-list for method output_type
-	35, // [35:46] is the sub-list for method input_type
-	35, // [35:35] is the sub-list for extension type_name
-	35, // [35:35] is the sub-list for extension extendee
-	0,  // [0:35] is the sub-list for field type_name
+	2,  // 5: spaceone.api.cost_analysis.v1.WarehouseInfo.type:type_name -> spaceone.api.cost_analysis.v1.WarehouseInfo.WarehouseType
+	3,  // 6: spaceone.api.cost_analysis.v1.Schedule.state:type_name -> spaceone.api.cost_analysis.v1.Schedule.ScheduleState
+	4,  // 7: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.data_source_type:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType
+	5,  // 8: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.secret_type:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType
+	13, // 9: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
+	29, // 10: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.template:type_name -> google.protobuf.Struct
+	14, // 11: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.plugin_info:type_name -> spaceone.api.cost_analysis.v1.PluginInfo
+	15, // 12: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.warehouse_info:type_name -> spaceone.api.cost_analysis.v1.WarehouseInfo
+	16, // 13: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
+	29, // 14: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.tags:type_name -> google.protobuf.Struct
+	6,  // 15: spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.resource_group:type_name -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup
+	13, // 16: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
+	29, // 17: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.template:type_name -> google.protobuf.Struct
+	16, // 18: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
+	29, // 19: spaceone.api.cost_analysis.v1.UpdateDataSourceRequest.tags:type_name -> google.protobuf.Struct
+	29, // 20: spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest.permissions:type_name -> google.protobuf.Struct
+	29, // 21: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.options:type_name -> google.protobuf.Struct
+	7,  // 22: spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.upgrade_mode:type_name -> spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode
+	29, // 23: spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest.secret_data:type_name -> google.protobuf.Struct
+	30, // 24: spaceone.api.cost_analysis.v1.DataSourceQuery.query:type_name -> spaceone.api.core.v2.Query
+	8,  // 25: spaceone.api.cost_analysis.v1.DataSourceQuery.data_source_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType
+	10, // 26: spaceone.api.cost_analysis.v1.DataSourceInfo.data_source_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType
+	29, // 27: spaceone.api.cost_analysis.v1.DataSourceInfo.permissions:type_name -> google.protobuf.Struct
+	11, // 28: spaceone.api.cost_analysis.v1.DataSourceInfo.secret_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType
+	13, // 29: spaceone.api.cost_analysis.v1.DataSourceInfo.secret_filter:type_name -> spaceone.api.cost_analysis.v1.SecretFilter
+	14, // 30: spaceone.api.cost_analysis.v1.DataSourceInfo.plugin_info:type_name -> spaceone.api.cost_analysis.v1.PluginInfo
+	15, // 31: spaceone.api.cost_analysis.v1.DataSourceInfo.warehouse_info:type_name -> spaceone.api.cost_analysis.v1.WarehouseInfo
+	16, // 32: spaceone.api.cost_analysis.v1.DataSourceInfo.schedule:type_name -> spaceone.api.cost_analysis.v1.Schedule
+	29, // 33: spaceone.api.cost_analysis.v1.DataSourceInfo.template:type_name -> google.protobuf.Struct
+	29, // 34: spaceone.api.cost_analysis.v1.DataSourceInfo.tags:type_name -> google.protobuf.Struct
+	12, // 35: spaceone.api.cost_analysis.v1.DataSourceInfo.resource_group:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup
+	26, // 36: spaceone.api.cost_analysis.v1.DataSourcesInfo.results:type_name -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	31, // 37: spaceone.api.cost_analysis.v1.DataSourceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	17, // 38: spaceone.api.cost_analysis.v1.DataSource.register:input_type -> spaceone.api.cost_analysis.v1.RegisterDataSourceRequest
+	18, // 39: spaceone.api.cost_analysis.v1.DataSource.update:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourceRequest
+	19, // 40: spaceone.api.cost_analysis.v1.DataSource.update_permissions:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest
+	20, // 41: spaceone.api.cost_analysis.v1.DataSource.update_plugin:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest
+	21, // 42: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:input_type -> spaceone.api.cost_analysis.v1.UpdateSecretDataSourceRequest
+	24, // 43: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
+	22, // 44: spaceone.api.cost_analysis.v1.DataSource.deregister:input_type -> spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest
+	23, // 45: spaceone.api.cost_analysis.v1.DataSource.sync:input_type -> spaceone.api.cost_analysis.v1.SyncDataSourceRequest
+	24, // 46: spaceone.api.cost_analysis.v1.DataSource.get:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
+	25, // 47: spaceone.api.cost_analysis.v1.DataSource.list:input_type -> spaceone.api.cost_analysis.v1.DataSourceQuery
+	28, // 48: spaceone.api.cost_analysis.v1.DataSource.stat:input_type -> spaceone.api.cost_analysis.v1.DataSourceStatQuery
+	26, // 49: spaceone.api.cost_analysis.v1.DataSource.register:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 50: spaceone.api.cost_analysis.v1.DataSource.update:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 51: spaceone.api.cost_analysis.v1.DataSource.update_permissions:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 52: spaceone.api.cost_analysis.v1.DataSource.update_plugin:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 53: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	32, // 54: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:output_type -> google.protobuf.Empty
+	32, // 55: spaceone.api.cost_analysis.v1.DataSource.deregister:output_type -> google.protobuf.Empty
+	33, // 56: spaceone.api.cost_analysis.v1.DataSource.sync:output_type -> spaceone.api.cost_analysis.v1.JobInfo
+	26, // 57: spaceone.api.cost_analysis.v1.DataSource.get:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	27, // 58: spaceone.api.cost_analysis.v1.DataSource.list:output_type -> spaceone.api.cost_analysis.v1.DataSourcesInfo
+	29, // 59: spaceone.api.cost_analysis.v1.DataSource.stat:output_type -> google.protobuf.Struct
+	49, // [49:60] is the sub-list for method output_type
+	38, // [38:49] is the sub-list for method input_type
+	38, // [38:38] is the sub-list for extension type_name
+	38, // [38:38] is the sub-list for extension extendee
+	0,  // [0:38] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_cost_analysis_v1_data_source_proto_init() }
@@ -2308,8 +2429,8 @@ func file_spaceone_api_cost_analysis_v1_data_source_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc), len(file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc)),
-			NumEnums:      12,
-			NumMessages:   15,
+			NumEnums:      13,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
