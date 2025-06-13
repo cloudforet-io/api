@@ -8,7 +8,36 @@
      "title": "Monitoring API",
      "version": "3.1.0"
    },
-   "paths":{"/monitoring/alert/create": {
+   "paths":{"/monitoring/log/list": {
+       "post": {
+         "tags": ["monitoring > log"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |resource_id||string|True|\n |keyword||string||\n |start||string||\n |end||string||\n |sort||Struct||\n |limit||int||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"keyword" : {"type": "string","title": "KEYWORD" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"type": "object","title": "SORT" },"limit" : {"type": "integer","title": "LIMIT" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/LogDataInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/LogDataInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/alert/create": {
        "post": {
          "tags": ["monitoring > alert"],
          "summary": "Create",
@@ -215,136 +244,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/create": {
+     },"/monitoring/event/get": {
        "post": {
-         "tags": ["monitoring > escalation-policy"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new EscalationPolicy. When creating an EscalationPolicy, if the project_id is assigned, the EscalationPolicy is applied to the Project with the same project_id. If an EscalationPolicy is set as a global policy, all Projects in the same domain can apply the policy.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"name\": \"es-test\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 30},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 30}],\n   \"repeat_count\": 2,\n   \"finish_condition\": \"ACKNOWLEDGED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
-                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/update": {
-       "post": {
-         "tags": ["monitoring > escalation-policy"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific EscalationPolicy. You can make changes in EscalationPolicy settings, including the name, the escalation process, and the number of iterations.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n |name||string||\n |rules||array||\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"name\": \"es-test2\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV3\", \"escalate_minutes\": 15}],\n   \"repeat_count\": 1,\n   \"finish_condition\": \"RESOLVED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
-                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/set-default": {
-       "post": {
-         "tags": ["monitoring > escalation-policy"],
-         "summary": "Set Default",
-         "operationId" : "",
-         "description": "### Description \nSets a specific EscalationPolicy as default. Only policies configured as global can be set as default. When a Project is created, even if you did not configure any policy to the Project, the default policy set by this api method is applied.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
-                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/delete": {
-       "post": {
-         "tags": ["monitoring > escalation-policy"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/get": {
-       "post": {
-         "tags": ["monitoring > escalation-policy"],
+         "tags": ["monitoring > event"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nGets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.",
+         "description": "### Description \nGets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service||string|True|\n |resource||string|True|\n |verb||string|True|\n |status||string|True|\n |message||Struct|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"service" : {"type": "string","title": "SERVICE" },"resource" : {"type": "string","title": "RESOURCE" },"verb" : {"type": "string","title": "VERB" },"status" : {"type": "string","title": "STATUS" },"message" : {"type": "object","title": "MESSAGE" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -353,27 +266,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "schema": {"$ref": "#/components/schemas/EventInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
-                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/EventInfo"},"Default Example":{
+                     "value": "{\n   \"event_id\": \"event-4e16ba3bd384\",\n   \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n   \"event_type\": \"ALERT\",\n   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n   \"severity\": \"INFO\",\n   \"resource\": {\n       \"resource_id\": \"server-1187737cc0d9\",\n       \"resource_type\": \"inventory.Server\",\n       \"name\": \"stargate-dev-kubectl-amzl2\"\n   },\n   \"raw_data\": {\n       \"resource\": {\n           \"name\": \"stargate-dev-kubectl-amzl2\",\n           \"resource_id\": \"server-1187737cc0d9\",\n           \"resource_type\": \"inventory.Server\"\n       },\n       \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n       \"title\": \"Notification of access to the SpaceONE bastion Host\",\n       \"severity\": \"INFO\",\n       \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n       \"event_type\": \"ALERT\",\n       \"additional_info\": {\n           \"host\": [],\n           \"user\": \"spaceoneadm\"\n       }\n   },\n   \"additional_info\": {\n       \"host\": \"[]\",\n       \"user\": \"spaceoneadm\"\n   },\n   \"alert_id\": \"alert-06462f6cb54e\",\n   \"webhook_id\": \"webhook-ff9e2eda678a\",\n   \"project_id\": \"project-18655561c535\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-21T00:34:58.034Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/list": {
+     },"/monitoring/event/list": {
        "post": {
-         "tags": ["monitoring > escalation-policy"],
+         "tags": ["monitoring > event"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \nGets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.",
+         "description": "### Description \nGets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |query||Query||\n |escalation_policy_id||string||\n |name||string||\n |is_default||boolean||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_id||string||\n |event_key||string||\n |event_type||string||\n |severity||string||\n |resource||string||\n |provider||string||\n |account||string||\n |workspace_id||string||\n |project_id||string||\n |alert_id||string||\n |webhook_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"is_default" : {"type": "boolean","title": "IS_DEFAULT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_id" : {"type": "string","title": "EVENT_ID" },"event_key" : {"type": "string","title": "EVENT_KEY" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"severity" : {"type": "string","title": "SEVERITY" },"resource" : {"type": "string","title": "RESOURCE" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
@@ -384,18 +297,18 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"},
+                 "schema": {"$ref": "#/components/schemas/EventsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"escalation_policy_id\": \"ep-7c9745003372\",\n           \"name\": \"0525-ms-test-1\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV1\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:15.150Z\"\n       },\n       {\n           \"escalation_policy_id\": \"ep-d75670166af4\",\n           \"name\": \"0525-ms-test-2\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV2\",\n                   \"escalate_minutes\": 30\n               },\n               {\n                   \"notification_level\": \"LV2\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:38.573Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   "Schema": {"$ref": "#/components/schemas/EventsInfo"},"Default Example":{
+                     "value": "{\n       \"results\": [\n           {\n               \"event_id\": \"event-4e16ba3bd384\",\n               \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n               \"event_type\": \"ALERT\",\n               \"title\": \"Notification of access to the SpaceONE bastion Host\",\n               \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n               \"severity\": \"INFO\",\n               \"resource\": {\n                   \"resource_id\": \"server-1187737cc0d9\",\n                   \"resource_type\": \"inventory.Server\",\n                   \"name\": \"stargate-dev-kubectl-amzl2\"\n               },\n               \"raw_data\": {\n                   \"resource\": {\n                       \"name\": \"stargate-dev-kubectl-amzl2\",\n                       \"resource_type\": \"inventory.Server\",\n                       \"resource_id\": \"server-1187737cc0d9\"\n                   },\n                   \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n                   \"additional_info\": {\n                       \"user\": \"spaceoneadm\",\n                       \"host\": []\n                   },\n                   \"severity\": \"INFO\",\n                   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n                   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n                   \"event_type\": \"ALERT\"\n               },\n               \"additional_info\": {\n                   \"user\": \"spaceoneadm\",\n                   \"host\": \"[]\"\n               },\n               \"alert_id\": \"alert-06462f6cb54e\",\n               \"webhook_id\": \"webhook-ff9e2eda678a\",\n               \"project_id\": \"project-18655561c535\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-06-21T00:34:58.034Z\"\n           },\n           {\n               \"event_id\": \"event-b178e1b71daf\",\n               \"event_key\": \"abc16e5455c26ab7611bf8aa8d1020cc\",\n               \"event_type\": \"ALERT\",\n               \"title\": \"Notification of access to the SpaceONE bastion Host\",\n               \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from glee@mz.co.kr\",\n               \"severity\": \"INFO\",\n               \"resource\": {\n                   \"resource_id\": \"server-1187737cc0d9\",\n                   \"resource_type\": \"inventory.Server\",\n                   \"name\": \"stargate-dev-kubectl-amzl2\"\n               },\n               \"raw_data\": {\n                   \"additional_info\": {\n                       \"host\": [\n                           \"125.131.104.40\"\n                       ],\n                       \"user\": \"glee@mz.co.kr\"\n                   },\n                   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from glee@mz.co.kr\",\n                   \"severity\": \"INFO\",\n                   \"event_type\": \"ALERT\",\n                   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n                   \"resource\": {\n                       \"resource_type\": \"inventory.Server\",\n                       \"name\": \"stargate-dev-kubectl-amzl2\",\n                       \"resource_id\": \"server-1187737cc0d9\"\n                   },\n                   \"event_key\": \"abc16e5455c26ab7611bf8aa8d1020cc\"\n               },\n               \"additional_info\": {\n                   \"user\": \"glee@mz.co.kr\",\n                   \"host\": \"[\u0027125.131.104.40\u0027]\"\n               },\n               \"alert_id\": \"alert-332617cf2894\",\n               \"webhook_id\": \"webhook-ff9e2eda678a\",\n               \"project_id\": \"project-18655561c535\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-06-21T00:34:52.822Z\"\n           }\n       ],\n       \"total_count\": 2\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/escalation-policy/stat": {
+     },"/monitoring/event/stat": {
        "post": {
-         "tags": ["monitoring > escalation-policy"],
+         "tags": ["monitoring > event"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -418,327 +331,6 @@
                  "schema": {"type": "object"},
                  "examples": {
                    "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/register": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Register",
-         "operationId" : "",
-         "description": "### Description \nRegisters a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||DataSourcePluginInfo|True|\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n       \"name\": \"datasource-test\",\n       \"plugin_info\": {\"plugin_id\": \"plugin-123456789012\",\n                       \"version\": \"1.1.4.20220617.135934\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_resource_type\": [\"inventory.Server\", \"inventory.CloudService\"],\n                           \"required_keys\": [\"data.cloudwatch\"],\n                           \"supported_stat\": [\"AVERAGE\", \"MAX\", \"MIN\", \"SUM\"]},\n                       \"upgrade_mode\": \"AUTO\"\n                       },\n       \"tags\": {\"a\": \"b\"},\n       \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/update": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n       \"data_source_id\": \"ds-123456789012\",\n       \"name\": \"tmp-datasource_test\",\n       \"tags\": {\"b\": \"c\"},\n       \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/enable": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \nEnables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/disable": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \nDisables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/deregister": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Deregister",
-         "operationId" : "",
-         "description": "### Description \nDeregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/update-plugin": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Update Plugin",
-         "operationId" : "",
-         "description": "### Description \nUpdates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|MANUAL, AUTO |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"version\": \"1.1.3\",\n   \"options\": {},\n   \"upgrade_mode\": \"MANUAL\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/verify-plugin": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Verify Plugin",
-         "operationId" : "",
-         "description": "### Description \nVerifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/get": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
-                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/list": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |monitoring_type|METRIC, LOG |string||\n |provider||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"monitoring_type" : {"type": "string","title": "MONITORING_TYPE" },"provider" : {"type": "string","title": "PROVIDER" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourcesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourcesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"data_source_id\": \"ds-89f1e81528e9\",\n           \"name\": \"AWS CloudTrail\",\n           \"state\": \"ENABLED\",\n           \"monitoring_type\": \"LOG\",\n           \"provider\": \"aws\",\n           \"capability\": {\n               \"use_resource_secret\": true,\n               \"monitoring_type\": \"LOG\",\n               \"supported_schema\": [\n                   \"aws_access_key\",\n                   \"aws_assume_role\"\n               ]\n           },\n           \"plugin_info\": {\n               \"plugin_id\": \"plugin-9881b9b440a4\",\n               \"version\": \"1.0-dev2\",\n               \"options\": {},\n               \"provider\": \"aws\",\n               \"metadata\": {\n                   \"required_keys\": [\n                       \"reference.resource_id\"\n                   ],\n                   \"supported_resource_type\": [\n                       \"inventory.Server\",\n                       \"inventory.CloudService\"\n                   ]\n               },\n               \"upgrade_mode\": \"AUTO\"\n           },\n           \"tags\": {},\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2021-03-31T08:39:45.532Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/data-source/stat": {
-       "post": {
-         "tags": ["monitoring > data-source"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/log/list": {
-       "post": {
-         "tags": ["monitoring > log"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |resource_id||string|True|\n |keyword||string||\n |start||string||\n |end||string||\n |sort||Struct||\n |limit||int||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"keyword" : {"type": "string","title": "KEYWORD" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"type": "object","title": "SORT" },"limit" : {"type": "integer","title": "LIMIT" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/LogDataInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/LogDataInfo"}}
                }
              }}
          }
@@ -1097,20 +689,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/event/get": {
+     },"/monitoring/escalation-policy/create": {
        "post": {
-         "tags": ["monitoring > event"],
-         "summary": "Get",
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Create",
          "operationId" : "",
-         "description": "### Description \nGets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.",
+         "description": "### Description \nCreates a new EscalationPolicy. When creating an EscalationPolicy, if the project_id is assigned, the EscalationPolicy is applied to the Project with the same project_id. If an EscalationPolicy is set as a global policy, all Projects in the same domain can apply the policy.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service||string|True|\n |resource||string|True|\n |verb||string|True|\n |status||string|True|\n |message||Struct|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service" : {"type": "string","title": "SERVICE" },"resource" : {"type": "string","title": "RESOURCE" },"verb" : {"type": "string","title": "VERB" },"status" : {"type": "string","title": "STATUS" },"message" : {"type": "object","title": "MESSAGE" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"name\": \"es-test\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 30},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 30}],\n   \"repeat_count\": 2,\n   \"finish_condition\": \"ACKNOWLEDGED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1119,27 +711,143 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EventInfo"},
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EventInfo"},"Default Example":{
-                     "value": "{\n   \"event_id\": \"event-4e16ba3bd384\",\n   \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n   \"event_type\": \"ALERT\",\n   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n   \"severity\": \"INFO\",\n   \"resource\": {\n       \"resource_id\": \"server-1187737cc0d9\",\n       \"resource_type\": \"inventory.Server\",\n       \"name\": \"stargate-dev-kubectl-amzl2\"\n   },\n   \"raw_data\": {\n       \"resource\": {\n           \"name\": \"stargate-dev-kubectl-amzl2\",\n           \"resource_id\": \"server-1187737cc0d9\",\n           \"resource_type\": \"inventory.Server\"\n       },\n       \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n       \"title\": \"Notification of access to the SpaceONE bastion Host\",\n       \"severity\": \"INFO\",\n       \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n       \"event_type\": \"ALERT\",\n       \"additional_info\": {\n           \"host\": [],\n           \"user\": \"spaceoneadm\"\n       }\n   },\n   \"additional_info\": {\n       \"host\": \"[]\",\n       \"user\": \"spaceoneadm\"\n   },\n   \"alert_id\": \"alert-06462f6cb54e\",\n   \"webhook_id\": \"webhook-ff9e2eda678a\",\n   \"project_id\": \"project-18655561c535\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-21T00:34:58.034Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
+                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/event/list": {
+     },"/monitoring/escalation-policy/update": {
        "post": {
-         "tags": ["monitoring > event"],
-         "summary": "List",
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Update",
          "operationId" : "",
-         "description": "### Description \nGets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.",
+         "description": "### Description \nUpdates a specific EscalationPolicy. You can make changes in EscalationPolicy settings, including the name, the escalation process, and the number of iterations.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_id||string||\n |event_key||string||\n |event_type||string||\n |severity||string||\n |resource||string||\n |provider||string||\n |account||string||\n |workspace_id||string||\n |project_id||string||\n |alert_id||string||\n |webhook_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n |name||string||\n |rules||array||\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_id" : {"type": "string","title": "EVENT_ID" },"event_key" : {"type": "string","title": "EVENT_KEY" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"severity" : {"type": "string","title": "SEVERITY" },"resource" : {"type": "string","title": "RESOURCE" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"name\": \"es-test2\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV3\", \"escalate_minutes\": 15}],\n   \"repeat_count\": 1,\n   \"finish_condition\": \"RESOLVED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
+                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/escalation-policy/set-default": {
+       "post": {
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Set Default",
+         "operationId" : "",
+         "description": "### Description \nSets a specific EscalationPolicy as default. Only policies configured as global can be set as default. When a Project is created, even if you did not configure any policy to the Project, the default policy set by this api method is applied.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
+                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/escalation-policy/delete": {
+       "post": {
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/escalation-policy/get": {
+       "post": {
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},"Default Example":{
+                     "value": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/escalation-policy/list": {
+       "post": {
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |query||Query||\n |escalation_policy_id||string||\n |name||string||\n |is_default||boolean||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"is_default" : {"type": "boolean","title": "IS_DEFAULT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
@@ -1150,18 +858,486 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/EventsInfo"},
+                 "schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EventsInfo"},"Default Example":{
-                     "value": "{\n       \"results\": [\n           {\n               \"event_id\": \"event-4e16ba3bd384\",\n               \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n               \"event_type\": \"ALERT\",\n               \"title\": \"Notification of access to the SpaceONE bastion Host\",\n               \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n               \"severity\": \"INFO\",\n               \"resource\": {\n                   \"resource_id\": \"server-1187737cc0d9\",\n                   \"resource_type\": \"inventory.Server\",\n                   \"name\": \"stargate-dev-kubectl-amzl2\"\n               },\n               \"raw_data\": {\n                   \"resource\": {\n                       \"name\": \"stargate-dev-kubectl-amzl2\",\n                       \"resource_type\": \"inventory.Server\",\n                       \"resource_id\": \"server-1187737cc0d9\"\n                   },\n                   \"event_key\": \"cfbdd0cee08f0f2664dbef297c370017\",\n                   \"additional_info\": {\n                       \"user\": \"spaceoneadm\",\n                       \"host\": []\n                   },\n                   \"severity\": \"INFO\",\n                   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from spaceoneadm\",\n                   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n                   \"event_type\": \"ALERT\"\n               },\n               \"additional_info\": {\n                   \"user\": \"spaceoneadm\",\n                   \"host\": \"[]\"\n               },\n               \"alert_id\": \"alert-06462f6cb54e\",\n               \"webhook_id\": \"webhook-ff9e2eda678a\",\n               \"project_id\": \"project-18655561c535\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-06-21T00:34:58.034Z\"\n           },\n           {\n               \"event_id\": \"event-b178e1b71daf\",\n               \"event_key\": \"abc16e5455c26ab7611bf8aa8d1020cc\",\n               \"event_type\": \"ALERT\",\n               \"title\": \"Notification of access to the SpaceONE bastion Host\",\n               \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from glee@mz.co.kr\",\n               \"severity\": \"INFO\",\n               \"resource\": {\n                   \"resource_id\": \"server-1187737cc0d9\",\n                   \"resource_type\": \"inventory.Server\",\n                   \"name\": \"stargate-dev-kubectl-amzl2\"\n               },\n               \"raw_data\": {\n                   \"additional_info\": {\n                       \"host\": [\n                           \"125.131.104.40\"\n                       ],\n                       \"user\": \"glee@mz.co.kr\"\n                   },\n                   \"description\": \"SSH Access to stargate-dev-kubectl-amzl2 from glee@mz.co.kr\",\n                   \"severity\": \"INFO\",\n                   \"event_type\": \"ALERT\",\n                   \"title\": \"Notification of access to the SpaceONE bastion Host\",\n                   \"resource\": {\n                       \"resource_type\": \"inventory.Server\",\n                       \"name\": \"stargate-dev-kubectl-amzl2\",\n                       \"resource_id\": \"server-1187737cc0d9\"\n                   },\n                   \"event_key\": \"abc16e5455c26ab7611bf8aa8d1020cc\"\n               },\n               \"additional_info\": {\n                   \"user\": \"glee@mz.co.kr\",\n                   \"host\": \"[\u0027125.131.104.40\u0027]\"\n               },\n               \"alert_id\": \"alert-332617cf2894\",\n               \"webhook_id\": \"webhook-ff9e2eda678a\",\n               \"project_id\": \"project-18655561c535\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-06-21T00:34:52.822Z\"\n           }\n       ],\n       \"total_count\": 2\n}"
+                   "Schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"escalation_policy_id\": \"ep-7c9745003372\",\n           \"name\": \"0525-ms-test-1\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV1\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:15.150Z\"\n       },\n       {\n           \"escalation_policy_id\": \"ep-d75670166af4\",\n           \"name\": \"0525-ms-test-2\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV2\",\n                   \"escalate_minutes\": 30\n               },\n               {\n                   \"notification_level\": \"LV2\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:38.573Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/event/stat": {
+     },"/monitoring/escalation-policy/stat": {
        "post": {
-         "tags": ["monitoring > event"],
+         "tags": ["monitoring > escalation-policy"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/create": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Note. You can create Notes for each Alert to record the information needed to manage the Alerts.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |note||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"note" : {"type": "string","title": "NOTE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/update": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific Note. You must specify the `note_id` for Note validation check. If the Note exists, it is updated.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n |note||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"note" : {"type": "string","title": "NOTE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"note\": \"This is a test\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/delete": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Note. You must specify the `note_id` of the Note to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-0bfac585bf5a\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/get": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Note. You must specify the `note_id` and `domain_id`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-0bfac585bf5a\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/list": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Notes. You can use a query to get a filtered list of Notes.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |note_id||string||\n |alert_id||string||\n |created_by||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"note_id\": \"note-0597bd748be0\",\n           \"alert_id\": \"alert-fbfd78e43df8\",\n           \"note\": \"http://spaceone.org\",\n           \"created_by\": \"hykang@mz.co.kr\",\n           \"project_id\": \"project-52a423012d5e\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-23T09:58:23.838Z\"\n       },\n       {\n           \"note_id\": \"note-0bfac585bf5a\",\n           \"alert_id\": \"alert-fbfd78e43df8\",\n           \"note\": \"test\",\n           \"created_by\": \"hykang@mz.co.kr\",\n           \"project_id\": \"project-52a423012d5e\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-23T09:52:42.251Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/note/stat": {
+       "post": {
+         "tags": ["monitoring > note"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/register": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Register",
+         "operationId" : "",
+         "description": "### Description \nRegisters a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||DataSourcePluginInfo|True|\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n       \"name\": \"datasource-test\",\n       \"plugin_info\": {\"plugin_id\": \"plugin-123456789012\",\n                       \"version\": \"1.1.4.20220617.135934\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_resource_type\": [\"inventory.Server\", \"inventory.CloudService\"],\n                           \"required_keys\": [\"data.cloudwatch\"],\n                           \"supported_stat\": [\"AVERAGE\", \"MAX\", \"MIN\", \"SUM\"]},\n                       \"upgrade_mode\": \"AUTO\"\n                       },\n       \"tags\": {\"a\": \"b\"},\n       \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/update": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n       \"data_source_id\": \"ds-123456789012\",\n       \"name\": \"tmp-datasource_test\",\n       \"tags\": {\"b\": \"c\"},\n       \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/enable": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \nEnables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/disable": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \nDisables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/deregister": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Deregister",
+         "operationId" : "",
+         "description": "### Description \nDeregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/update-plugin": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Update Plugin",
+         "operationId" : "",
+         "description": "### Description \nUpdates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|MANUAL, AUTO |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"version\": \"1.1.3\",\n   \"options\": {},\n   \"upgrade_mode\": \"MANUAL\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/verify-plugin": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Verify Plugin",
+         "operationId" : "",
+         "description": "### Description \nVerifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/get": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourceInfo"},"Default Example":{
+                     "value": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/list": {
+       "post": {
+         "tags": ["monitoring > data-source"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |monitoring_type|METRIC, LOG |string||\n |provider||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"monitoring_type" : {"type": "string","title": "MONITORING_TYPE" },"provider" : {"type": "string","title": "PROVIDER" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DataSourcesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DataSourcesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"data_source_id\": \"ds-89f1e81528e9\",\n           \"name\": \"AWS CloudTrail\",\n           \"state\": \"ENABLED\",\n           \"monitoring_type\": \"LOG\",\n           \"provider\": \"aws\",\n           \"capability\": {\n               \"use_resource_secret\": true,\n               \"monitoring_type\": \"LOG\",\n               \"supported_schema\": [\n                   \"aws_access_key\",\n                   \"aws_assume_role\"\n               ]\n           },\n           \"plugin_info\": {\n               \"plugin_id\": \"plugin-9881b9b440a4\",\n               \"version\": \"1.0-dev2\",\n               \"options\": {},\n               \"provider\": \"aws\",\n               \"metadata\": {\n                   \"required_keys\": [\n                       \"reference.resource_id\"\n                   ],\n                   \"supported_resource_type\": [\n                       \"inventory.Server\",\n                       \"inventory.CloudService\"\n                   ]\n               },\n               \"upgrade_mode\": \"AUTO\"\n           },\n           \"tags\": {},\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2021-03-31T08:39:45.532Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/data-source/stat": {
+       "post": {
+         "tags": ["monitoring > data-source"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1571,253 +1747,59 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/create": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Note. You can create Notes for each Alert to record the information needed to manage the Alerts.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |note||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"note" : {"type": "string","title": "NOTE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/update": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific Note. You must specify the `note_id` for Note validation check. If the Note exists, it is updated.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n |note||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"note" : {"type": "string","title": "NOTE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"note\": \"This is a test\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/delete": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific Note. You must specify the `note_id` of the Note to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-0bfac585bf5a\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/get": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Note. You must specify the `note_id` and `domain_id`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"note_id\": \"note-0bfac585bf5a\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n   \"note_id\": \"note-df107d31bf20\",\n   \"alert_id\": \"alert-160ce04f6908\",\n   \"note\": \"This is a description\",\n   \"created_by\": \"seolmin@mz.co.kr\",\n   \"project_id\": \"project-52a423012d5e\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-29T08:26:14.418Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/list": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Notes. You can use a query to get a filtered list of Notes.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |note_id||string||\n |alert_id||string||\n |created_by||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NotesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NotesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"note_id\": \"note-0597bd748be0\",\n           \"alert_id\": \"alert-fbfd78e43df8\",\n           \"note\": \"http://spaceone.org\",\n           \"created_by\": \"hykang@mz.co.kr\",\n           \"project_id\": \"project-52a423012d5e\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-23T09:58:23.838Z\"\n       },\n       {\n           \"note_id\": \"note-0bfac585bf5a\",\n           \"alert_id\": \"alert-fbfd78e43df8\",\n           \"note\": \"test\",\n           \"created_by\": \"hykang@mz.co.kr\",\n           \"project_id\": \"project-52a423012d5e\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-23T09:52:42.251Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/note/stat": {
-       "post": {
-         "tags": ["monitoring > note"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "AlertInfo": {
-         "properties" : {"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"responder" : {"type": "string","title": "RESPONDER"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
-               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"escalation_step" : {"type": "integer","title": "ESCALATION_STEP"},"escalation_ttl" : {"type": "integer","title": "ESCALATION_TTL"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"},"escalated_at" : {"type": "string","title": "ESCALATED_AT"}},
+     "LogDataInfo": {
+         "properties" : {"results" : {"type": "array","title": "RESULTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["alert_number","alert_id","title","state","description","assignee","responder","urgency","severity","rule","image_url","resources","provider","account","additional_info","escalation_step","escalation_ttl","triggered_by","domain_id","workspace_id","project_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at","escalated_at"],
-                "title": "AlertInfo"
+         "required": ["results","domain_id"],
+                "title": "LogDataInfo"
            }
-           ,        "AlertQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"assignee" : {"type": "string","title": "ASSIGNEE"},"responder" : {"type": "string","title": "RESPONDER"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+           ,        "LogRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"keyword" : {"type": "string","title": "KEYWORD"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"type": "object","title": "SORT"},"limit" : {"type": "integer","title": "LIMIT"}},
          "type": "object",
-         "required": [],
-                "title": "AlertQuery"
-           }
-           ,        "AlertRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"}},
-         "type": "object",
-         "required": ["alert_id"],
-                "title": "AlertRequest"
-           }
-           ,        "AlertResource": {
-         "properties" : {"resource_id" : {"type": "string","title": "RESOURCE_ID"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"name" : {"type": "string","title": "NAME"}},
-         "type": "object",
-         "required": ["resource_id","resource_type","name"],
-                "title": "AlertResource"
-           }
-           ,        "AlertStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "AlertStatQuery"
-           }
-           ,        "AlertsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertInfo"},
-               "type": "array","$ref": "#/components/schemas/AlertInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "AlertsInfo"
-           }
-           ,        "AssignUserRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
-         "type": "object",
-         "required": ["alert_id","assignee"],
-                "title": "AssignUserRequest"
-           }
-           ,        "CreateAlertRequest": {
-         "properties" : {"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["title","project_id"],
-                "title": "CreateAlertRequest"
-           }
-           ,        "UpdateAlertRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["alert_id"],
-                "title": "UpdateAlertRequest"
-           }
-           ,        "UpdateAlertStateRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"responder" : {"type": "string","title": "RESPONDER"}},
-         "type": "object",
-         "required": ["alert_id","access_key"],
-                "title": "UpdateAlertStateRequest"
+         "required": ["data_source_id","resource_id"],
+                "title": "LogRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
          "required": ["version"],
                 "title": "VersionInfo"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -1988,156 +1970,99 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "AlertInfo": {
+         "properties" : {"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"responder" : {"type": "string","title": "RESPONDER"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"escalation_step" : {"type": "integer","title": "ESCALATION_STEP"},"escalation_ttl" : {"type": "integer","title": "ESCALATION_TTL"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"},"escalated_at" : {"type": "string","title": "ESCALATED_AT"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
+         "required": ["alert_number","alert_id","title","state","description","assignee","responder","urgency","severity","rule","image_url","resources","provider","account","additional_info","escalation_step","escalation_ttl","triggered_by","domain_id","workspace_id","project_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at","escalated_at"],
+                "title": "AlertInfo"
            }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
-           }
-           ,        "CreateEscalationPolicyRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
-               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["name","rules","resource_group"],
-                "title": "CreateEscalationPolicyRequest"
-           }
-           ,        "EscalationPoliciesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
-               "type": "array","$ref": "#/components/schemas/EscalationPolicyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "EscalationPoliciesInfo"
-           }
-           ,        "EscalationPolicyInfo": {
-         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"is_default" : {"type": "boolean","title": "IS_DEFAULT"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
-               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["escalation_policy_id","name","is_default","rules","repeat_count","finish_condition","resource_group","project_id","tags","workspace_id","domain_id","created_at"],
-                "title": "EscalationPolicyInfo"
-           }
-           ,        "EscalationPolicyQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"is_default" : {"type": "boolean","title": "IS_DEFAULT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["resource_group"],
-                "title": "EscalationPolicyQuery"
-           }
-           ,        "EscalationPolicyRequest": {
-         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
-         "type": "object",
-         "required": ["escalation_policy_id"],
-                "title": "EscalationPolicyRequest"
-           }
-           ,        "EscalationPolicyRule": {
-         "properties" : {"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"escalate_minutes" : {"type": "integer","title": "ESCALATE_MINUTES"}},
-         "type": "object",
-         "required": ["notification_level","escalate_minutes"],
-                "title": "EscalationPolicyRule"
-           }
-           ,        "EscalationPolicyStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "EscalationPolicyStatQuery"
-           }
-           ,        "UpdateEscalationPolicyRequest": {
-         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
-               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["escalation_policy_id"],
-                "title": "UpdateEscalationPolicyRequest"
-           }
-           ,        "DataSourceInfo": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["data_source_id","name","state","monitoring_type","provider","capability","plugin_info","tags","domain_id","created_at"],
-                "title": "DataSourceInfo"
-           }
-           ,        "DataSourcePluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"}},
-         "type": "object",
-         "required": ["plugin_id","version","options","metadata","upgrade_mode","secret_id","provider"],
-                "title": "DataSourcePluginInfo"
-           }
-           ,        "DataSourceQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"}},
+           ,        "AlertQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"assignee" : {"type": "string","title": "ASSIGNEE"},"responder" : {"type": "string","title": "RESPONDER"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
-                "title": "DataSourceQuery"
+                "title": "AlertQuery"
            }
-           ,        "DataSourceRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "AlertRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"}},
          "type": "object",
-         "required": ["data_source_id"],
-                "title": "DataSourceRequest"
+         "required": ["alert_id"],
+                "title": "AlertRequest"
            }
-           ,        "DataSourceStatQuery": {
+           ,        "AlertResource": {
+         "properties" : {"resource_id" : {"type": "string","title": "RESOURCE_ID"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": ["resource_id","resource_type","name"],
+                "title": "AlertResource"
+           }
+           ,        "AlertStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "DataSourceStatQuery"
+                "title": "AlertStatQuery"
            }
-           ,        "DataSourcesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DataSourceInfo"},
-               "type": "array","$ref": "#/components/schemas/DataSourceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "AlertsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertInfo"},
+               "type": "array","$ref": "#/components/schemas/AlertInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "DataSourcesInfo"
+                "title": "AlertsInfo"
            }
-           ,        "RegisterDataSourceRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "AssignUserRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
          "type": "object",
-         "required": ["name","plugin_info"],
-                "title": "RegisterDataSourceRequest"
+         "required": ["alert_id","assignee"],
+                "title": "AssignUserRequest"
            }
-           ,        "UpdateDataSourcePluginRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+           ,        "CreateAlertRequest": {
+         "properties" : {"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["data_source_id"],
-                "title": "UpdateDataSourcePluginRequest"
+         "required": ["title","project_id"],
+                "title": "CreateAlertRequest"
            }
-           ,        "UpdateDataSourceRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdateAlertRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["data_source_id"],
-                "title": "UpdateDataSourceRequest"
+         "required": ["alert_id"],
+                "title": "UpdateAlertRequest"
            }
-           ,        "LogDataInfo": {
-         "properties" : {"results" : {"type": "array","title": "RESULTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "UpdateAlertStateRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"responder" : {"type": "string","title": "RESPONDER"}},
          "type": "object",
-         "required": ["results","domain_id"],
-                "title": "LogDataInfo"
+         "required": ["alert_id","access_key"],
+                "title": "UpdateAlertStateRequest"
            }
-           ,        "LogRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"keyword" : {"type": "string","title": "KEYWORD"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"type": "object","title": "SORT"},"limit" : {"type": "integer","title": "LIMIT"}},
+           ,        "CreateEventRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"data" : {"type": "object","title": "DATA"}},
          "type": "object",
-         "required": ["data_source_id","resource_id"],
-                "title": "LogRequest"
+         "required": ["webhook_id","access_key","data"],
+                "title": "CreateEventRequest"
+           }
+           ,        "EventInfo": {
+         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"type": "string"},
+               "type": "array","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"raw_data" : {"type": "object","title": "RAW_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"occurred_at" : {"type": "string","title": "OCCURRED_AT"}},
+         "type": "object",
+         "required": ["event_id","event_key","event_type","title","description","severity","rule","image_url","resources","provider","account","additional_info","raw_data","domain_id","workspace_id","project_id","alert_id","webhook_id","created_at","occurred_at"],
+                "title": "EventInfo"
+           }
+           ,        "EventQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"severity" : {"type": "string","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "EventQuery"
+           }
+           ,        "EventStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "EventStatQuery"
+           }
+           ,        "EventsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EventInfo"},
+               "type": "array","$ref": "#/components/schemas/EventInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "EventsInfo"
            }
            ,        "CreateWebhookRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
@@ -2232,37 +2157,155 @@
          "required": ["metrics","available_resources","domain_id"],
                 "title": "MetricsInfo"
            }
-           ,        "CreateEventRequest": {
-         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"data" : {"type": "object","title": "DATA"}},
+           ,        "CreateEscalationPolicyRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["webhook_id","access_key","data"],
-                "title": "CreateEventRequest"
+         "required": ["name","rules","resource_group"],
+                "title": "CreateEscalationPolicyRequest"
            }
-           ,        "EventInfo": {
-         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"type": "string"},
-               "type": "array","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"raw_data" : {"type": "object","title": "RAW_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"occurred_at" : {"type": "string","title": "OCCURRED_AT"}},
+           ,        "EscalationPoliciesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["event_id","event_key","event_type","title","description","severity","rule","image_url","resources","provider","account","additional_info","raw_data","domain_id","workspace_id","project_id","alert_id","webhook_id","created_at","occurred_at"],
-                "title": "EventInfo"
+         "required": ["results","total_count"],
+                "title": "EscalationPoliciesInfo"
            }
-           ,        "EventQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"severity" : {"type": "string","title": "SEVERITY"},"resource" : {"type": "string","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
+           ,        "EscalationPolicyInfo": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"is_default" : {"type": "boolean","title": "IS_DEFAULT"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": [],
-                "title": "EventQuery"
+         "required": ["escalation_policy_id","name","is_default","rules","repeat_count","finish_condition","resource_group","project_id","tags","workspace_id","domain_id","created_at"],
+                "title": "EscalationPolicyInfo"
            }
-           ,        "EventStatQuery": {
+           ,        "EscalationPolicyQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"is_default" : {"type": "boolean","title": "IS_DEFAULT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["resource_group"],
+                "title": "EscalationPolicyQuery"
+           }
+           ,        "EscalationPolicyRequest": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "type": "object",
+         "required": ["escalation_policy_id"],
+                "title": "EscalationPolicyRequest"
+           }
+           ,        "EscalationPolicyRule": {
+         "properties" : {"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"escalate_minutes" : {"type": "integer","title": "ESCALATE_MINUTES"}},
+         "type": "object",
+         "required": ["notification_level","escalate_minutes"],
+                "title": "EscalationPolicyRule"
+           }
+           ,        "EscalationPolicyStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "EventStatQuery"
+                "title": "EscalationPolicyStatQuery"
            }
-           ,        "EventsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EventInfo"},
-               "type": "array","$ref": "#/components/schemas/EventInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "UpdateEscalationPolicyRequest": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["escalation_policy_id"],
+                "title": "UpdateEscalationPolicyRequest"
+           }
+           ,        "CreateNoteRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"}},
+         "type": "object",
+         "required": ["alert_id","note"],
+                "title": "CreateNoteRequest"
+           }
+           ,        "NoteInfo": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["note_id","alert_id","note","created_by","domain_id","workspace_id","project_id","created_at"],
+                "title": "NoteInfo"
+           }
+           ,        "NoteQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "NoteQuery"
+           }
+           ,        "NoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"}},
+         "type": "object",
+         "required": ["note_id"],
+                "title": "NoteRequest"
+           }
+           ,        "NoteStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "NoteStatQuery"
+           }
+           ,        "NotesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
+               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "EventsInfo"
+                "title": "NotesInfo"
+           }
+           ,        "UpdateNoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"}},
+         "type": "object",
+         "required": ["note_id"],
+                "title": "UpdateNoteRequest"
+           }
+           ,        "DataSourceInfo": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["data_source_id","name","state","monitoring_type","provider","capability","plugin_info","tags","domain_id","created_at"],
+                "title": "DataSourceInfo"
+           }
+           ,        "DataSourcePluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","metadata","upgrade_mode","secret_id","provider"],
+                "title": "DataSourcePluginInfo"
+           }
+           ,        "DataSourceQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"}},
+         "type": "object",
+         "required": [],
+                "title": "DataSourceQuery"
+           }
+           ,        "DataSourceRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+         "type": "object",
+         "required": ["data_source_id"],
+                "title": "DataSourceRequest"
+           }
+           ,        "DataSourceStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "DataSourceStatQuery"
+           }
+           ,        "DataSourcesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DataSourceInfo"},
+               "type": "array","$ref": "#/components/schemas/DataSourceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "DataSourcesInfo"
+           }
+           ,        "RegisterDataSourceRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","plugin_info"],
+                "title": "RegisterDataSourceRequest"
+           }
+           ,        "UpdateDataSourcePluginRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["data_source_id"],
+                "title": "UpdateDataSourcePluginRequest"
+           }
+           ,        "UpdateDataSourceRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["data_source_id"],
+                "title": "UpdateDataSourceRequest"
            }
            ,        "AlertOptions": {
          "properties" : {"notification_urgency" : {"type": "string","title": "NOTIFICATION_URGENCY"},"recovery_mode" : {"type": "string","title": "RECOVERY_MODE"}},
@@ -2394,49 +2437,6 @@
          "type": "object",
          "required": ["event_rule_id"],
                 "title": "UpdateEventRuleRequest"
-           }
-           ,        "CreateNoteRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"}},
-         "type": "object",
-         "required": ["alert_id","note"],
-                "title": "CreateNoteRequest"
-           }
-           ,        "NoteInfo": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["note_id","alert_id","note","created_by","domain_id","workspace_id","project_id","created_at"],
-                "title": "NoteInfo"
-           }
-           ,        "NoteQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "NoteQuery"
-           }
-           ,        "NoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"}},
-         "type": "object",
-         "required": ["note_id"],
-                "title": "NoteRequest"
-           }
-           ,        "NoteStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "NoteStatQuery"
-           }
-           ,        "NotesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
-               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "NotesInfo"
-           }
-           ,        "UpdateNoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"}},
-         "type": "object",
-         "required": ["note_id"],
-                "title": "UpdateNoteRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

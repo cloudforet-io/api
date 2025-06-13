@@ -145,306 +145,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/create": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new ProjectChannel. ProjectChannel is a channel that delivers a Notification to the Project when the Notification is created. When creating a ProjectChannel, one Protocol must be selected, and a Notification is dispatched via the selected Protocol.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in project channel.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |project_id|The ID of project to which the project channel belongs.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n |tags|The tags for project channel. |Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"name\": \"sms-test\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"is_subscribe\": true,\n   \"subscriptions\": [\"monitoring.Alert\"],\n   \"notification_level\": \"LV1\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"TUE\",\n           \"WED\",\n           \"THU\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   },\n   \"project_id\": \"project-52a423012d5e\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/update": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific ProjectChannel. A ProjectChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a ProjectChannel can be updated.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters. |string||\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB. |Struct||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |tags|The tags for project channel. |Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms2-test\",\n   \"data\": {\n       \"phone_number\": \"01033334444\"\n   },\n   \"notification_level\": \"LV2\",\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/set-schedule": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Set Schedule",
-         "operationId" : "",
-         "description": "### Description \nSets a schedule for a ProjectChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a ProjectChannel, Notifications will be dispatched at all times via the ProjectChannel.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"WED\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/set-subscription": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Set Subscription",
-         "operationId" : "",
-         "description": "### Description \nSets a subscription for a ProjectChannel. A subscription is a topic for channels to subscribe to and get notified about. If a ProjectChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a ProjectChannel, all Notifications will be dispatched.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-cff007433a23\",\n   \"is_subscribe\": true,\n   \"subscriptions\": [\n       \"monitoring.Alert\"\n   ]\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/enable": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \nEnables a specific ProjectChannel. If a ProjectChannel is enabled, the ProjectChannel can be used and the Notification can be dispatched. Even if a ProjectChannel is enabled, if the Protocol used in the ProjectChannel is disabled, the Notification is not dispatched.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/disable": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \nDisables a specific ProjectChannel. If a ProjectChannel is disabled, the Notification is not dispatched, even if it is created.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/delete": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific ProjectChannel.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/get": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific ProjectChannel. Prints detailed information about the ProjectChannel.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/list": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"project_id" : {"type": "string","title": "PROJECT_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"state\",\n               \"value\": \"ENABLED\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProjectChannelsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProjectChannelsInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"project_channel_id\": \"project-ch-473efcfde4b1\",\n           \"name\": \"Email Groups\",\n           \"state\": \"ENABLED\",\n           \"data\": {\n               \"email\": \"sykim1@cloudforet.io, sykim2@cloudforet.io\"\n           },\n           \"notification_level\": \"LV1\",\n           \"tags\": {},\n           \"protocol_id\": \"protocol-e000a677ebdb\",\n           \"project_id\": \"project-28cf4f2e6645\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-04-18T01:22:01.182Z\"\n       },\n       {\n           \"project_channel_id\": \"project-ch-98845ba0f975\",\n           \"name\": \"Song Email\",\n           \"state\": \"ENABLED\",\n           \"data\": {\n               \"email\": \"sykim@mz.co.kr\"\n           },\n           \"notification_level\": \"LV1\",\n           \"tags\": {},\n           \"protocol_id\": \"protocol-e000a677ebdb\",\n           \"project_id\": \"project-28cf4f2e6645\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-04-18T01:17:40.741Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/project-channel/stat": {
-       "post": {
-         "tags": ["notification > project-channel"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/notification/user-channel/create": {
        "post": {
          "tags": ["notification > user-channel"],
@@ -1014,6 +714,306 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/create": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new ProjectChannel. ProjectChannel is a channel that delivers a Notification to the Project when the Notification is created. When creating a ProjectChannel, one Protocol must be selected, and a Notification is dispatched via the selected Protocol.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in project channel.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |project_id|The ID of project to which the project channel belongs.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n |tags|The tags for project channel. |Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"name\": \"sms-test\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"is_subscribe\": true,\n   \"subscriptions\": [\"monitoring.Alert\"],\n   \"notification_level\": \"LV1\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"TUE\",\n           \"WED\",\n           \"THU\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   },\n   \"project_id\": \"project-52a423012d5e\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/update": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific ProjectChannel. A ProjectChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a ProjectChannel can be updated.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters. |string||\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB. |Struct||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |tags|The tags for project channel. |Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms2-test\",\n   \"data\": {\n       \"phone_number\": \"01033334444\"\n   },\n   \"notification_level\": \"LV2\",\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/set-schedule": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Set Schedule",
+         "operationId" : "",
+         "description": "### Description \nSets a schedule for a ProjectChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a ProjectChannel, Notifications will be dispatched at all times via the ProjectChannel.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"WED\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/set-subscription": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Set Subscription",
+         "operationId" : "",
+         "description": "### Description \nSets a subscription for a ProjectChannel. A subscription is a topic for channels to subscribe to and get notified about. If a ProjectChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a ProjectChannel, all Notifications will be dispatched.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-cff007433a23\",\n   \"is_subscribe\": true,\n   \"subscriptions\": [\n       \"monitoring.Alert\"\n   ]\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/enable": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \nEnables a specific ProjectChannel. If a ProjectChannel is enabled, the ProjectChannel can be used and the Notification can be dispatched. Even if a ProjectChannel is enabled, if the Protocol used in the ProjectChannel is disabled, the Notification is not dispatched.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/disable": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \nDisables a specific ProjectChannel. If a ProjectChannel is disabled, the Notification is not dispatched, even if it is created.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/delete": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific ProjectChannel.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/get": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific ProjectChannel. Prints detailed information about the ProjectChannel.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/list": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"project_id" : {"type": "string","title": "PROJECT_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"state\",\n               \"value\": \"ENABLED\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProjectChannelsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProjectChannelsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"project_channel_id\": \"project-ch-473efcfde4b1\",\n           \"name\": \"Email Groups\",\n           \"state\": \"ENABLED\",\n           \"data\": {\n               \"email\": \"sykim1@cloudforet.io, sykim2@cloudforet.io\"\n           },\n           \"notification_level\": \"LV1\",\n           \"tags\": {},\n           \"protocol_id\": \"protocol-e000a677ebdb\",\n           \"project_id\": \"project-28cf4f2e6645\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-04-18T01:22:01.182Z\"\n       },\n       {\n           \"project_channel_id\": \"project-ch-98845ba0f975\",\n           \"name\": \"Song Email\",\n           \"state\": \"ENABLED\",\n           \"data\": {\n               \"email\": \"sykim@mz.co.kr\"\n           },\n           \"notification_level\": \"LV1\",\n           \"tags\": {},\n           \"protocol_id\": \"protocol-e000a677ebdb\",\n           \"project_id\": \"project-28cf4f2e6645\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-04-18T01:17:40.741Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/project-channel/stat": {
+       "post": {
+         "tags": ["notification > project-channel"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -1073,6 +1073,38 @@
          "type": "object",
          "required": ["version"],
                 "title": "VersionInfo"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -1243,103 +1275,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
-           }
-           ,        "CreateProjectChannelRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["protocol_id","name","data","project_id"],
-                "title": "CreateProjectChannelRequest"
-           }
-           ,        "ProjectChannelInfo": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["project_channel_id","name","state","data","is_subscribe","subscriptions","is_scheduled","schedule","notification_level","tags","domain_id","workspace_id","project_id","protocol_id","secret_id","created_at"],
-                "title": "ProjectChannelInfo"
-           }
-           ,        "ProjectChannelQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "ProjectChannelQuery"
-           }
-           ,        "ProjectChannelRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"}},
-         "type": "object",
-         "required": ["project_channel_id"],
-                "title": "ProjectChannelRequest"
-           }
-           ,        "ProjectChannelSchedule": {
-         "properties" : {"day_of_week" : {"items": {"type": "string"},
-               "type": "array","title": "DAY_OF_WEEK"},"start_hour" : {"type": "integer","title": "START_HOUR"},"end_hour" : {"type": "integer","title": "END_HOUR"}},
-         "type": "object",
-         "required": ["day_of_week","start_hour","end_hour"],
-                "title": "ProjectChannelSchedule"
-           }
-           ,        "ProjectChannelStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "ProjectChannelStatQuery"
-           }
-           ,        "ProjectChannelsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectChannelInfo"},
-               "type": "array","$ref": "#/components/schemas/ProjectChannelInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "ProjectChannelsInfo"
-           }
-           ,        "UpdateProjectChannelRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["project_channel_id","domain_id"],
-                "title": "UpdateProjectChannelRequest"
-           }
-           ,        "UpdateProjectChannelScheduleRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"}},
-         "type": "object",
-         "required": ["project_channel_id","is_scheduled"],
-                "title": "UpdateProjectChannelScheduleRequest"
-           }
-           ,        "UpdateProjectChannelSubscriptionRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"}},
-         "type": "object",
-         "required": ["project_channel_id","is_subscribe"],
-                "title": "UpdateProjectChannelSubscriptionRequest"
-           }
            ,        "CreateUserChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
                "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
@@ -1465,6 +1400,71 @@
          "type": "object",
          "required": ["protocol_id"],
                 "title": "UpdateProtocolRequest"
+           }
+           ,        "CreateProjectChannelRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
+               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["protocol_id","name","data","project_id"],
+                "title": "CreateProjectChannelRequest"
+           }
+           ,        "ProjectChannelInfo": {
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
+               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["project_channel_id","name","state","data","is_subscribe","subscriptions","is_scheduled","schedule","notification_level","tags","domain_id","workspace_id","project_id","protocol_id","secret_id","created_at"],
+                "title": "ProjectChannelInfo"
+           }
+           ,        "ProjectChannelQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "ProjectChannelQuery"
+           }
+           ,        "ProjectChannelRequest": {
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"}},
+         "type": "object",
+         "required": ["project_channel_id"],
+                "title": "ProjectChannelRequest"
+           }
+           ,        "ProjectChannelSchedule": {
+         "properties" : {"day_of_week" : {"items": {"type": "string"},
+               "type": "array","title": "DAY_OF_WEEK"},"start_hour" : {"type": "integer","title": "START_HOUR"},"end_hour" : {"type": "integer","title": "END_HOUR"}},
+         "type": "object",
+         "required": ["day_of_week","start_hour","end_hour"],
+                "title": "ProjectChannelSchedule"
+           }
+           ,        "ProjectChannelStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ProjectChannelStatQuery"
+           }
+           ,        "ProjectChannelsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectChannelInfo"},
+               "type": "array","$ref": "#/components/schemas/ProjectChannelInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ProjectChannelsInfo"
+           }
+           ,        "UpdateProjectChannelRequest": {
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["project_channel_id","domain_id"],
+                "title": "UpdateProjectChannelRequest"
+           }
+           ,        "UpdateProjectChannelScheduleRequest": {
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"}},
+         "type": "object",
+         "required": ["project_channel_id","is_scheduled"],
+                "title": "UpdateProjectChannelScheduleRequest"
+           }
+           ,        "UpdateProjectChannelSubscriptionRequest": {
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
+               "type": "array","title": "SUBSCRIPTIONS"}},
+         "type": "object",
+         "required": ["project_channel_id","is_subscribe"],
+                "title": "UpdateProjectChannelSubscriptionRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
