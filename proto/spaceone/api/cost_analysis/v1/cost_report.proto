@@ -48,6 +48,13 @@ service CostReport {
   }
 }
 
+enum Status {
+  NONE = 0;
+  IN_PROGRESS = 1;
+  ADJUSTING = 2;
+  DONE = 3;
+  EXPIRED = 4;
+}
 
 message CostReportRequest {
   // The ID of cost report in the Protocol.
@@ -60,12 +67,6 @@ message GetUrlCostReportRequest {
 }
 
 message CostReportQuery {
-  enum Status {
-    NONE = 0;
-    IN_PROGRESS = 1;
-    ADJUSTING = 2;
-    DONE = 3;
-  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
@@ -84,12 +85,6 @@ message CostReportQuery {
 
 
 message CostReportInfo {
-  enum Status {
-    NONE = 0;
-    IN_PROGRESS = 1;
-    ADJUSTING = 2;
-    DONE = 3;
-  }
   string cost_report_id = 1;
   google.protobuf.Struct cost = 2;
   Status status = 3;
