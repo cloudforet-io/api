@@ -271,10 +271,14 @@ type CostReportDataInfo struct {
 	IsAdjusted               bool                   `protobuf:"varint,8,opt,name=is_adjusted,json=isAdjusted,proto3" json:"is_adjusted,omitempty"`
 	Provider                 string                 `protobuf:"bytes,9,opt,name=provider,proto3" json:"provider,omitempty"`
 	Product                  string                 `protobuf:"bytes,10,opt,name=product,proto3" json:"product,omitempty"`
-	ServiceAccountName       string                 `protobuf:"bytes,11,opt,name=service_account_name,json=serviceAccountName,proto3" json:"service_account_name,omitempty"`
-	DataSourceName           string                 `protobuf:"bytes,12,opt,name=data_source_name,json=dataSourceName,proto3" json:"data_source_name,omitempty"`
-	ProjectName              string                 `protobuf:"bytes,13,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	WorkspaceName            string                 `protobuf:"bytes,14,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
+	RegionCode               string                 `protobuf:"bytes,11,opt,name=region_code,json=regionCode,proto3" json:"region_code,omitempty"`
+	RegionKey                string                 `protobuf:"bytes,12,opt,name=region_key,json=regionKey,proto3" json:"region_key,omitempty"`
+	UsageType                string                 `protobuf:"bytes,13,opt,name=usage_type,json=usageType,proto3" json:"usage_type,omitempty"`
+	UsageUnit                string                 `protobuf:"bytes,14,opt,name=usage_unit,json=usageUnit,proto3" json:"usage_unit,omitempty"`
+	ServiceAccountName       string                 `protobuf:"bytes,15,opt,name=service_account_name,json=serviceAccountName,proto3" json:"service_account_name,omitempty"`
+	DataSourceName           string                 `protobuf:"bytes,16,opt,name=data_source_name,json=dataSourceName,proto3" json:"data_source_name,omitempty"`
+	ProjectName              string                 `protobuf:"bytes,17,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	WorkspaceName            string                 `protobuf:"bytes,18,opt,name=workspace_name,json=workspaceName,proto3" json:"workspace_name,omitempty"`
 	DomainId                 string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	WorkspaceId              string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	ProjectId                string                 `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
@@ -384,6 +388,34 @@ func (x *CostReportDataInfo) GetProvider() string {
 func (x *CostReportDataInfo) GetProduct() string {
 	if x != nil {
 		return x.Product
+	}
+	return ""
+}
+
+func (x *CostReportDataInfo) GetRegionCode() string {
+	if x != nil {
+		return x.RegionCode
+	}
+	return ""
+}
+
+func (x *CostReportDataInfo) GetRegionKey() string {
+	if x != nil {
+		return x.RegionKey
+	}
+	return ""
+}
+
+func (x *CostReportDataInfo) GetUsageType() string {
+	if x != nil {
+		return x.UsageType
+	}
+	return ""
+}
+
+func (x *CostReportDataInfo) GetUsageUnit() string {
+	if x != nil {
+		return x.UsageUnit
 	}
 	return ""
 }
@@ -618,7 +650,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_data_proto_rawDesc = "" +
 	"project_id\x18\x16 \x01(\tR\tprojectId\x121\n" +
 	"\x15cost_report_config_id\x18\x17 \x01(\tR\x12costReportConfigId\x12$\n" +
 	"\x0ecost_report_id\x18\x18 \x01(\tR\fcostReportId\x12$\n" +
-	"\x0edata_source_id\x18\x19 \x01(\tR\fdataSourceId\"\x87\a\n" +
+	"\x0edata_source_id\x18\x19 \x01(\tR\fdataSourceId\"\x85\b\n" +
 	"\x12CostReportDataInfo\x12-\n" +
 	"\x13cost_report_data_id\x18\x01 \x01(\tR\x10costReportDataId\x12+\n" +
 	"\x04cost\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x04cost\x12(\n" +
@@ -633,11 +665,19 @@ const file_spaceone_api_cost_analysis_v1_cost_report_data_proto_rawDesc = "" +
 	"isAdjusted\x12\x1a\n" +
 	"\bprovider\x18\t \x01(\tR\bprovider\x12\x18\n" +
 	"\aproduct\x18\n" +
-	" \x01(\tR\aproduct\x120\n" +
-	"\x14service_account_name\x18\v \x01(\tR\x12serviceAccountName\x12(\n" +
-	"\x10data_source_name\x18\f \x01(\tR\x0edataSourceName\x12!\n" +
-	"\fproject_name\x18\r \x01(\tR\vprojectName\x12%\n" +
-	"\x0eworkspace_name\x18\x0e \x01(\tR\rworkspaceName\x12\x1b\n" +
+	" \x01(\tR\aproduct\x12\x1f\n" +
+	"\vregion_code\x18\v \x01(\tR\n" +
+	"regionCode\x12\x1d\n" +
+	"\n" +
+	"region_key\x18\f \x01(\tR\tregionKey\x12\x1d\n" +
+	"\n" +
+	"usage_type\x18\r \x01(\tR\tusageType\x12\x1d\n" +
+	"\n" +
+	"usage_unit\x18\x0e \x01(\tR\tusageUnit\x120\n" +
+	"\x14service_account_name\x18\x0f \x01(\tR\x12serviceAccountName\x12(\n" +
+	"\x10data_source_name\x18\x10 \x01(\tR\x0edataSourceName\x12!\n" +
+	"\fproject_name\x18\x11 \x01(\tR\vprojectName\x12%\n" +
+	"\x0eworkspace_name\x18\x12 \x01(\tR\rworkspaceName\x12\x1b\n" +
 	"\tdomain_id\x18\x15 \x01(\tR\bdomainId\x12!\n" +
 	"\fworkspace_id\x18\x16 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
