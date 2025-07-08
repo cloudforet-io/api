@@ -20,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	CostReportConfig_GenerateReport_FullMethodName   = "/spaceone.api.cost_analysis.v1.CostReportConfig/generate_report"
 	CostReportConfig_Create_FullMethodName           = "/spaceone.api.cost_analysis.v1.CostReportConfig/create"
 	CostReportConfig_Update_FullMethodName           = "/spaceone.api.cost_analysis.v1.CostReportConfig/update"
 	CostReportConfig_UpdateRecipients_FullMethodName = "/spaceone.api.cost_analysis.v1.CostReportConfig/update_recipients"
@@ -36,6 +37,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CostReportConfigClient interface {
+	GenerateReport(ctx context.Context, in *GenerateReportCostReportConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Create(ctx context.Context, in *CreateCostReportConfigRequest, opts ...grpc.CallOption) (*CostReportConfigInfo, error)
 	Update(ctx context.Context, in *UpdateCostReportConfigRequest, opts ...grpc.CallOption) (*CostReportConfigInfo, error)
 	UpdateRecipients(ctx context.Context, in *UpdateCostReportConfigRecipientsRequest, opts ...grpc.CallOption) (*CostReportConfigInfo, error)
@@ -54,6 +56,16 @@ type costReportConfigClient struct {
 
 func NewCostReportConfigClient(cc grpc.ClientConnInterface) CostReportConfigClient {
 	return &costReportConfigClient{cc}
+}
+
+func (c *costReportConfigClient) GenerateReport(ctx context.Context, in *GenerateReportCostReportConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, CostReportConfig_GenerateReport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *costReportConfigClient) Create(ctx context.Context, in *CreateCostReportConfigRequest, opts ...grpc.CallOption) (*CostReportConfigInfo, error) {
@@ -160,6 +172,7 @@ func (c *costReportConfigClient) Stat(ctx context.Context, in *CostReportConfigS
 // All implementations must embed UnimplementedCostReportConfigServer
 // for forward compatibility.
 type CostReportConfigServer interface {
+	GenerateReport(context.Context, *GenerateReportCostReportConfigRequest) (*empty.Empty, error)
 	Create(context.Context, *CreateCostReportConfigRequest) (*CostReportConfigInfo, error)
 	Update(context.Context, *UpdateCostReportConfigRequest) (*CostReportConfigInfo, error)
 	UpdateRecipients(context.Context, *UpdateCostReportConfigRecipientsRequest) (*CostReportConfigInfo, error)
@@ -180,6 +193,9 @@ type CostReportConfigServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCostReportConfigServer struct{}
 
+func (UnimplementedCostReportConfigServer) GenerateReport(context.Context, *GenerateReportCostReportConfigRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateReport not implemented")
+}
 func (UnimplementedCostReportConfigServer) Create(context.Context, *CreateCostReportConfigRequest) (*CostReportConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
@@ -229,6 +245,24 @@ func RegisterCostReportConfigServer(s grpc.ServiceRegistrar, srv CostReportConfi
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&CostReportConfig_ServiceDesc, srv)
+}
+
+func _CostReportConfig_GenerateReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateReportCostReportConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CostReportConfigServer).GenerateReport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CostReportConfig_GenerateReport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CostReportConfigServer).GenerateReport(ctx, req.(*GenerateReportCostReportConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CostReportConfig_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -418,6 +452,10 @@ var CostReportConfig_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "spaceone.api.cost_analysis.v1.CostReportConfig",
 	HandlerType: (*CostReportConfigServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "generate_report",
+			Handler:    _CostReportConfig_GenerateReport_Handler,
+		},
 		{
 			MethodName: "create",
 			Handler:    _CostReportConfig_Create_Handler,

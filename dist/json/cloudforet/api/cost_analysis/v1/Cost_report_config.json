@@ -599,6 +599,42 @@
           ]
         },
         {
+          "name": "GenerateReportCostReportConfigRequest",
+          "longName": "GenerateReportCostReportConfigRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.GenerateReportCostReportConfigRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cost_report_config_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "report_month",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateCostReportConfigRecipientsRequest",
           "longName": "UpdateCostReportConfigRecipientsRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateCostReportConfigRecipientsRequest",
@@ -738,6 +774,29 @@
           "fullName": "spaceone.api.cost_analysis.v1.CostReportConfig",
           "description": "",
           "methods": [
+            {
+              "name": "generate_report",
+              "description": "",
+              "requestType": "GenerateReportCostReportConfigRequest",
+              "requestLongType": "GenerateReportCostReportConfigRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.GenerateReportCostReportConfigRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/cost-report-config/generate_report",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
             {
               "name": "create",
               "description": "",

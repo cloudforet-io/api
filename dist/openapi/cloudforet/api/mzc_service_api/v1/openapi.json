@@ -8,7 +8,175 @@
      "title": "Mzc Service Api API",
      "version": "3.1.0"
    },
-   "paths":{"/mzc-service-api/organization/create": {
+   "paths":{"/mzc-service-api/contract/create": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |org_id||string|True|\n |offering_id||string|True|\n |start_date||string|True|\n |end_date||string|True|\n |name||string||\n |description||string||\n |signed_date||string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"org_id" : {"type": "string","title": "ORG_ID" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"start_date" : {"type": "string","title": "START_DATE" },"end_date" : {"type": "string","title": "END_DATE" },"signed_date" : {"type": "string","title": "SIGNED_DATE" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/contract/update": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n |name||string||\n |description||string||\n |start_date||string||\n |end_date||string||\n |signed_date||string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"start_date" : {"type": "string","title": "START_DATE" },"end_date" : {"type": "string","title": "END_DATE" },"signed_date" : {"type": "string","title": "SIGNED_DATE" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/contract/terminate": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "Terminate",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/contract/get": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/contract/list": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |contract_id||string||\n |org_id||string||\n |offering_id||string||\n |status|ACTIVE, TERMINATED, EXPIRED |string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"contract_id" : {"type": "string","title": "CONTRACT_ID" },"org_id" : {"type": "string","title": "ORG_ID" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"status" : {"type": "string","title": "STATUS" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ContractsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ContractsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/contract/stat": {
+       "post": {
+         "tags": ["mzc-service-api > contract"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/mzc-service-api/organization/create": {
        "post": {
          "tags": ["mzc-service-api > organization"],
          "summary": "Create",
@@ -234,174 +402,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/create": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |org_id||string|True|\n |offering_id||string|True|\n |start_date||string|True|\n |end_date||string|True|\n |name||string||\n |description||string||\n |signed_date||string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"org_id" : {"type": "string","title": "ORG_ID" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"start_date" : {"type": "string","title": "START_DATE" },"end_date" : {"type": "string","title": "END_DATE" },"signed_date" : {"type": "string","title": "SIGNED_DATE" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/update": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n |name||string||\n |description||string||\n |start_date||string||\n |end_date||string||\n |signed_date||string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"start_date" : {"type": "string","title": "START_DATE" },"end_date" : {"type": "string","title": "END_DATE" },"signed_date" : {"type": "string","title": "SIGNED_DATE" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/terminate": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "Terminate",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/get": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |contract_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"contract_id" : {"type": "string","title": "CONTRACT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ContractInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ContractInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/list": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |contract_id||string||\n |org_id||string||\n |offering_id||string||\n |status|ACTIVE, TERMINATED, EXPIRED |string||\n |renewal_type|AUTO, MANUAL, NOT_RENEW |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"contract_id" : {"type": "string","title": "CONTRACT_ID" },"org_id" : {"type": "string","title": "ORG_ID" },"offering_id" : {"type": "string","title": "OFFERING_ID" },"status" : {"type": "string","title": "STATUS" },"renewal_type" : {"type": "string","title": "RENEWAL_TYPE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ContractsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ContractsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/mzc-service-api/contract/stat": {
-       "post": {
-         "tags": ["mzc-service-api > contract"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/mzc-service-api/offering/create": {
        "post": {
          "tags": ["mzc-service-api > offering"],
@@ -574,54 +574,48 @@
    },
    "components":{
      "schemas": {
-     "OrganizationCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"}},
+     "ContractCreateRequest": {
+         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name"],
-                "title": "OrganizationCreateRequest"
+         "required": ["org_id","offering_id","start_date","end_date"],
+                "title": "ContractCreateRequest"
            }
-           ,        "OrganizationInfo": {
-         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "ContractInfo": {
+         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"},"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["org_id","name","state","description","industry","registration_number","country","address","contact_person","contact_email","contact_phone","tags","domain_id","created_at","updated_at"],
-                "title": "OrganizationInfo"
+         "required": ["contract_id","org_id","offering_id","name","status","description","start_date","end_date","signed_date","renewal_type","tags","domain_id","created_at","updated_at"],
+                "title": "ContractInfo"
            }
-           ,        "OrganizationRequest": {
-         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"}},
+           ,        "ContractRequest": {
+         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"}},
          "type": "object",
-         "required": ["org_id"],
-                "title": "OrganizationRequest"
+         "required": ["contract_id"],
+                "title": "ContractRequest"
            }
-           ,        "OrganizationSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
+           ,        "ContractSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"contract_id" : {"type": "string","title": "CONTRACT_ID"},"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"status" : {"type": "string","title": "STATUS"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"}},
          "type": "object",
          "required": [],
-                "title": "OrganizationSearchQuery"
+                "title": "ContractSearchQuery"
            }
-           ,        "OrganizationStatQuery": {
+           ,        "ContractStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "OrganizationStatQuery"
+                "title": "ContractStatQuery"
            }
-           ,        "OrganizationUpdateRequest": {
-         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "ContractUpdateRequest": {
+         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["org_id","name"],
-                "title": "OrganizationUpdateRequest"
+         "required": ["contract_id"],
+                "title": "ContractUpdateRequest"
            }
-           ,        "OrganizationsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/OrganizationInfo"},
-               "type": "array","$ref": "#/components/schemas/OrganizationInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "ContractsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ContractInfo"},
+               "type": "array","$ref": "#/components/schemas/ContractInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "OrganizationsInfo"
-           }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+                "title": "ContractsInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -654,6 +648,12 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -824,48 +824,48 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "ContractCreateRequest": {
-         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "OrganizationCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["org_id","offering_id","start_date","end_date"],
-                "title": "ContractCreateRequest"
+         "required": ["name"],
+                "title": "OrganizationCreateRequest"
            }
-           ,        "ContractInfo": {
-         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"},"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "OrganizationInfo": {
+         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["contract_id","org_id","offering_id","name","status","description","start_date","end_date","signed_date","renewal_type","tags","domain_id","created_at","updated_at"],
-                "title": "ContractInfo"
+         "required": ["org_id","name","state","description","industry","registration_number","country","address","contact_person","contact_email","contact_phone","tags","domain_id","created_at","updated_at"],
+                "title": "OrganizationInfo"
            }
-           ,        "ContractRequest": {
-         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"}},
+           ,        "OrganizationRequest": {
+         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"}},
          "type": "object",
-         "required": ["contract_id"],
-                "title": "ContractRequest"
+         "required": ["org_id"],
+                "title": "OrganizationRequest"
            }
-           ,        "ContractSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"contract_id" : {"type": "string","title": "CONTRACT_ID"},"org_id" : {"type": "string","title": "ORG_ID"},"offering_id" : {"type": "string","title": "OFFERING_ID"},"status" : {"type": "string","title": "STATUS"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"}},
+           ,        "OrganizationSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
          "type": "object",
          "required": [],
-                "title": "ContractSearchQuery"
+                "title": "OrganizationSearchQuery"
            }
-           ,        "ContractStatQuery": {
+           ,        "OrganizationStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "ContractStatQuery"
+                "title": "OrganizationStatQuery"
            }
-           ,        "ContractUpdateRequest": {
-         "properties" : {"contract_id" : {"type": "string","title": "CONTRACT_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"start_date" : {"type": "string","title": "START_DATE"},"end_date" : {"type": "string","title": "END_DATE"},"signed_date" : {"type": "string","title": "SIGNED_DATE"},"renewal_type" : {"type": "string","title": "RENEWAL_TYPE"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "OrganizationUpdateRequest": {
+         "properties" : {"org_id" : {"type": "string","title": "ORG_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"industry" : {"type": "string","title": "INDUSTRY"},"registration_number" : {"type": "string","title": "REGISTRATION_NUMBER"},"country" : {"type": "string","title": "COUNTRY"},"address" : {"type": "string","title": "ADDRESS"},"contact_person" : {"type": "string","title": "CONTACT_PERSON"},"contact_email" : {"type": "string","title": "CONTACT_EMAIL"},"contact_phone" : {"type": "string","title": "CONTACT_PHONE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["contract_id"],
-                "title": "ContractUpdateRequest"
+         "required": ["org_id","name"],
+                "title": "OrganizationUpdateRequest"
            }
-           ,        "ContractsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ContractInfo"},
-               "type": "array","$ref": "#/components/schemas/ContractInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "OrganizationsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/OrganizationInfo"},
+               "type": "array","$ref": "#/components/schemas/OrganizationInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ContractsInfo"
+                "title": "OrganizationsInfo"
            }
            ,        "OfferingCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"price" : {"type": "float","title": "PRICE"},"currency" : {"type": "string","title": "CURRENCY"},"description" : {"type": "string","title": "DESCRIPTION"},"terms" : {"type": "string","title": "TERMS"},"website_url" : {"type": "string","title": "WEBSITE_URL"},"tags" : {"type": "object","title": "TAGS"}},

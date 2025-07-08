@@ -44,6 +44,9 @@ func request_Log_List_0(ctx context.Context, marshaler runtime.Marshaler, client
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	stream, err := client.List(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err

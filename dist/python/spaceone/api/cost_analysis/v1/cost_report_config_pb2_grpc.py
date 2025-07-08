@@ -40,6 +40,11 @@ class CostReportConfigStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.generate_report = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.CostReportConfig/generate_report',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__config__pb2.GenerateReportCostReportConfigRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.create = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReportConfig/create',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__config__pb2.CreateCostReportConfigRequest.SerializeToString,
@@ -94,6 +99,12 @@ class CostReportConfigStub(object):
 
 class CostReportConfigServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def generate_report(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def create(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -158,6 +169,11 @@ class CostReportConfigServicer(object):
 
 def add_CostReportConfigServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'generate_report': grpc.unary_unary_rpc_method_handler(
+                    servicer.generate_report,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__config__pb2.GenerateReportCostReportConfigRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__config__pb2.CreateCostReportConfigRequest.FromString,
@@ -218,6 +234,33 @@ def add_CostReportConfigServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class CostReportConfig(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def generate_report(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.CostReportConfig/generate_report',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__config__pb2.GenerateReportCostReportConfigRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def create(request,
