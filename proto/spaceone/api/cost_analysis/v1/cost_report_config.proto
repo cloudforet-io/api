@@ -11,6 +11,13 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/cost_analysis/v1/job.proto";
 
 service CostReportConfig {
+  rpc generate_report (GenerateReportCostReportConfigRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report-config/generate_report",
+      body: "*"
+    };
+  }
+
   rpc create (CreateCostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/cost-report-config/create",
@@ -85,6 +92,11 @@ service CostReportConfig {
 message AdjustmentOptions {
   bool enabled = 1;
   int32 period = 2;
+}
+
+message GenerateReportCostReportConfigRequest {
+  string cost_report_config_id = 1;
+  string report_month = 2;
 }
 
 message CreateCostReportConfigRequest {
