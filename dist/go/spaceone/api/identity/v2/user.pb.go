@@ -81,15 +81,18 @@ type UserRequiredAction int32
 
 const (
 	UserRequiredAction_UPDATE_PASSWORD UserRequiredAction = 0
+	UserRequiredAction_ENFORCE_MFA     UserRequiredAction = 1
 )
 
 // Enum value maps for UserRequiredAction.
 var (
 	UserRequiredAction_name = map[int32]string{
 		0: "UPDATE_PASSWORD",
+		1: "ENFORCE_MFA",
 	}
 	UserRequiredAction_value = map[string]int32{
 		"UPDATE_PASSWORD": 0,
+		"ENFORCE_MFA":     1,
 	}
 )
 
@@ -413,8 +416,12 @@ type CreateUserRequest struct {
 	Tags *_struct.Struct `protobuf:"bytes,8,opt,name=tags,proto3" json:"tags,omitempty"`
 	// If reset_password is true, send email
 	ResetPassword bool `protobuf:"varint,9,opt,name=reset_password,json=resetPassword,proto3" json:"reset_password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// +optional
+	Mfa *MFA `protobuf:"bytes,10,opt,name=mfa,proto3" json:"mfa,omitempty"`
+	// +optional
+	RequiredActions []UserRequiredAction `protobuf:"varint,11,rep,packed,name=required_actions,json=requiredActions,proto3,enum=spaceone.api.identity.v2.UserRequiredAction" json:"required_actions,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreateUserRequest) Reset() {
@@ -510,6 +517,20 @@ func (x *CreateUserRequest) GetResetPassword() bool {
 	return false
 }
 
+func (x *CreateUserRequest) GetMfa() *MFA {
+	if x != nil {
+		return x.Mfa
+	}
+	return nil
+}
+
+func (x *CreateUserRequest) GetRequiredActions() []UserRequiredAction {
+	if x != nil {
+		return x.RequiredActions
+	}
+	return nil
+}
+
 //	{
 //	 "user_id": "wonny@cloudforet.io",
 //	 "password": "Password1234!!",
@@ -537,8 +558,12 @@ type UpdateUserRequest struct {
 	Tags *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
 	// +optional
 	ResetPassword bool `protobuf:"varint,8,opt,name=reset_password,json=resetPassword,proto3" json:"reset_password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// +optional
+	Mfa *MFA `protobuf:"bytes,9,opt,name=mfa,proto3" json:"mfa,omitempty"`
+	// +optional
+	RequiredActions []UserRequiredAction `protobuf:"varint,10,rep,packed,name=required_actions,json=requiredActions,proto3,enum=spaceone.api.identity.v2.UserRequiredAction" json:"required_actions,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *UpdateUserRequest) Reset() {
@@ -625,6 +650,20 @@ func (x *UpdateUserRequest) GetResetPassword() bool {
 		return x.ResetPassword
 	}
 	return false
+}
+
+func (x *UpdateUserRequest) GetMfa() *MFA {
+	if x != nil {
+		return x.Mfa
+	}
+	return nil
+}
+
+func (x *UpdateUserRequest) GetRequiredActions() []UserRequiredAction {
+	if x != nil {
+		return x.RequiredActions
+	}
+	return nil
 }
 
 //	{
@@ -1313,7 +1352,7 @@ const file_spaceone_api_identity_v2_user_proto_rawDesc = "" +
 	"\x05State\x12\b\n" +
 	"\x04NONE\x10\x00\x12\v\n" +
 	"\aENABLED\x10\x01\x12\f\n" +
-	"\bDISABLED\x10\x02\"\xbf\x02\n" +
+	"\bDISABLED\x10\x02\"\xc9\x03\n" +
 	"\x11CreateUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x12\n" +
@@ -1323,7 +1362,10 @@ const file_spaceone_api_identity_v2_user_proto_rawDesc = "" +
 	"\blanguage\x18\x06 \x01(\tR\blanguage\x12\x1a\n" +
 	"\btimezone\x18\a \x01(\tR\btimezone\x12+\n" +
 	"\x04tags\x18\b \x01(\v2\x17.google.protobuf.StructR\x04tags\x12%\n" +
-	"\x0ereset_password\x18\t \x01(\bR\rresetPassword\"\xfe\x01\n" +
+	"\x0ereset_password\x18\t \x01(\bR\rresetPassword\x12/\n" +
+	"\x03mfa\x18\n" +
+	" \x01(\v2\x1d.spaceone.api.identity.v2.MFAR\x03mfa\x12W\n" +
+	"\x10required_actions\x18\v \x03(\x0e2,.spaceone.api.identity.v2.UserRequiredActionR\x0frequiredActions\"\x88\x03\n" +
 	"\x11UpdateUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x12\n" +
@@ -1332,7 +1374,10 @@ const file_spaceone_api_identity_v2_user_proto_rawDesc = "" +
 	"\blanguage\x18\x05 \x01(\tR\blanguage\x12\x1a\n" +
 	"\btimezone\x18\x06 \x01(\tR\btimezone\x12+\n" +
 	"\x04tags\x18\a \x01(\v2\x17.google.protobuf.StructR\x04tags\x12%\n" +
-	"\x0ereset_password\x18\b \x01(\bR\rresetPassword\"G\n" +
+	"\x0ereset_password\x18\b \x01(\bR\rresetPassword\x12/\n" +
+	"\x03mfa\x18\t \x01(\v2\x1d.spaceone.api.identity.v2.MFAR\x03mfa\x12W\n" +
+	"\x10required_actions\x18\n" +
+	" \x03(\x0e2,.spaceone.api.identity.v2.UserRequiredActionR\x0frequiredActions\"G\n" +
 	"\x16VerifyEmailUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\"0\n" +
@@ -1396,9 +1441,10 @@ const file_spaceone_api_identity_v2_user_proto_rawDesc = "" +
 	"\bAuthType\x12\x10\n" +
 	"\fNONE_BACKEND\x10\x00\x12\t\n" +
 	"\x05LOCAL\x10\x01\x12\f\n" +
-	"\bEXTERNAL\x10\x02*)\n" +
+	"\bEXTERNAL\x10\x02*:\n" +
 	"\x12UserRequiredAction\x12\x13\n" +
-	"\x0fUPDATE_PASSWORD\x10\x002\x9f\f\n" +
+	"\x0fUPDATE_PASSWORD\x10\x00\x12\x0f\n" +
+	"\vENFORCE_MFA\x10\x012\x9f\f\n" +
 	"\x04User\x12~\n" +
 	"\x06create\x12+.spaceone.api.identity.v2.CreateUserRequest\x1a\".spaceone.api.identity.v2.UserInfo\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/identity/v2/user/create\x12~\n" +
 	"\x06update\x12+.spaceone.api.identity.v2.UpdateUserRequest\x1a\".spaceone.api.identity.v2.UserInfo\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/identity/v2/user/update\x12\x83\x01\n" +
@@ -1456,48 +1502,52 @@ var file_spaceone_api_identity_v2_user_proto_depIdxs = []int32{
 	18, // 1: spaceone.api.identity.v2.MFA.options:type_name -> google.protobuf.Struct
 	0,  // 2: spaceone.api.identity.v2.CreateUserRequest.auth_type:type_name -> spaceone.api.identity.v2.AuthType
 	18, // 3: spaceone.api.identity.v2.CreateUserRequest.tags:type_name -> google.protobuf.Struct
-	18, // 4: spaceone.api.identity.v2.UpdateUserRequest.tags:type_name -> google.protobuf.Struct
-	1,  // 5: spaceone.api.identity.v2.SetRequiredActionsUserRequest.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
-	19, // 6: spaceone.api.identity.v2.UserSearchQuery.query:type_name -> spaceone.api.core.v2.Query
-	3,  // 7: spaceone.api.identity.v2.UserSearchQuery.state:type_name -> spaceone.api.identity.v2.UserSearchQuery.State
-	0,  // 8: spaceone.api.identity.v2.UserSearchQuery.auth_type:type_name -> spaceone.api.identity.v2.AuthType
-	4,  // 9: spaceone.api.identity.v2.UserInfo.state:type_name -> spaceone.api.identity.v2.UserInfo.State
-	0,  // 10: spaceone.api.identity.v2.UserInfo.auth_type:type_name -> spaceone.api.identity.v2.AuthType
-	5,  // 11: spaceone.api.identity.v2.UserInfo.role_type:type_name -> spaceone.api.identity.v2.UserInfo.RoleType
-	6,  // 12: spaceone.api.identity.v2.UserInfo.mfa:type_name -> spaceone.api.identity.v2.MFA
-	1,  // 13: spaceone.api.identity.v2.UserInfo.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
-	18, // 14: spaceone.api.identity.v2.UserInfo.tags:type_name -> google.protobuf.Struct
-	15, // 15: spaceone.api.identity.v2.UsersInfo.results:type_name -> spaceone.api.identity.v2.UserInfo
-	20, // 16: spaceone.api.identity.v2.UserStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	7,  // 17: spaceone.api.identity.v2.User.create:input_type -> spaceone.api.identity.v2.CreateUserRequest
-	8,  // 18: spaceone.api.identity.v2.User.update:input_type -> spaceone.api.identity.v2.UpdateUserRequest
-	9,  // 19: spaceone.api.identity.v2.User.verify_email:input_type -> spaceone.api.identity.v2.VerifyEmailUserRequest
-	10, // 20: spaceone.api.identity.v2.User.disable_mfa:input_type -> spaceone.api.identity.v2.DisableMFAUserRequest
-	11, // 21: spaceone.api.identity.v2.User.set_required_actions:input_type -> spaceone.api.identity.v2.SetRequiredActionsUserRequest
-	12, // 22: spaceone.api.identity.v2.User.set_refresh_timeout:input_type -> spaceone.api.identity.v2.SetRefreshTimeout
-	13, // 23: spaceone.api.identity.v2.User.enable:input_type -> spaceone.api.identity.v2.UserRequest
-	13, // 24: spaceone.api.identity.v2.User.disable:input_type -> spaceone.api.identity.v2.UserRequest
-	13, // 25: spaceone.api.identity.v2.User.delete:input_type -> spaceone.api.identity.v2.UserRequest
-	13, // 26: spaceone.api.identity.v2.User.get:input_type -> spaceone.api.identity.v2.UserRequest
-	14, // 27: spaceone.api.identity.v2.User.list:input_type -> spaceone.api.identity.v2.UserSearchQuery
-	17, // 28: spaceone.api.identity.v2.User.stat:input_type -> spaceone.api.identity.v2.UserStatQuery
-	15, // 29: spaceone.api.identity.v2.User.create:output_type -> spaceone.api.identity.v2.UserInfo
-	15, // 30: spaceone.api.identity.v2.User.update:output_type -> spaceone.api.identity.v2.UserInfo
-	21, // 31: spaceone.api.identity.v2.User.verify_email:output_type -> google.protobuf.Empty
-	15, // 32: spaceone.api.identity.v2.User.disable_mfa:output_type -> spaceone.api.identity.v2.UserInfo
-	15, // 33: spaceone.api.identity.v2.User.set_required_actions:output_type -> spaceone.api.identity.v2.UserInfo
-	15, // 34: spaceone.api.identity.v2.User.set_refresh_timeout:output_type -> spaceone.api.identity.v2.UserInfo
-	15, // 35: spaceone.api.identity.v2.User.enable:output_type -> spaceone.api.identity.v2.UserInfo
-	15, // 36: spaceone.api.identity.v2.User.disable:output_type -> spaceone.api.identity.v2.UserInfo
-	21, // 37: spaceone.api.identity.v2.User.delete:output_type -> google.protobuf.Empty
-	15, // 38: spaceone.api.identity.v2.User.get:output_type -> spaceone.api.identity.v2.UserInfo
-	16, // 39: spaceone.api.identity.v2.User.list:output_type -> spaceone.api.identity.v2.UsersInfo
-	18, // 40: spaceone.api.identity.v2.User.stat:output_type -> google.protobuf.Struct
-	29, // [29:41] is the sub-list for method output_type
-	17, // [17:29] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	6,  // 4: spaceone.api.identity.v2.CreateUserRequest.mfa:type_name -> spaceone.api.identity.v2.MFA
+	1,  // 5: spaceone.api.identity.v2.CreateUserRequest.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
+	18, // 6: spaceone.api.identity.v2.UpdateUserRequest.tags:type_name -> google.protobuf.Struct
+	6,  // 7: spaceone.api.identity.v2.UpdateUserRequest.mfa:type_name -> spaceone.api.identity.v2.MFA
+	1,  // 8: spaceone.api.identity.v2.UpdateUserRequest.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
+	1,  // 9: spaceone.api.identity.v2.SetRequiredActionsUserRequest.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
+	19, // 10: spaceone.api.identity.v2.UserSearchQuery.query:type_name -> spaceone.api.core.v2.Query
+	3,  // 11: spaceone.api.identity.v2.UserSearchQuery.state:type_name -> spaceone.api.identity.v2.UserSearchQuery.State
+	0,  // 12: spaceone.api.identity.v2.UserSearchQuery.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	4,  // 13: spaceone.api.identity.v2.UserInfo.state:type_name -> spaceone.api.identity.v2.UserInfo.State
+	0,  // 14: spaceone.api.identity.v2.UserInfo.auth_type:type_name -> spaceone.api.identity.v2.AuthType
+	5,  // 15: spaceone.api.identity.v2.UserInfo.role_type:type_name -> spaceone.api.identity.v2.UserInfo.RoleType
+	6,  // 16: spaceone.api.identity.v2.UserInfo.mfa:type_name -> spaceone.api.identity.v2.MFA
+	1,  // 17: spaceone.api.identity.v2.UserInfo.required_actions:type_name -> spaceone.api.identity.v2.UserRequiredAction
+	18, // 18: spaceone.api.identity.v2.UserInfo.tags:type_name -> google.protobuf.Struct
+	15, // 19: spaceone.api.identity.v2.UsersInfo.results:type_name -> spaceone.api.identity.v2.UserInfo
+	20, // 20: spaceone.api.identity.v2.UserStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	7,  // 21: spaceone.api.identity.v2.User.create:input_type -> spaceone.api.identity.v2.CreateUserRequest
+	8,  // 22: spaceone.api.identity.v2.User.update:input_type -> spaceone.api.identity.v2.UpdateUserRequest
+	9,  // 23: spaceone.api.identity.v2.User.verify_email:input_type -> spaceone.api.identity.v2.VerifyEmailUserRequest
+	10, // 24: spaceone.api.identity.v2.User.disable_mfa:input_type -> spaceone.api.identity.v2.DisableMFAUserRequest
+	11, // 25: spaceone.api.identity.v2.User.set_required_actions:input_type -> spaceone.api.identity.v2.SetRequiredActionsUserRequest
+	12, // 26: spaceone.api.identity.v2.User.set_refresh_timeout:input_type -> spaceone.api.identity.v2.SetRefreshTimeout
+	13, // 27: spaceone.api.identity.v2.User.enable:input_type -> spaceone.api.identity.v2.UserRequest
+	13, // 28: spaceone.api.identity.v2.User.disable:input_type -> spaceone.api.identity.v2.UserRequest
+	13, // 29: spaceone.api.identity.v2.User.delete:input_type -> spaceone.api.identity.v2.UserRequest
+	13, // 30: spaceone.api.identity.v2.User.get:input_type -> spaceone.api.identity.v2.UserRequest
+	14, // 31: spaceone.api.identity.v2.User.list:input_type -> spaceone.api.identity.v2.UserSearchQuery
+	17, // 32: spaceone.api.identity.v2.User.stat:input_type -> spaceone.api.identity.v2.UserStatQuery
+	15, // 33: spaceone.api.identity.v2.User.create:output_type -> spaceone.api.identity.v2.UserInfo
+	15, // 34: spaceone.api.identity.v2.User.update:output_type -> spaceone.api.identity.v2.UserInfo
+	21, // 35: spaceone.api.identity.v2.User.verify_email:output_type -> google.protobuf.Empty
+	15, // 36: spaceone.api.identity.v2.User.disable_mfa:output_type -> spaceone.api.identity.v2.UserInfo
+	15, // 37: spaceone.api.identity.v2.User.set_required_actions:output_type -> spaceone.api.identity.v2.UserInfo
+	15, // 38: spaceone.api.identity.v2.User.set_refresh_timeout:output_type -> spaceone.api.identity.v2.UserInfo
+	15, // 39: spaceone.api.identity.v2.User.enable:output_type -> spaceone.api.identity.v2.UserInfo
+	15, // 40: spaceone.api.identity.v2.User.disable:output_type -> spaceone.api.identity.v2.UserInfo
+	21, // 41: spaceone.api.identity.v2.User.delete:output_type -> google.protobuf.Empty
+	15, // 42: spaceone.api.identity.v2.User.get:output_type -> spaceone.api.identity.v2.UserInfo
+	16, // 43: spaceone.api.identity.v2.User.list:output_type -> spaceone.api.identity.v2.UsersInfo
+	18, // 44: spaceone.api.identity.v2.User.stat:output_type -> google.protobuf.Struct
+	33, // [33:45] is the sub-list for method output_type
+	21, // [21:33] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_identity_v2_user_proto_init() }
