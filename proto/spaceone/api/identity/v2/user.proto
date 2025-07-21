@@ -114,6 +114,7 @@ enum AuthType {
 
 enum UserRequiredAction {
   UPDATE_PASSWORD = 0;
+  ENFORCE_MFA = 1;
 }
 
 
@@ -160,6 +161,10 @@ message CreateUserRequest {
   google.protobuf.Struct tags = 8;
   // If reset_password is true, send email
   bool reset_password = 9;
+  // +optional
+  MFA mfa = 10;
+  // +optional
+  repeated UserRequiredAction required_actions = 11;
 }
 
 //{
@@ -188,6 +193,10 @@ message UpdateUserRequest {
   google.protobuf.Struct tags = 7;
   // +optional
   bool reset_password = 8;
+  // +optional
+  MFA mfa = 9;
+  // +optional
+  repeated UserRequiredAction required_actions = 10;
 }
 
 //{
