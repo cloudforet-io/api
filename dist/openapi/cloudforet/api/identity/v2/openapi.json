@@ -3927,6 +3927,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace/analyze": {
+       "post": {
+         "tags": ["identity > workspace"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace/stat": {
        "post": {
          "tags": ["identity > workspace"],
@@ -6084,6 +6113,12 @@
          "type": "object",
          "required": ["workspace_id"],
                 "title": "UpdateWorkSpaceRequest"
+           }
+           ,        "WorkspaceAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "WorkspaceAnalyzeQuery"
            }
            ,        "WorkspaceCheckRequest": {
          "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},

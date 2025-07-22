@@ -970,6 +970,50 @@ func (x *WorkspacesInfo) GetTotalCount() int32 {
 	return 0
 }
 
+type WorkspaceAnalyzeQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         *v2.AnalyzeQuery       `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkspaceAnalyzeQuery) Reset() {
+	*x = WorkspaceAnalyzeQuery{}
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkspaceAnalyzeQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkspaceAnalyzeQuery) ProtoMessage() {}
+
+func (x *WorkspaceAnalyzeQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkspaceAnalyzeQuery.ProtoReflect.Descriptor instead.
+func (*WorkspaceAnalyzeQuery) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *WorkspaceAnalyzeQuery) GetQuery() *v2.AnalyzeQuery {
+	if x != nil {
+		return x.Query
+	}
+	return nil
+}
+
 type WorkspaceStatQuery struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Query         *v2.StatisticsQuery    `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
@@ -979,7 +1023,7 @@ type WorkspaceStatQuery struct {
 
 func (x *WorkspaceStatQuery) Reset() {
 	*x = WorkspaceStatQuery{}
-	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[11]
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -991,7 +1035,7 @@ func (x *WorkspaceStatQuery) String() string {
 func (*WorkspaceStatQuery) ProtoMessage() {}
 
 func (x *WorkspaceStatQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[11]
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1004,7 +1048,7 @@ func (x *WorkspaceStatQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkspaceStatQuery.ProtoReflect.Descriptor instead.
 func (*WorkspaceStatQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{11}
+	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *WorkspaceStatQuery) GetQuery() *v2.StatisticsQuery {
@@ -1098,8 +1142,10 @@ const file_spaceone_api_identity_v2_workspace_proto_rawDesc = "" +
 	"\aresults\x18\x01 \x03(\v2'.spaceone.api.identity.v2.WorkspaceInfoR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"Q\n" +
+	"\x15WorkspaceAnalyzeQuery\x128\n" +
+	"\x05query\x18\x01 \x01(\v2\".spaceone.api.core.v2.AnalyzeQueryR\x05query\"Q\n" +
 	"\x12WorkspaceStatQuery\x12;\n" +
-	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query2\x8a\r\n" +
+	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query2\x8a\x0e\n" +
 	"\tWorkspace\x12\x8d\x01\n" +
 	"\x06create\x120.spaceone.api.identity.v2.CreateWorkSpaceRequest\x1a'.spaceone.api.identity.v2.WorkspaceInfo\"(\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/identity/v2/workspace/create\x12\x8d\x01\n" +
 	"\x06update\x120.spaceone.api.identity.v2.UpdateWorkSpaceRequest\x1a'.spaceone.api.identity.v2.WorkspaceInfo\"(\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/identity/v2/workspace/update\x12\xb2\x01\n" +
@@ -1111,7 +1157,8 @@ const file_spaceone_api_identity_v2_workspace_proto_rawDesc = "" +
 	"\x0eremove_package\x121.spaceone.api.identity.v2.WorkspacePackageRequest\x1a'.spaceone.api.identity.v2.WorkspaceInfo\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/identity/v2/workspace/remove-package\x12\x81\x01\n" +
 	"\x03get\x12*.spaceone.api.identity.v2.WorkspaceRequest\x1a'.spaceone.api.identity.v2.WorkspaceInfo\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/identity/v2/workspace/get\x12R\n" +
 	"\x05check\x12/.spaceone.api.identity.v2.WorkspaceCheckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x88\x01\n" +
-	"\x04list\x12..spaceone.api.identity.v2.WorkspaceSearchQuery\x1a(.spaceone.api.identity.v2.WorkspacesInfo\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/identity/v2/workspace/list\x12u\n" +
+	"\x04list\x12..spaceone.api.identity.v2.WorkspaceSearchQuery\x1a(.spaceone.api.identity.v2.WorkspacesInfo\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/identity/v2/workspace/list\x12~\n" +
+	"\aanalyze\x12/.spaceone.api.identity.v2.WorkspaceAnalyzeQuery\x1a\x17.google.protobuf.Struct\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/identity/v2/workspace/analyze\x12u\n" +
 	"\x04stat\x12,.spaceone.api.identity.v2.WorkspaceStatQuery\x1a\x17.google.protobuf.Struct\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/identity/v2/workspace/statB?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3"
 
 var (
@@ -1127,7 +1174,7 @@ func file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP() []byte {
 }
 
 var file_spaceone_api_identity_v2_workspace_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_spaceone_api_identity_v2_workspace_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_spaceone_api_identity_v2_workspace_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_spaceone_api_identity_v2_workspace_proto_goTypes = []any{
 	(WorkspaceInfo_State)(0),            // 0: spaceone.api.identity.v2.WorkspaceInfo.State
 	(WorkspaceSearchQuery_State)(0),     // 1: spaceone.api.identity.v2.WorkspaceSearchQuery.State
@@ -1142,51 +1189,56 @@ var file_spaceone_api_identity_v2_workspace_proto_goTypes = []any{
 	(*WorkspaceInfo)(nil),               // 10: spaceone.api.identity.v2.WorkspaceInfo
 	(*WorkspaceSearchQuery)(nil),        // 11: spaceone.api.identity.v2.WorkspaceSearchQuery
 	(*WorkspacesInfo)(nil),              // 12: spaceone.api.identity.v2.WorkspacesInfo
-	(*WorkspaceStatQuery)(nil),          // 13: spaceone.api.identity.v2.WorkspaceStatQuery
-	(*_struct.Struct)(nil),              // 14: google.protobuf.Struct
-	(*v2.Query)(nil),                    // 15: spaceone.api.core.v2.Query
-	(*v2.StatisticsQuery)(nil),          // 16: spaceone.api.core.v2.StatisticsQuery
-	(*empty.Empty)(nil),                 // 17: google.protobuf.Empty
+	(*WorkspaceAnalyzeQuery)(nil),       // 13: spaceone.api.identity.v2.WorkspaceAnalyzeQuery
+	(*WorkspaceStatQuery)(nil),          // 14: spaceone.api.identity.v2.WorkspaceStatQuery
+	(*_struct.Struct)(nil),              // 15: google.protobuf.Struct
+	(*v2.Query)(nil),                    // 16: spaceone.api.core.v2.Query
+	(*v2.AnalyzeQuery)(nil),             // 17: spaceone.api.core.v2.AnalyzeQuery
+	(*v2.StatisticsQuery)(nil),          // 18: spaceone.api.core.v2.StatisticsQuery
+	(*empty.Empty)(nil),                 // 19: google.protobuf.Empty
 }
 var file_spaceone_api_identity_v2_workspace_proto_depIdxs = []int32{
-	14, // 0: spaceone.api.identity.v2.CreateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
-	14, // 1: spaceone.api.identity.v2.UpdateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
+	15, // 0: spaceone.api.identity.v2.CreateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
+	15, // 1: spaceone.api.identity.v2.UpdateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
 	0,  // 2: spaceone.api.identity.v2.WorkspaceInfo.state:type_name -> spaceone.api.identity.v2.WorkspaceInfo.State
-	14, // 3: spaceone.api.identity.v2.WorkspaceInfo.tags:type_name -> google.protobuf.Struct
+	15, // 3: spaceone.api.identity.v2.WorkspaceInfo.tags:type_name -> google.protobuf.Struct
 	2,  // 4: spaceone.api.identity.v2.WorkspaceInfo.cost_info:type_name -> spaceone.api.identity.v2.WorkspaceCostInfo
-	15, // 5: spaceone.api.identity.v2.WorkspaceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
+	16, // 5: spaceone.api.identity.v2.WorkspaceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
 	1,  // 6: spaceone.api.identity.v2.WorkspaceSearchQuery.state:type_name -> spaceone.api.identity.v2.WorkspaceSearchQuery.State
 	10, // 7: spaceone.api.identity.v2.WorkspacesInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceInfo
-	16, // 8: spaceone.api.identity.v2.WorkspaceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
-	3,  // 9: spaceone.api.identity.v2.Workspace.create:input_type -> spaceone.api.identity.v2.CreateWorkSpaceRequest
-	4,  // 10: spaceone.api.identity.v2.Workspace.update:input_type -> spaceone.api.identity.v2.UpdateWorkSpaceRequest
-	5,  // 11: spaceone.api.identity.v2.Workspace.change_workspace_group:input_type -> spaceone.api.identity.v2.ChangeWorkspaceGroupRequest
-	6,  // 12: spaceone.api.identity.v2.Workspace.delete:input_type -> spaceone.api.identity.v2.WorkspaceDeleteRequest
-	8,  // 13: spaceone.api.identity.v2.Workspace.enable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
-	8,  // 14: spaceone.api.identity.v2.Workspace.disable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
-	7,  // 15: spaceone.api.identity.v2.Workspace.add_package:input_type -> spaceone.api.identity.v2.WorkspacePackageRequest
-	7,  // 16: spaceone.api.identity.v2.Workspace.remove_package:input_type -> spaceone.api.identity.v2.WorkspacePackageRequest
-	8,  // 17: spaceone.api.identity.v2.Workspace.get:input_type -> spaceone.api.identity.v2.WorkspaceRequest
-	9,  // 18: spaceone.api.identity.v2.Workspace.check:input_type -> spaceone.api.identity.v2.WorkspaceCheckRequest
-	11, // 19: spaceone.api.identity.v2.Workspace.list:input_type -> spaceone.api.identity.v2.WorkspaceSearchQuery
-	13, // 20: spaceone.api.identity.v2.Workspace.stat:input_type -> spaceone.api.identity.v2.WorkspaceStatQuery
-	10, // 21: spaceone.api.identity.v2.Workspace.create:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 22: spaceone.api.identity.v2.Workspace.update:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 23: spaceone.api.identity.v2.Workspace.change_workspace_group:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	17, // 24: spaceone.api.identity.v2.Workspace.delete:output_type -> google.protobuf.Empty
-	10, // 25: spaceone.api.identity.v2.Workspace.enable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 26: spaceone.api.identity.v2.Workspace.disable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 27: spaceone.api.identity.v2.Workspace.add_package:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 28: spaceone.api.identity.v2.Workspace.remove_package:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	10, // 29: spaceone.api.identity.v2.Workspace.get:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	17, // 30: spaceone.api.identity.v2.Workspace.check:output_type -> google.protobuf.Empty
-	12, // 31: spaceone.api.identity.v2.Workspace.list:output_type -> spaceone.api.identity.v2.WorkspacesInfo
-	14, // 32: spaceone.api.identity.v2.Workspace.stat:output_type -> google.protobuf.Struct
-	21, // [21:33] is the sub-list for method output_type
-	9,  // [9:21] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	17, // 8: spaceone.api.identity.v2.WorkspaceAnalyzeQuery.query:type_name -> spaceone.api.core.v2.AnalyzeQuery
+	18, // 9: spaceone.api.identity.v2.WorkspaceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
+	3,  // 10: spaceone.api.identity.v2.Workspace.create:input_type -> spaceone.api.identity.v2.CreateWorkSpaceRequest
+	4,  // 11: spaceone.api.identity.v2.Workspace.update:input_type -> spaceone.api.identity.v2.UpdateWorkSpaceRequest
+	5,  // 12: spaceone.api.identity.v2.Workspace.change_workspace_group:input_type -> spaceone.api.identity.v2.ChangeWorkspaceGroupRequest
+	6,  // 13: spaceone.api.identity.v2.Workspace.delete:input_type -> spaceone.api.identity.v2.WorkspaceDeleteRequest
+	8,  // 14: spaceone.api.identity.v2.Workspace.enable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
+	8,  // 15: spaceone.api.identity.v2.Workspace.disable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
+	7,  // 16: spaceone.api.identity.v2.Workspace.add_package:input_type -> spaceone.api.identity.v2.WorkspacePackageRequest
+	7,  // 17: spaceone.api.identity.v2.Workspace.remove_package:input_type -> spaceone.api.identity.v2.WorkspacePackageRequest
+	8,  // 18: spaceone.api.identity.v2.Workspace.get:input_type -> spaceone.api.identity.v2.WorkspaceRequest
+	9,  // 19: spaceone.api.identity.v2.Workspace.check:input_type -> spaceone.api.identity.v2.WorkspaceCheckRequest
+	11, // 20: spaceone.api.identity.v2.Workspace.list:input_type -> spaceone.api.identity.v2.WorkspaceSearchQuery
+	13, // 21: spaceone.api.identity.v2.Workspace.analyze:input_type -> spaceone.api.identity.v2.WorkspaceAnalyzeQuery
+	14, // 22: spaceone.api.identity.v2.Workspace.stat:input_type -> spaceone.api.identity.v2.WorkspaceStatQuery
+	10, // 23: spaceone.api.identity.v2.Workspace.create:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 24: spaceone.api.identity.v2.Workspace.update:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 25: spaceone.api.identity.v2.Workspace.change_workspace_group:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	19, // 26: spaceone.api.identity.v2.Workspace.delete:output_type -> google.protobuf.Empty
+	10, // 27: spaceone.api.identity.v2.Workspace.enable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 28: spaceone.api.identity.v2.Workspace.disable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 29: spaceone.api.identity.v2.Workspace.add_package:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 30: spaceone.api.identity.v2.Workspace.remove_package:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	10, // 31: spaceone.api.identity.v2.Workspace.get:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	19, // 32: spaceone.api.identity.v2.Workspace.check:output_type -> google.protobuf.Empty
+	12, // 33: spaceone.api.identity.v2.Workspace.list:output_type -> spaceone.api.identity.v2.WorkspacesInfo
+	15, // 34: spaceone.api.identity.v2.Workspace.analyze:output_type -> google.protobuf.Struct
+	15, // 35: spaceone.api.identity.v2.Workspace.stat:output_type -> google.protobuf.Struct
+	23, // [23:36] is the sub-list for method output_type
+	10, // [10:23] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_identity_v2_workspace_proto_init() }
@@ -1200,7 +1252,7 @@ func file_spaceone_api_identity_v2_workspace_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spaceone_api_identity_v2_workspace_proto_rawDesc), len(file_spaceone_api_identity_v2_workspace_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

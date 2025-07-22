@@ -32,6 +32,7 @@ const (
 	Workspace_Get_FullMethodName                  = "/spaceone.api.identity.v2.Workspace/get"
 	Workspace_Check_FullMethodName                = "/spaceone.api.identity.v2.Workspace/check"
 	Workspace_List_FullMethodName                 = "/spaceone.api.identity.v2.Workspace/list"
+	Workspace_Analyze_FullMethodName              = "/spaceone.api.identity.v2.Workspace/analyze"
 	Workspace_Stat_FullMethodName                 = "/spaceone.api.identity.v2.Workspace/stat"
 )
 
@@ -50,6 +51,7 @@ type WorkspaceClient interface {
 	Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Check(ctx context.Context, in *WorkspaceCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	List(ctx context.Context, in *WorkspaceSearchQuery, opts ...grpc.CallOption) (*WorkspacesInfo, error)
+	Analyze(ctx context.Context, in *WorkspaceAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *WorkspaceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -171,6 +173,16 @@ func (c *workspaceClient) List(ctx context.Context, in *WorkspaceSearchQuery, op
 	return out, nil
 }
 
+func (c *workspaceClient) Analyze(ctx context.Context, in *WorkspaceAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, Workspace_Analyze_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workspaceClient) Stat(ctx context.Context, in *WorkspaceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
@@ -196,6 +208,7 @@ type WorkspaceServer interface {
 	Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Check(context.Context, *WorkspaceCheckRequest) (*empty.Empty, error)
 	List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error)
+	Analyze(context.Context, *WorkspaceAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *WorkspaceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWorkspaceServer()
 }
@@ -239,6 +252,9 @@ func (UnimplementedWorkspaceServer) Check(context.Context, *WorkspaceCheckReques
 }
 func (UnimplementedWorkspaceServer) List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedWorkspaceServer) Analyze(context.Context, *WorkspaceAnalyzeQuery) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
 }
 func (UnimplementedWorkspaceServer) Stat(context.Context, *WorkspaceStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -462,6 +478,24 @@ func _Workspace_List_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Workspace_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspaceAnalyzeQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServer).Analyze(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Workspace_Analyze_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServer).Analyze(ctx, req.(*WorkspaceAnalyzeQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Workspace_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WorkspaceStatQuery)
 	if err := dec(in); err != nil {
@@ -530,6 +564,10 @@ var Workspace_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Workspace_List_Handler,
+		},
+		{
+			MethodName: "analyze",
+			Handler:    _Workspace_Analyze_Handler,
 		},
 		{
 			MethodName: "stat",

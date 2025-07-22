@@ -96,6 +96,11 @@ class WorkspaceStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
                 _registered_method=True)
+        self.analyze = channel.unary_unary(
+                '/spaceone.api.identity.v2.Workspace/analyze',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceAnalyzeQuery.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.identity.v2.Workspace/stat',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceStatQuery.SerializeToString,
@@ -172,6 +177,12 @@ class WorkspaceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def analyze(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def stat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -235,6 +246,11 @@ def add_WorkspaceServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.SerializeToString,
+            ),
+            'analyze': grpc.unary_unary_rpc_method_handler(
+                    servicer.analyze,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceAnalyzeQuery.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -539,6 +555,33 @@ class Workspace(object):
             '/spaceone.api.identity.v2.Workspace/list',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceSearchQuery.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def analyze(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.Workspace/analyze',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceAnalyzeQuery.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

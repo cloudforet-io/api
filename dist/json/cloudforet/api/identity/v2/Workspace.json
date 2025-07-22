@@ -179,6 +179,30 @@
           ]
         },
         {
+          "name": "WorkspaceAnalyzeQuery",
+          "longName": "WorkspaceAnalyzeQuery",
+          "fullName": "spaceone.api.identity.v2.WorkspaceAnalyzeQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "AnalyzeQuery",
+              "longType": "spaceone.api.core.v2.AnalyzeQuery",
+              "fullType": "spaceone.api.core.v2.AnalyzeQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "WorkspaceCheckRequest",
           "longName": "WorkspaceCheckRequest",
           "fullName": "spaceone.api.identity.v2.WorkspaceCheckRequest",
@@ -1010,6 +1034,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/workspace/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "analyze",
+              "description": "",
+              "requestType": "WorkspaceAnalyzeQuery",
+              "requestLongType": "WorkspaceAnalyzeQuery",
+              "requestFullType": "spaceone.api.identity.v2.WorkspaceAnalyzeQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/workspace/analyze",
                       "body": "*"
                     }
                   ]
