@@ -83,6 +83,13 @@ service Workspace {
     };
   }
 
+  rpc analyze (WorkspaceAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/analyze"
+      body: "*"
+    };
+  }
+
   rpc stat (WorkspaceStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/identity/v2/workspace/stat"
@@ -265,6 +272,10 @@ message WorkspaceSearchQuery {
 message WorkspacesInfo {
   repeated WorkspaceInfo results = 1;
   int32 total_count = 2;
+}
+
+message WorkspaceAnalyzeQuery {
+  spaceone.api.core.v2.AnalyzeQuery query = 1;
 }
 
 message WorkspaceStatQuery {
