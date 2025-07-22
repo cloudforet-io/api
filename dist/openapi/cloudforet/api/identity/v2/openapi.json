@@ -829,11 +829,11 @@
          "operationId" : "",
          "description": "### Description \nYou can create user. after create user you have to binding role to user.\nSee role-binding create api.\nExternal type user do not need password.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |auth_type|LOCAL, EXTERNAL |string|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |password|When auth_type is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |mfa||MFA||\n |required_actions|ENFORCE_MFA |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |auth_type|LOCAL, EXTERNAL |string|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |password|When auth_type is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |enforce_mfa_state||string||\n |enforce_mfa_type||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA" },"required_actions" : {"items": {}, "type": "array","title": "REQUIRED_ACTIONS" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"enforce_mfa_state" : {"type": "string","title": "ENFORCE_MFA_STATE" },"enforce_mfa_type" : {"type": "string","title": "ENFORCE_MFA_TYPE" }                 }
                },
                "examples":{"Default Example":{"value": "{\n \"user_id\": \"wonny@cloudforet.io\",\n \"password\": \"Password1234!\",\n \"reset_password\": false,\n \"name\": \"Wonny\",\n \"email\": \"wonny@cloudforet.io\",\n \"auth_type\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\"\n}"},"Schema":{}
                }
@@ -860,11 +860,11 @@
          "operationId" : "",
          "description": "### Description \nUpdate user info by given user_id",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |password||string||\n |name||string||\n |email||string||\n |language||string||\n |timezone||string||\n |tags||Struct||\n |reset_password||boolean||\n |mfa||MFA||\n |required_actions|ENFORCE_MFA |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |password||string||\n |name||string||\n |email||string||\n |language||string||\n |timezone||string||\n |tags||Struct||\n |reset_password||boolean||\n |enforce_mfa_state||string||\n |enforce_mfa_type||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA" },"required_actions" : {"items": {}, "type": "array","title": "REQUIRED_ACTIONS" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"enforce_mfa_state" : {"type": "string","title": "ENFORCE_MFA_STATE" },"enforce_mfa_type" : {"type": "string","title": "ENFORCE_MFA_TYPE" }                 }
                },
                "examples":{"Default Example":{"value": "{\n \"user_id\": \"wonny@cloudforet.io\",\n \"password\": \"Password1234!!\",\n \"reset_password\": false,\n \"name\": \"Cloudforet\",\n \"email\": \"cloudforet@cloudforet.io\",\n \"auth_type\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\"\n}"},"Schema":{}
                }
@@ -5413,8 +5413,7 @@
                 "title": "UpdateDomainRequest"
            }
            ,        "CreateUserRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"required_actions" : {"items": {"type": "string"},
-               "type": "array","title": "REQUIRED_ACTIONS"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"enforce_mfa_state" : {"type": "string","title": "ENFORCE_MFA_STATE"},"enforce_mfa_type" : {"type": "string","title": "ENFORCE_MFA_TYPE"}},
          "type": "object",
          "required": ["user_id","auth_type","reset_password"],
                 "title": "CreateUserRequest"
@@ -5445,8 +5444,7 @@
                 "title": "SetRequiredActionsUserRequest"
            }
            ,        "UpdateUserRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"required_actions" : {"items": {"type": "string"},
-               "type": "array","title": "REQUIRED_ACTIONS"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"enforce_mfa_state" : {"type": "string","title": "ENFORCE_MFA_STATE"},"enforce_mfa_type" : {"type": "string","title": "ENFORCE_MFA_TYPE"}},
          "type": "object",
          "required": ["user_id"],
                 "title": "UpdateUserRequest"
