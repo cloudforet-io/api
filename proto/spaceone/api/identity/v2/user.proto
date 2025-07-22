@@ -117,11 +117,6 @@ enum UserRequiredAction {
   ENFORCE_MFA = 1;
 }
 
-enum MFAType {
-  MFA_TYPE_NONE = 0;
-  OTP = 1;
-  EMAIL = 2;
-}
 
 message MFA {
   enum State {
@@ -131,7 +126,7 @@ message MFA {
   }
 
   State state = 1;
-  MFAType mfa_type = 2;
+  string mfa_type = 2;
   google.protobuf.Struct options = 3;
 
 }
@@ -167,9 +162,9 @@ message CreateUserRequest {
   // If reset_password is true, send email
   bool reset_password = 9;
   // +optional
-  optional bool enforce_mfa = 10;
+  MFA mfa = 10;
   // +optional
-  MFAType enforce_mfa_type = 11;
+  repeated UserRequiredAction required_actions = 11;
 }
 
 //{
@@ -199,9 +194,9 @@ message UpdateUserRequest {
   // +optional
   bool reset_password = 8;
   // +optional
-  optional bool enforce_mfa = 9;
+  MFA mfa = 9;
   // +optional
-  MFAType enforce_mfa_type = 10;
+  repeated UserRequiredAction required_actions = 10;
 }
 
 //{
