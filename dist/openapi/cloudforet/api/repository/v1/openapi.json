@@ -8,38 +8,7 @@
      "title": "Repository API",
      "version": "3.1.0"
    },
-   "paths":{"/repository/repository/list": {
-       "post": {
-         "tags": ["repository > repository"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string||\n |repository_type||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n       }\n   ],\n   \"total_count\": 1\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/plugin/register": {
+   "paths":{"/repository/plugin/register": {
        "post": {
          "tags": ["repository > plugin"],
          "summary": "Register",
@@ -279,6 +248,37 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/repository/list": {
+       "post": {
+         "tags": ["repository > repository"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string||\n |repository_type||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n       }\n   ],\n   \"total_count\": 1\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/repository/dashboard-template/register": {
        "post": {
          "tags": ["repository > dashboard-template"],
@@ -480,24 +480,56 @@
    },
    "components":{
      "schemas": {
-     "RepositoriesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
-               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+     "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_url" : {"type": "string","title": "REGISTRY_URL"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"docs" : {"type": "object","title": "DOCS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["results","total_count"],
-                "title": "RepositoriesInfo"
+         "required": ["plugin_id","name","state","resource_type","image","provider","registry_type","registry_url","registry_config","capability","labels","tags","docs","domain_id","repository_info","created_at","updated_at"],
+                "title": "PluginInfo"
            }
-           ,        "RepositoryInfo": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"}},
-         "type": "object",
-         "required": ["repository_id","name","repository_type","endpoint"],
-                "title": "RepositoryInfo"
-           }
-           ,        "RepositoryQuery": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"}},
+           ,        "PluginQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
          "type": "object",
          "required": [],
-                "title": "RepositoryQuery"
+                "title": "PluginQuery"
+           }
+           ,        "PluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
+         "type": "object",
+         "required": ["plugin_id"],
+                "title": "PluginRequest"
+           }
+           ,        "PluginsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
+               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PluginsInfo"
+           }
+           ,        "RegisterPluginRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"docs" : {"type": "object","title": "DOCS"}},
+         "type": "object",
+         "required": ["name","resource_type","image","docs"],
+                "title": "RegisterPluginRequest"
+           }
+           ,        "RepositoryPluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+         "type": "object",
+         "required": ["plugin_id"],
+                "title": "RepositoryPluginRequest"
+           }
+           ,        "UpdatePluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"docs" : {"type": "object","title": "DOCS"}},
+         "type": "object",
+         "required": ["plugin_id"],
+                "title": "UpdatePluginRequest"
+           }
+           ,        "VersionsInfo": {
+         "properties" : {"version" : {"items": {"type": "string"},
+               "type": "array","title": "VERSION"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"},"results" : {"items": {"type": "string"},
+               "type": "array","title": "RESULTS"}},
+         "type": "object",
+         "required": ["version","total_count","results"],
+                "title": "VersionsInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -530,12 +562,6 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
-           }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -706,56 +732,30 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_url" : {"type": "string","title": "REGISTRY_URL"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"docs" : {"type": "object","title": "DOCS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["plugin_id","name","state","resource_type","image","provider","registry_type","registry_url","registry_config","capability","labels","tags","docs","domain_id","repository_info","created_at","updated_at"],
-                "title": "PluginInfo"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
-           ,        "PluginQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "PluginQuery"
-           }
-           ,        "PluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
-         "type": "object",
-         "required": ["plugin_id"],
-                "title": "PluginRequest"
-           }
-           ,        "PluginsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
-               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "RepositoriesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
+               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "PluginsInfo"
+                "title": "RepositoriesInfo"
            }
-           ,        "RegisterPluginRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"docs" : {"type": "object","title": "DOCS"}},
+           ,        "RepositoryInfo": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"}},
          "type": "object",
-         "required": ["name","resource_type","image","docs"],
-                "title": "RegisterPluginRequest"
+         "required": ["repository_id","name","repository_type","endpoint"],
+                "title": "RepositoryInfo"
            }
-           ,        "RepositoryPluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+           ,        "RepositoryQuery": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"}},
          "type": "object",
-         "required": ["plugin_id"],
-                "title": "RepositoryPluginRequest"
-           }
-           ,        "UpdatePluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"docs" : {"type": "object","title": "DOCS"}},
-         "type": "object",
-         "required": ["plugin_id"],
-                "title": "UpdatePluginRequest"
-           }
-           ,        "VersionsInfo": {
-         "properties" : {"version" : {"items": {"type": "string"},
-               "type": "array","title": "VERSION"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"},"results" : {"items": {"type": "string"},
-               "type": "array","title": "RESULTS"}},
-         "type": "object",
-         "required": ["version","total_count","results"],
-                "title": "VersionsInfo"
+         "required": [],
+                "title": "RepositoryQuery"
            }
            ,        "DashboardTemplateInfo": {
          "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
