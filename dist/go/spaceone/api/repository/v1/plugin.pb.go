@@ -35,6 +35,7 @@ const (
 	PublicRegistryType_AWS_PRIVATE_ECR    PublicRegistryType = 2
 	PublicRegistryType_HARBOR             PublicRegistryType = 3
 	PublicRegistryType_GITHUB             PublicRegistryType = 4
+	PublicRegistryType_GCP_PRIVATE_GCR    PublicRegistryType = 5
 )
 
 // Enum value maps for PublicRegistryType.
@@ -45,6 +46,7 @@ var (
 		2: "AWS_PRIVATE_ECR",
 		3: "HARBOR",
 		4: "GITHUB",
+		5: "GCP_PRIVATE_GCR",
 	}
 	PublicRegistryType_value = map[string]int32{
 		"NONE_REGISTRY_TYPE": 0,
@@ -52,6 +54,7 @@ var (
 		"AWS_PRIVATE_ECR":    2,
 		"HARBOR":             3,
 		"GITHUB":             4,
+		"GCP_PRIVATE_GCR":    5,
 	}
 )
 
@@ -1139,7 +1142,7 @@ const file_spaceone_api_repository_v1_plugin_proto_rawDesc = "" +
 	"\aversion\x18\x01 \x03(\tR\aversion\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12\x18\n" +
-	"\aresults\x18\x03 \x03(\tR\aresults*i\n" +
+	"\aresults\x18\x03 \x03(\tR\aresults*~\n" +
 	"\x12PublicRegistryType\x12\x16\n" +
 	"\x12NONE_REGISTRY_TYPE\x10\x00\x12\x0e\n" +
 	"\n" +
@@ -1148,7 +1151,8 @@ const file_spaceone_api_repository_v1_plugin_proto_rawDesc = "" +
 	"\n" +
 	"\x06HARBOR\x10\x03\x12\n" +
 	"\n" +
-	"\x06GITHUB\x10\x042\xe1\b\n" +
+	"\x06GITHUB\x10\x04\x12\x13\n" +
+	"\x0fGCP_PRIVATE_GCR\x10\x052\xe1\b\n" +
 	"\x06Plugin\x12\x90\x01\n" +
 	"\bregister\x121.spaceone.api.repository.v1.RegisterPluginRequest\x1a&.spaceone.api.repository.v1.PluginInfo\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/repository/v1/plugin/register\x12\x8a\x01\n" +
 	"\x06update\x12/.spaceone.api.repository.v1.UpdatePluginRequest\x1a&.spaceone.api.repository.v1.PluginInfo\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/repository/v1/plugin/update\x12|\n" +
