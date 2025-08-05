@@ -1363,6 +1363,52 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/data-source/remove-cache": {
+       "post": {
+         "tags": ["cost-analysis > data-source"],
+         "summary": "Remove Cache",
+         "operationId" : "",
+         "description": "### Description \nRemoves cached data related to the specified DataSource. Useful for clearing outdated or unnecessary cache.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-085d1e872789\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/data-source/preload-cache": {
+       "post": {
+         "tags": ["cost-analysis > data-source"],
+         "summary": "Preload Cache",
+         "operationId" : "",
+         "description": "### Description \nPreloads cache for the specified DataSource. Initiates pre-caching to improve data access performance.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-085d1e872789\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/cost-analysis/data-source/get": {
        "post": {
          "tags": ["cost-analysis > data-source"],

@@ -31,6 +31,8 @@ const (
 	DataSource_VerifyPlugin_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
 	DataSource_Deregister_FullMethodName        = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
 	DataSource_Sync_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/sync"
+	DataSource_RemoveCache_FullMethodName       = "/spaceone.api.cost_analysis.v1.DataSource/remove_cache"
+	DataSource_PreloadCache_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/preload_cache"
 	DataSource_Get_FullMethodName               = "/spaceone.api.cost_analysis.v1.DataSource/get"
 	DataSource_List_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/list"
 	DataSource_Stat_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/stat"
@@ -55,6 +57,10 @@ type DataSourceClient interface {
 	Deregister(ctx context.Context, in *DeregisterDataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(ctx context.Context, in *SyncDataSourceRequest, opts ...grpc.CallOption) (*JobInfo, error)
+	// Removes cached data related to the specified DataSource. Useful for clearing outdated or unnecessary cache.
+	RemoveCache(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Preloads cache for the specified DataSource. Initiates pre-caching to improve data access performance.
+	PreloadCache(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
 	Get(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
@@ -150,6 +156,26 @@ func (c *dataSourceClient) Sync(ctx context.Context, in *SyncDataSourceRequest, 
 	return out, nil
 }
 
+func (c *dataSourceClient) RemoveCache(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, DataSource_RemoveCache_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourceClient) PreloadCache(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, DataSource_PreloadCache_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourceClient) Get(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DataSourceInfo)
@@ -199,6 +225,10 @@ type DataSourceServer interface {
 	Deregister(context.Context, *DeregisterDataSourceRequest) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error)
+	// Removes cached data related to the specified DataSource. Useful for clearing outdated or unnecessary cache.
+	RemoveCache(context.Context, *DataSourceRequest) (*empty.Empty, error)
+	// Preloads cache for the specified DataSource. Initiates pre-caching to improve data access performance.
+	PreloadCache(context.Context, *DataSourceRequest) (*empty.Empty, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
 	Get(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
@@ -237,6 +267,12 @@ func (UnimplementedDataSourceServer) Deregister(context.Context, *DeregisterData
 }
 func (UnimplementedDataSourceServer) Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
+}
+func (UnimplementedDataSourceServer) RemoveCache(context.Context, *DataSourceRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveCache not implemented")
+}
+func (UnimplementedDataSourceServer) PreloadCache(context.Context, *DataSourceRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreloadCache not implemented")
 }
 func (UnimplementedDataSourceServer) Get(context.Context, *DataSourceRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -412,6 +448,42 @@ func _DataSource_Sync_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSource_RemoveCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourceServer).RemoveCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSource_RemoveCache_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourceServer).RemoveCache(ctx, req.(*DataSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSource_PreloadCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourceServer).PreloadCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSource_PreloadCache_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourceServer).PreloadCache(ctx, req.(*DataSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSource_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DataSourceRequest)
 	if err := dec(in); err != nil {
@@ -504,6 +576,14 @@ var DataSource_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "sync",
 			Handler:    _DataSource_Sync_Handler,
+		},
+		{
+			MethodName: "remove_cache",
+			Handler:    _DataSource_RemoveCache_Handler,
+		},
+		{
+			MethodName: "preload_cache",
+			Handler:    _DataSource_PreloadCache_Handler,
 		},
 		{
 			MethodName: "get",

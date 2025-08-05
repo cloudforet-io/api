@@ -82,6 +82,16 @@ class DataSourceStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.SyncDataSourceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.FromString,
                 _registered_method=True)
+        self.remove_cache = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.DataSource/remove_cache',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.preload_cache = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.DataSource/preload_cache',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/get',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
@@ -157,6 +167,20 @@ class DataSourceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def remove_cache(self, request, context):
+        """Removes cached data related to the specified DataSource. Useful for clearing outdated or unnecessary cache.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def preload_cache(self, request, context):
+        """Preloads cache for the specified DataSource. Initiates pre-caching to improve data access performance.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def get(self, request, context):
         """Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
         """
@@ -219,6 +243,16 @@ def add_DataSourceServicer_to_server(servicer, server):
                     servicer.sync,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.SyncDataSourceRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.SerializeToString,
+            ),
+            'remove_cache': grpc.unary_unary_rpc_method_handler(
+                    servicer.remove_cache,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'preload_cache': grpc.unary_unary_rpc_method_handler(
+                    servicer.preload_cache,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -452,6 +486,60 @@ class DataSource(object):
             '/spaceone.api.cost_analysis.v1.DataSource/sync',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.SyncDataSourceRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def remove_cache(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.DataSource/remove_cache',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def preload_cache(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.DataSource/preload_cache',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

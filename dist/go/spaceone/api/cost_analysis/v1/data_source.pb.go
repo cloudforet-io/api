@@ -2284,7 +2284,7 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"R\n" +
 	"\x13DataSourceStatQuery\x12;\n" +
-	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query2\x8c\x0e\n" +
+	"\x05query\x18\x01 \x01(\v2%.spaceone.api.core.v2.StatisticsQueryR\x05query2\xb2\x10\n" +
 	"\n" +
 	"DataSource\x12\xa6\x01\n" +
 	"\bregister\x128.spaceone.api.cost_analysis.v1.RegisterDataSourceRequest\x1a-.spaceone.api.cost_analysis.v1.DataSourceInfo\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/cost-analysis/v1/data-source/register\x12\xa0\x01\n" +
@@ -2295,7 +2295,9 @@ const file_spaceone_api_cost_analysis_v1_data_source_proto_rawDesc = "" +
 	"\rverify_plugin\x120.spaceone.api.cost_analysis.v1.DataSourceRequest\x1a\x16.google.protobuf.Empty\"6\x82\xd3\xe4\x93\x020:\x01*\"+/cost-analysis/v1/data-source/verify-plugin\x12\x95\x01\n" +
 	"\n" +
 	"deregister\x12:.spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest\x1a\x16.google.protobuf.Empty\"3\x82\xd3\xe4\x93\x02-:\x01*\"(/cost-analysis/v1/data-source/deregister\x12\x93\x01\n" +
-	"\x04sync\x124.spaceone.api.cost_analysis.v1.SyncDataSourceRequest\x1a&.spaceone.api.cost_analysis.v1.JobInfo\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/cost-analysis/v1/data-source/sync\x12\x94\x01\n" +
+	"\x04sync\x124.spaceone.api.cost_analysis.v1.SyncDataSourceRequest\x1a&.spaceone.api.cost_analysis.v1.JobInfo\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/cost-analysis/v1/data-source/sync\x12\x8f\x01\n" +
+	"\fremove_cache\x120.spaceone.api.cost_analysis.v1.DataSourceRequest\x1a\x16.google.protobuf.Empty\"5\x82\xd3\xe4\x93\x02/:\x01*\"*/cost-analysis/v1/data-source/remove-cache\x12\x91\x01\n" +
+	"\rpreload_cache\x120.spaceone.api.cost_analysis.v1.DataSourceRequest\x1a\x16.google.protobuf.Empty\"6\x82\xd3\xe4\x93\x020:\x01*\"+/cost-analysis/v1/data-source/preload-cache\x12\x94\x01\n" +
 	"\x03get\x120.spaceone.api.cost_analysis.v1.DataSourceRequest\x1a-.spaceone.api.cost_analysis.v1.DataSourceInfo\",\x82\xd3\xe4\x93\x02&:\x01*\"!/cost-analysis/v1/data-source/get\x12\x95\x01\n" +
 	"\x04list\x12..spaceone.api.cost_analysis.v1.DataSourceQuery\x1a..spaceone.api.cost_analysis.v1.DataSourcesInfo\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/cost-analysis/v1/data-source/list\x12\x82\x01\n" +
 	"\x04stat\x122.spaceone.api.cost_analysis.v1.DataSourceStatQuery\x1a\x17.google.protobuf.Struct\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/cost-analysis/v1/data-source/statBDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1b\x06proto3"
@@ -2397,22 +2399,26 @@ var file_spaceone_api_cost_analysis_v1_data_source_proto_depIdxs = []int32{
 	24, // 43: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
 	22, // 44: spaceone.api.cost_analysis.v1.DataSource.deregister:input_type -> spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest
 	23, // 45: spaceone.api.cost_analysis.v1.DataSource.sync:input_type -> spaceone.api.cost_analysis.v1.SyncDataSourceRequest
-	24, // 46: spaceone.api.cost_analysis.v1.DataSource.get:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
-	25, // 47: spaceone.api.cost_analysis.v1.DataSource.list:input_type -> spaceone.api.cost_analysis.v1.DataSourceQuery
-	28, // 48: spaceone.api.cost_analysis.v1.DataSource.stat:input_type -> spaceone.api.cost_analysis.v1.DataSourceStatQuery
-	26, // 49: spaceone.api.cost_analysis.v1.DataSource.register:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	26, // 50: spaceone.api.cost_analysis.v1.DataSource.update:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	26, // 51: spaceone.api.cost_analysis.v1.DataSource.update_permissions:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	26, // 52: spaceone.api.cost_analysis.v1.DataSource.update_plugin:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	26, // 53: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	32, // 54: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:output_type -> google.protobuf.Empty
-	32, // 55: spaceone.api.cost_analysis.v1.DataSource.deregister:output_type -> google.protobuf.Empty
-	33, // 56: spaceone.api.cost_analysis.v1.DataSource.sync:output_type -> spaceone.api.cost_analysis.v1.JobInfo
-	26, // 57: spaceone.api.cost_analysis.v1.DataSource.get:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
-	27, // 58: spaceone.api.cost_analysis.v1.DataSource.list:output_type -> spaceone.api.cost_analysis.v1.DataSourcesInfo
-	29, // 59: spaceone.api.cost_analysis.v1.DataSource.stat:output_type -> google.protobuf.Struct
-	49, // [49:60] is the sub-list for method output_type
-	38, // [38:49] is the sub-list for method input_type
+	24, // 46: spaceone.api.cost_analysis.v1.DataSource.remove_cache:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
+	24, // 47: spaceone.api.cost_analysis.v1.DataSource.preload_cache:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
+	24, // 48: spaceone.api.cost_analysis.v1.DataSource.get:input_type -> spaceone.api.cost_analysis.v1.DataSourceRequest
+	25, // 49: spaceone.api.cost_analysis.v1.DataSource.list:input_type -> spaceone.api.cost_analysis.v1.DataSourceQuery
+	28, // 50: spaceone.api.cost_analysis.v1.DataSource.stat:input_type -> spaceone.api.cost_analysis.v1.DataSourceStatQuery
+	26, // 51: spaceone.api.cost_analysis.v1.DataSource.register:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 52: spaceone.api.cost_analysis.v1.DataSource.update:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 53: spaceone.api.cost_analysis.v1.DataSource.update_permissions:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 54: spaceone.api.cost_analysis.v1.DataSource.update_plugin:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	26, // 55: spaceone.api.cost_analysis.v1.DataSource.update_secret_data:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	32, // 56: spaceone.api.cost_analysis.v1.DataSource.verify_plugin:output_type -> google.protobuf.Empty
+	32, // 57: spaceone.api.cost_analysis.v1.DataSource.deregister:output_type -> google.protobuf.Empty
+	33, // 58: spaceone.api.cost_analysis.v1.DataSource.sync:output_type -> spaceone.api.cost_analysis.v1.JobInfo
+	32, // 59: spaceone.api.cost_analysis.v1.DataSource.remove_cache:output_type -> google.protobuf.Empty
+	32, // 60: spaceone.api.cost_analysis.v1.DataSource.preload_cache:output_type -> google.protobuf.Empty
+	26, // 61: spaceone.api.cost_analysis.v1.DataSource.get:output_type -> spaceone.api.cost_analysis.v1.DataSourceInfo
+	27, // 62: spaceone.api.cost_analysis.v1.DataSource.list:output_type -> spaceone.api.cost_analysis.v1.DataSourcesInfo
+	29, // 63: spaceone.api.cost_analysis.v1.DataSource.stat:output_type -> google.protobuf.Struct
+	51, // [51:64] is the sub-list for method output_type
+	38, // [38:51] is the sub-list for method input_type
 	38, // [38:38] is the sub-list for extension type_name
 	38, // [38:38] is the sub-list for extension extendee
 	0,  // [0:38] is the sub-list for field type_name
