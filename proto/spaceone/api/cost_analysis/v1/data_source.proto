@@ -76,6 +76,22 @@ service DataSource {
     };
   }
 
+  // Removes cached data related to the specified DataSource. Useful for clearing outdated or unnecessary cache.
+  rpc remove_cache (DataSourceRequest) returns (google.protobuf.Empty) {
+  option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/remove-cache"
+      body: "*"
+    };
+  }
+
+  // Preloads cache for the specified DataSource. Initiates pre-caching to improve data access performance.
+  rpc preload_cache (DataSourceRequest) returns (google.protobuf.Empty) {
+  option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/preload-cache"
+      body: "*"
+    };
+  }
+
   // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `plugin_info`, and `schedule`.
   rpc get (DataSourceRequest) returns (DataSourceInfo) {
     option (google.api.http) = {
