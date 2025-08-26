@@ -646,7 +646,7 @@ type CostReportConfigRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The ID of cost report in the Protocol.
 	CostReportConfigId string `protobuf:"bytes,1,opt,name=cost_report_config_id,json=costReportConfigId,proto3" json:"cost_report_config_id,omitempty"`
-	SendReport         bool   `protobuf:"varint,2,opt,name=send_report,json=sendReport,proto3" json:"send_report,omitempty"`
+	SendReport         string `protobuf:"bytes,2,opt,name=send_report,json=sendReport,proto3" json:"send_report,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -688,11 +688,11 @@ func (x *CostReportConfigRequest) GetCostReportConfigId() string {
 	return ""
 }
 
-func (x *CostReportConfigRequest) GetSendReport() bool {
+func (x *CostReportConfigRequest) GetSendReport() string {
 	if x != nil {
 		return x.SendReport
 	}
-	return false
+	return ""
 }
 
 type CostReportConfigQuery struct {
@@ -1048,7 +1048,7 @@ const file_spaceone_api_cost_analysis_v1_cost_report_config_proto_rawDesc = "" +
 	"recipients\"m\n" +
 	"\x17CostReportConfigRequest\x121\n" +
 	"\x15cost_report_config_id\x18\x01 \x01(\tR\x12costReportConfigId\x12\x1f\n" +
-	"\vsend_report\x18\x02 \x01(\bR\n" +
+	"\vsend_report\x18\x02 \x01(\tR\n" +
 	"sendReport\"\x84\x03\n" +
 	"\x15CostReportConfigQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x121\n" +
