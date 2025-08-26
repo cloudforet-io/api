@@ -269,20 +269,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/create": {
+     },"/inventory-v2/namespace/create": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "Create",
          "operationId" : "",
-         "description": "### Description \nCreates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |region_code||string|True|\n |provider||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |namespace_group_id||string|True|\n |namespace_id||string||\n |icon||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -291,27 +291,29 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/update": {
+     },"/inventory-v2/namespace/update": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "Update",
          "operationId" : "",
-         "description": "### Description \nUpdates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |icon||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -320,27 +322,29 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/delete": {
+     },"/inventory-v2/namespace/delete": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "Delete",
          "operationId" : "",
-         "description": "### Description \nDeletes a specific Region. You must specify the `region_id` of the Region to delete.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -350,20 +354,20 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/get": {
+     },"/inventory-v2/namespace/get": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nGets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -372,27 +376,29 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/list": {
+     },"/inventory-v2/namespace/list": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \nGets a list of all Regions. You can use a query to get a filtered list of Regions.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |region_id||string||\n |name||string||\n |region_code||string||\n |provider||string||\n |exists_only||boolean||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |query||Query||\n |namespace_id||string||\n |category||string||\n |exist_only||boolean||\n |workspace_id||string||\n |namespace_group_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"exists_only" : {"type": "boolean","title": "EXISTS_ONLY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"category" : {"type": "string","title": "CATEGORY" },"exist_only" : {"type": "boolean","title": "EXIST_ONLY" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -401,16 +407,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RegionsInfo"},
+                 "schema": {"$ref": "#/components/schemas/NamespacesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RegionsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NamespacesInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/region/stat": {
+     },"/inventory-v2/namespace/stat": {
        "post": {
-         "tags": ["inventory-v2 > region"],
+         "tags": ["inventory-v2 > namespace"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -437,20 +443,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/create": {
+     },"/inventory-v2/collector-rule/create": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
+         "tags": ["inventory-v2 > collector-rule"],
          "summary": "Create",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nCreates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |name||string|True|\n |options||Struct|True|\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_id||string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||CollectorRuleActions|True|\n |name||string||\n |conditions||array||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n   },\n   \"options\": {\"stop_processing\": true},\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"},\n   \"collector_id\": \"collector-2e39891cbbb5\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -459,29 +465,29 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/update": {
+     },"/inventory-v2/collector-rule/update": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
+         "tags": ["inventory-v2 > collector-rule"],
          "summary": "Update",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nUpdates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n |name||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||CollectorRuleActions||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -490,29 +496,60 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/delete": {
+     },"/inventory-v2/collector-rule/change-order": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
-         "summary": "Delete",
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Change Order",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nChanges the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |order||int|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"order\": 2\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/delete": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -522,20 +559,20 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/get": {
+     },"/inventory-v2/collector-rule/get": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
+         "tags": ["inventory-v2 > collector-rule"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nGets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
+                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -544,27 +581,87 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
-                     "value": "{\n\n}"
+                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
+                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/list": {
+     },"/inventory-v2/collector-rule/list": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |collector_rule_id||string||\n |name||string||\n |rule_type|MANAGED, CUSTOM |string||\n |workspace_id||string||\n |collector_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"rule_type" : {"type": "string","title": "RULE_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"collector_rule_id\": \"collector-rule-c8055231e212\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.project_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-2e39891cbbb5\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T16:01:51.858Z\"\n       },\n       {\n           \"collector_rule_id\": \"collector-rule-t3345231e167\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.account_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-7163022d49a1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-03T16:00:54.099Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/collector-rule/stat": {
+       "post": {
+         "tags": ["inventory-v2 > collector-rule"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/metric-data/list": {
+       "post": {
+         "tags": ["inventory-v2 > metric-data"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |example_id||string||\n |name||string||\n |metric_id||string||\n |namespace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |query||Query||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"metric_id" : {"type": "string","title": "METRIC_ID" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -575,16 +672,188 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/MetricExamplesInfo"},
+                 "schema": {"$ref": "#/components/schemas/MetricDatasInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/MetricExamplesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/MetricDatasInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-example/stat": {
+     },"/inventory-v2/metric-data/stat": {
        "post": {
-         "tags": ["inventory-v2 > metric-example"],
+         "tags": ["inventory-v2 > metric-data"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |metric_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/metric-data/analyze": {
+       "post": {
+         "tags": ["inventory-v2 > metric-data"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/delete": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/get": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
+                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"collector_id\": \"collector-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/get-detail": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
+         "summary": "Get Detail",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/list": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, CANCELED, IN_PROGRESS, SUCCESS, FAILURE |string||\n |provider||string||\n |workspace_id||string||\n |project_id||string||\n |service_account_id||string||\n |job_id||string||\n |secret_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"provider" : {"type": "string","title": "PROVIDER" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"status\",\n               \"value\": \"FAILURE\",\n               \"operator\": \"eq\"\n           }\n       ],\n       \"page\": {\n           \"start\": 1,\n           \"limit\": 5\n       }\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dfad3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"workspace_id\": \"workspace-78099aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"created_count\": 123,\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"workspace_id\": \"workspace-1c1b7b7b7b7b\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/stat": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -811,443 +1080,6 @@
      },"/inventory-v2/metric/stat": {
        "post": {
          "tags": ["inventory-v2 > metric"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-data/list": {
-       "post": {
-         "tags": ["inventory-v2 > metric-data"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |query||Query||\n |workspace_id||string||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/MetricDatasInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/MetricDatasInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-data/stat": {
-       "post": {
-         "tags": ["inventory-v2 > metric-data"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |metric_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/metric-data/analyze": {
-       "post": {
-         "tags": ["inventory-v2 > metric-data"],
-         "summary": "Analyze",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |metric_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/create": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_id||string|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||CollectorRuleActions|True|\n |name||string||\n |conditions||array||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n   },\n   \"options\": {\"stop_processing\": true},\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"},\n   \"collector_id\": \"collector-2e39891cbbb5\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
-                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/update": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||CollectorRuleActions||\n |options||CollectorRuleOptions||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/CollectorRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/CollectorRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/CollectorRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
-                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/change-order": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Change Order",
-         "operationId" : "",
-         "description": "### Description \nChanges the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n |order||int|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"order\": 2\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
-                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/delete": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/get": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |collector_rule_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CollectorRuleInfo"},"Default Example":{
-                     "value": "{\n   \"collector_rule_id\": \"collector-rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"collector_id\": \"collector-2e39891cbbb5\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/list": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |collector_rule_id||string||\n |name||string||\n |rule_type|MANAGED, CUSTOM |string||\n |workspace_id||string||\n |collector_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID" },"name" : {"type": "string","title": "NAME" },"rule_type" : {"type": "string","title": "RULE_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CollectorRulesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"collector_rule_id\": \"collector-rule-c8055231e212\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.project_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-2e39891cbbb5\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T16:01:51.858Z\"\n       },\n       {\n           \"collector_rule_id\": \"collector-rule-t3345231e167\",\n           \"name\": \"match_service_account\",\n           \"order\": 1,\n           \"conditions_policy\": \"ALWAYS\",\n           \"actions\": {\n               \"match_service_account\": {\n                   \"source\": \"account\",\n                   \"target\": \"data.account_id\"\n               }\n           },\n           \"options\": {\n               \"stop_processing\": true\n           },\n           \"tags\": {},\n           \"collector_id\": \"collector-7163022d49a1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-03T16:00:54.099Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/collector-rule/stat": {
-       "post": {
-         "tags": ["inventory-v2 > collector-rule"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/job-task/delete": {
-       "post": {
-         "tags": ["inventory-v2 > job-task"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/job-task/get": {
-       "post": {
-         "tags": ["inventory-v2 > job-task"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
-                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"collector_id\": \"collector-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/job-task/get-detail": {
-       "post": {
-         "tags": ["inventory-v2 > job-task"],
-         "summary": "Get Detail",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/job-task/list": {
-       "post": {
-         "tags": ["inventory-v2 > job-task"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, CANCELED, IN_PROGRESS, SUCCESS, FAILURE |string||\n |provider||string||\n |workspace_id||string||\n |project_id||string||\n |service_account_id||string||\n |job_id||string||\n |secret_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"provider" : {"type": "string","title": "PROVIDER" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"status\",\n               \"value\": \"FAILURE\",\n               \"operator\": \"eq\"\n           }\n       ],\n       \"page\": {\n           \"start\": 1,\n           \"limit\": 5\n       }\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dfad3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"workspace_id\": \"workspace-78099aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"created_count\": 123,\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"workspace_id\": \"workspace-1c1b7b7b7b7b\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/job-task/stat": {
-       "post": {
-         "tags": ["inventory-v2 > job-task"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1591,6 +1423,174 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/create": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |region_code||string|True|\n |provider||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/update": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/delete": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Region. You must specify the `region_id` of the Region to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/get": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/list": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Regions. You can use a query to get a filtered list of Regions.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |region_id||string||\n |name||string||\n |region_code||string||\n |provider||string||\n |exists_only||boolean||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"exists_only" : {"type": "boolean","title": "EXISTS_ONLY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/stat": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory-v2/asset/create": {
        "post": {
          "tags": ["inventory-v2 > asset"],
@@ -1854,18 +1854,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/create": {
+     },"/inventory-v2/metric-example/create": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |namespace_group_id||string|True|\n |namespace_id||string||\n |icon||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |name||string|True|\n |options||Struct|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID" }                 }
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -1876,27 +1876,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
                      "value": "{\n\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/update": {
+     },"/inventory-v2/metric-example/update": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |icon||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n |name||string||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -1907,27 +1907,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
                      "value": "{\n\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/delete": {
+     },"/inventory-v2/metric-example/delete": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -1939,18 +1939,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/get": {
+     },"/inventory-v2/metric-example/get": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -1961,27 +1961,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
                      "value": "{\n\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/list": {
+     },"/inventory-v2/metric-example/list": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |query||Query||\n |namespace_id||string||\n |category||string||\n |exist_only||boolean||\n |workspace_id||string||\n |namespace_group_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |example_id||string||\n |name||string||\n |metric_id||string||\n |namespace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"category" : {"type": "string","title": "CATEGORY" },"exist_only" : {"type": "boolean","title": "EXIST_ONLY" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"metric_id" : {"type": "string","title": "METRIC_ID" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -1992,16 +1992,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NamespacesInfo"},
+                 "schema": {"$ref": "#/components/schemas/MetricExamplesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NamespacesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/MetricExamplesInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory-v2/namespace/stat": {
+     },"/inventory-v2/metric-example/stat": {
        "post": {
-         "tags": ["inventory-v2 > namespace"],
+         "tags": ["inventory-v2 > metric-example"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -2118,37 +2118,11 @@
          "required": ["collector_id"],
                 "title": "VerifyPluginRequest"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -2319,178 +2293,80 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
            }
-           ,        "CreateRegionRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
          "type": "object",
-         "required": ["name","region_code","provider","resource_group"],
-                "title": "CreateRegionRequest"
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
            }
-           ,        "RegionInfo": {
-         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
          "type": "object",
-         "required": ["region_id","name","region_code","provider","tags","resource_group","domain_id","workspace_id","created_at","updated_at"],
-                "title": "RegionInfo"
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
            }
-           ,        "RegionQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"exists_only" : {"type": "boolean","title": "EXISTS_ONLY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
          "type": "object",
-         "required": [],
-                "title": "RegionQuery"
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
            }
-           ,        "RegionRequest": {
-         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"}},
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
          "type": "object",
-         "required": ["region_id"],
-                "title": "RegionRequest"
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
-           ,        "RegionStatQuery": {
+           ,        "CreateNamespaceRequest": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"}},
+         "type": "object",
+         "required": ["name","category","resource_group","namespace_group_id"],
+                "title": "CreateNamespaceRequest"
+           }
+           ,        "NamespaceInfo": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["namespace_id","name","category","icon","tags","is_managed","resource_group","domain_id","workspace_id","namespace_group_id","created_at","updated_at"],
+                "title": "NamespaceInfo"
+           }
+           ,        "NamespaceQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"category" : {"type": "string","title": "CATEGORY"},"exist_only" : {"type": "boolean","title": "EXIST_ONLY"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"}},
+         "type": "object",
+         "required": ["resource_group"],
+                "title": "NamespaceQuery"
+           }
+           ,        "NamespaceRequest": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "type": "object",
+         "required": ["namespace_id"],
+                "title": "NamespaceRequest"
+           }
+           ,        "NamespaceStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "RegionStatQuery"
+                "title": "NamespaceStatQuery"
            }
-           ,        "RegionsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RegionInfo"},
-               "type": "array","$ref": "#/components/schemas/RegionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "NamespacesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NamespaceInfo"},
+               "type": "array","$ref": "#/components/schemas/NamespaceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "RegionsInfo"
+                "title": "NamespacesInfo"
            }
-           ,        "UpdateRegionRequest": {
-         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdateNamespaceRequest": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["region_id"],
-                "title": "UpdateRegionRequest"
-           }
-           ,        "CreateMetricExampleRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["metric_id","name","options"],
-                "title": "CreateMetricExampleRequest"
-           }
-           ,        "MetricExampleInfo": {
-         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"metric_id" : {"type": "string","title": "METRIC_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["example_id","name","options","tags","domain_id","user_id","metric_id","namespace_id","created_at","updated_at"],
-                "title": "MetricExampleInfo"
-           }
-           ,        "MetricExampleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"metric_id" : {"type": "string","title": "METRIC_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "MetricExampleQuery"
-           }
-           ,        "MetricExampleRequest": {
-         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"}},
-         "type": "object",
-         "required": ["example_id"],
-                "title": "MetricExampleRequest"
-           }
-           ,        "MetricExampleStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "MetricExampleStatQuery"
-           }
-           ,        "MetricExamplesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricExampleInfo"},
-               "type": "array","$ref": "#/components/schemas/MetricExampleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "MetricExamplesInfo"
-           }
-           ,        "UpdateMetricExampleRequest": {
-         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["example_id"],
-                "title": "UpdateMetricExampleRequest"
-           }
-           ,        "CreateMetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["name","metric_type","query_options","namespace_id","resource_group"],
-                "title": "CreateMetricRequest"
-           }
-           ,        "MetricInfo": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"items": {"type": "object"},
-               "type": "array","title": "LABELS_INFO"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["metric_id","name","metric_type","resource_type","query_options","date_field","unit","tags","labels_info","is_managed","resource_group","domain_id","workspace_id","namespace_id","created_at","updated_at"],
-                "title": "MetricInfo"
-           }
-           ,        "MetricQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"is_managed" : {"type": "string","title": "IS_MANAGED"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "MetricQuery"
-           }
-           ,        "MetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"}},
-         "type": "object",
-         "required": ["metric_id"],
-                "title": "MetricRequest"
-           }
-           ,        "MetricStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "MetricStatQuery"
-           }
-           ,        "MetricTestRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"}},
-         "type": "object",
-         "required": ["metric_id","query_options"],
-                "title": "MetricTestRequest"
-           }
-           ,        "MetricsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricInfo"},
-               "type": "array","$ref": "#/components/schemas/MetricInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "MetricsInfo"
-           }
-           ,        "UpdateMetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["metric_id"],
-                "title": "UpdateMetricRequest"
-           }
-           ,        "MetricDataAnalyzeQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
-         "type": "object",
-         "required": ["query","metric_id"],
-                "title": "MetricDataAnalyzeQuery"
-           }
-           ,        "MetricDataInfo": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"value" : {"type": "float","title": "VALUE"},"unit" : {"type": "string","title": "UNIT"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_year" : {"type": "string","title": "CREATED_YEAR"},"created_month" : {"type": "string","title": "CREATED_MONTH"},"created_date" : {"type": "string","title": "CREATED_DATE"}},
-         "type": "object",
-         "required": ["metric_id","value","unit","labels","domain_id","workspace_id","project_id","service_account_id","namespace_id","created_year","created_month","created_date"],
-                "title": "MetricDataInfo"
-           }
-           ,        "MetricDataQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
-         "type": "object",
-         "required": ["metric_id"],
-                "title": "MetricDataQuery"
-           }
-           ,        "MetricDataStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "MetricDataStatQuery"
-           }
-           ,        "MetricDatasInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricDataInfo"},
-               "type": "array","$ref": "#/components/schemas/MetricDataInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "MetricDatasInfo"
+         "required": ["namespace_id"],
+                "title": "UpdateNamespaceRequest"
            }
            ,        "ChangeCollectorRuleOrderRequest": {
          "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"order" : {"type": "integer","title": "ORDER"}},
@@ -2568,6 +2444,37 @@
          "required": ["collector_rule_id"],
                 "title": "UpdateCollectorRuleRequest"
            }
+           ,        "MetricDataAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["query","metric_id"],
+                "title": "MetricDataAnalyzeQuery"
+           }
+           ,        "MetricDataInfo": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"value" : {"type": "float","title": "VALUE"},"unit" : {"type": "string","title": "UNIT"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_year" : {"type": "string","title": "CREATED_YEAR"},"created_month" : {"type": "string","title": "CREATED_MONTH"},"created_date" : {"type": "string","title": "CREATED_DATE"}},
+         "type": "object",
+         "required": ["metric_id","value","unit","labels","domain_id","workspace_id","project_id","service_account_id","namespace_id","created_year","created_month","created_date"],
+                "title": "MetricDataInfo"
+           }
+           ,        "MetricDataQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "MetricDataQuery"
+           }
+           ,        "MetricDataStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "MetricDataStatQuery"
+           }
+           ,        "MetricDatasInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricDataInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricDataInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MetricDatasInfo"
+           }
            ,        "ErrorInfo": {
          "properties" : {"error_code" : {"type": "string","title": "ERROR_CODE"},"message" : {"type": "string","title": "MESSAGE"},"additional" : {"type": "object","title": "ADDITIONAL"}},
          "type": "object",
@@ -2610,6 +2517,56 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "JobTasksInfo"
+           }
+           ,        "CreateMetricRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["name","metric_type","query_options","namespace_id","resource_group"],
+                "title": "CreateMetricRequest"
+           }
+           ,        "MetricInfo": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"items": {"type": "object"},
+               "type": "array","title": "LABELS_INFO"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["metric_id","name","metric_type","resource_type","query_options","date_field","unit","tags","labels_info","is_managed","resource_group","domain_id","workspace_id","namespace_id","created_at","updated_at"],
+                "title": "MetricInfo"
+           }
+           ,        "MetricQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"is_managed" : {"type": "string","title": "IS_MANAGED"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "MetricQuery"
+           }
+           ,        "MetricRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "MetricRequest"
+           }
+           ,        "MetricStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "MetricStatQuery"
+           }
+           ,        "MetricTestRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"}},
+         "type": "object",
+         "required": ["metric_id","query_options"],
+                "title": "MetricTestRequest"
+           }
+           ,        "MetricsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MetricsInfo"
+           }
+           ,        "UpdateMetricRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "UpdateMetricRequest"
            }
            ,        "CreateNamespaceGroupRequest": {
          "properties" : {"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"icon" : {"type": "string","title": "ICON"},"description" : {"type": "string","title": "DESCRIPTION"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
@@ -2691,6 +2648,49 @@
          "required": [],
                 "title": "JobsQuery"
            }
+           ,        "CreateRegionRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["name","region_code","provider","resource_group"],
+                "title": "CreateRegionRequest"
+           }
+           ,        "RegionInfo": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["region_id","name","region_code","provider","tags","resource_group","domain_id","workspace_id","created_at","updated_at"],
+                "title": "RegionInfo"
+           }
+           ,        "RegionQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"exists_only" : {"type": "boolean","title": "EXISTS_ONLY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "RegionQuery"
+           }
+           ,        "RegionRequest": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"}},
+         "type": "object",
+         "required": ["region_id"],
+                "title": "RegionRequest"
+           }
+           ,        "RegionStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "RegionStatQuery"
+           }
+           ,        "RegionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RegionInfo"},
+               "type": "array","$ref": "#/components/schemas/RegionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "RegionsInfo"
+           }
+           ,        "UpdateRegionRequest": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["region_id"],
+                "title": "UpdateRegionRequest"
+           }
            ,        "AssetAnalyzeQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"}},
          "type": "object",
@@ -2770,48 +2770,48 @@
          "required": ["cloud_service_id"],
                 "title": "UpdateAssetRequest"
            }
-           ,        "CreateNamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"}},
+           ,        "CreateMetricExampleRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name","category","resource_group","namespace_group_id"],
-                "title": "CreateNamespaceRequest"
+         "required": ["metric_id","name","options"],
+                "title": "CreateMetricExampleRequest"
            }
-           ,        "NamespaceInfo": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "MetricExampleInfo": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"metric_id" : {"type": "string","title": "METRIC_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["namespace_id","name","category","icon","tags","is_managed","resource_group","domain_id","workspace_id","namespace_group_id","created_at","updated_at"],
-                "title": "NamespaceInfo"
+         "required": ["example_id","name","options","tags","domain_id","user_id","metric_id","namespace_id","created_at","updated_at"],
+                "title": "MetricExampleInfo"
            }
-           ,        "NamespaceQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"category" : {"type": "string","title": "CATEGORY"},"exist_only" : {"type": "boolean","title": "EXIST_ONLY"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_group_id" : {"type": "string","title": "NAMESPACE_GROUP_ID"}},
+           ,        "MetricExampleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"metric_id" : {"type": "string","title": "METRIC_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
          "type": "object",
-         "required": ["resource_group"],
-                "title": "NamespaceQuery"
+         "required": [],
+                "title": "MetricExampleQuery"
            }
-           ,        "NamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+           ,        "MetricExampleRequest": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"}},
          "type": "object",
-         "required": ["namespace_id"],
-                "title": "NamespaceRequest"
+         "required": ["example_id"],
+                "title": "MetricExampleRequest"
            }
-           ,        "NamespaceStatQuery": {
+           ,        "MetricExampleStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "NamespaceStatQuery"
+                "title": "MetricExampleStatQuery"
            }
-           ,        "NamespacesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NamespaceInfo"},
-               "type": "array","$ref": "#/components/schemas/NamespaceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "MetricExamplesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricExampleInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricExampleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "NamespacesInfo"
+                "title": "MetricExamplesInfo"
            }
-           ,        "UpdateNamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdateMetricExampleRequest": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["namespace_id"],
-                "title": "UpdateNamespaceRequest"
+         "required": ["example_id"],
+                "title": "UpdateMetricExampleRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
