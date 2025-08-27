@@ -719,6 +719,8 @@ type ServiceAccountSearchQuery struct {
 	// +optional
 	Provider string `protobuf:"bytes,5,opt,name=provider,proto3" json:"provider,omitempty"`
 	// +optional
+	HasSecret bool `protobuf:"varint,6,opt,name=has_secret,json=hasSecret,proto3" json:"has_secret,omitempty"`
+	// +optional
 	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	// +optional
 	ProjectId string `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
@@ -795,6 +797,13 @@ func (x *ServiceAccountSearchQuery) GetProvider() string {
 		return x.Provider
 	}
 	return ""
+}
+
+func (x *ServiceAccountSearchQuery) GetHasSecret() bool {
+	if x != nil {
+		return x.HasSecret
+	}
+	return false
 }
 
 func (x *ServiceAccountSearchQuery) GetWorkspaceId() string {
@@ -1072,13 +1081,15 @@ const file_spaceone_api_identity_v2_service_account_proto_rawDesc = "" +
 	"\n" +
 	"\x06ACTIVE\x10\x02\x12\f\n" +
 	"\bINACTIVE\x10\x03\x12\v\n" +
-	"\aDELETED\x10\x04\"\xc0\x03\n" +
+	"\aDELETED\x10\x04\"\xdf\x03\n" +
 	"\x19ServiceAccountSearchQuery\x121\n" +
 	"\x05query\x18\x01 \x01(\v2\x1b.spaceone.api.core.v2.QueryR\x05query\x12,\n" +
 	"\x12service_account_id\x18\x02 \x01(\tR\x10serviceAccountId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
 	"\x05state\x18\x04 \x01(\tR\x05state\x12\x1a\n" +
-	"\bprovider\x18\x05 \x01(\tR\bprovider\x12!\n" +
+	"\bprovider\x18\x05 \x01(\tR\bprovider\x12\x1d\n" +
+	"\n" +
+	"has_secret\x18\x06 \x01(\bR\thasSecret\x12!\n" +
 	"\fworkspace_id\x18\x15 \x01(\tR\vworkspaceId\x12\x1d\n" +
 	"\n" +
 	"project_id\x18\x17 \x01(\tR\tprojectId\x12,\n" +

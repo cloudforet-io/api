@@ -3717,11 +3717,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_account_id||string||\n |name||string||\n |state||string||\n |provider||string||\n |workspace_id||string||\n |project_id||string||\n |trusted_account_id||string||\n |secret_schema_id||string||\n |secret_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_account_id||string||\n |name||string||\n |state||string||\n |provider||string||\n |has_secret||boolean||\n |workspace_id||string||\n |project_id||string||\n |trusted_account_id||string||\n |secret_schema_id||string||\n |secret_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"provider" : {"type": "string","title": "PROVIDER" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"provider" : {"type": "string","title": "PROVIDER" },"has_secret" : {"type": "boolean","title": "HAS_SECRET" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\",\n \"query\": {\n   \"page\": {\n     \"start\": 1,\n     \"limit\": 10\n   },\n   \"sort\": [\n     {\n       \"key\": \"created_at\",\n       \"desc\": true\n     }\n   ]\n }\n}"},"Schema":{}
                }
@@ -6091,7 +6091,7 @@
                 "title": "ServiceAccountRequest"
            }
            ,        "ServiceAccountSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"provider" : {"type": "string","title": "PROVIDER"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"provider" : {"type": "string","title": "PROVIDER"},"has_secret" : {"type": "boolean","title": "HAS_SECRET"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
          "type": "object",
          "required": [],
                 "title": "ServiceAccountSearchQuery"
